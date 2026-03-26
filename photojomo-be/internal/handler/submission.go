@@ -11,33 +11,20 @@ import (
 	"github.com/photojomo/photojomo-be/internal/repository"
 )
 
-var validCategories = map[string]bool{
-	"general":           true,
-	"emerging_creator":  true,
-	"college_creator":   true,
-	"master_your_craft": true,
-}
-
-var validTiers = map[string]float64{
-	"explorer":   25.00,
-	"enthusiast": 45.00,
-	"visionary":  65.00,
-	"master":     95.00,
-}
-
 type SubmissionRequest struct {
-	FirstName           string  `json:"firstName"`
-	LastName            string  `json:"lastName"`
-	Email               string  `json:"email"`
-	Country             string  `json:"country"`
-	ConfirmImagesDates  bool    `json:"confirmImagesDates"`
-	ConfirmAge          bool    `json:"confirmAge"`
-	ConfirmRules        bool    `json:"confirmRules"`
-	MarketingConsent    bool    `json:"marketingConsent"`
-	Category            string  `json:"category"`
-	Tier                string  `json:"tier"`
-	AmountPaid          float64 `json:"amountPaid"`
-	PaymentMethod       string  `json:"paymentMethod"`
+	FirstName          string  `json:"firstName"`
+	LastName           string  `json:"lastName"`
+	Email              string  `json:"email"`
+	Country            string  `json:"country"`
+	ConfirmImagesDates bool    `json:"confirmImagesDates"`
+	ConfirmAge         bool    `json:"confirmAge"`
+	ConfirmRules       bool    `json:"confirmRules"`
+	MarketingConsent   bool    `json:"marketingConsent"`
+	ContestID          string  `json:"contestId"`
+	ContestCategoryID  string  `json:"contestCategoryId"`
+	ContestTierID      string  `json:"contestTierId"`
+	AmountPaid         float64 `json:"amountPaid"`
+	PaymentMethod      string  `json:"paymentMethod"`
 }
 
 type SubmissionResponse struct {
@@ -73,16 +60,9 @@ func (h *SubmissionHandler) Handle(ctx context.Context, req events.APIGatewayV2H
 		}), nil
 	}
 
-	if !validCategories[body.Category] {
+	if body.ContestID == "" || body.ContestCategoryID == "" || body.ContestTierID == "" {
 		return jsonResponse(http.StatusBadRequest, map[string]interface{}{
-			"message": "invalid category",
-			"success": false,
-		}), nil
-	}
-
-	if _, ok := validTiers[body.Tier]; !ok {
-		return jsonResponse(http.StatusBadRequest, map[string]interface{}{
-			"message": "invalid tier",
+			"message": "contestId, contestCategoryId, and contestTierId are required",
 			"success": false,
 		}), nil
 	}
@@ -128,6 +108,7 @@ func (h *SubmissionHandler) Handle(ctx context.Context, req events.APIGatewayV2H
 			ConfirmAge:         body.ConfirmAge,
 			ConfirmRules:       body.ConfirmRules,
 			MarketingConsent:   body.MarketingConsent,
+			ContestID:          body.ContestID,
 		})
 		if err != nil {
 			log.Printf("error creating contestant: %v", err)
@@ -140,11 +121,12 @@ func (h *SubmissionHandler) Handle(ctx context.Context, req events.APIGatewayV2H
 
 	// Create submission
 	submissionID, err := h.submissions.Save(ctx, tx, repository.Submission{
-		ContestantID:  contestantID,
-		Category:      body.Category,
-		Tier:          body.Tier,
-		AmountPaid:    body.AmountPaid,
-		PaymentMethod: body.PaymentMethod,
+		ContestantID:      contestantID,
+		ContestID:         body.ContestID,
+		ContestCategoryID: body.ContestCategoryID,
+		ContestTierID:     body.ContestTierID,
+		AmountPaid:        body.AmountPaid,
+		PaymentMethod:     body.PaymentMethod,
 	})
 	if err != nil {
 		log.Printf("error creating submission: %v", err)

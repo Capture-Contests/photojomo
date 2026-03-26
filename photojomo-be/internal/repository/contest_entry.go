@@ -16,6 +16,7 @@ func NewContestEntryRepository() *ContestEntryRepository {
 
 type ContestEntry struct {
 	SubmissionID string
+	ContestID    string
 	URI          string
 }
 
@@ -23,9 +24,9 @@ func (r *ContestEntryRepository) Save(ctx context.Context, tx pgx.Tx, e ContestE
 	id := idgen.New("cte")
 
 	_, err := tx.Exec(ctx, `
-		INSERT INTO contest_entry (id, submission_id, uri, created_at)
-		VALUES ($1, $2, $3, NOW())
-	`, id, e.SubmissionID, e.URI)
+		INSERT INTO contest_entry (id, submission_id, contest_id, uri, created_at)
+		VALUES ($1, $2, $3, $4, NOW())
+	`, id, e.SubmissionID, e.ContestID, e.URI)
 	if err != nil {
 		return "", fmt.Errorf("inserting contest_entry: %w", err)
 	}

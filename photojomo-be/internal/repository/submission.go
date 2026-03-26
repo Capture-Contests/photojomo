@@ -18,11 +18,12 @@ func NewSubmissionRepository(db *pgxpool.Pool) *SubmissionRepository {
 }
 
 type Submission struct {
-	ContestantID  string
-	Category      string
-	Tier          string
-	AmountPaid    float64
-	PaymentMethod string
+	ContestantID      string
+	ContestID         string
+	ContestCategoryID string
+	ContestTierID     string
+	AmountPaid        float64
+	PaymentMethod     string
 }
 
 func (r *SubmissionRepository) Save(ctx context.Context, tx pgx.Tx, s Submission) (string, error) {
@@ -30,11 +31,11 @@ func (r *SubmissionRepository) Save(ctx context.Context, tx pgx.Tx, s Submission
 
 	_, err := tx.Exec(ctx, `
 		INSERT INTO submission (
-			id, contestant_id, category, tier,
+			id, contestant_id, contest_id, contest_category_id, contest_tier_id,
 			amount_paid, payment_method, payment_status,
 			created_at
-		) VALUES ($1, $2, $3, $4, $5, $6, 'pending', NOW())
-	`, id, s.ContestantID, s.Category, s.Tier, s.AmountPaid, s.PaymentMethod,
+		) VALUES ($1, $2, $3, $4, $5, $6, $7, 'pending', NOW())
+	`, id, s.ContestantID, s.ContestID, s.ContestCategoryID, s.ContestTierID, s.AmountPaid, s.PaymentMethod,
 	)
 	if err != nil {
 		return "", fmt.Errorf("inserting submission: %w", err)

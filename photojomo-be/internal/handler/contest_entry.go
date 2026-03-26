@@ -24,6 +24,7 @@ type fileInput struct {
 type contestEntryRequest struct {
 	ContestantID string      `json:"contestantId"`
 	SubmissionID string      `json:"submissionId"`
+	ContestID    string      `json:"contestId"`
 	Files        []fileInput `json:"files"`
 }
 
@@ -63,9 +64,9 @@ func (h *ContestEntryHandler) Handle(ctx context.Context, req events.APIGatewayV
 		}), nil
 	}
 
-	if body.ContestantID == "" || body.SubmissionID == "" {
+	if body.ContestantID == "" || body.SubmissionID == "" || body.ContestID == "" {
 		return jsonResponse(http.StatusBadRequest, map[string]interface{}{
-			"message": "contestantId and submissionId are required",
+			"message": "contestantId, submissionId, and contestId are required",
 			"success": false,
 		}), nil
 	}
@@ -94,6 +95,7 @@ func (h *ContestEntryHandler) Handle(ctx context.Context, req events.APIGatewayV
 
 		entryID, err := h.entries.Save(ctx, tx, repository.ContestEntry{
 			SubmissionID: body.SubmissionID,
+			ContestID:    body.ContestID,
 			URI:          key,
 		})
 		if err != nil {

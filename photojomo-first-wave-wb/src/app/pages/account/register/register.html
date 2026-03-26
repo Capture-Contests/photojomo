@@ -1,11 +1,13 @@
 @if (submitted) {
+  <div class="reg-success-page">
   <div class="reg-success">
     <div class="reg-success__icon">✓</div>
     <h2>Entry Submitted!</h2>
     <p>Thank you, <strong>{{ form.firstName }}</strong>. Your entry to the <strong>{{ division }}</strong> division has been received.</p>
     <p>Check your email for confirmation and important updates.</p>
     <p><em>Welcome to the First Wave.</em></p>
-    <a routerLink="/home" class="reg-success__btn">Back to Home</a>
+    <a routerLink="/" class="reg-success__btn">Back to Home</a>
+  </div>
   </div>
 } @else {
   <div class="reg-page">
@@ -157,6 +159,10 @@
             </div>
           }
         </div>
+
+        @if (errorMessage) {
+          <p class="reg-error">{{ errorMessage }}</p>
+        }
 
         <button type="submit" class="reg-submit" [disabled]="submitting || !f.valid">
           @if (submitting) { Processing… } @else { Complete Purchase }

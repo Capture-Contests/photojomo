@@ -19,15 +19,16 @@ func NewContestantRepository(db *pgxpool.Pool) *ContestantRepository {
 }
 
 type Contestant struct {
-	ID                  string
-	FirstName           string
-	LastName            string
-	Email               string
-	Country             string
-	ConfirmImagesDates  bool
-	ConfirmAge          bool
-	ConfirmRules        bool
-	MarketingConsent    bool
+	ID                 string
+	FirstName          string
+	LastName           string
+	Email              string
+	Country            string
+	ConfirmImagesDates bool
+	ConfirmAge         bool
+	ConfirmRules       bool
+	MarketingConsent   bool
+	ContestID          string
 }
 
 func (r *ContestantRepository) FindByEmail(ctx context.Context, email string) (*Contestant, error) {
@@ -60,10 +61,11 @@ func (r *ContestantRepository) Save(ctx context.Context, tx pgx.Tx, c Contestant
 		INSERT INTO contestant (
 			id, first_name, last_name, email, country,
 			confirm_images_dates, confirm_age, confirm_rules, marketing_consent,
-			created_at
-		) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, NOW())
+			contest_id, created_at
+		) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, NOW())
 	`, id, c.FirstName, c.LastName, c.Email, c.Country,
 		c.ConfirmImagesDates, c.ConfirmAge, c.ConfirmRules, c.MarketingConsent,
+		c.ContestID,
 	)
 	if err != nil {
 		return "", fmt.Errorf("inserting contestant: %w", err)

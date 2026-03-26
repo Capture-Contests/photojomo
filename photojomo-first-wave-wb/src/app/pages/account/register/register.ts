@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TIERS, Tier } from '../../../shared/contest-tiers/contest-tiers';
 import { COUNTRIES } from '../../../shared/entry-form/countries';
+import { SubmissionService } from '../../../core/submission.service';
 
 interface UploadSlot { index: number; file: File | null; preview: string | null; }
 
@@ -33,8 +34,12 @@ export class Register implements OnInit {
   paymentMethod: 'stripe' | 'paypal' = 'stripe';
   submitted = false;
   submitting = false;
+  errorMessage = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private submissionService: SubmissionService,
+  ) {}
 
   ngOnInit() {
     this.division = this.route.snapshot.queryParamMap.get('division') ?? '';
@@ -80,10 +85,32 @@ export class Register implements OnInit {
   }
 
   async onSubmit() {
+    if (!this.selectedTier) return;
+
     this.submitting = true;
-    // Payment processing will be wired to Stripe/PayPal Cloudflare Worker
-    await new Promise(r => setTimeout(r, 1200));
-    this.submitted = true;
-    this.submitting = false;
+    this.errorMessage = '';
+
+    try {
+      await this.submissionService.submit({
+        firstName:          this.form.firstName,
+        lastName:           this.form.lastName,
+        email:              this.form.email,
+        country:            this.form.country,
+        confirmImagesDates: this.form.confirmDates,
+        confirmAge:         this.form.confirmAge,
+        confirmRules:       this.form.agreeRules,
+        marketingConsent:   this.form.subscribeOffers,
+        division:           this.division,
+        tierName:           this.selectedTier.name,
+        paymentMethod:      this.paymentMethod,
+        files:              this.uploadSlots.map(s => s.file).filter((f): f is File => f !== null),
+      });
+      this.submitted = true;
+    } catch (err) {
+      console.error('Submission failed', err);
+      this.errorMessage = 'Something went wrong. Please try again.';
+    } finally {
+      this.submitting = false;
+    }
   }
 }

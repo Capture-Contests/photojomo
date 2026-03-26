@@ -44,7 +44,9 @@
       "Bash(CLOUDFLARE_ACCOUNT_ID=e6a409663bf73140c8bd4caaadd9ebc2 npm run:*)",
       "Bash(git add:*)",
       "Bash(wrangler:*)",
-      "Bash(CLOUDFLARE_ACCOUNT_ID=e6a409663bf73140c8bd4caaadd9ebc2 wrangler pages:*)"
+      "Bash(CLOUDFLARE_ACCOUNT_ID=e6a409663bf73140c8bd4caaadd9ebc2 wrangler pages:*)",
+      "Bash(go build:*)",
+      "Bash(source:*)"
     ]
   }
 }

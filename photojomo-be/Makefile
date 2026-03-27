@@ -6,9 +6,9 @@ DIST        = dist
 
 # ── Targets ───────────────────────────────────────────────────────────────────
 
-.PHONY: all clean $(DIST) build-contact deploy-contact build-submission deploy-submission build-contest-entry deploy-contest-entry
+.PHONY: all clean $(DIST) build-contact deploy-contact build-submission deploy-submission build-contest-entry deploy-contest-entry build-stripe-webhook deploy-stripe-webhook build-payment-intent deploy-payment-intent
 
-all: build-contact build-submission build-contest-entry
+all: build-contact build-submission build-contest-entry build-stripe-webhook build-payment-intent
 
 # ── Build ─────────────────────────────────────────────────────────────────────
 
@@ -44,6 +44,20 @@ build-contest-entry: $(DIST)
 	rm bootstrap
 	@echo "Built: $(DIST)/contest-entry.zip"
 
+build-payment-intent: $(DIST)
+	GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=$(CGO_ENABLED) \
+		go build $(LDFLAGS) -o bootstrap ./cmd/payment-intent/
+	zip -j $(DIST)/payment-intent.zip bootstrap
+	rm bootstrap
+	@echo "Built: $(DIST)/payment-intent.zip"
+
+build-stripe-webhook: $(DIST)
+	GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=$(CGO_ENABLED) \
+		go build $(LDFLAGS) -o bootstrap ./cmd/stripe-webhook/
+	zip -j $(DIST)/stripe-webhook.zip bootstrap
+	rm bootstrap
+	@echo "Built: $(DIST)/stripe-webhook.zip"
+
 # Add future lambdas here following the same pattern:
 # build-<name>: $(DIST)
 #   GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=$(CGO_ENABLED) \
@@ -67,6 +81,28 @@ deploy-contest-entry: build-contest-entry
 		--s3-key contest-entry-service/contest-entry.zip \
 		--region $(REGION)
 	@echo "Deployed contest-entry lambda to $(ENV)"
+
+deploy-payment-intent: build-payment-intent
+	aws s3 cp $(DIST)/payment-intent.zip \
+		s3://$(PROJECT)-$(ENV)-lambda-artifacts/payment-intent-service/payment-intent.zip \
+		--region $(REGION)
+	aws lambda update-function-code \
+		--function-name $(PROJECT)-$(ENV)-payment-intent-service \
+		--s3-bucket $(PROJECT)-$(ENV)-lambda-artifacts \
+		--s3-key payment-intent-service/payment-intent.zip \
+		--region $(REGION)
+	@echo "Deployed payment-intent lambda to $(ENV)"
+
+deploy-stripe-webhook: build-stripe-webhook
+	aws s3 cp $(DIST)/stripe-webhook.zip \
+		s3://$(PROJECT)-$(ENV)-lambda-artifacts/stripe-webhook-service/stripe-webhook.zip \
+		--region $(REGION)
+	aws lambda update-function-code \
+		--function-name $(PROJECT)-$(ENV)-stripe-webhook-service \
+		--s3-bucket $(PROJECT)-$(ENV)-lambda-artifacts \
+		--s3-key stripe-webhook-service/stripe-webhook.zip \
+		--region $(REGION)
+	@echo "Deployed stripe-webhook lambda to $(ENV)"
 
 deploy-contact: build-contact
 	aws s3 cp $(DIST)/contact.zip \

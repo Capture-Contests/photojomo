@@ -101,6 +101,52 @@ resource "aws_lambda_permission" "contest_entry_service_apigw" {
   source_arn    = "${aws_apigatewayv2_api.main.execution_arn}/*/*"
 }
 
+# ── Payment Intent Service Integration ───────────────────────────────────────
+
+resource "aws_apigatewayv2_integration" "payment_intent_service" {
+  api_id                 = aws_apigatewayv2_api.main.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.payment_intent_service.invoke_arn
+  payload_format_version = "2.0"
+}
+
+resource "aws_apigatewayv2_route" "create_payment_intent" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "POST /payment-intents"
+  target    = "integrations/${aws_apigatewayv2_integration.payment_intent_service.id}"
+}
+
+resource "aws_lambda_permission" "payment_intent_service_apigw" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.payment_intent_service.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.main.execution_arn}/*/*"
+}
+
+# ── Stripe Webhook Service Integration ───────────────────────────────────────
+
+resource "aws_apigatewayv2_integration" "stripe_webhook_service" {
+  api_id                 = aws_apigatewayv2_api.main.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.stripe_webhook_service.invoke_arn
+  payload_format_version = "2.0"
+}
+
+resource "aws_apigatewayv2_route" "stripe_webhook" {
+  api_id    = aws_apigatewayv2_api.main.id
+  route_key = "POST /webhooks/stripe"
+  target    = "integrations/${aws_apigatewayv2_integration.stripe_webhook_service.id}"
+}
+
+resource "aws_lambda_permission" "stripe_webhook_service_apigw" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.stripe_webhook_service.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.main.execution_arn}/*/*"
+}
+
 # ── Contact Service Integration ───────────────────────────────────────────────
 
 resource "aws_apigatewayv2_integration" "contact_service" {

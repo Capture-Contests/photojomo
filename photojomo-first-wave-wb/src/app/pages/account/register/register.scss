@@ -247,6 +247,22 @@
   background: rgba(255,255,255,0.03);
 }
 
+.card-fields--hidden {
+  display: none;
+}
+
+.stripe-loading {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.45);
+  text-align: center;
+  padding: 1.5rem 0;
+  margin: 0;
+}
+
+.stripe-element--hidden {
+  display: none;
+}
+
 // SUBMIT
 .reg-submit {
   margin-top: 2rem;

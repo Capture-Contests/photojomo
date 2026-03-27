@@ -15,13 +15,19 @@
   &--black {
     background: #000;
     color: #fff;
-    &:hover { background: var(--color-dark); }
+
+    &:hover {
+      background: var(--color-dark);
+    }
   }
 
   &--gold {
     background: var(--color-gold);
     color: #fff;
-    &:hover { background: var(--color-gold-hover); }
+
+    &:hover {
+      background: var(--color-gold-hover);
+    }
   }
 
   &--cta {
@@ -32,18 +38,32 @@
     letter-spacing: 2px;
     padding: 1rem 3rem;
     text-transform: uppercase;
-    &:hover { background: var(--color-gold-hover); color: #fff; }
+
+    &:hover {
+      background: var(--color-gold-hover);
+      color: #fff;
+    }
   }
 
   &--outline {
     background: transparent;
     color: #fff;
     border: 2px solid #fff;
-    &:hover { background: rgba(255,255,255,0.1); }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
   }
 
-  &--lg { padding: 1rem 2.5rem; font-size: 1rem; }
-  &--sm { padding: 0.5rem 1.25rem; font-size: 0.85rem; }
+  &--lg {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+  }
+
+  &--sm {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+  }
 }
 
 .section-title {
@@ -54,9 +74,12 @@
   margin: 0 0 2.5rem;
   color: #000;
 
-  &--light { color: #fff; }
+  &--light {
+    color: #fff;
+  }
 
-  i, em {
+  i,
+  em {
     font-family: var(--font-serif);
     font-style: italic;
     color: var(--color-gold-italic);
@@ -96,7 +119,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.28);
+    background: rgba(0, 0, 0, 0.00);
   }
 
   &__content {
@@ -173,6 +196,7 @@
 // ─── COUNTDOWN ───────────────────────────────────────────────────────────────
 .countdown {
   margin-top: 100px;
+
   &__units {
     display: flex;
     align-items: flex-start;
@@ -245,7 +269,7 @@
 
 .contest-card {
   background: #111213;
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 12px;
   overflow: hidden;
   display: flex;
@@ -253,8 +277,8 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 
   &:hover {
-    border-color: rgba(216,167,77,0.35);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    border-color: rgba(216, 167, 77, 0.35);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   }
 
   // Image + overlay container
@@ -273,7 +297,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.85) 100%);
+    background: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.85) 100%);
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -309,7 +333,7 @@
   &__award-label {
     display: block;
     font-size: 0.68rem;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
     letter-spacing: 0.5px;
   }
 
@@ -323,7 +347,7 @@
 
   &__desc {
     font-size: 0.82rem;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255, 255, 255, 0.45);
     line-height: 1.65;
     text-align: center;
     flex: 1;
@@ -336,14 +360,14 @@
     align-items: baseline;
     justify-content: space-between;
     margin-bottom: 0.9rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 0.9rem;
   }
 
   &__price-label {
     font-size: 0.82rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
   }
 
   &__price-value {
@@ -370,14 +394,16 @@
     transition: background 0.2s;
     box-sizing: border-box;
 
-    &:hover { background: #1a1a1a; }
+    &:hover {
+      background: #1a1a1a;
+    }
   }
 
   &__tier {
     display: block;
     text-align: center;
     font-size: 0.72rem;
-    color: rgba(216,167,77,0.6);
+    color: rgba(216, 167, 77, 0.6);
     margin-top: 0.6rem;
   }
 }
@@ -430,7 +456,7 @@
 
   &__subtitle {
     font-size: 0.95rem;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     margin: 0 0 1.25rem;
     font-weight: 300;
   }
@@ -438,7 +464,7 @@
   &__desc {
     font-size: 0.9rem;
     line-height: 1.75;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255, 255, 255, 0.75);
     margin: 0;
     font-weight: 300;
     max-width: 520px;
@@ -449,7 +475,10 @@
     height: 160px;
     object-fit: contain;
 
-    @media (max-width: 700px) { width: 100px; height: 100px; }
+    @media (max-width: 700px) {
+      width: 100px;
+      height: 100px;
+    }
   }
 
   // Part 2: Why Become a Founding Creator?
@@ -476,7 +505,12 @@
     object-fit: contain;
     opacity: 0.9;
 
-    @media (max-width: 700px) { width: 80px; height: 80px; margin: 0 auto; display: block; }
+    @media (max-width: 700px) {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto;
+      display: block;
+    }
   }
 
   &__why-heading {
@@ -498,7 +532,7 @@
 
     li {
       font-size: 0.9rem;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255, 255, 255, 0.8);
       line-height: 1.6;
     }
   }
@@ -546,7 +580,7 @@
 
   &__subtitle {
     font-size: 1rem;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     margin: 0;
     font-weight: 300;
   }
@@ -573,7 +607,11 @@
     width: 220px;
     object-fit: contain;
 
-    @media (max-width: 700px) { width: 140px; margin: 0 auto; display: block; }
+    @media (max-width: 700px) {
+      width: 140px;
+      margin: 0 auto;
+      display: block;
+    }
   }
 
   &__cta {
@@ -612,7 +650,7 @@
 
   &__desc {
     font-size: 0.88rem;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     line-height: 1.65;
     margin: 0;
   }
@@ -623,7 +661,7 @@
   padding: 1rem 2.5rem;
   border: 1px solid var(--color-gold);
   color: #fff;
-  background: rgba(216,167,77,0.15);
+  background: rgba(216, 167, 77, 0.15);
   font-family: var(--font-primary);
   font-weight: 600;
   font-size: 0.95rem;
@@ -632,7 +670,9 @@
   text-decoration: none;
   transition: background 0.2s;
 
-  &:hover { background: rgba(216,167,77,0.3); }
+  &:hover {
+    background: rgba(216, 167, 77, 0.3);
+  }
 }
 
 // ─── PARTNERSHIP ─────────────────────────────────────────────────────────────
@@ -648,12 +688,10 @@
     position: absolute;
     inset: 0;
     // Subtle fade only at the very top so text is readable, image vivid below
-    background: linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.55) 0%,
-      rgba(255,255,255,0.25) 20%,
-      rgba(255,255,255,0.0) 45%
-    );
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.25) 20%,
+        rgba(255, 255, 255, 0.0) 45%);
   }
 
   &__content {
@@ -753,13 +791,15 @@
   &__line {
     position: absolute;
     top: 22px; // half of icon height (44px)
-    left: calc(12.5%);  // center of first column
+    left: calc(12.5%); // center of first column
     right: calc(12.5%); // center of last column
     height: 1px;
     background: rgba(180, 150, 80, 0.5);
     z-index: 0;
 
-    @media (max-width: 700px) { display: none; }
+    @media (max-width: 700px) {
+      display: none;
+    }
   }
 
   &__step {
@@ -799,12 +839,14 @@
     margin: 0 0 0.75rem;
     line-height: 1.3;
 
-    em { font-style: italic; }
+    em {
+      font-style: italic;
+    }
   }
 
   &__step-desc {
     font-size: 0.82rem;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     line-height: 1.65;
     margin: 0;
   }
@@ -824,7 +866,10 @@
     background: rgba(0, 0, 0, 0.65);
   }
 
-  .section-title { position: relative; z-index: 1; }
+  .section-title {
+    position: relative;
+    z-index: 1;
+  }
 
   &__grid {
     position: relative;
@@ -867,7 +912,9 @@
   padding-bottom: 1.5rem;
   transition: box-shadow 0.2s;
 
-  &:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
 
   img {
     width: 100%;
@@ -920,15 +967,17 @@
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
+    color: rgba(255, 255, 255, 0.35);
     margin: 0 0 0.5rem;
     padding-bottom: 0.5rem;
   }
 
   &__item {
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-    &--open .faq__answer { display: block; }
+    &--open .faq__answer {
+      display: block;
+    }
   }
 
   &__question {
@@ -948,24 +997,29 @@
     color: #fff;
     transition: color 0.15s;
 
-    &:hover { color: rgba(255,255,255,0.75); }
+    &:hover {
+      color: rgba(255, 255, 255, 0.75);
+    }
   }
 
   &__chevron {
     width: 18px;
     height: 18px;
     flex-shrink: 0;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255, 255, 255, 0.45);
     transition: transform 0.2s;
 
-    &--open { transform: rotate(180deg); color: var(--color-gold); }
+    &--open {
+      transform: rotate(180deg);
+      color: var(--color-gold);
+    }
   }
 
   &__answer {
     display: none;
     padding: 0 0 1.1rem;
     font-size: 0.875rem;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255, 255, 255, 0.55);
     line-height: 1.75;
   }
 }
@@ -1002,7 +1056,7 @@
     font-family: var(--font-primary);
     font-size: 0.75rem;
     letter-spacing: 2px;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
   }
 
@@ -1032,7 +1086,7 @@
     font-family: var(--font-primary);
     font-size: 0.65rem;
     letter-spacing: 2px;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
   }
 
@@ -1045,8 +1099,14 @@
   }
 
   @media (max-width: 480px) {
-    &__inner { gap: 1.5rem; }
-    &__coin { width: 70px; height: 70px; }
+    &__inner {
+      gap: 1.5rem;
+    }
+
+    &__coin {
+      width: 70px;
+      height: 70px;
+    }
   }
 }
 
@@ -1054,13 +1114,13 @@
 .disclaimer {
   background: #000;
   padding: 3rem 1.5rem 4rem;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 
   &__inner {
     max-width: 720px;
     margin: 0 auto;
     text-align: center;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
     font-size: 0.875rem;
     line-height: 1.8;
 
@@ -1069,8 +1129,14 @@
       font-style: italic;
     }
 
-    strong { color: rgba(255,255,255,0.85); font-style: normal; }
-    em { font-style: italic; }
+    strong {
+      color: rgba(255, 255, 255, 0.85);
+      font-style: normal;
+    }
+
+    em {
+      font-style: italic;
+    }
   }
 
   &__logo {
@@ -1083,15 +1149,17 @@
 
   &__link {
     text-decoration: underline;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
 
-    &--gold { color: var(--color-gold); }
+    &--gold {
+      color: var(--color-gold);
+    }
   }
 
   &__copyright {
     margin-top: 1.5rem;
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.35);
+    color: rgba(255, 255, 255, 0.35);
     font-style: normal !important;
   }
 }

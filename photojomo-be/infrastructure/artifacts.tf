@@ -47,3 +47,17 @@ resource "aws_s3_object" "contest_entry_service_zip" {
   source = var.contest_entry_service_zip_path
   etag   = filemd5(var.contest_entry_service_zip_path)
 }
+
+resource "aws_s3_object" "stripe_webhook_service_zip" {
+  bucket = aws_s3_bucket.artifacts.id
+  key    = "stripe-webhook-service/stripe-webhook.zip"
+  source = var.stripe_webhook_service_zip_path
+  etag   = filemd5(var.stripe_webhook_service_zip_path)
+}
+
+resource "aws_s3_object" "payment_intent_service_zip" {
+  bucket = aws_s3_bucket.artifacts.id
+  key    = "payment-intent-service/payment-intent.zip"
+  source = var.payment_intent_service_zip_path
+  etag   = filemd5(var.payment_intent_service_zip_path)
+}

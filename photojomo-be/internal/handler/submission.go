@@ -12,19 +12,20 @@ import (
 )
 
 type SubmissionRequest struct {
-	FirstName          string  `json:"firstName"`
-	LastName           string  `json:"lastName"`
-	Email              string  `json:"email"`
-	Country            string  `json:"country"`
-	ConfirmImagesDates bool    `json:"confirmImagesDates"`
-	ConfirmAge         bool    `json:"confirmAge"`
-	ConfirmRules       bool    `json:"confirmRules"`
-	MarketingConsent   bool    `json:"marketingConsent"`
-	ContestID          string  `json:"contestId"`
-	ContestCategoryID  string  `json:"contestCategoryId"`
-	ContestTierID      string  `json:"contestTierId"`
-	AmountPaid         float64 `json:"amountPaid"`
-	PaymentMethod      string  `json:"paymentMethod"`
+	FirstName             string  `json:"firstName"`
+	LastName              string  `json:"lastName"`
+	Email                 string  `json:"email"`
+	Country               string  `json:"country"`
+	ConfirmImagesDates    bool    `json:"confirmImagesDates"`
+	ConfirmAge            bool    `json:"confirmAge"`
+	ConfirmRules          bool    `json:"confirmRules"`
+	MarketingConsent      bool    `json:"marketingConsent"`
+	ContestID             string  `json:"contestId"`
+	ContestCategoryID     string  `json:"contestCategoryId"`
+	ContestTierID         string  `json:"contestTierId"`
+	AmountPaid            float64 `json:"amountPaid"`
+	PaymentMethod         string  `json:"paymentMethod"`
+	StripePaymentIntentID string  `json:"stripePaymentIntentId"`
 }
 
 type SubmissionResponse struct {
@@ -121,12 +122,13 @@ func (h *SubmissionHandler) Handle(ctx context.Context, req events.APIGatewayV2H
 
 	// Create submission
 	submissionID, err := h.submissions.Save(ctx, tx, repository.Submission{
-		ContestantID:      contestantID,
-		ContestID:         body.ContestID,
-		ContestCategoryID: body.ContestCategoryID,
-		ContestTierID:     body.ContestTierID,
-		AmountPaid:        body.AmountPaid,
-		PaymentMethod:     body.PaymentMethod,
+		ContestantID:          contestantID,
+		ContestID:             body.ContestID,
+		ContestCategoryID:     body.ContestCategoryID,
+		ContestTierID:         body.ContestTierID,
+		AmountPaid:            body.AmountPaid,
+		PaymentMethod:         body.PaymentMethod,
+		StripePaymentIntentID: body.StripePaymentIntentID,
 	})
 	if err != nil {
 		log.Printf("error creating submission: %v", err)

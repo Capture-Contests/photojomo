@@ -61,3 +61,27 @@ variable "contest_entry_service_zip_path" {
   type        = string
   default     = "../dist/contest-entry.zip"
 }
+
+variable "stripe_webhook_service_zip_path" {
+  description = "Local path to the stripe-webhook-service Go binary zip"
+  type        = string
+  default     = "../dist/stripe-webhook.zip"
+}
+
+variable "stripe_webhook_secret" {
+  description = "Stripe webhook signing secret (whsec_...)"
+  type        = string
+  sensitive   = true
+}
+
+variable "stripe_secret_key" {
+  description = "Stripe secret key (sk_test_... or sk_live_...)"
+  type        = string
+  sensitive   = true
+}
+
+variable "payment_intent_service_zip_path" {
+  description = "Local path to the payment-intent-service Go binary zip"
+  type        = string
+  default     = "../dist/payment-intent.zip"
+}

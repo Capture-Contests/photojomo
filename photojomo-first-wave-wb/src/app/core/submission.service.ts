@@ -27,23 +27,36 @@ const TIER_PRICES: Record<string, number> = {
 };
 
 export interface SubmitParams {
-  firstName:          string;
-  lastName:           string;
-  email:              string;
-  country:            string;
-  confirmImagesDates: boolean;
-  confirmAge:         boolean;
-  confirmRules:       boolean;
-  marketingConsent:   boolean;
-  division:           string;
-  tierName:           string;
-  paymentMethod:      'stripe' | 'paypal';
-  files:              File[];
+  firstName:             string;
+  lastName:              string;
+  email:                 string;
+  country:               string;
+  confirmImagesDates:    boolean;
+  confirmAge:            boolean;
+  confirmRules:          boolean;
+  marketingConsent:      boolean;
+  division:              string;
+  tierName:              string;
+  paymentMethod:         'stripe' | 'paypal';
+  stripePaymentIntentId: string;
+  files:                 File[];
 }
 
 @Injectable({ providedIn: 'root' })
 export class SubmissionService {
   constructor(private http: HttpClient) {}
+
+  async createPaymentIntent(tierName: string): Promise<{ clientSecret: string; paymentIntentId: string }> {
+    const amount = TIER_PRICES[tierName];
+    if (!amount) throw new Error(`Unknown tier: ${tierName}`);
+
+    return firstValueFrom(
+      this.http.post<{ clientSecret: string; paymentIntentId: string }>(
+        `${environment.apiBaseUrl}/payment-intents`,
+        { amount, currency: 'usd' }
+      )
+    );
+  }
 
   async submit(params: SubmitParams): Promise<void> {
     const contestCategoryId = CATEGORY_IDS[params.division];
@@ -58,19 +71,20 @@ export class SubmissionService {
       this.http.post<{ contestantId: string; submissionId: string }>(
         `${environment.apiBaseUrl}/submissions`,
         {
-          firstName:          params.firstName,
-          lastName:           params.lastName,
-          email:              params.email,
-          country:            params.country,
-          confirmImagesDates: params.confirmImagesDates,
-          confirmAge:         params.confirmAge,
-          confirmRules:       params.confirmRules,
-          marketingConsent:   params.marketingConsent,
-          contestId:          CONTEST_ID,
+          firstName:             params.firstName,
+          lastName:              params.lastName,
+          email:                 params.email,
+          country:               params.country,
+          confirmImagesDates:    params.confirmImagesDates,
+          confirmAge:            params.confirmAge,
+          confirmRules:          params.confirmRules,
+          marketingConsent:      params.marketingConsent,
+          contestId:             CONTEST_ID,
           contestCategoryId,
           contestTierId,
           amountPaid,
-          paymentMethod:      params.paymentMethod,
+          paymentMethod:         params.paymentMethod,
+          stripePaymentIntentId: params.stripePaymentIntentId || undefined,
         }
       )
     );

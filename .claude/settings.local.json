@@ -46,7 +46,14 @@
       "Bash(wrangler:*)",
       "Bash(CLOUDFLARE_ACCOUNT_ID=e6a409663bf73140c8bd4caaadd9ebc2 wrangler pages:*)",
       "Bash(go build:*)",
-      "Bash(source:*)"
+      "Bash(source:*)",
+      "Bash(GOFLAGS=\"-mod=mod\" GOPROXY=direct go get:*)",
+      "Bash(nvm use:*)",
+      "Bash(terraform output:*)",
+      "Bash(aws secretsmanager:*)",
+      "Bash(PGPASSWORD=\"ph0t0j0m0321!\" psql:*)",
+      "Bash(make all:*)",
+      "Bash(terraform plan:*)"
     ]
   }
 }

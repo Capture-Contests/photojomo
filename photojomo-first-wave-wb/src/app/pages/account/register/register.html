@@ -136,35 +136,19 @@
             </label>
           </div>
 
-          @if (paymentMethod === 'stripe') {
-            <div class="card-fields">
-              <div class="reg-field">
-                <label>Card Number</label>
-                <input type="text" name="cardNumber" placeholder="•••• •••• •••• ••••" />
-              </div>
-              <div class="reg-row">
-                <div class="reg-field">
-                  <label>Expiration Date</label>
-                  <input type="text" name="expiry" placeholder="MM / YY" />
-                </div>
-                <div class="reg-field">
-                  <label>Security Code</label>
-                  <input type="text" name="cvv" placeholder="CVV" />
-                </div>
-              </div>
-              <div class="reg-field">
-                <label>Cardholder Name</label>
-                <input type="text" name="cardName" placeholder="Name on card" />
-              </div>
-            </div>
-          }
+          <div class="card-fields" [class.card-fields--hidden]="paymentMethod !== 'stripe'">
+            @if (stripeLoading) {
+              <p class="stripe-loading">Loading payment form…</p>
+            }
+            <div id="stripe-payment-element" [class.stripe-element--hidden]="stripeLoading"></div>
+          </div>
         </div>
 
         @if (errorMessage) {
           <p class="reg-error">{{ errorMessage }}</p>
         }
 
-        <button type="submit" class="reg-submit" [disabled]="submitting || !f.valid">
+        <button type="submit" class="reg-submit" [disabled]="submitting || stripeLoading || !f.valid">
           @if (submitting) { Processing… } @else { Complete Purchase }
         </button>
 

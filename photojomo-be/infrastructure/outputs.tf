@@ -1,11 +1,11 @@
 output "rds_endpoint" {
   description = "RDS PostgreSQL endpoint"
-  value       = aws_db_instance.postgres.address
+  value       = var.create_network ? aws_db_instance.postgres[0].address : var.db_host_override
 }
 
 output "rds_port" {
   description = "RDS PostgreSQL port"
-  value       = aws_db_instance.postgres.port
+  value       = var.create_network ? tostring(aws_db_instance.postgres[0].port) : "5432"
 }
 
 output "contact_service_lambda_arn" {

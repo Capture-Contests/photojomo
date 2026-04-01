@@ -1,10 +1,12 @@
 locals {
   name_prefix = "${var.project_name}-${var.environment}"
+  db_host     = var.db_host_override != "" ? var.db_host_override : (var.create_network ? aws_db_instance.postgres[0].address : "")
 }
 
 # ── VPC ───────────────────────────────────────────────────────────────────────
 
 resource "aws_vpc" "main" {
+  count                = var.create_network ? 1 : 0
   cidr_block           = "10.0.0.0/16"
   enable_dns_support   = true
   enable_dns_hostnames = true
@@ -16,10 +18,11 @@ resource "aws_vpc" "main" {
   }
 }
 
-# ── Internet Gateway (required for public subnet routing + RDS public access) ─
+# ── Internet Gateway ──────────────────────────────────────────────────────────
 
 resource "aws_internet_gateway" "main" {
-  vpc_id = aws_vpc.main.id
+  count  = var.create_network ? 1 : 0
+  vpc_id = aws_vpc.main[0].id
 
   tags = {
     Name        = "${local.name_prefix}-igw"
@@ -30,7 +33,8 @@ resource "aws_internet_gateway" "main" {
 # ── Public Subnets (RDS) ──────────────────────────────────────────────────────
 
 resource "aws_subnet" "public_a" {
-  vpc_id            = aws_vpc.main.id
+  count             = var.create_network ? 1 : 0
+  vpc_id            = aws_vpc.main[0].id
   cidr_block        = "10.0.3.0/24"
   availability_zone = "${var.aws_region}a"
 
@@ -41,7 +45,8 @@ resource "aws_subnet" "public_a" {
 }
 
 resource "aws_subnet" "public_b" {
-  vpc_id            = aws_vpc.main.id
+  count             = var.create_network ? 1 : 0
+  vpc_id            = aws_vpc.main[0].id
   cidr_block        = "10.0.4.0/24"
   availability_zone = "${var.aws_region}b"
 
@@ -54,11 +59,12 @@ resource "aws_subnet" "public_b" {
 # ── Route Table: Public ───────────────────────────────────────────────────────
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.main.id
+  count  = var.create_network ? 1 : 0
+  vpc_id = aws_vpc.main[0].id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.main.id
+    gateway_id = aws_internet_gateway.main[0].id
   }
 
   tags = {
@@ -68,19 +74,22 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table_association" "public_a" {
-  subnet_id      = aws_subnet.public_a.id
-  route_table_id = aws_route_table.public.id
+  count          = var.create_network ? 1 : 0
+  subnet_id      = aws_subnet.public_a[0].id
+  route_table_id = aws_route_table.public[0].id
 }
 
 resource "aws_route_table_association" "public_b" {
-  subnet_id      = aws_subnet.public_b.id
-  route_table_id = aws_route_table.public.id
+  count          = var.create_network ? 1 : 0
+  subnet_id      = aws_subnet.public_b[0].id
+  route_table_id = aws_route_table.public[0].id
 }
 
 # ── Private Subnets (Lambda) ──────────────────────────────────────────────────
 
 resource "aws_subnet" "private_a" {
-  vpc_id            = aws_vpc.main.id
+  count             = var.create_network ? 1 : 0
+  vpc_id            = aws_vpc.main[0].id
   cidr_block        = "10.0.1.0/24"
   availability_zone = "${var.aws_region}a"
 
@@ -91,7 +100,8 @@ resource "aws_subnet" "private_a" {
 }
 
 resource "aws_subnet" "private_b" {
-  vpc_id            = aws_vpc.main.id
+  count             = var.create_network ? 1 : 0
+  vpc_id            = aws_vpc.main[0].id
   cidr_block        = "10.0.2.0/24"
   availability_zone = "${var.aws_region}b"
 
@@ -104,9 +114,10 @@ resource "aws_subnet" "private_b" {
 # ── Security Group: Lambda ────────────────────────────────────────────────────
 
 resource "aws_security_group" "lambda" {
+  count       = var.create_network ? 1 : 0
   name        = "${local.name_prefix}-lambda-sg"
   description = "Security group for Lambda functions"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.main[0].id
 
   egress {
     description = "Allow all outbound"
@@ -125,16 +136,17 @@ resource "aws_security_group" "lambda" {
 # ── Security Group: RDS ───────────────────────────────────────────────────────
 
 resource "aws_security_group" "rds" {
+  count       = var.create_network ? 1 : 0
   name        = "${local.name_prefix}-rds-sg"
   description = "Security group for RDS PostgreSQL"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.main[0].id
 
   ingress {
     description     = "PostgreSQL from Lambda"
     from_port       = 5432
     to_port         = 5432
     protocol        = "tcp"
-    security_groups = [aws_security_group.lambda.id]
+    security_groups = [aws_security_group.lambda[0].id]
   }
 
   ingress {

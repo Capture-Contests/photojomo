@@ -1,5 +1,6 @@
 # Local variable overrides — may contain secrets
-terraform.tfvars
+*.tfvars
+!*.tfvars.example
 
 # Terraform state (managed remotely in S3)
 *.tfstate

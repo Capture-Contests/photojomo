@@ -16,8 +16,8 @@ resource "aws_secretsmanager_secret_version" "db_credentials" {
   secret_string = jsonencode({
     username = var.db_username
     password = var.db_password
-    host     = aws_db_instance.postgres.address
-    port     = tostring(aws_db_instance.postgres.port)
+    host     = local.db_host
+    port     = "5432"
     dbname   = var.db_name
   })
 }
@@ -85,16 +85,17 @@ resource "aws_iam_role_policy_attachment" "lambda_read_secret" {
 # ── VPC Endpoint: Secrets Manager (keeps traffic off the public internet) ─────
 
 resource "aws_security_group" "vpc_endpoints" {
+  count       = var.create_network ? 1 : 0
   name        = "${local.name_prefix}-vpc-endpoints-sg"
   description = "Security group for VPC interface endpoints"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.main[0].id
 
   ingress {
     description     = "HTTPS from Lambda"
     from_port       = 443
     to_port         = 443
     protocol        = "tcp"
-    security_groups = [aws_security_group.lambda.id]
+    security_groups = [aws_security_group.lambda[0].id]
   }
 
   tags = {
@@ -104,11 +105,12 @@ resource "aws_security_group" "vpc_endpoints" {
 }
 
 resource "aws_vpc_endpoint" "secretsmanager" {
-  vpc_id              = aws_vpc.main.id
+  count               = var.create_network ? 1 : 0
+  vpc_id              = aws_vpc.main[0].id
   service_name        = "com.amazonaws.${var.aws_region}.secretsmanager"
   vpc_endpoint_type   = "Interface"
-  subnet_ids          = [aws_subnet.private_a.id, aws_subnet.private_b.id]
-  security_group_ids  = [aws_security_group.vpc_endpoints.id]
+  subnet_ids          = [aws_subnet.private_a[0].id, aws_subnet.private_b[0].id]
+  security_group_ids  = [aws_security_group.vpc_endpoints[0].id]
   private_dns_enabled = true
 
   tags = {

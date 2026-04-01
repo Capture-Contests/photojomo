@@ -65,9 +65,12 @@ resource "aws_lambda_function" "submission_service" {
   memory_size = 128
   timeout     = 10
 
-  vpc_config {
-    subnet_ids         = [aws_subnet.private_a.id, aws_subnet.private_b.id]
-    security_group_ids = [aws_security_group.lambda.id]
+  dynamic "vpc_config" {
+    for_each = var.create_network ? [1] : []
+    content {
+      subnet_ids         = [aws_subnet.private_a[0].id, aws_subnet.private_b[0].id]
+      security_group_ids = [aws_security_group.lambda[0].id]
+    }
   }
 
   environment {
@@ -117,7 +120,6 @@ resource "aws_lambda_function" "payment_intent_service" {
   timeout     = 10
 
   # No VPC config — this lambda only calls Stripe's external API, no DB access needed.
-  # Placing it outside the VPC gives it internet access without a NAT Gateway.
 
   environment {
     variables = {
@@ -165,9 +167,12 @@ resource "aws_lambda_function" "stripe_webhook_service" {
   memory_size = 128
   timeout     = 10
 
-  vpc_config {
-    subnet_ids         = [aws_subnet.private_a.id, aws_subnet.private_b.id]
-    security_group_ids = [aws_security_group.lambda.id]
+  dynamic "vpc_config" {
+    for_each = var.create_network ? [1] : []
+    content {
+      subnet_ids         = [aws_subnet.private_a[0].id, aws_subnet.private_b[0].id]
+      security_group_ids = [aws_security_group.lambda[0].id]
+    }
   }
 
   environment {
@@ -207,9 +212,12 @@ resource "aws_lambda_function" "contact_service" {
   memory_size = 128
   timeout     = 10
 
-  vpc_config {
-    subnet_ids         = [aws_subnet.private_a.id, aws_subnet.private_b.id]
-    security_group_ids = [aws_security_group.lambda.id]
+  dynamic "vpc_config" {
+    for_each = var.create_network ? [1] : []
+    content {
+      subnet_ids         = [aws_subnet.private_a[0].id, aws_subnet.private_b[0].id]
+      security_group_ids = [aws_security_group.lambda[0].id]
+    }
   }
 
   environment {
@@ -259,7 +267,6 @@ resource "aws_lambda_function" "paypal_order_service" {
   timeout     = 10
 
   # No VPC config — this lambda only calls PayPal's external API, no DB access needed.
-  # Placing it outside the VPC gives it internet access without a NAT Gateway.
 
   environment {
     variables = {
@@ -308,7 +315,6 @@ resource "aws_lambda_function" "paypal_capture_service" {
   timeout     = 10
 
   # No VPC config — this lambda only calls PayPal's external API, no DB access needed.
-  # Placing it outside the VPC gives it internet access without a NAT Gateway.
 
   environment {
     variables = {
@@ -357,7 +363,6 @@ resource "aws_lambda_function" "paypal_webhook_service" {
   timeout     = 10
 
   # No VPC config — needs internet access for PayPal verification API.
-  # The DB is publicly accessible, so no VPC is required.
 
   environment {
     variables = {
@@ -406,9 +411,12 @@ resource "aws_lambda_function" "contest_entry_service" {
   memory_size = 128
   timeout     = 10
 
-  vpc_config {
-    subnet_ids         = [aws_subnet.private_a.id, aws_subnet.private_b.id]
-    security_group_ids = [aws_security_group.lambda.id]
+  dynamic "vpc_config" {
+    for_each = var.create_network ? [1] : []
+    content {
+      subnet_ids         = [aws_subnet.private_a[0].id, aws_subnet.private_b[0].id]
+      security_group_ids = [aws_security_group.lambda[0].id]
+    }
   }
 
   environment {

@@ -58,7 +58,8 @@
       "Bash(openssl rand:*)",
       "Skill(contest-data)",
       "Bash(rm /Users/almorris/workspace/photojomo/photojomo-first-wave-wb/public/images/coin-icon.mp4)",
-      "Bash(rm /Users/almorris/workspace/photojomo/photojomo-first-wave-wb/dist/photojomo-first-wave-wb/browser/images/coin-icon.mp4)"
+      "Bash(rm /Users/almorris/workspace/photojomo/photojomo-first-wave-wb/dist/photojomo-first-wave-wb/browser/images/coin-icon.mp4)",
+      "Bash(psql:*)"
     ]
   }
 }

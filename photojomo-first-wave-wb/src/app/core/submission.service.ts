@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { firstValueFrom, catchError, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 const CONTEST_ID = 'con-eea0aef2-df89-49ab-ac26-e05cb0ee6346';
@@ -109,6 +109,15 @@ export class SubmissionService {
           stripePaymentIntentId: params.stripePaymentIntentId || undefined,
           paypalOrderId:         params.paypalOrderId || undefined,
         }
+      ).pipe(
+        catchError((err: HttpErrorResponse) => {
+          const body = err.error ?? {};
+          const raw: string = body.error ?? body.message ?? '';
+          const message = raw.toLowerCase().includes('duplicate')
+            ? 'You have already entered this division. Each contestant may only submit once per division.'
+            : raw || 'Something went wrong. Please try again.';
+          return throwError(() => new Error(message));
+        })
       )
     );
 

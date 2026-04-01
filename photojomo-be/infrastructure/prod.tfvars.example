@@ -1,0 +1,31 @@
+# Production environment — copy to prod.tfvars and fill in real values
+# prod.tfvars is gitignored
+
+environment    = "prod"
+project_name   = "photojomo"
+aws_region     = "us-east-1"
+
+# ── Database ──────────────────────────────────────────────────────────────────
+db_name           = "photojomo"
+db_username       = "photojomo_admin"
+db_password       = "CHANGE_ME"
+db_instance_class = "db.t3.micro"
+
+# ── Stripe ────────────────────────────────────────────────────────────────────
+stripe_secret_key     = "sk_live_CHANGE_ME"
+stripe_webhook_secret = "whsec_CHANGE_ME"
+
+# ── PayPal ────────────────────────────────────────────────────────────────────
+paypal_client_id      = "CHANGE_ME"
+paypal_client_secret  = "CHANGE_ME"
+paypal_webhook_id     = "CHANGE_ME"
+
+# ── Lambda zip paths (same binaries as dev) ───────────────────────────────────
+contact_service_zip_path        = "../dist/contact.zip"
+submission_service_zip_path     = "../dist/submission.zip"
+contest_entry_service_zip_path  = "../dist/contest-entry.zip"
+stripe_webhook_service_zip_path = "../dist/stripe-webhook.zip"
+payment_intent_service_zip_path = "../dist/payment-intent.zip"
+paypal_order_service_zip_path   = "../dist/paypal-order.zip"
+paypal_capture_service_zip_path = "../dist/paypal-capture.zip"
+paypal_webhook_service_zip_path = "../dist/paypal-webhook.zip"

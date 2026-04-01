@@ -16,6 +16,20 @@ variable "project_name" {
   default     = "photojomo"
 }
 
+# ── Network / Database ────────────────────────────────────────────────────────
+
+variable "create_network" {
+  description = "Create VPC, subnets, and RDS. Set false to reuse an existing DB via db_host_override."
+  type        = bool
+  default     = true
+}
+
+variable "db_host_override" {
+  description = "Existing DB host to use when create_network = false"
+  type        = string
+  default     = ""
+}
+
 # ── Database ──────────────────────────────────────────────────────────────────
 
 variable "db_name" {

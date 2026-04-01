@@ -149,6 +149,17 @@
           <p class="reg-error">{{ errorMessage }}</p>
         }
 
+        @if (modalMessage) {
+          <div class="reg-modal-overlay" (click)="closeModal()">
+            <div class="reg-modal" (click)="$event.stopPropagation()">
+              <div class="reg-modal__icon">!</div>
+              <h3 class="reg-modal__title">Unable to Complete Entry</h3>
+              <p class="reg-modal__message">{{ modalMessage }}</p>
+              <button type="button" class="reg-modal__btn" (click)="closeModal()">Close</button>
+            </div>
+          </div>
+        }
+
         <div class="reg-submit-wrapper">
           @if (paymentMethod === 'paypal') {
             @if (paypalLoading) {

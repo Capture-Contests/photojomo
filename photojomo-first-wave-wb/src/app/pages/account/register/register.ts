@@ -40,6 +40,7 @@ export class Register implements OnInit {
   stripeLoading = false;
   paypalLoading = false;
   errorMessage = '';
+  modalMessage = '';
 
   @ViewChild('f') ngForm!: NgForm;
 
@@ -125,15 +126,42 @@ export class Register implements OnInit {
             throw new Error('form-invalid');
           }
           this.paypalFormInvalid = false;
+
+          // 1. Create PayPal order to get orderId
           const { orderId } = await this.submissionService.createPaypalOrder(this.selectedTier!.name);
+
+          // 2. Create submission first — if it fails, show modal and abort
+          try {
+            await this.submissionService.submit({
+              firstName:             this.form.firstName,
+              lastName:              this.form.lastName,
+              email:                 this.form.email,
+              country:               this.form.country,
+              confirmImagesDates:    this.form.confirmDates,
+              confirmAge:            this.form.confirmAge,
+              confirmRules:          this.form.agreeRules,
+              marketingConsent:      this.form.subscribeOffers,
+              division:              this.division,
+              tierName:              this.selectedTier!.name,
+              paymentMethod:         'paypal',
+              stripePaymentIntentId: '',
+              paypalOrderId:         orderId,
+              files:                 this.uploadSlots.map(s => s.file).filter((f): f is File => f !== null),
+            });
+          } catch (err: any) {
+            this.modalMessage = err?.message || 'Something went wrong. Please try again.';
+            throw new Error('submission-failed');
+          }
+
           return orderId;
         },
         onApprove: async (data: any) => {
           await this.submissionService.capturePaypalOrder(data.orderID);
-          await this.doSubmit('paypal', data.orderID);
+          this.submitted = true;
         },
         onError: (err: any) => {
           console.error('PayPal onError:', err);
+          if ((err as Error)?.message === 'submission-failed') return; // modal already shown
           if (this.paypalFormInvalid) {
             this.paypalFormInvalid = false;
             this.errorMessage = 'Please complete all required fields before proceeding with PayPal.';
@@ -151,36 +179,8 @@ export class Register implements OnInit {
     }
   }
 
-  async doSubmit(paymentMethod: 'stripe' | 'paypal', paymentId: string) {
-    if (!this.selectedTier) return;
-
-    this.submitting = true;
-    this.errorMessage = '';
-
-    try {
-      await this.submissionService.submit({
-        firstName:             this.form.firstName,
-        lastName:              this.form.lastName,
-        email:                 this.form.email,
-        country:               this.form.country,
-        confirmImagesDates:    this.form.confirmDates,
-        confirmAge:            this.form.confirmAge,
-        confirmRules:          this.form.agreeRules,
-        marketingConsent:      this.form.subscribeOffers,
-        division:              this.division,
-        tierName:              this.selectedTier.name,
-        paymentMethod,
-        stripePaymentIntentId: paymentMethod === 'stripe' ? paymentId : '',
-        paypalOrderId:         paymentMethod === 'paypal' ? paymentId : '',
-        files:                 this.uploadSlots.map(s => s.file).filter((f): f is File => f !== null),
-      });
-      this.submitted = true;
-    } catch (err) {
-      console.error('Submission failed', err);
-      this.errorMessage = 'Something went wrong. Please try again.';
-    } finally {
-      this.submitting = false;
-    }
+  closeModal() {
+    this.modalMessage = '';
   }
 
   onPaymentMethodChange() {
@@ -240,6 +240,30 @@ export class Register implements OnInit {
         return;
       }
 
+      // 1. Create submission first — if it fails, show modal and stop
+      try {
+        await this.submissionService.submit({
+          firstName:             this.form.firstName,
+          lastName:              this.form.lastName,
+          email:                 this.form.email,
+          country:               this.form.country,
+          confirmImagesDates:    this.form.confirmDates,
+          confirmAge:            this.form.confirmAge,
+          confirmRules:          this.form.agreeRules,
+          marketingConsent:      this.form.subscribeOffers,
+          division:              this.division,
+          tierName:              this.selectedTier.name,
+          paymentMethod:         'stripe',
+          stripePaymentIntentId: this.paymentIntentId,
+          paypalOrderId:         '',
+          files:                 this.uploadSlots.map(s => s.file).filter((f): f is File => f !== null),
+        });
+      } catch (err: any) {
+        this.modalMessage = err?.message || 'Something went wrong. Please try again.';
+        return;
+      }
+
+      // 2. Confirm payment
       const result = await this.stripe.confirmPayment({
         elements: this.elements,
         redirect: 'if_required',
@@ -254,12 +278,11 @@ export class Register implements OnInit {
       });
 
       if (result.error) {
-        this.errorMessage = result.error.message ?? 'Payment failed. Please try again.';
+        this.modalMessage = result.error.message ?? 'Payment failed. Please try again.';
         return;
       }
 
-      const intentId = result.paymentIntent?.id ?? this.paymentIntentId;
-      await this.doSubmit('stripe', intentId);
+      this.submitted = true;
     } catch (err) {
       console.error('Submission failed', err);
       this.errorMessage = 'Something went wrong. Please try again.';

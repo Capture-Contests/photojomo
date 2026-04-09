@@ -1,0 +1,30 @@
+name: First Wave Deploy to Dev
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: photojomo-first-wave-wb
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.19.6'
+          cache: 'npm'
+          cache-dependency-path: photojomo-first-wave-wb/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy to Dev
+        run: make deploy-dev NPX=npx NODE=node
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

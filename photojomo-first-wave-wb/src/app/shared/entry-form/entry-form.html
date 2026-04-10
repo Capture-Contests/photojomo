@@ -102,11 +102,11 @@
           </label>
           <label class="form-check">
             <input type="checkbox" name="agreePrivacy" [(ngModel)]="form.agreePrivacy" required />
-            <span>I agree to the <a href="/info/privacy-policy" target="_blank">privacy policy</a>. <span class="req">*</span></span>
+            <span>I agree to the <a routerLink="/info/privacy-policy" [state]="legalModalState()" [replaceUrl]="true">privacy policy</a>. <span class="req">*</span></span>
           </label>
           <label class="form-check">
             <input type="checkbox" name="agreeTerms" [(ngModel)]="form.agreeTerms" required />
-            <span>I agree to the <a href="/info/terms-and-conditions" target="_blank">terms and conditions</a> and <a href="/info/rules" target="_blank">contest rules</a>. <span class="req">*</span></span>
+            <span>I agree to the <a routerLink="/info/terms-and-conditions" [state]="legalModalState()" [replaceUrl]="true">terms and conditions</a> and <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true">contest rules</a>. <span class="req">*</span></span>
           </label>
         </div>
       </div>

@@ -1,11 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { ContestTiers } from '../../../shared/contest-tiers/contest-tiers';
 import { EntryForm } from '../../../shared/entry-form/entry-form';
 
 @Component({
   selector: 'app-emerging-creator',
-  imports: [ContestTiers, EntryForm],
+  imports: [ContestTiers, EntryForm, RouterLink],
   templateUrl: './emerging-creator.html',
   styleUrl: './emerging-creator.scss',
 })
-export class EmergingCreator {}
+export class EmergingCreator {
+  private readonly router = inject(Router);
+
+  legalModalState() {
+    return {
+      returnUrl: this.router.url,
+      returnScrollY: window.scrollY,
+    };
+  }
+}

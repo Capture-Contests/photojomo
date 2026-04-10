@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { loadStripe, Stripe, StripeElements } from '@stripe/stripe-js';
 import { loadScript } from '@paypal/paypal-js';
 import { TIERS, Tier } from '../../../shared/contest-tiers/contest-tiers';
@@ -17,6 +17,7 @@ interface UploadSlot { index: number; file: File | null; preview: string | null;
   styleUrl: './register.scss',
 })
 export class Register implements OnInit {
+  private readonly router = inject(Router);
   division = '';
   selectedTier: Tier | null = null;
   countries = COUNTRIES;
@@ -289,5 +290,12 @@ export class Register implements OnInit {
     } finally {
       this.submitting = false;
     }
+  }
+
+  legalModalState() {
+    return {
+      returnUrl: this.router.url,
+      returnScrollY: window.scrollY,
+    };
   }
 }

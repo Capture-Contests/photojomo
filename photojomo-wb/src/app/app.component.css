@@ -1,0 +1,14 @@
+.app-shell-mobile-footer {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .app-shell-mobile-footer {
+    display: block;
+  }
+
+  #container .css-sfem9u,
+  #container .css-p70z91 {
+    display: none !important;
+  }
+}

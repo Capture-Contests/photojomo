@@ -42,7 +42,7 @@
 
 <!-- CONTEST CARDS -->
 <section class="contests" id="contests">
-  <h2 class="contests__heading">Choose your <i>category</i></h2>
+  <h2 class="contests__heading">Choose your <i class="contests__heading-accent">category</i></h2>
   <div class="contests__grid">
     @for (contest of contests; track contest.route) {
     <div class="contest-card">
@@ -56,19 +56,25 @@
             <span class="contest-card__award-label">Cash Award</span>
           </div>
         </div>
-      </div>
-      <!-- Body -->
-      <div class="contest-card__body">
-        <p class="contest-card__desc">{{ contest.description }}</p>
-        <div class="contest-card__pricing">
-          <span class="contest-card__price-label">Starting From</span>
-          <span class="contest-card__price-value">{{ contest.price }}</span>
+        <!-- Body -->
+        <div class="contest-card__body">
+          <p class="contest-card__desc">{{ contest.description }}</p>
+          <div class="contest-card__pricing">
+            <span class="contest-card__price-label">Starting From</span>
+            <span class="contest-card__price-value">{{ contest.price }}</span>
+          </div>
+          <a [routerLink]="contest.route" class="contest-card__enter">Enter Contest →</a>
+          <span class="contest-card__tier">{{ contest.tier }}</span>
+          @if (contest.tierInfo) {
+            <span class="contest-card__tier contest-card__tier--info">
+              {{ contest.tierInfo }}
+              @if (contest.tierInfoHighlight) {
+                <span class="contest-card__tier-highlight">{{ contest.tierInfoHighlight }}</span>.
+              }
+            </span>
+          }
         </div>
-        <a [routerLink]="contest.route" class="contest-card__enter">Enter Contest →</a>
-        <span class="contest-card__tier">{{ contest.tier }}</span>
-        @if (contest.tierInfo) {
-        <span class="contest-card__tier">{{ contest.tierInfo }}</span>
-        }
+        
       </div>
     </div>
     }
@@ -82,7 +88,7 @@
   <!-- Part 1: Forge the Founding Class -->
   <div class="founding__intro">
     <div class="founding__intro-text">
-      <h2 class="founding__title">Forge the <em>Founding Class</em></h2>
+      <h2 class="founding__title">Forge the <em class="founding__title-accent">Founding Class</em></h2>
       <p class="founding__subtitle">The first creators to shape the future of Capture Caribbean.</p>
       <p class="founding__desc">The First Wave Challenge invites global visual storytellers to launch Capture Caribbean
         as our inaugural Founding Creators. Whether professional or passionate, we are selecting a cohort of artists to
@@ -165,7 +171,7 @@
 <section class="path-forward" style="background-image: url('images/mountain.jpg')">
   <div class="path-forward__overlay"></div>
   <div class="path-forward__inner">
-    <h2 class="path-forward__heading">The Path <em>Forward</em></h2>
+    <h2 class="path-forward__heading">The Path <em class="path-forward__heading-accent">Forward</em></h2>
     <div class="path-forward__timeline">
       <div class="path-forward__line"></div>
 
@@ -234,7 +240,7 @@
 
 <!-- FIRST WAVE CHALLENGE PRIZE VAULT -->
 <section class="contests">
-  <h2 class="contests__heading">The First Wave Challenge <i>Prize Vault</i></h2>
+  <h2 class="contests__heading">The First Wave Challenge <i class="contests__heading-accent">Prize Vault</i></h2>
   <div class="contests__grid">
     @for (contest of contests; track contest.route) {
     <div class="contest-card">
@@ -249,12 +255,22 @@
 
 
         </div>
-      </div>
-      <div class="contest-card__body">
-        <p class="contest-card__desc">{{ contest.description }}</p>
-        <div class="contest-card__pricing">
-          <span class="contest-card__price-label">Starting From</span>
-          <span class="contest-card__price-value">{{ contest.price }}</span>
+        <div class="contest-card__body">
+          <p class="contest-card__desc">{{ contest.description }}</p>
+          <div class="contest-card__pricing">
+            <span class="contest-card__price-label">Starting From</span>
+            <span class="contest-card__price-value">{{ contest.price }}</span>
+          </div>
+          <a [routerLink]="contest.route" class="contest-card__enter">Enter Contest →</a>
+          <span class="contest-card__tier">{{ contest.tier }}</span>
+          @if (contest.tierInfo) {
+            <span class="contest-card__tier contest-card__tier--info">
+              {{ contest.tierInfo }}
+              @if (contest.tierInfoHighlight) {
+                <span class="contest-card__tier-highlight">{{ contest.tierInfoHighlight }}</span>.
+              }
+            </span>
+          }
         </div>
         <a [routerLink]="contest.route" class="contest-card__enter">Enter Contest →</a>
         <span class="contest-card__tier">{{ contest.tier }}</span>
@@ -302,7 +318,7 @@
 <!-- FAQ -->
 <section class="faq">
   <div class="faq__inner">
-    <h2 class="faq__heading">Frequently Asked <em>Questions</em></h2>
+    <h2 class="faq__heading">Frequently Asked <em class="faq__heading-accent">Questions</em></h2>
     @for (cat of faqCategories; track $index; let ci = $index) {
     <div class="faq__category">
       <h3 class="faq__category-title">{{ cat.category }}</h3>
@@ -329,18 +345,9 @@
 <section class="disclaimer">
   <div class="disclaimer__inner">
     <img class="disclaimer__logo" src="images/Capture-caribbean-Logo.png" alt="Capture Caribbean" />
-    <p><strong><em>Capture Caribbean™</em></strong> is the flagship platform celebrating Caribbean and
-      Caribbean-connected visual storytelling. Submissions for the First Wave Challenge are administered through the
-      <strong>Caribbean Photo Contest®</strong> platform.
-    </p>
-    <p>One (1) cash award will be granted per division. The Capture Caribbean™ First Wave Challenge Jury, comprised of
-      industry professionals and platform founders, selects the winners.</p>
-    <p>Participation constitutes acceptance of the <a routerLink="/info/terms"
-        class="disclaimer__link disclaimer__link--gold">Terms of Use</a>, <a routerLink="/info/privacy"
-        class="disclaimer__link disclaimer__link--gold">Privacy Policy</a>, and <a routerLink="/info/rules"
-        class="disclaimer__link disclaimer__link--gold">Official Contest Rules</a>. Contestants may enter multiple
-      divisions per contest period; however, entries are limited to one (1) unique submission per division. The Official
-      Rules govern all aspects of the Challenge.</p>
+    <p><strong><em>Capture Caribbean™</em></strong> is the flagship platform celebrating Caribbean and Caribbean-connected visual storytelling. Submissions for the First Wave Challenge are administered through the <strong>Caribbean Photo Contest®</strong> platform.</p>
+    <p>One (1) cash award will be granted per division. The Capture Caribbean™ First Wave Challenge Jury, comprised of industry professionals and platform founders, selects the winners.</p>
+    <p>Participation constitutes acceptance of the <a routerLink="/info/terms-and-conditions" [state]="legalModalState()" [replaceUrl]="true" class="disclaimer__link disclaimer__link--gold">Terms of Use</a>, <a routerLink="/info/privacy-policy" [state]="legalModalState()" [replaceUrl]="true" class="disclaimer__link disclaimer__link--gold">Privacy Policy</a>, and <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true" class="disclaimer__link disclaimer__link--gold">Official Contest Rules</a>. Contestants may enter multiple divisions per contest period; however, entries are limited to one (1) unique submission per division. The Official Rules govern all aspects of the Challenge.</p>
     <p class="disclaimer__copyright">© 2025–2026 Capture Caribbean LLC. All rights reserved.</p>
     <p class="disclaimer__version">{{ version }}</p>
   </div>

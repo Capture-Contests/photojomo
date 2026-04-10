@@ -11,17 +11,18 @@
           <!-- Hero Section -->
           <div class="css-dczajm css-v27th6 css-paq0kv">
             <!-- Outter Layer -->
-            <div class="css-5knerd css-v27th6" style="opacity: 1; height: 100vh">
+            <div class="css-5knerd css-v27th6 hero-image-shell" style="opacity: 1; height: 100vh">
               <!-- start -->
               <img
                 alt=""
-                class="css-ez8men css-qhd53h css-trglf0 css-trglf0 css-r0azwh css-qhd53h transition-opacity duration-700"
+                class="css-ez8men css-qhd53h css-trglf0 css-trglf0 css-r0azwh css-qhd53h transition-opacity duration-700 hero-main-image"
                 [src]="currentImage"
+                [style.object-position]="currentObjectPosition"
                 style="opacity: 1"
               />
               <!-- end -->
               <!-- -->
-              <div class="css-x82mwy css-2gbjjk css-v27th6" style="height: 100%; background-color: rgba(0, 0, 0, 0.4); ">
+              <div class="css-x82mwy css-2gbjjk css-v27th6" style="height: 100%; background-color: rgba(0, 0, 0, 0.24); ">
                 <div
                   class="css-8fq6lu css-wc1msa css-v27th6"
                   style="opacity: 1"
@@ -214,7 +215,7 @@
                               <div class="css-pfzypp css-paq0kv css-v27th6">
                                 <a
                                   routerLink="/contest"
-                                  class="css-5knerd css-134pm3"
+                                  class="css-5knerd css-134pm3 hero-primary-cta"
                                   style="opacity: 1; text-decoration: none;"
                                 >
                                   <div
@@ -340,7 +341,7 @@
                           ></div>
                           <div class="css-8sen4y css-paq0kv">
                             <div
-                              *ngFor="let img of heroImages; let i = index"
+                              *ngFor="let slide of heroSlides; let i = index"
                               class="css-y0p0gp css-wc1msa css-134pm3"
                               tabindex="0"
                               role="button"
@@ -378,13 +379,12 @@
                             </div>
                           </div>
                         </div>
-                      </div>
                     </div>
-
                   </div>
                 </div>
-                <app-navbar [wrapperClass]="'css-vhq6dg css-8hhw9a css-trglf0'" />
               </div>
+              </div>
+              <app-navbar [wrapperClass]="'css-vhq6dg css-8hhw9a css-trglf0'" />
               <!-- -->
               <div
                 aria-hidden="true"
@@ -398,39 +398,16 @@
               ></div>
             </div>
             <!-- Outter Layer -->
-            <div
-              class="css-nnrhis css-igjapg css-roiesn"
-              style="transform: translateX(-50%); height: 100vh; width: 100vw; pointer-events: none;"
-            >
-              <!-- start -->
-              <div
-                class="css-bnxihm css-vxfvp6 css-56akgc"
-                style="transform: translateX(-50%) translateY(-50%);"
-              >
-                <p class="css-nf5ac4 css-8jitjv css-93r6ti textContents css-3enmih">
-                  Presented in Partnership
-                </p>
-                <div class="css-vj08gm css-wc1msa">
-                  <div class="css-phc9f9 css-trglf0 css-trglf0 css-r0azwh">
-                    <img
-                      alt=""
-                      loading="lazy"
-                      class="css-trglf0 css-vljacy"
-                      src="https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png"
-                      srcset="
-                        https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png        1920w,
-                        https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png?w=513   513w,
-                        https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png?w=1025 1025w
-                      "
-                      sizes="auto,295.2794236277844px"
-                    />
-                  </div>
-                </div>
-              </div>
-              <!-- end -->
-            </div>
           </div>
           <!-- Hero Section Closed -->
+          <div class="partnership-bridge" aria-hidden="true">
+            <p class="partnership-bridge__title">Presented in Partnership</p>
+            <img
+              src="assets/images/bay-gardens-30yr-clean.png"
+              alt="Bay Gardens 30 Years"
+              class="partnership-bridge__logo"
+            />
+          </div>
           <!-- Tri-Path sm start-->
           <div id="tri-path-sm" class="css-plh2hp css-v27th6 css-9hat9z">
             <div class="css-704s6b css-e0ve0w css-paq0kv">
@@ -441,9 +418,9 @@
                 pathways to Caribbean photography excellence </p>
             </div>
             <div class="css-jff7uw css-nj1xcx css-paq0kv">
-              <div class="css-5knerd css-v27th6 css-werfb2">
+              <div class="css-5knerd css-v27th6 css-werfb2 tri-card tri-card--mobile">
                 <div class="css-wcbkz4 css-j9f0op">
-                  <div class="css-3b3852 css-paq0kv css-v27th6">
+                  <div class="css-3b3852 css-paq0kv css-v27th6 tri-card__surface">
                     <div class="css-p5g3az css-ugeqkc"><img alt="" loading="lazy" class="css-ez8men css-qhd53h css-trglf0 css-trglf0 css-r0azwh css-qhd53h css-vvbnxe" src="https://capturecaribbean.figma.site/_assets/v11/6b4942d005ff80b29e498248adfcedd420ab86a6.png" srcset="https://capturecaribbean.figma.site/_assets/v11/6b4942d005ff80b29e498248adfcedd420ab86a6.png 0w" sizes="auto,158.33332824707px"></div>
                     <div class="css-usu9mn css-7v6yfp css-paq0kv">
                       <div class="css-9uyk0n css-v27th6 css-paq0kv">
@@ -451,21 +428,21 @@
                           <div class="textContents css-vkpzlc css-59rdls css-pwuoyt css-ehniae">
                             <p class="css-8zr56v css-jpsr3q">Win Amazing Prizes</p>
                           </div>
-                          <div class="css-kzhiau css-wc1msa" data-isimage="true"><img loading="lazy" src="https://capturecaribbean.figma.site/_assets/v11/3a3a46ba08b89dc63d653ceb2e98697895499f6d.svg" alt="" class="css-tzn6qh css-ez8men"></div>
+                          <div class="css-kzhiau css-wc1msa tri-card__logo-wrap tri-card__logo-wrap--sweepstakes" data-isimage="true"><img loading="lazy" src="assets/images/footer-logo-colored-wTM.png" alt="" class="tri-card__logo tri-card__logo--sweepstakes"></div>
                         </div>
-                      </div><a class="css-5e1eaj css-cqiawt css-hf9sha" href="https://capturecaribbean.com/sweepstakes/" target="_blank">
-                      <p class="css-nf5ac4 css-wdvxzp css-yjlbxz css-qdd7cm textContents">Explore Now</p>
-                      <div class="css-xk4pie css-wc1msa" data-isimage="true">
-                        <div class="css-trglf0 css-wkavxw"><img loading="lazy" src="https://capturecaribbean.figma.site/_assets/v11/e77d778bdbf8cfa103951848d21086baa7dd0bdd.svg" alt="" class="css-8zr56v css-ez8men"></div>
+                      </div><a class="css-5e1eaj css-cqiawt css-hf9sha tri-card__cta" routerLink="/first-wave-challenge" target="_self">
+                      <p class="css-nf5ac4 css-wdvxzp css-yjlbxz css-qdd7cm textContents tri-card__cta-label">Explore Now</p>
+                      <div class="css-xk4pie css-wc1msa tri-card__cta-arrow" data-isimage="true">
+                        <span class="tri-card__cta-arrow-img" aria-hidden="true">→</span>
                       </div>
                     </a>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="css-5knerd css-v27th6 css-werfb2">
+              <div class="css-5knerd css-v27th6 css-werfb2 tri-card tri-card--mobile">
                 <div class="css-wcbkz4 css-j9f0op">
-                  <div class="css-3b3852 css-paq0kv css-v27th6">
+                  <div class="css-3b3852 css-paq0kv css-v27th6 tri-card__surface">
                     <div class="css-p5g3az css-ugeqkc"><img alt="" loading="lazy" class="css-ez8men css-qhd53h css-trglf0 css-trglf0 css-r0azwh css-qhd53h css-vvbnxe" src="https://capturecaribbean.figma.site/_assets/v11/7f0738386590c73a1b1b48f965217cf047b65ae3.png" srcset="https://capturecaribbean.figma.site/_assets/v11/7f0738386590c73a1b1b48f965217cf047b65ae3.png 0w" sizes="auto,158.33332824707px"></div>
                     <div class="css-usu9mn css-jlqj2e css-paq0kv">
                       <div class="css-9uyk0n css-v27th6 css-paq0kv">
@@ -473,21 +450,21 @@
                           <div class="textContents css-vkpzlc css-59rdls css-pwuoyt css-ehniae">
                             <p class="css-8zr56v css-jpsr3q">Showcase Your Vision</p>
                           </div>
-                          <div class="css-qbg6gv css-wc1msa" data-isimage="true"><img loading="lazy" src="https://capturecaribbean.figma.site/_assets/v11/b91b4c9cc3e2ea1343601e3de17c069732535687.png" alt="" width="94.57" height="76.505" class="css-tzn6qh css-ez8men" srcset="https://capturecaribbean.figma.site/_assets/v11/b91b4c9cc3e2ea1343601e3de17c069732535687.png 95w" sizes="auto,94.568603515625px"></div>
+                          <div class="css-qbg6gv css-wc1msa tri-card__logo-wrap tri-card__logo-wrap--contest" data-isimage="true"><img loading="lazy" src="assets/images/CPC-Logo-720x720_r.png" alt="" width="94.57" height="76.505" class="tri-card__logo tri-card__logo--contest" srcset="assets/images/CPC-Logo-720x720_r.png 75w" sizes="auto,74.659423828125px"></div>
                         </div>
-                      </div><a class="css-5e1eaj css-cqiawt css-hf9sha" href="https://capturecaribbean.com/contests/" target="_blank">
-                      <p class="css-nf5ac4 css-wdvxzp css-yjlbxz css-qdd7cm textContents">Explore Now</p>
-                      <div class="css-xk4pie css-wc1msa" data-isimage="true">
-                        <div class="css-trglf0 css-wkavxw"><img loading="lazy" src="https://capturecaribbean.figma.site/_assets/v11/e77d778bdbf8cfa103951848d21086baa7dd0bdd.svg" alt="" class="css-8zr56v css-ez8men"></div>
+                      </div><a class="css-5e1eaj css-cqiawt css-hf9sha tri-card__cta" routerLink="/contest" target="_self">
+                      <p class="css-nf5ac4 css-wdvxzp css-yjlbxz css-qdd7cm textContents tri-card__cta-label">Explore Now</p>
+                      <div class="css-xk4pie css-wc1msa tri-card__cta-arrow" data-isimage="true">
+                        <span class="tri-card__cta-arrow-img" aria-hidden="true">→</span>
                       </div>
                     </a>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="css-5knerd css-v27th6 css-werfb2">
+              <div class="css-5knerd css-v27th6 css-werfb2 tri-card tri-card--mobile">
                 <div class="css-wcbkz4 css-j9f0op">
-                  <div class="css-3b3852 css-paq0kv css-v27th6">
+                  <div class="css-3b3852 css-paq0kv css-v27th6 tri-card__surface">
                     <div class="css-p5g3az css-ugeqkc"><img alt="" loading="lazy" class="css-ez8men css-qhd53h css-trglf0 css-trglf0 css-r0azwh css-qhd53h css-vvbnxe" src="https://capturecaribbean.figma.site/_assets/v11/95db9fca1c63c4b8172a4a19b9efcb372b13e9fe.png" srcset="https://capturecaribbean.figma.site/_assets/v11/95db9fca1c63c4b8172a4a19b9efcb372b13e9fe.png 0w" sizes="auto,158.33332824707px"></div>
                     <div class="css-k0vhvo css-7v6yfp css-paq0kv">
                       <div class="css-9uyk0n css-v27th6 css-paq0kv">
@@ -496,14 +473,14 @@
                             <p class="css-8zr56v css-jpsr3q">Join Our Community</p>
                           </div>
 
-                          <div class="css-w062lt css-wc1msa" data-isimage="true">
-                            <img loading="lazy" src="https://capturecaribbean.figma.site/_assets/v11/899160addc2590c871c9d00db786db4d4c52d68e.svg" alt="" class="css-tzn6qh css-ez8men">
+                          <div class="css-w062lt css-wc1msa tri-card__logo-wrap tri-card__logo-wrap--connections" data-isimage="true">
+                            <img loading="lazy" src="assets/images/logo_connections.png" alt="" class="tri-card__logo tri-card__logo--connections">
                           </div>
                         </div>
-                      </div><a class="css-5e1eaj css-cqiawt css-hf9sha" href="https://capturecaribbean.figma.site/caribbean-connection" target="_blank">
-                      <p class="css-nf5ac4 css-wdvxzp css-yjlbxz css-qdd7cm textContents">Explore Now</p>
-                      <div class="css-xk4pie css-wc1msa" data-isimage="true">
-                        <div class="css-trglf0 css-wkavxw"><img loading="lazy" src="https://capturecaribbean.figma.site/_assets/v11/e77d778bdbf8cfa103951848d21086baa7dd0bdd.svg" alt="" class="css-8zr56v css-ez8men"></div>
+                      </div><a class="css-5e1eaj css-cqiawt css-hf9sha tri-card__cta" routerLink="/caribbean-connection" target="_self">
+                      <p class="css-nf5ac4 css-wdvxzp css-yjlbxz css-qdd7cm textContents tri-card__cta-label">Explore Now</p>
+                      <div class="css-xk4pie css-wc1msa tri-card__cta-arrow" data-isimage="true">
+                        <span class="tri-card__cta-arrow-img" aria-hidden="true">→</span>
                       </div>
                     </a>
                     </div>
@@ -542,9 +519,8 @@
             <div class="css-f1jjdz css-v27th6 css-paq0kv">
               <div class="tailwind css-hdqalq css-uwf2km">
                 <a
-                  href="https://capturecaribbean.com/sweepstakes/"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  routerLink="/first-wave-challenge"
+                  target="_self"
                   class="relative size-full group"
                   data-name="Property 1=Default"
                   ><div
@@ -567,47 +543,12 @@
                       <div
                         class="content-stretch flex flex-col gap-[35px] h-[116px] items-center leading-[0] relative shrink-0 w-[567px]"
                       >
-                        <div
-                          class="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0"
-                        >
-                          <div
-                            class="[grid-area:1_/_1] h-[5.853px] ml-[235.119px] mt-[2.209px] relative w-[11.929px]"
-                            data-name="TM"
-                          >
-                            <svg
-                              class="block size-full"
-                              fill="none"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 12 6"
-                            >
-                              <g id="TM">
-                                <path fill="var(--fill-0, white)"></path>
-                                <path fill="var(--fill-0, white)"></path>
-                              </g>
-                            </svg>
-                          </div>
-                          <div
-                            class="[grid-area:1_/_1] grid-cols-[max-content] grid-rows-[max-content] inline-grid leading-[0] ml-0 mt-0 place-items-start relative"
-                          >
-                            <div
-                              class="[grid-area:1_/_1] h-[58.352px] ml-0 mt-0 relative w-[248px]"
-                              data-name="Group"
-                            >
-                              <img alt="" class="block max-w-none size-full" />
-                            </div>
-                            <div
-                              class="[grid-area:1_/_1] h-[7.417px] ml-[3.903px] mt-[50.864px] relative w-[79.903px]"
-                              data-name="Group"
-                            >
-                              <img alt="" class="block max-w-none size-full" />
-                            </div>
-                            <div
-                              class="[grid-area:1_/_1] h-[7.395px] ml-[98.478px] mt-[50.864px] relative w-[101.656px]"
-                              data-name="Group"
-                            >
-                              <img alt="" class="block max-w-none size-full" />
-                            </div>
-                          </div>
+                        <div class="tri-card-lg__logo-wrap tri-card-lg__logo-wrap--sweepstakes">
+                          <img
+                            src="assets/images/footer-logo-colored-wTM.png"
+                            alt="Capture Caribbean Sweepstakes"
+                            class="tri-card-lg__logo tri-card-lg__logo--sweepstakes"
+                          />
                         </div>
                         <div
                           class="flex flex-col font-['Sora:Regular',_sans-serif] font-normal justify-center min-w-full relative shrink-0 text-[20px] text-center text-white w-[min-content]"
@@ -625,18 +566,9 @@
                         ></div>
                         <div class="h-0 relative shrink-0 w-[19px]">
                           <div
-                            class="absolute bottom-[-7.36px] left-0 right-[-5.26%] top-[-7.36px]"
+                            class="absolute bottom-[-7.36px] left-0 right-[-5.26%] top-[-7.36px] tri-card-lg__cta-arrow-wrap"
                           >
-                            <svg
-                              class="block size-full text-white group-hover:text-black transition-colors duration-300"
-                              fill="currentColor"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 20 16"
-                            >
-                              <g id="Frame 2147226962">
-                                <path fill="currentColor" id="Arrow 2"></path>
-                              </g>
-                            </svg>
+                            <span class="tri-card-lg__cta-arrow" aria-hidden="true">→</span>
                           </div>
                         </div>
                       </div>
@@ -645,9 +577,8 @@
               </div>
               <div class="tailwind css-hdqalq css-uwf2km">
                 <a
-                  href="https://capturecaribbean.com/contests/"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  routerLink="/contest"
+                  target="_self"
                   class="relative size-full group"
                   data-name="Property 1=Default"
                   ><div
@@ -670,67 +601,12 @@
                       <div
                         class="content-stretch flex flex-col gap-[32px] items-center relative shrink-0 w-[567px]"
                       >
-                        <div class="h-[144px] relative shrink-0 w-[178px]">
-                          <div
-                            class="absolute h-[144px] left-0 top-0 w-[178px]"
-                          >
-                            <div
-                              class="absolute h-[144px] left-0 top-0 w-[178px]"
-                              data-name="image 36"
-                            >
-                              <div
-                                class="absolute inset-0 overflow-hidden pointer-events-none"
-                              >
-                                <img
-                                  alt=""
-                                  class="absolute h-[124.04%] left-[-28.6%] max-w-none top-[-13.33%] w-[156.9%]"
-                                  src="https://capturecaribbean.figma.site/_assets/v11/881a14cbf481fc60fdc4c2eb7da4dd1f4f03fd49.png"
-                                />
-                              </div>
-                            </div>
-                            <div
-                              class="absolute inset-[91.67%_16.29%_0.69%_77.53%]"
-                              data-name="Vector"
-                            >
-                              <div class="absolute inset-[-2.5%]">
-                                <svg
-                                  class="block size-full"
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 13 13"
-                                >
-                                  <path
-                                    id="Vector"
-                                    stroke="var(--stroke-0, white)"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="0.55"
-                                  ></path>
-                                </svg>
-                              </div>
-                            </div>
-                            <div
-                              class="absolute inset-[93.36%_18.49%_2.48%_79.59%]"
-                              data-name="Vector"
-                            >
-                              <div class="absolute inset-[-7.14%_-12.5%]">
-                                <svg
-                                  class="block size-full"
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 5 8"
-                                >
-                                  <path
-                                    id="Vector"
-                                    stroke="var(--stroke-0, white)"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="0.855794"
-                                  ></path>
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
+                        <div class="tri-card-lg__logo-wrap tri-card-lg__logo-wrap--contest">
+                          <img
+                            src="assets/images/CPC-Logo-720x720_r.png"
+                            alt="Caribbean Photo Contest"
+                            class="tri-card-lg__logo tri-card-lg__logo--contest"
+                          />
                         </div>
                         <div
                           class="flex flex-col font-['Sora:Regular',_sans-serif] font-normal justify-center leading-[0] min-w-full relative shrink-0 text-[20.497px] text-center text-white w-[min-content]"
@@ -748,18 +624,9 @@
                         ></div>
                         <div class="h-0 relative shrink-0 w-[19px]">
                           <div
-                            class="absolute bottom-[-7.36px] left-0 right-[-5.26%] top-[-7.36px]"
+                            class="absolute bottom-[-7.36px] left-0 right-[-5.26%] top-[-7.36px] tri-card-lg__cta-arrow-wrap"
                           >
-                            <svg
-                              class="block size-full text-white group-hover:text-black transition-colors duration-300"
-                              fill="currentColor"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 20 16"
-                            >
-                              <g id="Frame 2147226962">
-                                <path fill="currentColor" id="Arrow 2"></path>
-                              </g>
-                            </svg>
+                            <span class="tri-card-lg__cta-arrow" aria-hidden="true">→</span>
                           </div>
                         </div>
                       </div>
@@ -768,9 +635,8 @@
               </div>
               <div class="tailwind css-hdqalq css-uwf2km">
                 <a
-                  href="https://capturecaribbean.figma.site/caribbean-connection"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  routerLink="/caribbean-connection"
+                  target="_self"
                   class="relative size-full group"
                   data-name="c"
                   ><div
@@ -793,51 +659,12 @@
                       <div
                         class="content-stretch flex flex-col gap-[35px] h-[111px] items-center relative shrink-0 w-[567px]"
                       >
-                        <div
-                          class="h-[49.761px] relative shrink-0 w-[234px]"
-                          data-name="Vector"
-                        >
-                          <svg
-                            class="block size-full"
-                            fill="none"
-                            preserveAspectRatio="none"
-                            viewBox="0 0 234 50"
-                          >
-                            <g id="Vector">
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="#DF5E26"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                              <path fill="var(--fill-0, white)"></path>
-                            </g>
-                          </svg>
+                        <div class="tri-card-lg__logo-wrap tri-card-lg__logo-wrap--connections">
+                          <img
+                            src="assets/images/logo_connections.png"
+                            alt="Caribbean Connections"
+                            class="tri-card-lg__logo tri-card-lg__logo--connections"
+                          />
                         </div>
                         <div
                           class="flex flex-col font-['Sora:Regular',_sans-serif] font-normal justify-center leading-[0] min-w-full relative shrink-0 text-[20.429px] text-center text-white w-[min-content]"
@@ -861,21 +688,9 @@
                           >
                             <div class="h-0 relative shrink-0 w-[19px]">
                               <div
-                                class="absolute bottom-[-7.36px] left-0 right-[-5.26%] top-[-7.36px]"
+                                class="absolute bottom-[-7.36px] left-0 right-[-5.26%] top-[-7.36px] tri-card-lg__cta-arrow-wrap"
                               >
-                                <svg
-                                  class="block size-full text-white group-hover:text-black transition-colors duration-300"
-                                  fill="none"
-                                  preserveAspectRatio="none"
-                                  viewBox="0 0 20 16"
-                                >
-                                  <g id="Frame 2147226962">
-                                    <path
-                                      fill="currentColor"
-                                      id="Arrow 2"
-                                    ></path>
-                                  </g>
-                                </svg>
+                                <span class="tri-card-lg__cta-arrow" aria-hidden="true">→</span>
                               </div>
                             </div>
                           </div>
@@ -888,104 +703,67 @@
           </div>
           <!-- Tri-Path End -->
           <!-- Artist Residency -->
-          <div class="css-dq8oxq css-v27th6 css-paq0kv">
-            <div class="css-5knerd css-v27th6">
-              <div class="css-e1d1o2 css-j9f0op">
-                <div class="css-huf7yb css-paq0kv css-v27th6">
+          <section id="artist-residency-section" class="artist-residency-clean">
+            <div class="artist-residency-clean__media">
+              <img
+                src="https://capturecaribbean.figma.site/_assets/v11/a2590f7f77d750fd96de6f089f30c3571606f94e.png"
+                alt="Saint Lucia hillside view"
+              >
+              <div class="artist-residency-clean__hosted-mobile">
+                <p>Generously Hosted By</p>
+                <img src="assets/images/bay-gardens-logo.png" alt="Bay Gardens Resorts">
+              </div>
+            </div>
+            <div class="artist-residency-clean__content">
+              <h2 class="artist-residency-clean__heading">
+                <span>The Island-Wide</span>
+                <em>Artist Residency</em>
+              </h2>
+              <p class="artist-residency-clean__intro">
+                More than just a competition, Capture Caribbean is a movement&mdash;a platform that fosters artistic excellence, storytelling, and a global appreciation for the island&rsquo;s beauty. Through this initiative, we bridge cultures, inspire creativity, and connect visionary artists with audiences worldwide.
+              </p>
+              <div class="artist-residency-clean__hosted">
+                <p>Generously Hosted By</p>
+                <img src="assets/images/bay-gardens-logo.png" alt="Bay Gardens Resorts">
+              </div>
+              <div class="artist-residency-clean__benefits">
+                <div class="artist-residency-clean__benefit">
+                  <img src="https://capturecaribbean.figma.site/_assets/v11/6ec8569e88a58a7ab6c450fe1f237ca04810c40c.svg" alt="">
                   <div>
-                    <p style="
-                          font-family: 'Sora:Regular', sans-serif;
-                          word-break: break-word;
-                          font-style: normal;
-                          font-size: 19.487px;
-                          line-height: 38.974px;
-                          text-align: center;
-                    ">
-                      The Island-Wide
-                    </p>
-                    <p style="
-                        line-height: 38.974px;
-                        white-space: pre-wrap;
-                        font-family: 'CalvinoGrandeItalicVarTrial:Italic', sans-serif;
-                        word-break: break-word;
-                        font-weight: 450;
-                        font-style: italic;
-                        font-size: 38.974px;">Artist Residency</p>
-
+                    <h3>Home Base at Bay Gardens</h3>
+                    <p>Stay in comfort with a creative-ready workspace, perfect for focusing on your art while surrounded by Saint Lucia&rsquo;s beauty.</p>
                   </div>
-                  <p class="css-nf5ac4 css-timyy9 css-8hexdp css-lale textContents">Choose your journey through three unique
-                    pathways to Caribbean photography excellence </p>
                 </div>
-              </div>
-            </div>
-            <div class="css-foqw71 css-9uyk0n css-2gbjjk">
-              <div class="css-foqw71 css-wc1msa css-gxdil1">
-                <div class="css-phc9f9 css-trglf0 css-trglf0 css-r0azwh"><img alt="" loading="lazy"
-                                                                              class="css-trglf0 css-tq2vlv" src="https://capturecaribbean.figma.site/_assets/v11/a2590f7f77d750fd96de6f089f30c3571606f94e.png"
-                                                                              srcset="https://capturecaribbean.figma.site/_assets/v11/a2590f7f77d750fd96de6f089f30c3571606f94e.png 4096w, https://capturecaribbean.figma.site/_assets/v11/a2590f7f77d750fd96de6f089f30c3571606f94e.png?w=1621 1621w, https://capturecaribbean.figma.site/_assets/v11/a2590f7f77d750fd96de6f089f30c3571606f94e.png?w=3241 3241w, https://capturecaribbean.figma.site/_assets/v11/a2590f7f77d750fd96de6f089f30c3571606f94e.png?w=4862 4862w, https://capturecaribbean.figma.site/_assets/v11/a2590f7f77d750fd96de6f089f30c3571606f94e.png?w=6482 6482w, https://capturecaribbean.figma.site/_assets/v11/a2590f7f77d750fd96de6f089f30c3571606f94e.png?w=8103 8103w, https://capturecaribbean.figma.site/_assets/v11/a2590f7f77d750fd96de6f089f30c3571606f94e.png?w=9723 9723w, https://capturecaribbean.figma.site/_assets/v11/a2590f7f77d750fd96de6f089f30c3571606f94e.png?w=11344 11344w, https://capturecaribbean.figma.site/_assets/v11/a2590f7f77d750fd96de6f089f30c3571606f94e.png?w=12964 12964w"
-                                                                              sizes="auto,317vw"></div>
-                <div class="css-c108nh css-hdvvn5 css-7shtho" style="transform:translateX(-50%)">
-                  <p class="css-nf5ac4 css-59rdls css-svy1bp css-z7rd12 textContents">Generously hosted by </p>
-                  <div class="css-7dgfrf css-wc1msa">
-                    <div class="css-phc9f9 css-trglf0 css-trglf0 css-r0azwh"><img alt="" loading="lazy"
-                                                                                  class="css-trglf0 css-ao8lh" src="https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png"
-                                                                                  srcset="https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png 1920w, /_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png?w=1123 1123w, /_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png?w=2246 2246w"
-                                                                                  sizes="auto,506.68189329004724px"></div>
+                <div class="artist-residency-clean__benefit">
+                  <img src="https://capturecaribbean.figma.site/_assets/v11/dbf927b3bf898cefbba5118e2aea3a9f55d1498e.svg" alt="">
+                  <div>
+                    <h3>Transport Support</h3>
+                    <p>Travel across the island with ease, reaching hidden beaches, lush rainforests, and vibrant local scenes.</p>
+                  </div>
+                </div>
+                <div class="artist-residency-clean__benefit">
+                  <img src="https://capturecaribbean.figma.site/_assets/v11/a7035dd30dcea886457458cc08a13f6773ca6916.svg" alt="">
+                  <div>
+                    <h3>Cultural Immersion</h3>
+                    <p>Experience the island&rsquo;s traditions through music, dance, and connections with its welcoming communities.</p>
                   </div>
                 </div>
               </div>
+              <a class="artist-residency-clean__cta" routerLink="/residency">Learn About the Residency</a>
             </div>
-            <div class="css-5knerd css-v27th6">
-              <div class="css-kartsf css-paq0kv css-v27th6">
-                <div class="css-dq8oxq css-v27th6 css-paq0kv">
-                  <div class="css-cs2tbw css-v27th6 css-paq0kv">
-                    <div class="css-zi31 css-wc1msa" data-isimage="true"><img loading="lazy"
-                                                                              src="https://capturecaribbean.figma.site/_assets/v11/6ec8569e88a58a7ab6c450fe1f237ca04810c40c.svg" alt=""
-                                                                              class="css-tzn6qh css-ez8men"></div>
-                    <div class="css-cb029k css-btwy90 css-paq0kv">
-                      <p class="css-nf5ac4 css-sxmgzp css-9a00hh textContents">Home Base at Bay Gardens</p>
-                      <p class="css-nf5ac4 css-wcyqwz css-gjixdq css-ubkd1t textContents">Stay in comfort with a
-                        creative-ready workspace, perfect for focusing on your art while surrounded by Saint Lucia’s
-                        beauty.</p>
-                    </div>
-                  </div>
-                  <div class="css-cs2tbw css-v27th6 css-paq0kv">
-                    <div class="css-zi31 css-wc1msa" data-isimage="true"><img loading="lazy"
-                                                                              src="https://capturecaribbean.figma.site/_assets/v11/dbf927b3bf898cefbba5118e2aea3a9f55d1498e.svg" alt=""
-                                                                              class="css-tzn6qh css-ez8men"></div>
-                    <div class="css-btwy90 css-v27th6 css-paq0kv">
-                      <p class="css-nf5ac4 css-sxmgzp css-9a00hh textContents">Transport Support </p>
-                      <p class="css-nf5ac4 css-59rdls css-gjixdq css-ubkd1t textContents">Travel across the island with
-                        ease, reaching hidden beaches, lush rainforests, and vibrant local scenes.</p>
-                    </div>
-                  </div>
-                  <div class="css-cs2tbw css-v27th6 css-paq0kv">
-                    <div class="css-zi31 css-wc1msa" data-isimage="true"><img loading="lazy"
-                                                                              src="https://capturecaribbean.figma.site/_assets/v11/a7035dd30dcea886457458cc08a13f6773ca6916.svg" alt=""
-                                                                              class="css-tzn6qh css-ez8men"></div>
-                    <div class="css-btwy90 css-v27th6 css-paq0kv">
-                      <p class="css-nf5ac4 css-sxmgzp css-9a00hh textContents">Cultural Immersion</p>
-                      <p class="css-nf5ac4 css-kztsqs css-gjixdq css-ubkd1t textContents">Experience the island’s traditions
-                        through music, dance, and connections with its welcoming communities.</p>
-                    </div>
-                  </div>
-                </div>
-                <p class="css-nf5ac4 css-5k7l9 css-qdd7cm textContents">Learn More About the Residency</p>
-              </div>
-            </div>
-          </div>
+          </section>
           <!-- Artist Residency end -->
-          <div class="css-e59snh css-v27th6 css-2gbjjk">
-            <div class="css-zfht4v css-v27th6 css-paq0kv">
+          <div class="css-e59snh css-v27th6 css-2gbjjk introducing-mobile-block">
+            <div class="css-zfht4v css-v27th6 css-paq0kv introducing-mobile-stack">
               <div class="css-dczajm css-v27th6 css-2gbjjk">
                 <p
                   class="css-wr6d5v css-wc1msa css-zde9d4 css-6vp3ws textContents"
                 >
                   <span class="css-rrrqnv">Introducing</span
-                  ><span class="css-ifelz8"> Capture Caribbean </span>
+                  ><span class="css-ifelz8"><br />Capture Caribbean</span>
                 </p>
               </div>
-              <div class="tailwind css-9dnpuu css-wc1msa css-gxdil1">
+              <div class="tailwind css-9dnpuu css-wc1msa css-gxdil1 intro-video-shell">
                 <div
                   class="relative w-full h-full flex items-center justify-center z-10"
                 >
@@ -999,7 +777,7 @@
                       src="https://capturecaribbean.figma.site/_assets/v11/f5f4ca743faeaa447aced3252f740b66e9995e3d.png"
                     />
                   </div>
-                  <div class="relative w-full h-full">
+                  <div class="relative w-full h-full intro-video-frame">
                     <iframe
                       class="absolute inset-0 w-full h-full"
                       src="https://www.youtube.com/embed/jzdji2wAa2U?rel=0&amp;modestbranding=1&amp;playsinline=1"
@@ -1024,12 +802,15 @@
               style="transform: translateX(-50%)"
             ></div>
           </div>
-          <div class="css-g9qt8c css-v27th6 css-paq0kv">
-            <p class="css-wc1msa css-59rdls css-zde9d4 css-6vp3ws textContents">
+          <div class="css-g9qt8c css-v27th6 css-paq0kv prospective-partners-block">
+            <p class="css-wc1msa css-59rdls css-zde9d4 css-6vp3ws textContents prospective-partners-title">
               <span class="css-rrrqnv">Prospective </span
               ><span class="css-4kha33 css-xuf7pg">Partners</span>
             </p>
-            <div class="css-4i2lzp css-paq0kv">
+            <p class="css-nf5ac4 css-59rdls css-wb9eri css-uot4si textContents prospective-partners-subtitle">
+              Collaborating with industry leaders
+            </p>
+            <div class="css-4i2lzp css-paq0kv prospective-partners-logos">
               <div class="css-e29oh2 css-wc1msa">
                 <img
                   alt=""
@@ -1218,6 +999,9 @@
                             sizes="auto,251.33215623111008px"
                           /></div
                       ></a>
+                      <p class="footer-bonus-copy">
+                        Share with Friends for Bonus Entries!
+                      </p>
                       <div class="css-7xhp8u css-nertwn css-paq0kv">
                         <a
                           class="css-456nzv css-wc1msa css-134pm3"
@@ -1269,8 +1053,8 @@
                       <div class="css-eyahki css-paq0kv">
                         <a
                           class="css-95o4tl css-wc1msa css-134pm3"
-                          href="https://capturecaribbean.com/sweepstakes/"
-                          target="_blank"
+                          routerLink="/first-wave-challenge"
+                          target="_self"
                           data-isimage="true"
                           ><img
                             loading="lazy"
@@ -1279,8 +1063,8 @@
                             class="css-tzn6qh css-ez8men" /></a
                         ><a
                           class="css-3zz5a0 css-wc1msa css-134pm3"
-                          href="https://capturecaribbean.com/contests/"
-                          target="_blank"
+                          routerLink="/contest"
+                          target="_self"
                           data-isimage="true"
                           ><img
                             loading="lazy"
@@ -1295,8 +1079,8 @@
                             sizes="auto,65.02027702331543px" /></a
                         ><a
                           class="css-q7nfxi css-wc1msa css-134pm3"
-                          href="https://capturecaribbean.figma.site/caribbean-connection"
-                          target="_blank"
+                          routerLink="/caribbean-connection"
+                          target="_self"
                           data-isimage="true"
                           ><img
                             loading="lazy"
@@ -1343,7 +1127,7 @@
                           <a
                             class="textContents css-wc1msa css-q6rpi1 css-c93nhn"
                             routerLink="/about-us"
-                            target="_blank"
+                            target="_self"
                             ><p class="css-8zr56v css-4i1sn1">The Vision</p></a
                           ><a
                             class="textContents css-wc1msa css-q6rpi1 css-c93nhn"

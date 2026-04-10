@@ -29,6 +29,8 @@
                 <a
                   class="navbar__dropdown-link"
                   [routerLink]="child.route"
+                  [state]="child.route.startsWith('/info/') ? legalModalState() : undefined"
+                  [replaceUrl]="child.route.startsWith('/info/')"
                   routerLinkActive="navbar__dropdown-link--active"
                   (click)="closeMobile()"
                 >{{ child.label }}</a>

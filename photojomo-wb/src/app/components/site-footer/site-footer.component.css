@@ -1,0 +1,194 @@
+.site-footer {
+  background: #18191b;
+  color: #fff;
+}
+
+.site-footer__inner {
+  width: min(100%, 1320px);
+  margin: 0 auto;
+  padding: 54px 54px 35px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 31px;
+}
+
+.site-footer__top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: 36px;
+}
+
+.site-footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.site-footer__logo-link {
+  display: inline-block;
+  width: 200px;
+}
+
+.site-footer__logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.site-footer__bonus-copy {
+  margin: 0;
+  font-family: "PP Neue Montreal:Medium", sans-serif;
+  font-size: 11px;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.site-footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-footer__socials a {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-footer__socials img {
+  width: 100%;
+  height: 100%;
+}
+
+.site-footer__initiatives {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.site-footer__eyebrow {
+  margin: 0;
+  font-family: "Sora:Regular", sans-serif;
+  font-size: 13px;
+  line-height: 1.25;
+  color: #ebebeb;
+}
+
+.site-footer__initiative-logos {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+
+.site-footer__initiative-logos a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-footer__initiative-logos img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 113px;
+  max-height: 53px;
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 14px 36px;
+}
+
+.site-footer__links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Sora:Regular", sans-serif;
+  font-size: 13px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.site-footer__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.site-footer__bottom p {
+  margin: 0;
+  font-family: "Inter:Regular", sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #d4d5d9;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .site-footer__inner {
+    padding: 18px 24px 30px;
+    gap: 18px;
+  }
+
+  .site-footer__top {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .site-footer__brand {
+    align-items: center;
+    gap: 0;
+  }
+
+  .site-footer__logo-link {
+    width: 240px;
+    max-width: 100%;
+  }
+
+  .site-footer__bonus-copy {
+    margin: -6px 0 0;
+    font-size: 12px;
+  }
+
+  .site-footer__socials {
+    gap: 10px;
+  }
+
+  .site-footer__socials a {
+    width: 30px;
+    height: 30px;
+  }
+
+  .site-footer__initiatives {
+    display: none;
+  }
+
+  .site-footer__links {
+    gap: 8px 18px;
+  }
+
+  .site-footer__links a {
+    display: block;
+    font-size: 11px;
+    line-height: 1.2;
+    white-space: normal;
+  }
+
+  .site-footer__links a:first-child {
+    width: 100%;
+  }
+
+  .site-footer__bottom p {
+    font-size: 10px;
+    line-height: 1.25;
+  }
+}

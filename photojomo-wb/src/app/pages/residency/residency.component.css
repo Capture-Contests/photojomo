@@ -1,1 +1,258 @@
-/* Styles are in global styles.css */
+/* Residency page overrides */
+
+#container .residency-heading-light {
+  font-weight: 400 !important;
+}
+
+#container .residency-program-accordion {
+  width: 100%;
+}
+
+#container .residency-program-accordion__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+#container .residency-program-accordion__item {
+  background: #eeeeee;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 100%;
+}
+
+#container .residency-program-accordion__trigger {
+  align-items: flex-start;
+  background: transparent;
+  border: 0;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  padding: 24px 40px 24px 24px;
+  text-align: left;
+  width: 100%;
+}
+
+#container .residency-program-accordion__icon {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 24px;
+  height: 24px;
+  justify-content: center;
+  margin-top: 1px;
+  width: 24px;
+}
+
+#container .residency-program-accordion__chevron {
+  color: #000;
+  display: block;
+  height: 8px;
+  transition: transform 220ms ease;
+  width: 14px;
+}
+
+#container .residency-program-accordion__item.is-open .residency-program-accordion__chevron {
+  transform: rotate(0deg);
+}
+
+#container .residency-program-accordion__item:not(.is-open) .residency-program-accordion__chevron {
+  transform: rotate(-90deg);
+}
+
+#container .residency-program-accordion__question {
+  color: #000;
+  flex: 1 1 auto;
+  font-family: 'PP Neue Montreal', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+}
+
+#container .residency-program-accordion__panel {
+  padding: 0 24px 24px 56px;
+}
+
+#container .residency-program-accordion__answer {
+  color: rgba(0, 0, 0, 0.7);
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  margin: 0;
+}
+
+#container .residency-program-accordion__answer-list {
+  color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  gap: 8px;
+  line-height: 1.55;
+  list-style: disc;
+  margin: 0;
+  padding-left: 18px;
+}
+
+#container .residency-program-accordion__answer-list-item {
+  margin: 0;
+}
+
+#container .residency-program-accordion__answer-list-item.is-header {
+  font-weight: 700;
+}
+
+#container .residency-cta-section {
+  margin-bottom: -96px;
+}
+
+#container .residency-cta-section .css-i5g51a {
+  transform: translateY(-25px);
+}
+
+#container .residency-footer-section {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.hero-primary-cta {
+  border-radius: 999px;
+}
+
+.hero-primary-cta .css-r0azwh,
+.hero-primary-cta .css-5eam1e,
+.hero-primary-cta .css-pm0kcc {
+  transition:
+    background-color 420ms ease,
+    border-color 420ms ease,
+    color 420ms ease,
+    -webkit-text-fill-color 420ms ease,
+    transform 420ms ease;
+}
+
+.hero-primary-cta:hover .css-r0azwh {
+  background-color: #c8651f !important;
+}
+
+.hero-primary-cta:hover .css-5eam1e {
+  border-color: #c8651f !important;
+}
+
+.hero-primary-cta:hover .css-pm0kcc {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+#container .residency-vote-cta .css-pm0kcc,
+#container .residency-vote-cta .css-pm0kcc p {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+}
+
+#container .residency-header--desktop,
+#container .residency-header--tablet,
+#container .residency-header--mobile {
+  display: none;
+  z-index: 10000 !important;
+}
+
+@media (min-width: 1101px) {
+  #container .residency-header--desktop {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  #container .residency-header--tablet {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  #container .residency-header--mobile {
+    display: block;
+  }
+
+  #container .css-pasalw.css-a8ckpo.css-paq0kv {
+    width: 100% !important;
+  }
+
+  #container .css-ghqjpe.css-paq0kv.css-j9f0op {
+    box-sizing: border-box;
+    gap: 12px;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    width: 100% !important;
+  }
+
+  #container .css-4heiga.css-msco0v.css-paq0kv,
+  #container .css-56bisj.css-n8r96y.css-paq0kv,
+  #container .css-pasalw.css-a8ckpo.css-paq0kv {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  #container .residency-hero-copy {
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: calc(100vw - 40px);
+    width: calc(100vw - 40px);
+  }
+
+  #container .residency-hero-copy .textContents,
+  #container .residency-hero-copy-text {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  #container .residency-hero-copy-text,
+  #container .css-qnrxeb.css-lgbtxs.css-uugwx8,
+  #container .css-4p2bqb.css-uugwx8,
+  #container .css-hv9fpq.css-8oxa0k {
+    width: auto !important;
+    max-width: calc(100vw - 40px) !important;
+  }
+
+  #container .residency-mobile-gutter {
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: calc(100vw - 40px);
+    width: calc(100vw - 40px);
+  }
+
+  #container .residency-mobile-gutter .textContents,
+  #container .residency-mobile-gutter .residency-program-accordion__question,
+  #container .residency-mobile-gutter .residency-program-accordion__answer,
+  #container .residency-mobile-gutter .residency-program-accordion__answer-list,
+  #container .residency-mobile-gutter .residency-program-accordion__answer-list-item {
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  #container .residency-mobile-gutter .css-iguuiu,
+  #container .residency-mobile-gutter .css-uot4si,
+  #container .residency-mobile-gutter .css-ueucp2,
+  #container .residency-mobile-gutter .css-9jtq1y,
+  #container .residency-mobile-gutter .css-2e5s4a,
+  #container .residency-mobile-gutter .css-8oxa0k,
+  #container .residency-mobile-gutter .css-uugwx8 {
+    max-width: 100%;
+  }
+
+  #container .residency-program-accordion__trigger {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  #container .residency-program-accordion__panel {
+    padding-left: 52px;
+    padding-right: 20px;
+  }
+}

@@ -4,7 +4,10 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { environment } from '../../../environments/environment';
 
-const BASE = 'https://capturecaribbean.figma.site/_assets/v11';
+interface HeroSlide {
+  src: string;
+  objectPosition?: string;
+}
 
 @Component({
   selector: 'app-home',
@@ -17,10 +20,11 @@ const BASE = 'https://capturecaribbean.figma.site/_assets/v11';
 export class HomeComponent implements OnInit, OnDestroy {
   firstWaveUrl = environment.firstWaveUrl;
 
-  heroImages = [
-    `${BASE}/5162c9366bc452fc11600eed14119d07029a44c5.png`,
-    `${BASE}/a2590f7f77d750fd96de6f089f30c3571606f94e.png`,
-    `${BASE}/245f38c25cab0ccfdfe98428cc23b15fd41e6472.png`
+  heroSlides: HeroSlide[] = [
+    { src: 'assets/images/beach_image.jpg', objectPosition: '72% center' },
+    { src: 'assets/images/BG4.jpg' },
+    { src: 'assets/images/iStock-1316997695.jpg' },
+    { src: 'assets/images/iStock-1232115076.jpg' }
   ];
 
   currentIndex = 0;
@@ -34,17 +38,25 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.stopAutoPlay();
   }
 
+  get currentSlide(): HeroSlide {
+    return this.heroSlides[this.currentIndex];
+  }
+
   get currentImage(): string {
-    return this.heroImages[this.currentIndex];
+    return this.currentSlide.src;
+  }
+
+  get currentObjectPosition(): string | null {
+    return this.currentSlide.objectPosition ?? null;
   }
 
   prev(): void {
-    this.currentIndex = (this.currentIndex - 1 + this.heroImages.length) % this.heroImages.length;
+    this.currentIndex = (this.currentIndex - 1 + this.heroSlides.length) % this.heroSlides.length;
     this.resetAutoPlay();
   }
 
   next(): void {
-    this.currentIndex = (this.currentIndex + 1) % this.heroImages.length;
+    this.currentIndex = (this.currentIndex + 1) % this.heroSlides.length;
     this.resetAutoPlay();
   }
 

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, Input, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 export interface Tier {
   name: string;
@@ -11,28 +11,28 @@ export interface Tier {
 
 export const TIERS: Tier[] = [
   {
-    name: 'Tier 1 – Explorer',
+    name: 'Tier 1 - Explorer',
     price: '$25',
-    images: '1–5 images',
+    images: '1-5 images',
     benefits: ['Eligible for judging', 'Founding Class Member Badge'],
     golden: false,
   },
   {
-    name: 'Tier 2 – Enthusiast',
+    name: 'Tier 2 - Enthusiast',
     price: '$45',
     images: 'Up to 10 images',
     benefits: ['Eligible for judging', 'Founding Class Member Badge'],
     golden: false,
   },
   {
-    name: 'Tier 3 – Visionary',
+    name: 'Tier 3 - Visionary',
     price: '$65',
     images: 'Up to 15 images',
     benefits: ['Eligible for judging', 'Founding Class Member Badge'],
     golden: false,
   },
   {
-    name: 'Tier 4 – Master',
+    name: 'Tier 4 - Master',
     price: '$95',
     images: 'Up to 25 images',
     benefits: ['Eligible for judging', 'Founding Class Member Badge'],
@@ -49,4 +49,23 @@ export const TIERS: Tier[] = [
 export class ContestTiers {
   @Input() division = 'general';
   tiers = TIERS;
+  private readonly router = inject(Router);
+
+  get divisionLabel() {
+    const labels: Record<string, string> = {
+      general: 'General',
+      'emerging-creator': 'Emerging Creator',
+      'college-creator': 'College Creator',
+      professional: 'Master Your Craft',
+    };
+
+    return labels[this.division] ?? 'Contest';
+  }
+
+  legalModalState() {
+    return {
+      returnUrl: this.router.url,
+      returnScrollY: window.scrollY,
+    };
+  }
 }

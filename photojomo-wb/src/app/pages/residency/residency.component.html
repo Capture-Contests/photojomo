@@ -15,6 +15,9 @@
           />
         </div>
         <div class="css-9uyk0n css-v27th6 css-cuerbe">
+          <app-navbar [wrapperClass]="'residency-header--desktop css-vhq6dg css-8hhw9a css-trglf0'" />
+          <app-navbar [wrapperClass]="'residency-header--tablet css-vhq6dg css-8hhw9a css-trglf0'" />
+          <app-navbar [wrapperClass]="'residency-header--mobile css-vhq6dg css-8hhw9a css-trglf0'" />
           <div class="css-stwrzw css-5knerd">
             <div aria-hidden="true" class="css-trglf0 css-r0azwh">
               <img
@@ -37,7 +40,7 @@
                 <div class="css-4heiga css-msco0v css-paq0kv">
                   <div class="css-56bisj css-n8r96y css-paq0kv">
                     <div class="css-pasalw css-a8ckpo css-paq0kv">
-                      <div class="css-n8r99j css-v27th6 css-paq0kv">
+                      <div class="css-n8r99j css-v27th6 css-paq0kv residency-hero-copy">
                         <div class="css-sz2f8 css-v27th6 css-paq0kv">
                           <div class="css-sz2f8 css-v27th6 css-paq0kv">
                             <div class="css-dczajm css-v27th6 css-paq0kv">
@@ -56,7 +59,7 @@
                         </p>
                       </div>
                       <p
-                        class="css-nf5ac4 css-qnrxeb css-lgbtxs css-uugwx8 textContents"
+                        class="css-nf5ac4 css-qnrxeb css-lgbtxs css-uugwx8 textContents residency-hero-copy-text"
                       >
                         This prestigious residency is the ultimate prize awarded
                         to the overall winner of the Caribbean Photo Contest.
@@ -89,12 +92,10 @@
                   </div>
                   <div class="css-9uyk0n css-v27th6 css-paq0kv">
                     <div class="css-kvumda css-snkgse css-paq0kv">
-                      <div
-                        class="css-t67tmc css-5knerd css-134pm3"
-                        tabindex="0"
-                        role="link"
-                        style="border-radius: 1.5px; opacity: 1; cursor: pointer"
-                        (click)="enterContest()"
+                      <a
+                        routerLink="/contest"
+                        class="hero-primary-cta css-t67tmc css-5knerd css-134pm3"
+                        style="opacity: 1; text-decoration: none; border-radius: 1.5px;"
                       >
                         <div
                           class="css-trglf0 css-r0azwh"
@@ -109,19 +110,18 @@
                           aria-hidden="true"
                           class="css-ggwoeh css-trglf0 css-5eam1e"
                           style="
-                            border-radius: 1.5px;
                             border-width: 0.535px;
                             border-color: rgba(0, 0, 0, 0);
                             border-style: solid;
                             opacity: 1;
                           "
                         ></div>
-                        <div class="css-85ksbi css-paq0kv css-j9f0op">
+                        <div class="css-gnzhwk css-paq0kv">
                           <div
                             class="textContents css-wc1msa css-pm0kcc css-f7juvu"
                             style="
                               color: rgb(255, 255, 255);
-                              font-size: 11.25px;
+                              font-size: 15px;
                               font-weight: 600;
                               font-variation-settings: normal;
                               letter-spacing: 0px;
@@ -129,27 +129,24 @@
                               opacity: 1;
                             "
                           >
-                            <p class="css-8zr56v css-jpsr3q">
-                              Enter The Contest
-                            </p>
+                            <p class="css-8zr56v css-4r4q1m">Enter The Contest</p>
                           </div>
                         </div>
-                      </div>
+                      </a>
                     </div>
                   </div>
                 </div>
-                <app-navbar [wrapperClass]="'css-2bd4at css-8hhw9a css-roiesn'" />
               </div>
             </div>
           </div>
         </div>
         <div class="css-s21u7j css-w9xdfk css-paq0kv">
           <div class="css-4j1w8d css-zfht4v css-paq0kv">
-            <div class="css-zfhupp css-v27th6 css-2gbjjk">
+            <div class="css-zfhupp css-v27th6 css-2gbjjk residency-mobile-gutter">
               <p class="css-wc1msa css-xcz0bd css-6vp3ws textContents">
-                <span class="css-ovzu6t css-b54yok">A Fully-Funded</span
+                <span class="css-ovzu6t css-b54yok">A Fully-Funded </span
                 ><span class="css-6wgsvz"> </span
-                ><span class="css-cc0qij">Creative Journey</span>
+                ><span class="css-cc0qij residency-heading-light">Creative Journey</span>
               </p>
               <p
                 class="css-nf5ac4 css-59rdls css-kvxdad css-uot4si textContents"
@@ -308,7 +305,7 @@
               class="css-e9x6q5 css-vxfvp6 css-raxvdf"
               style="transform: translateX(-50%) translateY(-50%)"
             >
-              <div class="css-93woix css-v27th6 css-paq0kv">
+              <div class="css-93woix css-v27th6 css-paq0kv residency-mobile-gutter">
                 <div class="css-dczajm css-paq0kv">
                   <div class="css-zfhupp css-paq0kv">
                     <p class="css-wc1msa css-h0zo87 css-9jtq1y textContents">
@@ -326,11 +323,18 @@
                   </div>
                 </div>
                 <div class="css-i5hew1 css-sz2f8 css-paq0kv">
-                  <div class="css-i5hew1 css-5knerd" style="opacity: 1">
+                  <div
+                    class="hero-primary-cta residency-vote-cta css-t67tmc css-5knerd css-134pm3"
+                    style="opacity: 1; border-radius: 1.5px;"
+                  >
                     <div
                       class="css-trglf0 css-r0azwh"
                       aria-hidden="true"
-                      style="background-color: rgb(255, 255, 255); opacity: 1"
+                      style="
+                        background-color: rgb(255, 255, 255);
+                        border-radius: 1.5px;
+                        opacity: 1;
+                      "
                     ></div>
                     <div
                       aria-hidden="true"
@@ -342,12 +346,12 @@
                         opacity: 1;
                       "
                     ></div>
-                    <div class="css-oyxhkk css-paq0kv css-v27th6">
+                    <div class="css-gnzhwk css-paq0kv">
                       <div
-                        class="textContents css-wc1msa css-yk4gub css-v88b74"
+                        class="textContents css-wc1msa css-pm0kcc css-f7juvu"
                         style="
                           color: rgb(0, 0, 0);
-                          font-size: 11.25px;
+                          font-size: 15px;
                           font-weight: 600;
                           font-variation-settings: normal;
                           letter-spacing: 0px;
@@ -355,7 +359,7 @@
                           opacity: 1;
                         "
                       >
-                        <p class="css-8zr56v css-jpsr3q">Cast Your Vote</p>
+                        <p class="css-8zr56v css-4r4q1m">Cast Your Vote</p>
                       </div>
                     </div>
                   </div>
@@ -371,13 +375,13 @@
           </div>
           <div class="css-gjn7ya css-v27th6 css-paq0kv">
             <div class="css-t8fwuh css-sf5ny4 css-paq0kv">
-              <div class="css-toxqnb css-7ys6q4 css-paq0kv">
+              <div class="css-toxqnb css-7ys6q4 css-paq0kv residency-mobile-gutter">
                 <div class="css-sz2f8 css-v27th6 css-paq0kv">
                   <p
                     class="css-wc1msa css-v27th6 css-vsq42c css-iguuiu textContents"
                   >
                     <span class="css-369dl1 css-b54yok">Future Fellows</span
-                    ><span class="css-n950rv"> Showcase </span>
+                    ><span class="css-n950rv residency-heading-light"> Showcase </span>
                   </p>
                 </div>
                 <p
@@ -513,11 +517,18 @@
             <div class="css-i5hew1 css-liobgr css-paq0kv">
               <div class="css-liobgr css-v27th6 css-paq0kv">
                 <div class="css-sz2f8 css-v27th6 css-paq0kv">
-                  <div class="css-i5hew1 css-5knerd" style="opacity: 1">
+                  <div
+                    class="hero-primary-cta css-t67tmc css-5knerd css-134pm3"
+                    style="opacity: 1; border-radius: 1.5px;"
+                  >
                     <div
                       class="css-trglf0 css-r0azwh"
                       aria-hidden="true"
-                      style="background-color: rgb(0, 0, 0); opacity: 1"
+                      style="
+                        background-color: rgba(0, 0, 0, 0.8);
+                        border-radius: 1.5px;
+                        opacity: 1;
+                      "
                     ></div>
                     <div
                       aria-hidden="true"
@@ -529,12 +540,12 @@
                         opacity: 1;
                       "
                     ></div>
-                    <div class="css-oyxhkk css-paq0kv css-v27th6">
+                    <div class="css-gnzhwk css-paq0kv">
                       <div
-                        class="textContents css-wc1msa css-yk4gub css-f7juvu"
+                        class="textContents css-wc1msa css-pm0kcc css-f7juvu"
                         style="
                           color: rgb(255, 255, 255);
-                          font-size: 11.25px;
+                          font-size: 15px;
                           font-weight: 600;
                           font-variation-settings: normal;
                           letter-spacing: 0px;
@@ -542,7 +553,7 @@
                           opacity: 1;
                         "
                       >
-                        <p class="css-8zr56v css-jpsr3q">Apply Now</p>
+                        <p class="css-8zr56v css-4r4q1m">Apply Now</p>
                       </div>
                     </div>
                   </div>
@@ -603,11 +614,11 @@
           </div>
           <div class="css-kkdv9j css-hp0pp css-cuerbe">
             <div class="css-i5cx62 css-osh0kg css-paq0kv">
-              <div class="css-i5djls css-dczajm css-paq0kv">
+              <div class="css-i5djls css-dczajm css-paq0kv residency-mobile-gutter">
                 <div class="css-zfhupp css-v27th6 css-paq0kv">
                   <p class="css-wc1msa css-9errab css-iguuiu textContents">
                     <span class="css-yuud08 css-b54yok">Program </span
-                    ><span class="css-11qvqg">Details</span>
+                    ><span class="css-11qvqg residency-heading-light">Details</span>
                   </p>
                   <p
                     class="css-nf5ac4 css-i5fe4j css-o1g9g1 css-uot4si textContents"
@@ -629,475 +640,58 @@
                   </div>
                 </div>
               </div>
-              <div class="tailwind css-wc1msa css-v27th6">
-                <div
-                  class="content-stretch flex flex-col gap-[8px] items-start relative size-full"
-                  data-name="Content"
-                >
+              <div class="tailwind css-wc1msa css-v27th6 residency-program-accordion">
+                <div class="residency-program-accordion__list">
                   <div
-                    class="bg-[#eeeeee] box-border content-stretch flex items-center overflow-clip py-[24px] pl-[24px] pr-[40px] relative rounded-[12px] shrink-0 w-full cursor-pointer"
-                    data-name="Question"
+                    *ngFor="let item of programDetails; let i = index"
+                    class="residency-program-accordion__item"
+                    [class.is-open]="openProgramDetailIndex === i"
                   >
-                    <div
-                      class="basis-0 content-stretch flex gap-[8px] grow items-start min-h-px min-w-px relative shrink-0"
+                    <button
+                      type="button"
+                      class="residency-program-accordion__trigger"
+                      [attr.aria-expanded]="openProgramDetailIndex === i"
+                      (click)="toggleProgramDetail(i)"
                     >
-                      <div
-                        class="overflow-clip relative shrink-0 size-[24px]"
-                        data-name="chevron down"
-                      >
-                        <div
-                          class="absolute bottom-[37.5%] left-1/4 right-1/4 top-[37.5%]"
-                          data-name="stroke"
+                      <span class="residency-program-accordion__icon" aria-hidden="true">
+                        <svg
+                          class="residency-program-accordion__chevron"
+                          fill="none"
+                          preserveAspectRatio="none"
+                          viewBox="0 0 14 8"
                         >
-                          <div
-                            class="absolute inset-[-12.5%_-6.25%]"
-                            style="--stroke-0: rgba(0, 0, 0, 1)"
-                          >
-                            <svg
-                              class="block size-full"
-                              fill="none"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 14 8"
-                            >
-                              <path
-                                d="M1 1L7 7L13 1"
-                                id="stroke"
-                                stroke="var(--stroke-0, black)"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              ></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="content-stretch flex flex-col gap-[12px] items-start leading-[normal] not-italic relative shrink-0 w-full"
+                          <path
+                            d="M1 1L7 7L13 1"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                          ></path>
+                        </svg>
+                      </span>
+                      <span class="residency-program-accordion__question">{{ item.question }}</span>
+                    </button>
+                    <div
+                      class="residency-program-accordion__panel"
+                      *ngIf="openProgramDetailIndex === i"
+                    >
+                      <ul
+                        *ngIf="item.answerLines?.length; else residencyProgramAnswerText"
+                        class="residency-program-accordion__answer-list"
                       >
-                        <p
-                          class="font-['PP_Neue_Montreal:Medium',_sans-serif] min-w-full relative shrink-0 text-[18px] text-black w-full"
+                        <li
+                          *ngFor="let line of item.answerLines; let lineIndex = index"
+                          class="residency-program-accordion__answer-list-item"
+                          [class.is-header]="item.question === 'How long is the residency?' && lineIndex === 0"
                         >
-                          What is the AIR Program?
+                          {{ line }}
+                        </li>
+                      </ul>
+                      <ng-template #residencyProgramAnswerText>
+                        <p class="residency-program-accordion__answer">
+                          {{ item.answer }}
                         </p>
-                        <ul
-                          class="font-['Lato:Regular',_sans-serif] relative shrink-0 text-[16px] text-[rgba(0,0,0,0.4)] w-full list-none pl-0 space-y-1"
-                        >
-                          <li class="font-bold text-[rgba(0,0,0,0.7)]">
-                            The Capture Caribbean Artist in Residency (AIR)
-                            Program is the premier award given to the Content
-                            Creator of the Year from the Caribbean Photo
-                            Contest. It offers a fully funded creative residency
-                            in Saint Lucia to produce a signature body of work,
-                            engage with the culture, and gain international
-                            exposure.
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="bg-[#eeeeee] box-border content-stretch flex items-center overflow-clip py-[24px] pl-[24px] pr-[40px] relative rounded-[12px] shrink-0 w-full cursor-pointer"
-                    data-name="Question"
-                  >
-                    <div
-                      class="basis-0 content-stretch flex gap-[8px] grow items-center min-h-px min-w-px relative shrink-0"
-                      data-name="Content"
-                    >
-                      <div
-                        class="overflow-clip relative shrink-0 size-[24px]"
-                        data-name="chevron right"
-                      >
-                        <div
-                          class="absolute bottom-1/4 left-[37.5%] right-[37.5%] top-1/4"
-                          data-name="stroke"
-                        >
-                          <div
-                            class="absolute inset-[-6.25%_-12.5%]"
-                            style="--stroke-0: rgba(0, 0, 0, 1)"
-                          >
-                            <svg
-                              class="block size-full"
-                              fill="none"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 8 14"
-                            >
-                              <path
-                                d="M1 13L7 7L1 1"
-                                id="stroke"
-                                stroke="var(--stroke-0, black)"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              ></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <p
-                        class="font-['PP_Neue_Montreal:Medium',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[18px] text-black w-full"
-                      >
-                        What does the residency include?
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="bg-[#eeeeee] box-border content-stretch flex items-center overflow-clip py-[24px] pl-[24px] pr-[40px] relative rounded-[12px] shrink-0 w-full cursor-pointer"
-                    data-name="Question"
-                  >
-                    <div
-                      class="basis-0 content-stretch flex gap-[8px] grow items-center min-h-px min-w-px relative shrink-0"
-                      data-name="Content"
-                    >
-                      <div
-                        class="overflow-clip relative shrink-0 size-[24px]"
-                        data-name="chevron right"
-                      >
-                        <div
-                          class="absolute bottom-1/4 left-[37.5%] right-[37.5%] top-1/4"
-                          data-name="stroke"
-                        >
-                          <div
-                            class="absolute inset-[-6.25%_-12.5%]"
-                            style="--stroke-0: rgba(0, 0, 0, 1)"
-                          >
-                            <svg
-                              class="block size-full"
-                              fill="none"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 8 14"
-                            >
-                              <path
-                                d="M1 13L7 7L1 1"
-                                id="stroke"
-                                stroke="var(--stroke-0, black)"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              ></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <p
-                        class="font-['PP_Neue_Montreal:Medium',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[18px] text-black w-full"
-                      >
-                        Who is eligible?
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="bg-[#eeeeee] box-border content-stretch flex items-center overflow-clip py-[24px] pl-[24px] pr-[40px] relative rounded-[12px] shrink-0 w-full cursor-pointer"
-                    data-name="Question"
-                  >
-                    <div
-                      class="basis-0 content-stretch flex gap-[8px] grow items-center min-h-px min-w-px relative shrink-0"
-                      data-name="Content"
-                    >
-                      <div
-                        class="overflow-clip relative shrink-0 size-[24px]"
-                        data-name="chevron right"
-                      >
-                        <div
-                          class="absolute bottom-1/4 left-[37.5%] right-[37.5%] top-1/4"
-                          data-name="stroke"
-                        >
-                          <div
-                            class="absolute inset-[-6.25%_-12.5%]"
-                            style="--stroke-0: rgba(0, 0, 0, 1)"
-                          >
-                            <svg
-                              class="block size-full"
-                              fill="none"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 8 14"
-                            >
-                              <path
-                                d="M1 13L7 7L1 1"
-                                id="stroke"
-                                stroke="var(--stroke-0, black)"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              ></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <p
-                        class="font-['PP_Neue_Montreal:Medium',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[18px] text-black w-full"
-                      >
-                        What’s expected of the Fellow?
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="bg-[#eeeeee] box-border content-stretch flex items-center overflow-clip py-[24px] pl-[24px] pr-[40px] relative rounded-[12px] shrink-0 w-full cursor-pointer"
-                    data-name="Question"
-                  >
-                    <div
-                      class="basis-0 content-stretch flex gap-[8px] grow items-center min-h-px min-w-px relative shrink-0"
-                      data-name="Content"
-                    >
-                      <div
-                        class="overflow-clip relative shrink-0 size-[24px]"
-                        data-name="chevron right"
-                      >
-                        <div
-                          class="absolute bottom-1/4 left-[37.5%] right-[37.5%] top-1/4"
-                          data-name="stroke"
-                        >
-                          <div
-                            class="absolute inset-[-6.25%_-12.5%]"
-                            style="--stroke-0: rgba(0, 0, 0, 1)"
-                          >
-                            <svg
-                              class="block size-full"
-                              fill="none"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 8 14"
-                            >
-                              <path
-                                d="M1 13L7 7L1 1"
-                                id="stroke"
-                                stroke="var(--stroke-0, black)"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              ></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <p
-                        class="font-['PP_Neue_Montreal:Medium',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[18px] text-black w-full"
-                      >
-                        How long is the residency?
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="bg-[#eeeeee] box-border content-stretch flex items-center overflow-clip py-[24px] pl-[24px] pr-[40px] relative rounded-[12px] shrink-0 w-full cursor-pointer"
-                    data-name="Question"
-                  >
-                    <div
-                      class="basis-0 content-stretch flex gap-[8px] grow items-center min-h-px min-w-px relative shrink-0"
-                      data-name="Content"
-                    >
-                      <div
-                        class="overflow-clip relative shrink-0 size-[24px]"
-                        data-name="chevron right"
-                      >
-                        <div
-                          class="absolute bottom-1/4 left-[37.5%] right-[37.5%] top-1/4"
-                          data-name="stroke"
-                        >
-                          <div
-                            class="absolute inset-[-6.25%_-12.5%]"
-                            style="--stroke-0: rgba(0, 0, 0, 1)"
-                          >
-                            <svg
-                              class="block size-full"
-                              fill="none"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 8 14"
-                            >
-                              <path
-                                d="M1 13L7 7L1 1"
-                                id="stroke"
-                                stroke="var(--stroke-0, black)"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              ></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <p
-                        class="font-['PP_Neue_Montreal:Medium',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[18px] text-black w-full"
-                      >
-                        How is the winner selected?
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="bg-[#eeeeee] box-border content-stretch flex items-center overflow-clip py-[24px] pl-[24px] pr-[40px] relative rounded-[12px] shrink-0 w-full cursor-pointer"
-                    data-name="Question"
-                  >
-                    <div
-                      class="basis-0 content-stretch flex gap-[8px] grow items-center min-h-px min-w-px relative shrink-0"
-                      data-name="Content"
-                    >
-                      <div
-                        class="overflow-clip relative shrink-0 size-[24px]"
-                        data-name="chevron right"
-                      >
-                        <div
-                          class="absolute bottom-1/4 left-[37.5%] right-[37.5%] top-1/4"
-                          data-name="stroke"
-                        >
-                          <div
-                            class="absolute inset-[-6.25%_-12.5%]"
-                            style="--stroke-0: rgba(0, 0, 0, 1)"
-                          >
-                            <svg
-                              class="block size-full"
-                              fill="none"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 8 14"
-                            >
-                              <path
-                                d="M1 13L7 7L1 1"
-                                id="stroke"
-                                stroke="var(--stroke-0, black)"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              ></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <p
-                        class="font-['PP_Neue_Montreal:Medium',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[18px] text-black w-full"
-                      >
-                        Content Guidelines
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="bg-[#eeeeee] box-border content-stretch flex items-center overflow-clip py-[24px] pl-[24px] pr-[40px] relative rounded-[12px] shrink-0 w-full cursor-pointer"
-                    data-name="Question"
-                  >
-                    <div
-                      class="basis-0 content-stretch flex gap-[8px] grow items-center min-h-px min-w-px relative shrink-0"
-                      data-name="Content"
-                    >
-                      <div
-                        class="overflow-clip relative shrink-0 size-[24px]"
-                        data-name="chevron right"
-                      >
-                        <div
-                          class="absolute bottom-1/4 left-[37.5%] right-[37.5%] top-1/4"
-                          data-name="stroke"
-                        >
-                          <div
-                            class="absolute inset-[-6.25%_-12.5%]"
-                            style="--stroke-0: rgba(0, 0, 0, 1)"
-                          >
-                            <svg
-                              class="block size-full"
-                              fill="none"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 8 14"
-                            >
-                              <path
-                                d="M1 13L7 7L1 1"
-                                id="stroke"
-                                stroke="var(--stroke-0, black)"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              ></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <p
-                        class="font-['PP_Neue_Montreal:Medium',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[18px] text-black w-full"
-                      >
-                        Why $15,000 Matters
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="bg-[#eeeeee] box-border content-stretch flex items-center overflow-clip py-[24px] pl-[24px] pr-[40px] relative rounded-[12px] shrink-0 w-full cursor-pointer"
-                    data-name="Question"
-                  >
-                    <div
-                      class="basis-0 content-stretch flex gap-[8px] grow items-center min-h-px min-w-px relative shrink-0"
-                      data-name="Content"
-                    >
-                      <div
-                        class="overflow-clip relative shrink-0 size-[24px]"
-                        data-name="chevron right"
-                      >
-                        <div
-                          class="absolute bottom-1/4 left-[37.5%] right-[37.5%] top-1/4"
-                          data-name="stroke"
-                        >
-                          <div
-                            class="absolute inset-[-6.25%_-12.5%]"
-                            style="--stroke-0: rgba(0, 0, 0, 1)"
-                          >
-                            <svg
-                              class="block size-full"
-                              fill="none"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 8 14"
-                            >
-                              <path
-                                d="M1 13L7 7L1 1"
-                                id="stroke"
-                                stroke="var(--stroke-0, black)"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              ></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <p
-                        class="font-['PP_Neue_Montreal:Medium',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[18px] text-black w-full"
-                      >
-                        The Tri-Path Connection
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="bg-[#eeeeee] box-border content-stretch flex items-center overflow-clip py-[24px] pl-[24px] pr-[40px] relative rounded-[12px] shrink-0 w-full cursor-pointer"
-                    data-name="Question"
-                  >
-                    <div
-                      class="basis-0 content-stretch flex gap-[8px] grow items-center min-h-px min-w-px relative shrink-0"
-                      data-name="Content"
-                    >
-                      <div
-                        class="overflow-clip relative shrink-0 size-[24px]"
-                        data-name="chevron right"
-                      >
-                        <div
-                          class="absolute bottom-1/4 left-[37.5%] right-[37.5%] top-1/4"
-                          data-name="stroke"
-                        >
-                          <div
-                            class="absolute inset-[-6.25%_-12.5%]"
-                            style="--stroke-0: rgba(0, 0, 0, 1)"
-                          >
-                            <svg
-                              class="block size-full"
-                              fill="none"
-                              preserveAspectRatio="none"
-                              viewBox="0 0 8 14"
-                            >
-                              <path
-                                d="M1 13L7 7L1 1"
-                                id="stroke"
-                                stroke="var(--stroke-0, black)"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                              ></path>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      <p
-                        class="font-['PP_Neue_Montreal:Medium',_sans-serif] leading-[normal] not-italic relative shrink-0 text-[18px] text-black w-full"
-                      >
-                        Key Dates
-                      </p>
+                      </ng-template>
                     </div>
                   </div>
                 </div>
@@ -1124,19 +718,19 @@
                   sizes="auto,100vw"
                 />
               </div>
-              <div class="css-dq91ku css-7y6cel">
+              <div class="css-dq91ku css-7y6cel residency-cta-section">
                 <div class="css-gxdil1 css-jvc3eo css-j9f0op">
                   <div class="css-clru4t css-paq0kv css-j9f0op">
                     <div class="css-i5g51a css-zfht4v css-paq0kv">
-                      <div class="css-ti1nrh css-93wn8f css-paq0kv">
+                      <div class="css-ti1nrh css-93wn8f css-paq0kv residency-mobile-gutter">
                         <p
                           class="css-wc1msa css-v27th6 css-tzd2cd css-iguuiu textContents"
                         >
                           <span class="css-y7orhd css-a49u1q"
                             >Are You Ready to</span
                           ><span class="css-o0a75d css-a49u1q"> </span
-                          ><span class="css-3225ox css-xwwrem"
-                            >Create in Paradise?</span
+                          ><span class="css-3225ox css-xwwrem residency-heading-light"
+                            > Create in Paradise?</span
                           >
                         </p>
                         <p
@@ -1149,14 +743,15 @@
                         <div class="css-liobgr css-v27th6 css-paq0kv">
                           <div class="css-sz2f8 css-v27th6 css-paq0kv">
                             <div
-                              class="css-i5hew1 css-5knerd"
-                              style="opacity: 1"
+                              class="hero-primary-cta css-t67tmc css-5knerd css-134pm3"
+                              style="opacity: 1; border-radius: 1.5px;"
                             >
                               <div
                                 class="css-trglf0 css-r0azwh"
                                 aria-hidden="true"
                                 style="
-                                  background-color: rgb(0, 0, 0);
+                                  background-color: rgba(0, 0, 0, 0.8);
+                                  border-radius: 1.5px;
                                   opacity: 1;
                                 "
                               ></div>
@@ -1170,12 +765,12 @@
                                   opacity: 1;
                                 "
                               ></div>
-                              <div class="css-oyxhkk css-paq0kv css-v27th6">
+                              <div class="css-gnzhwk css-paq0kv">
                                 <div
-                                  class="textContents css-wc1msa css-yk4gub css-f7juvu"
+                                  class="textContents css-wc1msa css-pm0kcc css-f7juvu"
                                   style="
                                     color: rgb(255, 255, 255);
-                                    font-size: 11.25px;
+                                    font-size: 15px;
                                     font-weight: 600;
                                     font-variation-settings: normal;
                                     letter-spacing: 0px;
@@ -1183,7 +778,7 @@
                                     opacity: 1;
                                   "
                                 >
-                                  <p class="css-8zr56v css-jpsr3q">Apply Now</p>
+                                  <p class="css-8zr56v css-4r4q1m">Apply Now</p>
                                 </div>
                               </div>
                             </div>
@@ -1197,7 +792,7 @@
             </div>
           </div>
         </div>
-        <div class="css-5knerd css-v27th6 css-sfem9u">
+        <div class="css-5knerd css-v27th6 css-sfem9u residency-footer-section">
           <div class="css-gxdil1 css-e1d1o2 css-j9f0op">
             <div class="css-p70z91 css-paq0kv css-v27th6">
               <div class="css-ra9f2e css-jvpnk3 css-paq0kv">

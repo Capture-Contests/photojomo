@@ -3,6 +3,10 @@
   min-height: 100vh;
   padding: 3rem 2rem;
 
+  @media (max-width: 640px) {
+    padding-right: calc(2rem + 4px);
+  }
+
   &__header {
     text-align: center;
     padding-bottom: 100px;
@@ -24,6 +28,10 @@
     @media (max-width: 860px) {
       grid-template-columns: 1fr;
     }
+
+    @media (max-width: 640px) {
+      padding-right: 4px;
+    }
   }
 }
 
@@ -32,6 +40,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  min-width: 0;
 }
 
 .reg-section {
@@ -52,6 +61,10 @@
     font-size: 0.8rem;
     color: rgba(255,255,255,0.4);
     margin: 0 0 1.5rem;
+  }
+
+  &--with-total {
+    padding-bottom: 0.9rem;
   }
 }
 
@@ -192,12 +205,16 @@
   }
 }
 
+.reg-checks .reg-check:last-child {
+  margin-bottom: 0.65rem;
+}
+
 .reg-total {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 1.5rem;
-  padding-top: 1rem;
+  margin-top: 0.65rem;
+  padding-top: 0.35rem;
   border-top: 1px solid rgba(255,255,255,0.1);
 
   &__label {
@@ -300,9 +317,10 @@
   background: #111213;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 8px;
-  padding: 1.75rem 1.5rem;
+  padding: 1.75rem 1.5rem 1.1rem;
   position: sticky;
   top: 2rem;
+  min-width: 0;
 
   &__heading {
     font-family: var(--font-primary);
@@ -397,6 +415,10 @@
   padding: 3rem 2rem;
   border-top: 1px solid rgba(255,255,255,0.08);
   text-align: center;
+
+  @media (max-width: 640px) {
+    padding-right: calc(2rem + 4px);
+  }
 
   &__logo {
     height: 36px;
@@ -493,6 +515,10 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
+
+  @media (max-width: 640px) {
+    padding-right: calc(2rem + 4px);
+  }
 }
 
 

@@ -1,1 +1,577 @@
-<p>privacy-policy works!</p>
+<section class="legal-modal">
+  <div class="legal-modal__panel">
+    <header class="legal-modal__header">
+      <button type="button" class="legal-modal__close" aria-label="Close privacy policy" (click)="close()">Close</button>
+      <img class="legal-modal__logo" src="/images/Capture-caribbean-Logo.png" alt="Capture Caribbean" />
+      <nav class="legal-modal__tabs" aria-label="Legal pages">
+        <a routerLink="/info/terms-and-conditions" [state]="returnState" [replaceUrl]="true" class="legal-modal__tab">Terms of Use</a>
+        <a routerLink="/info/privacy-policy" [state]="returnState" [replaceUrl]="true" class="legal-modal__tab legal-modal__tab--active">Privacy Policy</a>
+        <a routerLink="/info/rules" [state]="returnState" [replaceUrl]="true" class="legal-modal__tab">Official Contest Rules</a>
+      </nav>
+    </header>
+
+    <div class="legal-modal__body">
+      <p class="legal-modal__eyebrow">Capture Caribbean Privacy Policy</p>
+      <h1 class="legal-modal__title">First Wave Challenge + Submission Platform Privacy Policy</h1>
+      <p class="legal-modal__meta"><strong>Last Updated:</strong> February 16, 2026</p>
+      <p class="legal-modal__meta legal-modal__meta--spaced"><strong>Effective Date:</strong> February 16, 2026</p>
+
+      <section class="legal-modal__section">
+        <h2>1. Introduction</h2>
+        <p>
+          Capture Caribbean, LLC (“Capture Caribbean,” “Company,” “we,” “us,” “our”) respects your
+          privacy and is committed to protecting your personal information.
+        </p>
+        <p>
+          This Privacy Policy describes how we collect, use, store, share, and protect personal information
+          when you access or use our websites, services, platforms, and tools, including but not limited to:
+        </p>
+        <ul>
+          <li>www.capturecaribbean.com (including www.capturecaribbean.com/first-wave) (the “Official Landing Page”),</li>
+          <li>www.caribbeanphotocontests.com (the “Submission Platform”),</li>
+          <li>the First Wave platform environment,</li>
+          <li>any related mobile tools, applications, payment portals, forms, email communications, or services operated by us or on our behalf (collectively, the “Services”).</li>
+        </ul>
+        <p>
+          This Privacy Policy applies to all visitors, users, entrants, registrants, and participants
+          (“you,” “user,” “Entrant”) who access the Services.
+        </p>
+        <p>
+          <strong>BY ACCESSING OR USING OUR SERVICES, YOU ACKNOWLEDGE THAT YOU HAVE READ AND UNDERSTOOD THIS PRIVACY POLICY.</strong>
+        </p>
+        <p>
+          If you do not agree with this Privacy Policy, please do not access or use the Services.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>2. Important Notice: Contest Participation and Verification</h2>
+        <p>
+          Participation in the Capture Caribbean First Wave Challenge (the “Challenge”) requires account
+          registration, submission uploads, payment processing, and verification protocols. As a result, we
+          may collect personal information for:
+        </p>
+        <ul>
+          <li>eligibility confirmation,</li>
+          <li>fraud prevention,</li>
+          <li>identity verification,</li>
+          <li>intellectual property ownership verification,</li>
+          <li>prize distribution,</li>
+          <li>compliance with applicable law.</li>
+        </ul>
+        <p>
+          We reserve the right to request additional verification documentation at any time, including
+          government-issued identification, proof of enrollment, proof of payment authorization, and original
+          source files (including RAW files).
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>3. Information We Collect</h2>
+        <p>
+          We may collect personal information directly from you, automatically through your use of the
+          Services, and from third parties.
+        </p>
+
+        <h3>3.1 Personal Information You Provide to Us</h3>
+        <p>
+          We may collect personal information you voluntarily provide when you:
+        </p>
+        <ul>
+          <li>register for an account,</li>
+          <li>enter the Challenge,</li>
+          <li>pay entry fees,</li>
+          <li>upload submissions,</li>
+          <li>communicate with us,</li>
+          <li>request support,</li>
+          <li>participate in promotions, surveys, or email lists.</li>
+        </ul>
+        <p>This may include:</p>
+        <ul>
+          <li>Full name</li>
+          <li>Email address</li>
+          <li>Phone number</li>
+          <li>Mailing address</li>
+          <li>City, state, country of residence</li>
+          <li>Username or profile name</li>
+          <li>Social media handles</li>
+          <li>Age confirmation or date of birth (if required for eligibility)</li>
+          <li>School name and enrollment details (College Creator Division verification)</li>
+          <li>Any information included in communications you send to us</li>
+          <li>Any identity documentation you provide for verification purposes</li>
+        </ul>
+
+        <h3>3.2 Submission Content and Creative Uploads</h3>
+        <p>
+          If you upload creative content, including photography, images, titles, captions, descriptions, or
+          supporting documents (“User Submissions”), we may collect:
+        </p>
+        <ul>
+          <li>Uploaded files and images</li>
+          <li>File format, file size, and metadata</li>
+          <li>Titles, captions, and descriptions</li>
+          <li>EXIF data and technical image information</li>
+          <li>Any accompanying release forms or documentation</li>
+          <li>IP ownership verification documentation (if requested)</li>
+        </ul>
+
+        <h3>3.3 Payment Information</h3>
+        <p>
+          When you pay an entry fee, payments are processed by third-party payment processors (such as Stripe
+          or similar services). We do not store full payment card numbers.
+        </p>
+        <p>However, we may collect and store limited payment-related information such as:</p>
+        <ul>
+          <li>Payment confirmation status</li>
+          <li>Transaction ID</li>
+          <li>Payment method type</li>
+          <li>Billing country</li>
+          <li>Partial billing information (if provided)</li>
+          <li>Fraud screening flags and verification markers</li>
+        </ul>
+        <p>
+          Payment processors handle your payment data under their own privacy policies.
+        </p>
+
+        <h3>3.4 Information Collected Automatically</h3>
+        <p>When you access the Services, we may automatically collect:</p>
+        <ul>
+          <li>IP address</li>
+          <li>Browser type and version</li>
+          <li>Device type and operating system</li>
+          <li>Language settings</li>
+          <li>Access times and dates</li>
+          <li>Pages viewed and navigation activity</li>
+          <li>Referral URLs</li>
+          <li>Clickstream activity</li>
+          <li>Approximate geolocation (based on IP address)</li>
+          <li>Upload performance metrics</li>
+          <li>Error logs and diagnostic reports</li>
+          <li>Cookies and tracking technologies data</li>
+        </ul>
+
+        <h3>3.5 Cookies and Tracking Technologies</h3>
+        <p>We may use:</p>
+        <ul>
+          <li>Cookies</li>
+          <li>Web beacons</li>
+          <li>Pixels</li>
+          <li>Log files</li>
+          <li>Analytics tools (e.g., Google Analytics or similar)</li>
+        </ul>
+        <p>These technologies help us:</p>
+        <ul>
+          <li>operate and secure the Services,</li>
+          <li>remember preferences,</li>
+          <li>improve performance,</li>
+          <li>analyze traffic and usage,</li>
+          <li>support contest administration.</li>
+        </ul>
+        <p>
+          You can control cookies through your browser settings. Disabling cookies may limit functionality.
+        </p>
+
+        <h3>3.6 Information We Collect from Third Parties</h3>
+        <p>We may receive personal information from third parties including:</p>
+        <ul>
+          <li>payment processors</li>
+          <li>fraud detection providers</li>
+          <li>hosting providers</li>
+          <li>email marketing services</li>
+          <li>identity verification providers</li>
+          <li>analytics providers</li>
+          <li>social media platforms (if you interact with our social pages)</li>
+        </ul>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>4. How We Use Your Information</h2>
+        <p>We use personal information for legitimate business purposes, including:</p>
+
+        <h3>4.1 Operating the Services</h3>
+        <p>To:</p>
+        <ul>
+          <li>create and manage accounts</li>
+          <li>enable platform functionality</li>
+          <li>process uploads and submissions</li>
+          <li>maintain platform stability and security</li>
+          <li>provide technical support</li>
+          <li>troubleshoot platform issues</li>
+        </ul>
+
+        <h3>4.2 Administering the Challenge</h3>
+        <p>To:</p>
+        <ul>
+          <li>process entry fee payments</li>
+          <li>manage eligibility requirements</li>
+          <li>administer judging workflows</li>
+          <li>manage submission organization</li>
+          <li>publish galleries and results</li>
+          <li>conduct verification audits</li>
+          <li>communicate with entrants</li>
+        </ul>
+
+        <h3>4.3 Verification and Fraud Prevention</h3>
+        <p>To:</p>
+        <ul>
+          <li>detect chargebacks, fraud, or suspicious activity</li>
+          <li>validate identity and eligibility</li>
+          <li>verify IP ownership and originality</li>
+          <li>verify RAW file authenticity</li>
+          <li>protect contest integrity</li>
+        </ul>
+
+        <h3>4.4 Communications</h3>
+        <p>To:</p>
+        <ul>
+          <li>send confirmations</li>
+          <li>send contest updates</li>
+          <li>send winner announcements</li>
+          <li>respond to inquiries</li>
+          <li>provide customer support</li>
+          <li>send legal notices and policy updates</li>
+        </ul>
+
+        <h3>4.5 Marketing and Promotional Purposes</h3>
+        <p>To:</p>
+        <ul>
+          <li>send newsletters (if opted in)</li>
+          <li>promote future contests and initiatives</li>
+          <li>feature winning or finalist submissions</li>
+          <li>publish press releases and promotional campaigns</li>
+        </ul>
+
+        <h3>4.6 Analytics and Improvements</h3>
+        <p>To:</p>
+        <ul>
+          <li>analyze site traffic</li>
+          <li>improve user experience</li>
+          <li>measure platform load and performance</li>
+          <li>enhance submission tools</li>
+          <li>optimize contest features</li>
+        </ul>
+
+        <h3>4.7 Legal Compliance</h3>
+        <p>To:</p>
+        <ul>
+          <li>comply with legal obligations</li>
+          <li>respond to lawful requests</li>
+          <li>enforce Terms of Service and Official Rules</li>
+          <li>protect our rights and safety</li>
+        </ul>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>5. Legal Bases for Processing (Where Applicable)</h2>
+        <p>
+          Where required under applicable law (including GDPR), we process personal data based on:
+        </p>
+        <ul>
+          <li>your consent</li>
+          <li>performance of a contract (contest participation and account services)</li>
+          <li>legitimate business interests (security, fraud prevention, platform analytics)</li>
+          <li>compliance with legal obligations</li>
+          <li>protection of vital interests (fraud prevention and platform safety)</li>
+        </ul>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>6. How We Share Your Information</h2>
+        <p>We may share personal information under the following circumstances:</p>
+
+        <h3>6.1 Service Providers and Contractors</h3>
+        <p>We may share data with vendors who support our operations, including:</p>
+        <ul>
+          <li>hosting providers</li>
+          <li>payment processors</li>
+          <li>email communication tools</li>
+          <li>analytics providers</li>
+          <li>verification service providers</li>
+          <li>fraud screening providers</li>
+          <li>customer support systems</li>
+        </ul>
+        <p>
+          These providers are contractually obligated to protect data and use it only for authorized purposes.
+        </p>
+
+        <h3>6.2 Sponsors and Partners</h3>
+        <p>
+          We may share limited personal information with authorized sponsors, partners, or promotional
+          collaborators only as necessary to:
+        </p>
+        <ul>
+          <li>fulfill prize obligations</li>
+          <li>administer travel awards</li>
+          <li>confirm winner eligibility</li>
+          <li>coordinate winner communications</li>
+        </ul>
+        <p>We do not sell your personal information to sponsors.</p>
+
+        <h3>6.3 Hospitality Partner (Bay Gardens Resorts)</h3>
+        <p>
+          If you win a travel prize, we may share necessary winner information with Bay Gardens Resorts to
+          fulfill the travel award, such as:
+        </p>
+        <ul>
+          <li>name</li>
+          <li>email</li>
+          <li>phone number</li>
+          <li>travel coordination details</li>
+        </ul>
+
+        <h3>6.4 Legal Obligations</h3>
+        <p>We may disclose information if required to:</p>
+        <ul>
+          <li>comply with legal process</li>
+          <li>respond to subpoenas or court orders</li>
+          <li>cooperate with law enforcement</li>
+          <li>enforce our legal rights</li>
+        </ul>
+
+        <h3>6.5 Business Transfers</h3>
+        <p>
+          If we merge, sell assets, restructure, or undergo acquisition, personal information may be
+          transferred as part of that transaction.
+        </p>
+
+        <h3>6.6 With Your Consent</h3>
+        <p>We may share information when you explicitly consent.</p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>7. Public Display of User Submissions</h2>
+        <p>Certain information may be publicly displayed on the Services, including:</p>
+        <ul>
+          <li>submitted photographs or images</li>
+          <li>titles and descriptions</li>
+          <li>division category</li>
+          <li>entrant username or public profile name</li>
+          <li>winner announcements</li>
+        </ul>
+        <p>If you are selected as a finalist or winner, we may also publicly display:</p>
+        <ul>
+          <li>your name (or first name/last initial at our discretion)</li>
+          <li>country, state, or city</li>
+          <li>public biography (if submitted)</li>
+          <li>social media handle (if provided)</li>
+        </ul>
+        <p>
+          You acknowledge that public display may result in third-party sharing beyond our control.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>8. Data Retention</h2>
+        <p>We retain personal information for as long as necessary to:</p>
+        <ul>
+          <li>provide Services</li>
+          <li>administer contests</li>
+          <li>fulfill verification and fraud prevention requirements</li>
+          <li>maintain financial records</li>
+          <li>comply with legal obligations</li>
+          <li>resolve disputes</li>
+          <li>enforce agreements</li>
+        </ul>
+        <p>
+          Submission content and contest data may be retained for archival and promotional purposes unless
+          prohibited by law or unless you request deletion where applicable.
+        </p>
+        <p>We may retain certain information indefinitely where necessary for:</p>
+        <ul>
+          <li>fraud prevention</li>
+          <li>legal compliance</li>
+          <li>platform security</li>
+          <li>recordkeeping of contest outcomes</li>
+        </ul>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>9. Data Security</h2>
+        <p>
+          We implement reasonable administrative, technical, and physical safeguards designed to protect
+          personal information.
+        </p>
+        <p>
+          However, no system is 100% secure. You acknowledge that transmission of data over the internet is
+          not guaranteed secure, and you assume risk of unauthorized access.
+        </p>
+        <p>You are responsible for maintaining confidentiality of your login credentials.</p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>10. International Users</h2>
+        <p>
+          If you access the Services outside the United States, you acknowledge and agree that your information
+          may be transferred to and processed in the United States, where privacy laws may differ from your
+          jurisdiction.
+        </p>
+        <p>
+          By using the Services, you consent to the transfer and processing of your information in the United
+          States.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>11. Your Privacy Rights</h2>
+        <p>Depending on your jurisdiction, you may have rights including:</p>
+        <ul>
+          <li>access to personal data</li>
+          <li>correction of inaccurate data</li>
+          <li>deletion of data</li>
+          <li>restriction of processing</li>
+          <li>objection to processing</li>
+          <li>data portability</li>
+          <li>withdrawal of consent</li>
+        </ul>
+        <p>You may request to exercise your rights by contacting: legal@capturecaribbean.com</p>
+        <p>We may require verification of identity before fulfilling requests.</p>
+        <p>Certain information may be exempt from deletion requests due to:</p>
+        <ul>
+          <li>legal obligations</li>
+          <li>fraud prevention</li>
+          <li>contest integrity</li>
+          <li>recordkeeping requirements</li>
+        </ul>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>12. Email Marketing and Opt-Out</h2>
+        <p>If you subscribe to marketing communications, you may opt out at any time by:</p>
+        <ul>
+          <li>clicking “unsubscribe” in emails, or</li>
+          <li>emailing support@capturecaribbean.com</li>
+        </ul>
+        <p>
+          Transactional and contest-related emails may still be sent even if you opt out of marketing.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>13. Children’s Privacy</h2>
+        <p>
+          The Services are not intended for individuals under eighteen (18) years of age. We do not knowingly
+          collect personal information from children.
+        </p>
+        <p>
+          If you believe we have collected personal information from a minor, contact us immediately at
+          legal@capturecaribbean.com and we will take appropriate steps to remove such data.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>14. Third-Party Websites and Links</h2>
+        <p>
+          The Services may contain links to third-party websites. We are not responsible for the privacy
+          practices of third parties.
+        </p>
+        <p>
+          You should review third-party privacy policies before providing personal information.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>15. User Submissions and Content Ownership</h2>
+        <p>You retain ownership of your creative submissions.</p>
+        <p>
+          By uploading content, you grant us a license as described in our Terms of Service and Official
+          Rules.
+        </p>
+        <p>We may use submissions for:</p>
+        <ul>
+          <li>contest galleries</li>
+          <li>promotional campaigns</li>
+          <li>social media marketing</li>
+          <li>press releases</li>
+          <li>platform showcases</li>
+          <li>future contest advertising</li>
+        </ul>
+        <p>
+          We will not sell your images as prints or merchandise without separate agreement.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>16. Cookies Policy Disclosure</h2>
+        <p>Cookies may be used for:</p>
+        <ul>
+          <li>authentication and session management</li>
+          <li>remembering preferences</li>
+          <li>analytics and performance measurement</li>
+          <li>security and fraud detection</li>
+        </ul>
+        <p>
+          You may disable cookies through your browser settings, but certain platform features may not
+          function properly.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>17. Do Not Track Signals</h2>
+        <p>
+          Some browsers transmit “Do Not Track” signals. At this time, we do not respond to Do Not Track
+          signals due to lack of standardized interpretation.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>18. California Privacy Rights (If Applicable)</h2>
+        <p>
+          California residents may have rights under the California Consumer Privacy Act (CCPA/CPRA),
+          including:
+        </p>
+        <ul>
+          <li>right to know what personal data is collected</li>
+          <li>right to request deletion</li>
+          <li>right to opt out of sale/sharing of personal data</li>
+        </ul>
+        <p>We do not sell personal information.</p>
+        <p>Requests may be submitted to: legal@capturecaribbean.com</p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>19. European Economic Area / UK Privacy Rights (GDPR)</h2>
+        <p>If you are located in the EEA or UK, you may have GDPR rights including:</p>
+        <ul>
+          <li>right of access</li>
+          <li>right of rectification</li>
+          <li>right to erasure</li>
+          <li>right to restrict processing</li>
+          <li>right to data portability</li>
+          <li>right to object</li>
+          <li>right to withdraw consent</li>
+        </ul>
+        <p>You may lodge a complaint with your local data protection authority.</p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>20. Changes to This Privacy Policy</h2>
+        <p>We reserve the right to update this Privacy Policy at any time.</p>
+        <p>
+          We will update the “Last Updated” date and post the revised version on the Services.
+        </p>
+        <p>
+          Your continued use of the Services after changes are posted constitutes acceptance.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>21. Contact Information</h2>
+        <p>If you have questions or concerns about this Privacy Policy, contact us:</p>
+        <p>
+          Capture Caribbean, LLC<br />
+          #1021, 440 US Highway 130 South, STE 11<br />
+          East Windsor, NJ 08520<br />
+          United States
+        </p>
+        <p>Legal Inquiries: legal@capturecaribbean.com</p>
+        <p>Support: support@capturecaribbean.com</p>
+      </section>
+
+      <div class="legal-modal__actions">
+        <button type="button" class="legal-modal__back-to-top" aria-label="Back to top" (click)="scrollToTop()">
+          <span aria-hidden="true">&uarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

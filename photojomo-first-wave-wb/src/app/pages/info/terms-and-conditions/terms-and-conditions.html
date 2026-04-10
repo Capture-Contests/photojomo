@@ -1,1 +1,407 @@
-<p>terms-and-conditions works!</p>
+<section class="legal-modal">
+  <div class="legal-modal__panel">
+    <header class="legal-modal__header">
+      <button type="button" class="legal-modal__close" aria-label="Close terms of use" (click)="close()">Close</button>
+      <img class="legal-modal__logo" src="/images/Capture-caribbean-Logo.png" alt="Capture Caribbean" />
+      <nav class="legal-modal__tabs" aria-label="Legal pages">
+        <a routerLink="/info/terms-and-conditions" [state]="returnState" [replaceUrl]="true" class="legal-modal__tab legal-modal__tab--active">Terms of Use</a>
+        <a routerLink="/info/privacy-policy" [state]="returnState" [replaceUrl]="true" class="legal-modal__tab">Privacy Policy</a>
+        <a routerLink="/info/rules" [state]="returnState" [replaceUrl]="true" class="legal-modal__tab">Official Contest Rules</a>
+      </nav>
+    </header>
+
+    <div class="legal-modal__body">
+      <p class="legal-modal__eyebrow">Capture Caribbean Terms of Service</p>
+      <h1 class="legal-modal__title">First Wave Challenge + Submission Platform Terms</h1>
+      <p class="legal-modal__meta"><strong>Last Updated:</strong> February 16, 2026</p>
+      <p class="legal-modal__meta legal-modal__meta--spaced"><strong>Effective Date:</strong> February 16, 2026</p>
+
+      <section class="legal-modal__section">
+        <h2>1. Agreement to Terms</h2>
+        <p>
+          These Terms of Service (“Terms”) constitute a legally binding agreement between you, whether
+          personally or on behalf of an entity (“you,” “user,” “Entrant”), and Capture Caribbean, LLC, a
+          New Jersey limited liability company (“Company,” “we,” “us,” “our”), concerning your access to
+          and use of:
+        </p>
+        <ul>
+          <li>www.capturecaribbean.com (including www.capturecaribbean.com/first-wave) (the “Official Landing Page”), and</li>
+          <li>www.caribbeanphotocontests.com (the “Submission Platform”), and</li>
+          <li>the First Wave platform environment, and</li>
+          <li>any related websites, applications, mobile tools, payment portals, and services operated by us or on our behalf (collectively, the “Services”).</li>
+        </ul>
+        <p>
+          <strong>YOU ACKNOWLEDGE THAT BY ACCESSING OR USING THE SERVICES, YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THESE TERMS.</strong>
+          If you do not agree with all of these Terms, you are expressly prohibited from using the Services
+          and must discontinue use immediately.
+        </p>
+        <p>
+          Supplemental terms and documents that may be posted on the Services from time to time, including but
+          not limited to the Capture Caribbean First Wave Challenge Official Rules (the “Official Rules”) and
+          our Privacy Policy, are hereby expressly incorporated herein by reference.
+        </p>
+        <p>
+          If there is any conflict between these Terms and the Official Rules regarding eligibility, judging,
+          verification, credential issuance, prizes, contest structure, or administration of the Challenge,
+          the Official Rules shall control.
+        </p>
+        <p>
+          We reserve the right, in our sole discretion, to make changes or modifications to these Terms at any
+          time and for any reason. We will alert you about changes by updating the “Last Updated” date. Your
+          continued use of the Services after revised Terms are posted constitutes your acceptance of those
+          changes.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>2. Eligibility to Use the Services</h2>
+        <p>
+          You must be at least eighteen (18) years of age to use the Services and to participate in the First
+          Wave Challenge.
+        </p>
+        <p>
+          <strong>VOID WHERE PROHIBITED.</strong> Use of the Services and participation in the First Wave
+          Challenge is void where prohibited or restricted by applicable law.
+        </p>
+        <p>You represent and warrant that:</p>
+        <ul>
+          <li>you have the legal capacity to enter into these Terms;</li>
+          <li>your use of the Services is lawful in your jurisdiction;</li>
+          <li>your participation in any paid skill-based contest is permitted under applicable law.</li>
+        </ul>
+        <p>
+          <strong>Global Availability; Restricted Jurisdictions.</strong> The Services are intended to be
+          available worldwide; however, participation in the First Wave Challenge and any paid contest
+          functionality is open worldwide except where prohibited by law. We reserve the right to restrict
+          access, refuse participation, or disqualify any user from any jurisdiction where skill-based
+          contests with entry fees are prohibited, restricted, or legally ambiguous, including sanctioned
+          jurisdictions.
+        </p>
+        <p>
+          <strong>Sanctions Compliance.</strong> You may not use the Services if you are located in, under
+          the control of, or a national or resident of any country subject to U.S. sanctions or embargoes, or
+          if you are listed on any government restricted party list.
+        </p>
+        <p>
+          We may refuse access to the Services to any person, at any time, in our sole discretion.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>3. The First Wave Challenge; Official Rules Control</h2>
+        <p>
+          The Services include access to the Capture Caribbean First Wave Challenge (the “Challenge”), a
+          skill-based contest.
+        </p>
+        <p>Participation is governed by these Terms and the Official Rules.</p>
+        <p>You acknowledge and agree:</p>
+        <ul>
+          <li>The Challenge is not a lottery, sweepstakes, or game of chance.</li>
+          <li>Winners are determined solely under judging criteria described in the Official Rules.</li>
+          <li>Verification, credential issuance, and prize conditions are governed exclusively by the Official Rules.</li>
+        </ul>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>4. First Wave Platform Environment; Stress-Test Disclosure</h2>
+        <p>
+          You acknowledge that the First Wave platform environment is a live launch and stress-test
+          environment.
+        </p>
+        <p>
+          Features, user interface elements, upload tools, payment flows, scoring systems, and display
+          formats may be modified, refined, or adjusted during the Challenge period.
+        </p>
+        <p>You agree that:</p>
+        <ul>
+          <li>Temporary downtime, slow uploads, minor bugs, UI inconsistencies, or intermittent service interruptions may occur;</li>
+          <li>Such issues do not automatically entitle you to refunds, compensation, prize preference, or credential priority;</li>
+          <li>We may take reasonable actions necessary to maintain security and platform integrity.</li>
+        </ul>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>5. User Registration &amp; Account Security</h2>
+        <p>To access contest features, you must register an account.</p>
+        <p>You agree to:</p>
+        <ol>
+          <li>Provide accurate, current, and complete information;</li>
+          <li>Maintain and update your information;</li>
+          <li>Maintain password security;</li>
+          <li>Accept responsibility for all activity under your account;</li>
+          <li>Notify us immediately of suspected unauthorized access.</li>
+        </ol>
+        <p>
+          We may remove or modify usernames that are misleading, unlawful, obscene, infringing, or otherwise
+          objectionable.
+        </p>
+        <p>Accounts are non-transferable.</p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>6. Payment, Entry Fees, Processors, and Taxes</h2>
+        <h3>6.1 Entry Fee</h3>
+        <p>
+          Entry into the Challenge requires payment of a non-refundable Entry Fee as displayed at time of
+          purchase.
+        </p>
+        <p>The Entry Fee constitutes consideration for:</p>
+        <ul>
+          <li>contest participation;</li>
+          <li>submission processing;</li>
+          <li>judging coordination;</li>
+          <li>verification review;</li>
+          <li>technical platform access;</li>
+          <li>administrative management.</li>
+        </ul>
+        <p>Payment of the Entry Fee provides the opportunity to compete. It does not guarantee:</p>
+        <ul>
+          <li>winning;</li>
+          <li>scoring advantage;</li>
+          <li>favorable judging;</li>
+          <li>credential issuance;</li>
+          <li>public featuring.</li>
+        </ul>
+        <p>
+          <strong>Challenge Cancellation Exception.</strong> Although Entry Fees are generally
+          non-refundable, the Company reserves the right, in its sole discretion, to issue refunds in the
+          event of a full cancellation of the Challenge by the Company. If the Challenge is cancelled, the
+          Company may determine the method and timing of any refund distribution.
+        </p>
+        <h3>6.2 Payment Processing</h3>
+        <p>
+          We use third-party payment processors. By submitting payment information, you authorize charges for
+          all applicable fees and taxes.
+        </p>
+        <h3>6.3 Taxes</h3>
+        <p>You are responsible for applicable taxes related to Entry Fees or prizes.</p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>7. Refunds; Payment Disputes; Chargebacks</h2>
+        <p>Refund eligibility is governed by the Official Rules and applicable law.</p>
+        <p>You agree that dissatisfaction with:</p>
+        <ul>
+          <li>judging results;</li>
+          <li>platform interface;</li>
+          <li>ranking;</li>
+          <li>non-selection;</li>
+          <li>credential timing;</li>
+        </ul>
+        <p>is not grounds for a chargeback.</p>
+        <p>If you initiate a meritless chargeback, we may:</p>
+        <ul>
+          <li>suspend or terminate your account;</li>
+          <li>disqualify entries;</li>
+          <li>revoke credentials;</li>
+          <li>pursue recovery of funds where permitted by law.</li>
+        </ul>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>8. Intellectual Property Rights</h2>
+        <h3>8.1 Our Content</h3>
+        <p>
+          All site Content and Marks are owned or licensed by us and protected by intellectual property laws.
+        </p>
+        <p>
+          You may not copy, reproduce, distribute, sell, or exploit any part of the Services without written
+          permission.
+        </p>
+
+        <h3>8.2 Your Content &amp; Submissions (Creator-First Principle)</h3>
+        <p><strong>Ownership</strong></p>
+        <p>You retain full ownership of your User Submissions.</p>
+
+        <p><strong>License Grant</strong></p>
+        <p>
+          By uploading User Submissions, you grant the Company and its affiliates, subsidiaries, successors,
+          assigns, and authorized sponsors, partners, advertisers, and service providers a perpetual,
+          non-exclusive, worldwide, royalty-free, sublicensable, and transferable license to use, reproduce,
+          distribute, publish, display, publicly perform, transmit, and prepare derivative works of (such as
+          resizing, cropping, compressing, formatting, or applying protective display marks) your User
+          Submissions solely in connection with:
+        </p>
+        <ul>
+          <li>operating the Services;</li>
+          <li>administering the Challenge;</li>
+          <li>publishing galleries and winner announcements;</li>
+          <li>promotional, sponsor, editorial, marketing, and advertising materials;</li>
+          <li>social media and digital campaigns;</li>
+          <li>press coverage;</li>
+          <li>improving platform performance and analytics.</li>
+        </ul>
+        <p>
+          This license permits authorized sponsors and partners to repost or distribute featured submissions
+          for promotional purposes related to the Challenge.
+        </p>
+        <p>No print sales or merchandise production may occur without separate written agreement.</p>
+
+        <p><strong>Moral Rights Waiver</strong></p>
+        <p>
+          To the fullest extent permitted by law, you waive any moral rights or rights of integrity that would
+          prevent resizing, cropping, compressing, formatting, or minor display-related modifications of your
+          User Submissions.
+        </p>
+
+        <p><strong>Publicity Release</strong></p>
+        <p>
+          By participating, you grant us permission to use your name, likeness, image, biography, voice,
+          city/state/country, and social media handle for promotional purposes related to the Services and
+          Challenge without additional compensation, except where prohibited by law.
+        </p>
+
+        <p><strong>Representations &amp; Warranties</strong></p>
+        <p>You represent and warrant that:</p>
+        <ul>
+          <li>you are the sole creator and rights holder;</li>
+          <li>your submissions are original;</li>
+          <li>you have secured all required releases;</li>
+          <li>your submission complies with the Official Rules;</li>
+          <li>your submission does not infringe third-party rights.</li>
+        </ul>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>9. Strict No-AI Policy; Authenticity</h2>
+        <p>The Challenge maintains a strict no-generative-AI policy.</p>
+        <p>
+          You may not submit content created, generated, fabricated, or materially altered using generative
+          artificial intelligence tools.
+        </p>
+        <p><strong>“Materially altered” includes:</strong></p>
+        <ul>
+          <li>generating new objects, people, skies, or backgrounds using AI;</li>
+          <li>using generative fill or expand tools;</li>
+          <li>AI-based reconstruction of image elements;</li>
+          <li>tools such as Adobe Generative Fill, Midjourney, DALL·E, Stable Diffusion, Firefly, or similar systems.</li>
+        </ul>
+        <p>
+          Permitted edits include cropping, exposure correction, sharpening, contrast adjustments, and minor
+          retouching that do not involve AI-generated content.
+        </p>
+        <p>
+          <strong>Verification Deadline.</strong> If we request RAW files, EXIF data, editing history, or
+          source documentation, you must provide such materials within forty-eight (48) hours of request unless
+          otherwise stated. Failure to comply results in immediate disqualification.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>10. Prohibited Conduct</h2>
+        <p>You may not:</p>
+        <ul>
+          <li>violate laws;</li>
+          <li>submit infringing content;</li>
+          <li>manipulate judging;</li>
+          <li>use automated scraping tools;</li>
+          <li>disrupt platform operations;</li>
+          <li>impersonate others;</li>
+          <li>misrepresent eligibility;</li>
+          <li>attempt to reverse engineer the platform.</li>
+        </ul>
+        <p>We may remove content or terminate accounts at our discretion.</p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>11. Copyright Infringement (DMCA Notice)</h2>
+        <p><strong>Designated Agent:</strong></p>
+        <p>
+          Attn: Legal Department / Copyright Agent<br />
+          Capture Caribbean, LLC<br />
+          Email: legal@capturecaribbean.com<br />
+          Phone: +1 (609) [INSERT BUSINESS NUMBER]
+        </p>
+        <p>False claims may subject you to liability.</p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>12. Term and Termination</h2>
+        <p>We may suspend or terminate accounts for violations, fraud, or security risks.</p>
+        <p>Termination does not limit our legal remedies.</p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>13. Disclaimers</h2>
+        <p><strong>THE SERVICES ARE PROVIDED “AS IS” AND “AS AVAILABLE.”</strong></p>
+        <p><strong>WE DISCLAIM ALL IMPLIED WARRANTIES.</strong></p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>14. Limitation of Liability</h2>
+        <p>
+          <strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW, CAPTURE CARIBBEAN, LLC, ITS DIRECTORS,
+          OFFICERS, EMPLOYEES, CONTRACTORS, SERVICE PROVIDERS, AFFILIATES, SUBSIDIARIES,
+          SUCCESSORS, ASSIGNS, AND ITS SPONSORS, PARTNERS, ADVERTISERS, AND PROMOTIONAL
+          PARTNERS SHALL NOT BE LIABLE FOR INDIRECT, CONSEQUENTIAL, INCIDENTAL, SPECIAL,
+          EXEMPLARY, OR PUNITIVE DAMAGES.</strong>
+        </p>
+        <p>
+          <strong>TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT PAID BY YOU IN THE SIX (6) MONTHS
+          PRIOR TO THE CLAIM.</strong>
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>15. Indemnification</h2>
+        <p>
+          You agree to defend, indemnify, and hold harmless the Company and its affiliates, sponsors,
+          advertising partners, promotional partners, contractors, service providers, successors, assigns,
+          officers, directors, employees, agents, and legal counsel from any claims arising from:
+        </p>
+        <ul>
+          <li>your submissions;</li>
+          <li>infringement claims;</li>
+          <li>breach of these Terms;</li>
+          <li>violation of third-party rights.</li>
+        </ul>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>16. Dispute Resolution; Governing Law; Waivers</h2>
+        <p>These Terms are governed by New Jersey law.</p>
+        <p>Parties agree to a 30-day informal resolution period before filing suit.</p>
+        <p>For claims exceeding $10,000, parties agree to attempt mediation before litigation.</p>
+        <p>Exclusive venue: Mercer County, New Jersey.</p>
+        <p><strong>No Class Actions.</strong> Claims may only be brought individually.</p>
+        <p>
+          <strong>Waiver of Jury Trial.</strong> TO THE FULLEST EXTENT PERMITTED BY LAW, YOU AND THE
+          COMPANY WAIVE ANY RIGHT TO A JURY TRIAL IN ANY DISPUTE.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>17. Survival</h2>
+        <p>
+          Provisions regarding intellectual property, licenses, indemnification, limitation of liability,
+          dispute resolution, and waivers survive termination.
+        </p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>18. Miscellaneous</h2>
+        <p>These Terms constitute the entire agreement.</p>
+        <p>If any provision is unenforceable, the remainder remains in effect.</p>
+        <p>We may assign rights at any time.</p>
+      </section>
+
+      <section class="legal-modal__section">
+        <h2>19. Contact Us</h2>
+        <p>
+          Capture Caribbean, LLC<br />
+          #1021, 440 US Highway 130 South, STE 11<br />
+          East Windsor, NJ 08520<br />
+          United States
+        </p>
+        <p>Legal: legal@capturecaribbean.com</p>
+        <p>Support: support@capturecaribbean.com</p>
+      </section>
+
+      <div class="legal-modal__actions">
+        <button type="button" class="legal-modal__back-to-top" aria-label="Back to top" (click)="scrollToTop()">
+          <span aria-hidden="true">&uarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

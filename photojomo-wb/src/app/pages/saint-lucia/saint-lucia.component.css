@@ -1,31 +1,386 @@
 /* ── Saint Lucia – Responsive overrides ──────────────────────────────────── */
 /* All rules scoped to .css-i9h3z so they only affect this page              */
 
+#container .css-i9h3z .css-cuerbe {
+  position: relative;
+  overflow: visible;
+}
+
+#container .css-i9h3z .css-cuerbe::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 26vh;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 34%,
+    rgba(255, 255, 255, 0.64) 68%,
+    #ffffff 100%
+  );
+  z-index: 0;
+}
+
+.saint-lucia-partnership-bridge {
+  position: absolute;
+  left: 50%;
+  bottom: -118px;
+  transform: translateX(-50%);
+  width: min(100%, 1440px);
+  z-index: 5;
+  margin: 0;
+  padding-bottom: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.saint-lucia-partnership-bridge__title {
+  margin: 0 0 14px;
+  font-family: "Calvino Grande Trial:Light Italic", sans-serif;
+  font-size: 24px;
+  line-height: 1.25;
+  color: #233f93;
+}
+
+.saint-lucia-partnership-bridge__logo {
+  display: block;
+  width: min(372px, 82vw);
+  height: auto;
+  margin: 0 auto;
+  background: transparent !important;
+  clip-path: inset(10.6% 9.3% 10.6% 9.3%);
+}
+
+#container .css-i9h3z .saint-lucia-experience-section {
+  position: relative;
+  overflow: hidden;
+}
+
+#container .css-i9h3z .saint-lucia-experience-shell {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding-top: 181.25px !important;
+  background-color: #fff;
+}
+
+#container .css-i9h3z .saint-lucia-experience-map-shell {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#container .css-i9h3z .saint-lucia-experience-map-shell__image {
+  position: absolute;
+  left: 0;
+  top: -80px;
+  bottom: auto;
+  transform: none;
+  display: block;
+  width: 994px;
+  height: auto;
+  max-width: none;
+  opacity: 1;
+}
+
+#container .css-i9h3z .saint-lucia-experience-copy {
+  width: min(930px, 100%);
+  margin: 0 auto;
+  padding-top: 14px;
+  box-sizing: border-box;
+}
+
+#container .css-i9h3z .saint-lucia-experience-gallery {
+  margin-top: 56px;
+}
+
+#container .css-i9h3z .saint-lucia-experience-shell > :not(.saint-lucia-experience-map-shell) {
+  position: relative;
+  z-index: 1;
+}
+
+.saint-lucia-legacy-hero-mobile {
+  display: none;
+}
+
+#container .css-i9h3z .saint-lucia-capture-desktop-media {
+  display: block;
+}
+
+#container .css-i9h3z .saint-lucia-capture-fullscreen-shell {
+  display: none;
+}
+
+#container .css-i9h3z .saint-lucia-intro-video-shell {
+  display: none;
+}
+
+.footer-bonus-copy {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  #container .css-i9h3z .saint-lucia-capture-section > .css-1kkr58.css-j9f0op {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-section .css-iw70l9.css-paq0kv.css-v27th6 {
+    padding-left: 72px !important;
+    padding-right: 72px !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-section .css-dczajm.css-v27th6.css-2gbjjk {
+    gap: 0 !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-section .css-tt7njz {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 585px;
+    align-items: start !important;
+    column-gap: 72px !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-copy {
+    width: auto !important;
+    padding-top: 8px !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-desktop-media {
+    display: block !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-desktop-media .css-trglf0.css-r0azwh {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 585 / 427;
+    overflow: hidden;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-desktop-media img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-desktop-media img:first-child {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  #container .css-rq60k7 {
+    width: calc(100% - 64px) !important;
+    max-width: 960px !important;
+    left: 50% !important;
+    top: 28px !important;
+    height: auto !important;
+  }
+
+  #container .css-p70z91 {
+    width: 100% !important;
+    padding: 48px 32px 32px !important;
+    box-sizing: border-box !important;
+    gap: 28px !important;
+  }
+
+  #container .css-p70z91 .css-ra9f2e {
+    width: 100% !important;
+  }
+
+  #container .css-p70z91 .css-jvpnk3 {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) minmax(0, 1fr) !important;
+    align-items: start !important;
+    gap: 28px !important;
+  }
+
+  #container .css-p70z91 .css-49kvq1,
+  #container .css-p70z91 .css-pr5rfd,
+  #container .css-p70z91 .css-dczajm.css-paq0kv {
+    min-width: 0 !important;
+  }
+
+  #container .css-p70z91 .css-7xhp8u,
+  #container .css-p70z91 .css-eyahki {
+    width: auto !important;
+  }
+
+  #container .css-p70z91 .css-eyahki {
+    gap: 24px !important;
+    flex-wrap: wrap !important;
+  }
+
+  #container .css-p70z91 .css-h5oqay {
+    justify-content: flex-start !important;
+    gap: 28px 36px !important;
+  }
+
+  #container .css-p70z91 .css-ogcvv7,
+  #container .css-p70z91 .css-gzmw6b {
+    width: 100% !important;
+  }
+
+  #container .css-p70z91 .css-ro9fcw,
+  #container .css-p70z91 .css-bv2n15 {
+    white-space: normal !important;
+    text-align: center !important;
+  }
+
+  .footer-bonus-copy {
+    display: block;
+    font-size: 12px;
+    line-height: 1.25;
+    margin: -10px 0 0;
+    color: #fff;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  #container .css-i9h3z .saint-lucia-capture-section > .css-1kkr58.css-j9f0op {
+    max-width: 100%;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-section .css-iw70l9.css-paq0kv.css-v27th6 {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-section .css-tt7njz {
+    grid-template-columns: minmax(0, 1fr) 497px;
+    column-gap: 44px !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-copy .css-j6c7qq,
+  #container .css-i9h3z .saint-lucia-capture-copy .css-hsi35g,
+  #container .css-i9h3z .saint-lucia-capture-copy .css-6zi79f,
+  #container .css-i9h3z .saint-lucia-capture-copy .css-czq29i {
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+    letter-spacing: normal !important;
+    height: auto !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-copy .css-j6c7qq p,
+  #container .css-i9h3z .saint-lucia-capture-copy .css-hsi35g,
+  #container .css-i9h3z .saint-lucia-capture-copy .css-hsi35g p {
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+    letter-spacing: normal !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-copy .textContents,
+  #container .css-i9h3z .saint-lucia-capture-copy .textContents p {
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+    letter-spacing: normal !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-copy .css-8zr56v.css-czq29i {
+    display: none !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-desktop-media .css-trglf0.css-r0azwh {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media (max-width: 768px) {
+  #container .css-i9h3z .css-cuerbe {
+    overflow: visible;
+    min-height: 730px;
+  }
+
+  #container .css-i9h3z .saint-lucia-experience-shell {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  #container .css-i9h3z .css-cuerbe::after {
+    height: 36vh;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.22) 34%,
+      rgba(255, 255, 255, 0.88) 74%,
+      #ffffff 100%
+    );
+  }
+
+  #container .css-i9h3z .css-8fq6lu {
+    height: 730px !important;
+  }
+
+  #container .css-i9h3z .css-8fq6lu > img {
+    object-fit: cover;
+    object-position: center 18%;
+  }
+
+  #container .css-i9h3z .css-vxfvp6 {
+    position: absolute;
+    left: 50%;
+    top: 198px;
+    width: calc(100% - 40px);
+    transform: translateX(-50%);
+    z-index: 3;
+  }
+
+  #container .css-i9h3z .css-awuq3p {
+    gap: 14px;
+  }
 
   /* ── Hero: text overlay ─────────────────────────────────────────────── */
 
   /* Fluid container for the tagline text */
   #container .css-i9h3z .css-c1ktjq {
-    width: 90vw !important;
+    width: 100% !important;
   }
 
   /* "An Invitational Celebration of" */
   #container .css-i9h3z .css-cqhbfv {
-    font-size: clamp(18px, 5vw, 42px) !important;
-    line-height: 1.3 !important;
+    display: block;
+    max-width: 270px;
+    margin: 0 auto;
+    font-size: 21px !important;
+    font-weight: 700 !important;
+    line-height: 1.42 !important;
+    text-align: center;
   }
 
   /* "Island Storytelling" */
   #container .css-i9h3z .css-kax0lw {
-    font-size: clamp(26px, 7vw, 61px) !important;
-    line-height: 1.2 !important;
+    display: block;
+    max-width: 230px;
+    margin: 2px auto 0;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    line-height: 1.06 !important;
+    text-align: center;
   }
 
   /* Logo in the hero overlay */
   #container .css-i9h3z .css-f270zq {
-    width: 100px !important;
-    height: auto !important;
+    width: 108px !important;
+    height: 28.8px !important;
+  }
+
+  #container .css-i9h3z .css-f270zq img {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
   }
 
   /* ── Hero: page's own nav row (css-qo5u35 / css-9xpv4m) ────────────── */
@@ -52,21 +407,583 @@
     transform: none !important;
   }
 
+  .saint-lucia-partnership-bridge {
+    bottom: -12px;
+    width: 100%;
+  }
+
+  .saint-lucia-partnership-bridge__title {
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 1.1;
+  }
+
+  .saint-lucia-partnership-bridge__logo {
+    display: block;
+    width: min(270px, 80vw);
+    height: auto;
+    margin: 0 auto;
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-width: 100%;
+    position: relative;
+    z-index: 1;
+    clip-path: inset(10.6% 9.3% 10.6% 9.3%);
+  }
+
+  #container .css-i9h3z .css-t39vau,
+  #container .css-i9h3z .css-1ffs5d,
+  #container .css-i9h3z .css-iw70l9,
+  #container .css-i9h3z .css-tl4r5z,
+  #container .css-i9h3z .css-zfhqws {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box;
+  }
+
   /* ── "Our Experience" content section ───────────────────────────────── */
 
   /* Remove horizontal padding that assumes 1440px */
-  #container .css-i9h3z .css-1um89v {
+  #container .css-i9h3z .saint-lucia-experience-section {
     padding-left: 20px !important;
     padding-right: 20px !important;
+    margin-top: 0 !important;
+    position: relative;
+    z-index: 6;
+    padding-top: 70px !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-experience-section .css-49xz2b {
+    display: block !important;
+    max-width: 100% !important;
+    font-size: clamp(24px, 8vw, 30px) !important;
+    line-height: 1.15 !important;
+    text-align: center !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-experience-map-shell__image {
+    left: 50%;
+    top: 80px;
+    bottom: auto;
+    transform: translateX(-50%);
+    width: 119vw;
+    opacity: 1;
+  }
+
+  #container .css-i9h3z .saint-lucia-experience-shell::before {
+    background-size: 170vw auto;
+    background-position: center calc(100% - 28px);
+    opacity: 0.3;
   }
 
   /* Make the text block fluid */
-  #container .css-i9h3z .css-dyuwb8 {
+  #container .css-i9h3z .saint-lucia-experience-copy {
     width: 100% !important;
   }
 
   /* Stack the two-column layout (text + image) vertically */
-  #container .css-i9h3z .css-1um89v > .css-paq0kv {
+  #container .css-i9h3z .saint-lucia-experience-section > .css-paq0kv {
     flex-direction: column !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-experience-gallery {
+    margin-top: -8px;
+  }
+
+  #container .css-i9h3z .saint-lucia-legacy-hero {
+    display: none !important;
+  }
+
+  .saint-lucia-legacy-hero-mobile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 78svh;
+    min-height: 78vh;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    overflow: hidden;
+    isolation: isolate;
+    background: transparent;
+  }
+
+  .saint-lucia-legacy-hero-mobile__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center top;
+    transform: scale(1.85);
+    transform-origin: center top;
+  }
+
+  .saint-lucia-legacy-hero-mobile__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.12) 24%,
+      rgba(255, 255, 255, 0.08) 68%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+  }
+
+  .saint-lucia-legacy-hero-mobile__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 56px 24px 40px;
+    text-align: center;
+  }
+
+  .saint-lucia-legacy-hero-mobile__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: calc(100vw - 10px);
+    padding-left: 5px;
+    padding-right: 5px;
+    box-sizing: border-box;
+  }
+
+  .saint-lucia-legacy-hero-mobile__title {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: #111111;
+    width: 100%;
+    max-width: 100%;
+    white-space: normal !important;
+  }
+
+  .saint-lucia-legacy-hero-mobile__title span:first-child {
+    font-family: "Sora:Regular", sans-serif;
+    font-size: 25px;
+    line-height: 1.08;
+    display: block;
+    max-width: 100%;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .saint-lucia-legacy-hero-mobile__title span:last-child {
+    font-family: "Calvino Grande Trial:Light Italic", sans-serif;
+    font-size: 25px;
+    line-height: 1.08;
+    display: block;
+    max-width: 100%;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .saint-lucia-legacy-hero-mobile__subtitle {
+    margin: 0;
+    color: #111111;
+    font-family: "PP Neue Montreal:Book", sans-serif;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .saint-lucia-legacy-hero-mobile__subtitle span {
+    font-family: "CalvinoGrandeItalicVarTrial:Light Italic", sans-serif;
+  }
+
+  .saint-lucia-legacy-hero-mobile__logo {
+    width: min(196px, 58vw);
+    height: auto;
+    display: block;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    opacity: 1 !important;
+  }
+
+  .saint-lucia-post-legacy {
+    position: relative;
+    z-index: 2;
+    margin-top: -220px !important;
+    padding-top: 0;
+    background: #fff;
+  }
+
+  .saint-lucia-post-legacy .css-1kkr58,
+  .saint-lucia-post-legacy .css-iw70l9 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .saint-lucia-post-legacy .css-dczajm.css-v27th6.css-2gbjjk {
+    gap: 0 !important;
+  }
+
+  .saint-lucia-post-legacy .css-tt7njz {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+  }
+
+  .saint-lucia-post-legacy .css-uoihrx,
+  .saint-lucia-post-legacy .css-iqkqoe {
+    width: 100% !important;
+  }
+
+  .saint-lucia-post-legacy .css-uoihrx {
+    order: 1;
+    padding-top: 0 !important;
+    padding-bottom: 6px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-desktop-media {
+    display: none !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-capture-fullscreen-shell {
+    display: block !important;
+  }
+
+  .saint-lucia-post-legacy .saint-lucia-capture-fullscreen-shell {
+    order: 2;
+    display: block;
+    position: relative;
+    width: 100vw;
+    max-width: 100vw;
+    height: 36svh;
+    min-height: 300px;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    overflow: hidden;
+  }
+
+  .saint-lucia-post-legacy .saint-lucia-capture-fullscreen-shell__image {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    background: transparent !important;
+  }
+
+  .saint-lucia-post-legacy .css-49xz2b {
+    display: block !important;
+    text-align: left !important;
+    font-size: 30px !important;
+    line-height: 40px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .saint-lucia-post-legacy .css-j6c7qq,
+  .saint-lucia-post-legacy .css-hsi35g {
+    height: auto !important;
+    white-space: normal !important;
+    line-height: 1.45 !important;
+  }
+
+  .saint-lucia-post-legacy .css-nhxm2d,
+  .saint-lucia-post-legacy .css-hsi35g {
+    font-size: 17px !important;
+    line-height: 1.45 !important;
+  }
+
+  .saint-lucia-post-legacy .css-6zi79f,
+  .saint-lucia-post-legacy .css-czq29i {
+    line-height: 1.45 !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-intro-section {
+    position: relative;
+    z-index: 3;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    margin-top: -52px !important;
+    margin-bottom: 124px !important;
+    padding-top: 0 !important;
+    background: #fff;
+  }
+
+  #container .css-i9h3z .saint-lucia-intro-section > .css-gxdil1.css-1kkr58.css-j9f0op {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: visible !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-intro-section .css-tl4r5z {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-intro-section .css-i5fewy.css-bdwg7d {
+    order: 1;
+    width: 100% !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    box-sizing: border-box !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-intro-section .css-i5fewy.css-bdwg7d .css-zde9d4,
+  #container .css-i9h3z .saint-lucia-intro-section .css-i5fewy.css-bdwg7d .css-r7uvbe,
+  #container .css-i9h3z .saint-lucia-intro-section .css-i5fewy.css-bdwg7d .css-cc0qij {
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
+    display: inline !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-intro-section .tailwind.css-uwf2km.css-w1qwf1.css-gxdil1 {
+    display: none !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-intro-section > .saint-lucia-intro-video-shell,
+  #container .css-i9h3z .css-b3intb {
+    width: 100% !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-intro-section > .saint-lucia-intro-video-shell {
+    display: block !important;
+    position: relative;
+    display: block;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100svh;
+    min-height: 100vh;
+    margin-top: 20px;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    overflow: hidden;
+    background: #000;
+    isolation: isolate;
+  }
+
+  #container .css-i9h3z .saint-lucia-intro-video-shell__poster,
+  #container .css-i9h3z .saint-lucia-intro-video-shell__frame {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  #container .css-i9h3z .saint-lucia-intro-video-shell__poster {
+    object-fit: cover;
+    object-position: center center;
+    pointer-events: none;
+  }
+
+  #container .css-i9h3z .saint-lucia-intro-video-shell__frame {
+    z-index: 1;
+    background: transparent;
+  }
+
+  #container .css-i9h3z .saint-lucia-international-section {
+    position: relative;
+    z-index: 4;
+    margin-top: 216px !important;
+    padding-top: 24px !important;
+    background: #fff;
+    clear: both;
+  }
+
+  #container .css-i9h3z .saint-lucia-international-section .css-1pjjou.css-paq0kv {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-international-section .css-aqw8rf,
+  #container .css-i9h3z .saint-lucia-international-section .css-6adz8s,
+  #container .css-i9h3z .saint-lucia-international-section .css-20ts3h,
+  #container .css-i9h3z .saint-lucia-international-section .css-esg7ug,
+  #container .css-i9h3z .saint-lucia-international-section .css-y2w5ap,
+  #container .css-i9h3z .saint-lucia-international-section .css-xuf7pg {
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    max-width: 100% !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-international-section .css-aqw8rf {
+    display: block !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-international-section .css-6adz8s,
+  #container .css-i9h3z .saint-lucia-international-section .css-20ts3h {
+    max-width: 100% !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-international-section .css-b3intb {
+    position: relative;
+    display: block;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 44svh;
+    min-height: 320px;
+    margin-top: 18px;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    overflow: hidden;
+  }
+
+  #container .css-i9h3z .saint-lucia-international-section .css-b3intb img {
+    position: absolute !important;
+    inset: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    transform: scale(1.05);
+    transform-origin: center center;
+  }
+
+  #container .css-i9h3z .css-7pd2ok.css-v27th6.css-f04g95 {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-top: -71px !important;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    background: #f3f3f1 !important;
+  }
+
+  #container .css-i9h3z .css-bz2tic.css-car91n {
+    display: none !important;
+  }
+
+  #container .css-i9h3z .css-zfhqws {
+    width: 100% !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    margin-bottom: -30px !important;
+    text-align: center;
+    background: transparent !important;
+  }
+
+  #container .css-i9h3z .css-zfhqws > .css-wc1msa.css-59rdls.css-zde9d4.css-6vp3ws {
+    display: block !important;
+    margin: 0 auto 0 !important;
+    max-width: 100% !important;
+    font-size: 29px !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+  }
+
+  #container .css-i9h3z .css-zfhqws .css-r7uvbe,
+  #container .css-i9h3z .css-zfhqws .css-34iesg,
+  #container .css-i9h3z .css-zfhqws .css-xuf7pg {
+    white-space: normal !important;
+  }
+
+  #container .css-i9h3z .css-zfhscg > .css-nf5ac4.css-59rdls.css-ke54z0.css-4pkkr6 {
+    margin: -40px auto 28px !important;
+    max-width: 250px !important;
+    font-size: 14px !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+  }
+
+  #container .css-i9h3z .css-zfhqws .css-22itc5,
+  #container .css-i9h3z .css-zfhqws .css-yz2z5y {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 28px !important;
+    align-items: center !important;
+    margin-top: -20px !important;
+  }
+
+  #container .css-i9h3z .css-zfhqws .css-i5gr7j.css-az206m,
+  #container .css-i9h3z .css-zfhqws .css-az206m {
+    width: 100% !important;
+    max-width: 286px !important;
+    margin: 0 auto !important;
+  }
+
+  #container .css-i9h3z .css-zfhqws .css-yz2z5y > .css-az206m:nth-child(2) {
+    margin-top: 20px !important;
+  }
+
+  #container .css-i9h3z .css-zfhqws .css-ox9wsj,
+  #container .css-i9h3z .css-zfhqws .css-cnvdmg {
+    position: relative;
+    width: 100% !important;
+    aspect-ratio: 1 / 0.93;
+    overflow: hidden;
+  }
+
+  #container .css-i9h3z .css-zfhqws .css-ox9wsj img,
+  #container .css-i9h3z .css-zfhqws .css-cnvdmg img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+  }
+
+  #container .css-i9h3z .css-zfhqws .css-crhnqz {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    padding-top: 10px !important;
+    text-align: center !important;
+  }
+
+  #container .css-i9h3z .css-zfhqws .css-nnm6d8 {
+    font-size: 18px !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+
+  #container .css-i9h3z .css-zfhqws .css-eenlam,
+  #container .css-i9h3z .css-zfhqws .css-g08z43 {
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+  }
+
+  #container .css-i9h3z .css-zfhqws .css-31x1tg,
+  #container .css-i9h3z .css-zfhqws .css-i5gqhp,
+  #container .css-i9h3z .css-zfhqws .css-wz1psi,
+  #container .css-i9h3z .css-zfhqws .css-a25r7d {
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+    text-align: center !important;
+    letter-spacing: normal !important;
   }
 }

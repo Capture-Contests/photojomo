@@ -7209,6 +7209,221 @@
         white-space: nowrap;
       }
 
+.artist-residency-clean {
+  display: grid;
+  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+  gap: 58px;
+  align-items: start;
+  max-width: 1720px;
+  margin: 68px auto 92px;
+  padding: 0 88px;
+}
+
+.artist-residency-clean__media {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.artist-residency-clean__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.artist-residency-clean__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 4px;
+}
+
+.artist-residency-clean__heading {
+  margin: 0;
+  color: #1f1f1f;
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.artist-residency-clean__heading span {
+  font-family: "Sora:Regular", sans-serif;
+  font-size: 37px;
+  margin-right: 12px;
+}
+
+.artist-residency-clean__heading em {
+  font-family: "CalvinoGrandeItalicVarTrial:Italic", sans-serif;
+  font-size: 38px;
+  font-style: italic;
+}
+
+.artist-residency-clean__intro {
+  margin: 24px 0 0;
+  max-width: 860px;
+  font-family: "PPNeueMontreal:Book", sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #4a4a4a;
+}
+
+.artist-residency-clean__hosted {
+  margin-top: 38px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.artist-residency-clean__hosted p {
+  margin: 0;
+  font-family: "CalvinoGrandeItalicVarTrial:Italic", sans-serif;
+  font-size: 22px;
+  line-height: 1.08;
+  color: #1f2f77;
+  white-space: nowrap;
+}
+
+.artist-residency-clean__hosted img {
+  width: 148px;
+  height: auto;
+  display: block;
+}
+
+.artist-residency-clean__benefits {
+  margin-top: 42px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.artist-residency-clean__benefit {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.artist-residency-clean__benefit > img {
+  width: 42px;
+  height: 42px;
+  display: block;
+}
+
+.artist-residency-clean__benefit h3 {
+  margin: 0 0 8px;
+  font-family: "Sora:Regular", sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #1f1f1f;
+}
+
+.artist-residency-clean__benefit p {
+  margin: 0;
+  max-width: 560px;
+  font-family: "PPNeueMontreal:Book", sans-serif;
+  font-size: 11px;
+  line-height: 1.52;
+  color: #4b4b4b;
+}
+
+.artist-residency-clean__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 28px;
+  min-width: 324px;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 3px;
+  background: #000000;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Sora:Regular", sans-serif;
+  font-size: 11px;
+  line-height: 1;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.artist-residency-clean__cta:hover {
+  background: #1f1f1f;
+}
+
+@media (max-width: 768px) {
+  .artist-residency-clean {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin: 40px auto 64px;
+    padding: 0 24px;
+  }
+
+  .artist-residency-clean__content {
+    padding-top: 0;
+  }
+
+  .artist-residency-clean__heading {
+    text-align: center;
+  }
+
+  .artist-residency-clean__heading span,
+  .artist-residency-clean__heading em {
+    display: block;
+    margin-right: 0;
+  }
+
+  .artist-residency-clean__heading span {
+    font-size: 15px;
+  }
+
+  .artist-residency-clean__heading em {
+    font-size: 29px;
+  }
+
+  .artist-residency-clean__intro {
+    margin-top: 12px;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  .artist-residency-clean__hosted {
+    margin-top: 22px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .artist-residency-clean__hosted p {
+    font-size: 17px;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .artist-residency-clean__hosted img {
+    width: 144px;
+  }
+
+  .artist-residency-clean__benefits {
+    margin-top: 26px;
+    gap: 22px;
+  }
+
+  .artist-residency-clean__benefit {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .artist-residency-clean__benefit h3 {
+    font-size: 15px;
+  }
+
+  .artist-residency-clean__cta {
+    width: 100%;
+    min-width: 0;
+    margin-top: 22px;
+  }
+}
+
 
 /* ===== exhibition ===== */
 

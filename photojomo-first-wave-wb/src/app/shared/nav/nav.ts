@@ -1,5 +1,5 @@
-import { Component, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgClass } from '@angular/common';
 
 interface NavItem {
@@ -17,6 +17,7 @@ interface NavItem {
 export class Nav {
   mobileOpen = signal(false);
   activeDropdown = signal<string | null>(null);
+  private readonly router = inject(Router);
 
   navItems: NavItem[] = [
     { label: 'Home', route: '/home' },
@@ -76,5 +77,12 @@ export class Nav {
   closeMobile() {
     this.mobileOpen.set(false);
     this.activeDropdown.set(null);
+  }
+
+  legalModalState() {
+    return {
+      returnUrl: this.router.url,
+      returnScrollY: window.scrollY,
+    };
   }
 }

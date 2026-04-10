@@ -92,7 +92,7 @@
         }
 
         <!-- Privacy & Rules -->
-        <div class="reg-section">
+        <div class="reg-section reg-section--with-total">
           <h2 class="reg-section__title">Privacy and Rules</h2>
           <div class="reg-checks">
             <label class="reg-check">
@@ -105,7 +105,7 @@
             </label>
             <label class="reg-check">
               <input type="checkbox" name="agreeRules" [(ngModel)]="form.agreeRules" required />
-              <span>I have read and agreed to the <a routerLink="/info/rules">Rules</a>, <a routerLink="/info/terms-and-conditions">Terms and Conditions</a> and <a routerLink="/info/privacy-policy">Privacy Policy</a> <span class="req">*</span></span>
+              <span>I have read and agreed to the <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true">Rules</a>, <a routerLink="/info/terms-and-conditions" [state]="legalModalState()" [replaceUrl]="true">Terms and Conditions</a> and <a routerLink="/info/privacy-policy" [state]="legalModalState()" [replaceUrl]="true">Privacy Policy</a> <span class="req">*</span></span>
             </label>
             <label class="reg-check">
               <input type="checkbox" name="subscribeOffers" [(ngModel)]="form.subscribeOffers" />

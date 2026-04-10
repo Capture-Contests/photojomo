@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TIERS, Tier } from '../contest-tiers/contest-tiers';
 import { COUNTRIES } from './countries';
 
@@ -8,12 +8,13 @@ interface UploadSlot { index: number; file: File | null; preview: string | null;
 
 @Component({
   selector: 'app-entry-form',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './entry-form.html',
   styleUrl: './entry-form.scss',
 })
 export class EntryForm implements OnInit {
   @Input() division = 'General';
+  private readonly router = inject(Router);
 
   countries = COUNTRIES;
   tiers = TIERS;
@@ -91,5 +92,12 @@ export class EntryForm implements OnInit {
     await new Promise(r => setTimeout(r, 1200));
     this.submitted = true;
     this.submitting = false;
+  }
+
+  legalModalState() {
+    return {
+      returnUrl: this.router.url,
+      returnScrollY: window.scrollY,
+    };
   }
 }

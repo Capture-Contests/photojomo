@@ -26,7 +26,7 @@
             The Experience
           </p>
           <div
-            class="css-xpqoi5 css-bhht40"
+            class="css-xpqoi5 css-bhht40 nav-dropdown-arrow"
             style="--transform-inner-width: 5.3125; --transform-inner-height: 9.671875;"
           >
             <div class="css-ayg824 css-dyglrz">
@@ -41,10 +41,10 @@
           </div>
         </div>
         <div class="nav-dropdown-menu" [class.open]="dropdownOpen">
-          <a routerLink="/global-tour" target="_self" (click)="closeMenu()">The Global Tour</a>
-          <a routerLink="/exhibition" target="_self" (click)="closeMenu()">The Saint Lucia Exhibition</a>
+          <a routerLink="/saint-lucia" target="_self" (click)="closeMenu()">The Capture Saint Lucia<sup>TM</sup> Invitational</a>
           <a routerLink="/residency" target="_self" (click)="closeMenu()">Artist in Residency Program</a>
-          <a routerLink="/saint-lucia" target="_self" (click)="closeMenu()">The Capture Saint Lucia™ Invitational</a>
+          <a routerLink="/exhibition" target="_self" (click)="closeMenu()">The Saint Lucia Exhibition</a>
+          <a routerLink="/global-tour" target="_self" (click)="closeMenu()">The Global Tour</a>
         </div>
       </div>
       <a
@@ -77,10 +77,10 @@
     <div class="nav-mobile-section">
       <span class="nav-mobile-section-title" (click)="toggleDropdown($event)">The Experience</span>
       <div class="nav-mobile-submenu" [class.open]="dropdownOpen">
-        <a routerLink="/global-tour" (click)="closeMenu()">The Global Tour</a>
-        <a routerLink="/exhibition" (click)="closeMenu()">The Saint Lucia Exhibition</a>
+        <a routerLink="/saint-lucia" (click)="closeMenu()">The Capture Saint Lucia<sup>TM</sup> Invitational</a>
         <a routerLink="/residency" (click)="closeMenu()">Artist in Residency Program</a>
-        <a routerLink="/saint-lucia" (click)="closeMenu()">The Capture Saint Lucia™ Invitational</a>
+        <a routerLink="/exhibition" (click)="closeMenu()">The Saint Lucia Exhibition</a>
+        <a routerLink="/global-tour" (click)="closeMenu()">The Global Tour</a>
       </div>
     </div>
     <a routerLink="/about-us" (click)="closeMenu()">The Vision</a>

@@ -262,6 +262,10 @@
     }
   }
 
+  &__heading-accent {
+    font-size: 1.2em;
+  }
+
   &__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -410,6 +414,15 @@
     color: rgba(216, 167, 77, 0.6);
     margin-top: 0.6rem;
   }
+
+  &__tier--info {
+    font-style: italic;
+  }
+
+  &__tier-highlight {
+    font-weight: 700;
+    color: var(--color-gold-italic);
+  }
 }
 
 // ─── FOUNDING CLASS ───────────────────────────────────────────────────────────
@@ -460,6 +473,10 @@
       font-style: italic;
       color: var(--color-gold-italic);
     }
+  }
+
+  &__title-accent {
+    font-size: 1.2em;
   }
 
   &__subtitle {
@@ -802,6 +819,10 @@
     }
   }
 
+  &__heading-accent {
+    font-size: 1.2em;
+  }
+
   &__timeline {
     position: relative;
     display: grid;
@@ -1000,6 +1021,10 @@
     }
   }
 
+  &__heading-accent {
+    font-size: 1.2em;
+  }
+
   &__category {
     margin-bottom: 2.5rem;
   }
@@ -1150,6 +1175,25 @@
       width: 70px;
       height: 70px;
     }
+
+    &__value {
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    &__sep {
+      font-size: 1.6rem;
+      padding-bottom: 0.8rem;
+    }
+
+    &__name {
+      font-size: 0.58rem;
+      letter-spacing: 1.5px;
+    }
+
+    &__units {
+      gap: 0.35rem;
+    }
   }
 }
 
@@ -1203,13 +1247,6 @@
     margin-top: 1.5rem;
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.35);
-    font-style: normal !important;
-  }
-
-  &__version {
-    margin-top: 0.5rem;
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.2);
     font-style: normal !important;
   }
 }

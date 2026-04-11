@@ -55,7 +55,8 @@
       "Bash(make all:*)",
       "Bash(terraform plan:*)",
       "Bash(make build-paypal-webhook:*)",
-      "Bash(openssl rand:*)"
+      "Bash(openssl rand:*)",
+      "Bash(awk 'NR>=16362 && NR<=20590 && /@media|^      \\\\}$/' c:/Users/lenny/workspace/photojomo/photojomo-wb/src/styles.css)"
     ]
   }
 }

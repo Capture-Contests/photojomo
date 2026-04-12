@@ -1,4 +1,4 @@
-name: Photojomo WB Deploy to Dev
+name: Capture Caribbean Dev Deploy
 
 on:
   workflow_dispatch:

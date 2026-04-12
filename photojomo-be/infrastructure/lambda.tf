@@ -165,7 +165,7 @@ resource "aws_lambda_function" "stripe_webhook_service" {
   role    = aws_iam_role.lambda_exec.arn
 
   memory_size = 128
-  timeout     = 10
+  timeout     = 30
 
   dynamic "vpc_config" {
     for_each = var.create_network ? [1] : []
@@ -361,7 +361,7 @@ resource "aws_lambda_function" "paypal_webhook_service" {
   role    = aws_iam_role.lambda_exec.arn
 
   memory_size = 128
-  timeout     = 10
+  timeout     = 30
 
   # No VPC config — needs internet access for PayPal verification API.
 

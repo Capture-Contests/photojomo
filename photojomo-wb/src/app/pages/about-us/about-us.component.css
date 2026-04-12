@@ -1,1 +1,48 @@
 /* Styles are in global styles.css */
+
+:host ::ng-deep #container .css-8fq6lu {
+  position: relative;
+}
+
+:host ::ng-deep #container .css-8fq6lu::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.18) 38%,
+    rgba(255, 255, 255, 0.62) 72%,
+    #ffffff 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.partnership-bridge {
+  position: relative;
+  z-index: 5;
+  margin-top: -168px;
+  margin-bottom: -14px;
+  padding-bottom: 12px;
+  text-align: center;
+}
+
+.partnership-bridge__title {
+  margin: 30px 0 26px;
+  font-family: "Calvino Grande Trial:Light Italic", sans-serif;
+  font-size: 24px;
+  line-height: 1.25;
+  color: #233f93;
+}
+
+.partnership-bridge__logo {
+  display: block;
+  width: min(372px, 82vw);
+  height: auto;
+  margin: 0 auto;
+}
+

@@ -1,1 +1,490 @@
 /* Styles are in global styles.css */
+
+:host ::ng-deep .tour-section1-mobile-img-wrapper,
+:host ::ng-deep .tour-prefooter-mobile-img-wrapper {
+  display: none;
+}
+
+:host ::ng-deep .footer-bonus-copy {
+  color: #ffffff !important;
+}
+
+@media (min-width: 1101px) {
+  :host ::ng-deep #container .css-vhq6dg {
+    width: min(1320px, calc(100vw - 64px)) !important;
+    max-width: calc(100vw - 64px) !important;
+    left: 50% !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  :host ::ng-deep #container .css-vhq6dg {
+    width: calc(100% - 64px) !important;
+    max-width: 960px !important;
+    left: 50% !important;
+    top: 28px !important;
+    height: auto !important;
+  }
+
+  :host ::ng-deep #container .css-fvisqc {
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: calc(100vw * 0.451 + 50px) !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  :host ::ng-deep #container .css-fvisqc .css-qhd53h {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* "Capture Saint Lucia — The Beginning of Capture Caribbean" section only */
+  :host ::ng-deep #container .css-dczajm {
+    width: 100% !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep #container .css-dczajm .css-5icthj {
+    width: 100% !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 32px !important;
+  }
+
+  :host ::ng-deep #container .css-dczajm .css-a8ck2f {
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: flex-start !important;
+    margin: 0 !important;
+    padding: 0 32px !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep #container .css-dczajm .css-i5fco0,
+  :host ::ng-deep #container .css-dczajm .css-uqbmfr,
+  :host ::ng-deep #container .css-dczajm .css-tphmy5 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+  }
+
+  :host ::ng-deep #container .css-dczajm .css-uqbmfr p,
+  :host ::ng-deep #container .css-dczajm .css-uqbmfr .css-8jchzs,
+  :host ::ng-deep #container .css-dczajm .css-uqbmfr .css-nf5ac4 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-indent: 0 !important;
+    text-align: left !important;
+  }
+
+  :host ::ng-deep #container .css-dczajm .css-a610ba,
+  :host ::ng-deep #container .css-dczajm .css-b3a67r,
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-a610ba,
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-b3a67r {
+    font-size: 42px !important;
+    line-height: 1.2 !important;
+  }
+
+  :host ::ng-deep #container .css-dczajm .css-7n2s0q {
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: calc(100vw * 0.63) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep #container .css-dczajm .css-7n2s0q > .css-r0azwh {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0 !important;
+  }
+
+  :host ::ng-deep #container .css-dczajm .css-7n2s0q .css-qhd53h:first-child {
+    display: none !important;
+  }
+
+  :host ::ng-deep #container .css-dczajm .css-7n2s0q .css-qhd53h:last-child {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    margin: 0 auto !important;
+  }
+
+  /* Push Global Vision section (second .css-sz2f8) down */
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 {
+    margin-top: 50px !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-5icthj {
+    width: 100% !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 32px !important;
+  }
+
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-a8ck2f {
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: flex-start !important;
+    margin: 0 !important;
+    padding: 0 32px !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-72kw6x,
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-uqbmfr,
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-tphmy5 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+  }
+
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-uqbmfr p,
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-uqbmfr .css-8jchzs,
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-uqbmfr .css-nf5ac4 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-indent: 0 !important;
+    text-align: left !important;
+  }
+
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-7n2s0q {
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: calc(100vw * 0.63) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-7n2s0q > .css-r0azwh {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0 !important;
+  }
+
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-7n2s0q .css-qhd53h:first-child {
+    display: none !important;
+  }
+
+  :host ::ng-deep #container .css-ptakiy > .css-sz2f8 .css-7n2s0q .css-qhd53h:last-child {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    margin: 0 auto !important;
+  }
+
+  :host ::ng-deep .footer-bonus-copy {
+    color: #ffffff !important;
+    font-size: 0.78em !important;
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+    line-height: 1.2 !important;
+  }
+
+  :host ::ng-deep #container .css-p70z91 .css-49kvq1 {
+    gap: 4px !important;
+  }
+
+  /* Footer — copied from home.component.css tablet block */
+  :host ::ng-deep #container .css-p70z91 {
+    width: 100% !important;
+    padding: 48px 32px 32px !important;
+    box-sizing: border-box !important;
+    gap: 28px !important;
+  }
+
+  :host ::ng-deep #container .css-p70z91 .css-ra9f2e {
+    width: 100% !important;
+  }
+
+  :host ::ng-deep #container .css-p70z91 .css-jvpnk3 {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) minmax(0, 1fr) !important;
+    align-items: start !important;
+    gap: 28px !important;
+  }
+
+  :host ::ng-deep #container .css-p70z91 .css-49kvq1,
+  :host ::ng-deep #container .css-p70z91 .css-pr5rfd,
+  :host ::ng-deep #container .css-p70z91 .css-dczajm.css-paq0kv {
+    min-width: 0 !important;
+  }
+
+  :host ::ng-deep #container .css-p70z91 .css-7xhp8u,
+  :host ::ng-deep #container .css-p70z91 .css-eyahki {
+    width: auto !important;
+  }
+
+  :host ::ng-deep #container .css-p70z91 .css-eyahki {
+    gap: 24px !important;
+    flex-wrap: wrap !important;
+  }
+
+  :host ::ng-deep #container .css-p70z91 .css-h5oqay {
+    justify-content: flex-start !important;
+    gap: 28px 36px !important;
+  }
+
+  :host ::ng-deep #container .css-p70z91 .css-ogcvv7,
+  :host ::ng-deep #container .css-p70z91 .css-gzmw6b {
+    width: 100% !important;
+  }
+
+  :host ::ng-deep #container .css-p70z91 .css-ro9fcw,
+  :host ::ng-deep #container .css-p70z91 .css-bv2n15 {
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 768px) {
+  :host,
+  :host ::ng-deep #container {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  :host ::ng-deep #container .css-x1aotd {
+    height: auto !important;
+    min-height: 60vh !important;
+  }
+
+  :host ::ng-deep #container .css-phc9f9 {
+    position: absolute !important;
+    inset: 0 !important;
+  }
+
+  :host ::ng-deep #container .css-phc9f9::after {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 40%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0));
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  :host ::ng-deep #container .css-qhigbp {
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    object-fit: cover !important;
+    object-position: center calc(50% - 15px) !important;
+    max-width: none !important;
+  }
+
+  :host ::ng-deep #container .css-yi6nad {
+    width: auto !important;
+    max-width: 96vw !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+    text-align: center;
+    white-space: nowrap !important;
+  }
+
+  :host ::ng-deep #container .css-unwoo {
+    font-size: clamp(16px, 5.2vw, 28px) !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
+  }
+
+  :host ::ng-deep #container .css-2ikrn {
+    font-size: clamp(20px, 6.6vw, 36px) !important;
+    line-height: 1.25 !important;
+    white-space: nowrap !important;
+  }
+
+  :host ::ng-deep #container .css-ptakiy,
+  :host ::ng-deep #container .css-zfhscg,
+  :host ::ng-deep #container .css-bdwg7d,
+  :host ::ng-deep #container .css-5icthj {
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep #container .css-ptakiy {
+    gap: 48px !important;
+    align-items: center !important;
+  }
+
+  :host ::ng-deep #container .css-4cf4ir {
+    width: auto !important;
+    max-width: 92vw !important;
+    margin: 0 auto !important;
+  }
+
+  :host ::ng-deep #container .css-i5esta {
+    width: auto !important;
+    max-width: 92vw !important;
+    margin: 0 auto !important;
+    text-align: center;
+  }
+
+  :host ::ng-deep #container .css-g3pvqa,
+  :host ::ng-deep #container .css-tqg076 {
+    font-size: clamp(22px, 6.4vw, 32px) !important;
+    line-height: 1.2 !important;
+  }
+
+  :host ::ng-deep #container .css-fvisqc {
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: calc(100vw * 0.75 + 180px) !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  :host ::ng-deep #container .css-fvisqc .css-qhd53h {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    object-fit: cover !important;
+  }
+
+  :host ::ng-deep #container .css-nf5ac4 {
+    width: auto !important;
+    max-width: 92vw !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep .tour-section1-mobile-img-wrapper {
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    max-width: 100vw;
+    margin: 24px 0 0 0;
+  }
+
+  :host ::ng-deep .tour-section1-mobile-img-wrapper .tour-section1-mobile-img {
+    display: block;
+    width: 133vw;
+    max-width: none;
+    height: auto;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  :host ::ng-deep .tour-prefooter-mobile-img-wrapper {
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    max-width: 100vw;
+    margin: -96px 0 0 0;
+  }
+
+  :host ::ng-deep .tour-prefooter-mobile-img-wrapper .tour-prefooter-mobile-img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+
+  :host ::ng-deep #container .css-72kw6x .css-a610ba {
+    display: block !important;
+  }
+
+  :host ::ng-deep #container .css-a8ck2f {
+    width: 100% !important;
+    max-width: 100vw !important;
+    align-items: flex-start !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep #container .css-i5fco0,
+  :host ::ng-deep #container .css-uqbmfr,
+  :host ::ng-deep #container .css-tphmy5 {
+    width: 100% !important;
+    max-width: calc(100vw - 40px) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    text-indent: 0 !important;
+  }
+
+  :host ::ng-deep #container .css-uqbmfr .css-tphmy5,
+  :host ::ng-deep #container .css-uqbmfr .css-nf5ac4,
+  :host ::ng-deep #container .css-uqbmfr .css-8jchzs,
+  :host ::ng-deep #container .css-uqbmfr p {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    text-indent: 0 !important;
+    text-align: left !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}

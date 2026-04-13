@@ -24,6 +24,10 @@ export class ResidencyComponent implements AfterViewInit, OnDestroy {
   private ctaOriginalNextSibling: ChildNode | null = null;
   private ctaElement: HTMLElement | null = null;
 
+  private readyOriginalParent: HTMLElement | null = null;
+  private readyOriginalNextSibling: ChildNode | null = null;
+  private readyElement: HTMLElement | null = null;
+
   constructor(private hostRef: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit(): void {
@@ -37,14 +41,43 @@ export class ResidencyComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.restoreCta();
+    this.restoreReady();
   }
 
   private applyMobileLayout(): void {
     if (window.innerWidth <= 768) {
       this.moveCtaIntoContainer();
+      this.moveReadyIntoContainer();
     } else {
       this.restoreCta();
+      this.restoreReady();
     }
+  }
+
+  private moveReadyIntoContainer(): void {
+    const host = this.hostRef.nativeElement;
+    const container = host.querySelector<HTMLElement>('#container');
+    if (!container) return;
+
+    const ready = host.querySelector<HTMLElement>('.residency-ready-mobile');
+    if (!ready) return;
+
+    if (!this.readyOriginalParent) {
+      this.readyOriginalParent = ready.parentElement;
+      this.readyOriginalNextSibling = ready.nextSibling;
+      this.readyElement = ready;
+    }
+
+    container.appendChild(ready);
+  }
+
+  private restoreReady(): void {
+    if (!this.readyElement || !this.readyOriginalParent) return;
+    if (this.readyElement.parentElement === this.readyOriginalParent) return;
+    this.readyOriginalParent.insertBefore(
+      this.readyElement,
+      this.readyOriginalNextSibling,
+    );
   }
 
   private moveCtaIntoContainer(): void {

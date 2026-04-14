@@ -133,3 +133,16 @@ variable "paypal_webhook_id" {
   description = "PayPal webhook ID from the PayPal developer dashboard"
   type        = string
 }
+
+# ── Mailchimp ──────────────────────────────────────────────────────────────────
+
+variable "mailchimp_api_key" {
+  description = "Mailchimp API key"
+  type        = string
+  sensitive   = true
+}
+
+variable "mailchimp_audience_id" {
+  description = "Mailchimp audience (list) ID — use a test audience for dev, the real one for prod"
+  type        = string
+}

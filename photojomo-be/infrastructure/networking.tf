@@ -85,6 +85,60 @@ resource "aws_route_table_association" "public_b" {
   route_table_id = aws_route_table.public[0].id
 }
 
+# ── NAT Gateway (gives private subnets outbound internet access) ──────────────
+
+resource "aws_eip" "nat" {
+  count  = var.create_network ? 1 : 0
+  domain = "vpc"
+
+  tags = {
+    Name        = "${local.name_prefix}-nat-eip"
+    Environment = var.environment
+  }
+}
+
+resource "aws_nat_gateway" "main" {
+  count         = var.create_network ? 1 : 0
+  allocation_id = aws_eip.nat[0].id
+  subnet_id     = aws_subnet.public_a[0].id
+
+  tags = {
+    Name        = "${local.name_prefix}-nat"
+    Environment = var.environment
+  }
+
+  depends_on = [aws_internet_gateway.main]
+}
+
+# ── Route Table: Private (routes outbound traffic via NAT) ────────────────────
+
+resource "aws_route_table" "private" {
+  count  = var.create_network ? 1 : 0
+  vpc_id = aws_vpc.main[0].id
+
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.main[0].id
+  }
+
+  tags = {
+    Name        = "${local.name_prefix}-private-rt"
+    Environment = var.environment
+  }
+}
+
+resource "aws_route_table_association" "private_a" {
+  count          = var.create_network ? 1 : 0
+  subnet_id      = aws_subnet.private_a[0].id
+  route_table_id = aws_route_table.private[0].id
+}
+
+resource "aws_route_table_association" "private_b" {
+  count          = var.create_network ? 1 : 0
+  subnet_id      = aws_subnet.private_b[0].id
+  route_table_id = aws_route_table.private[0].id
+}
+
 # ── Private Subnets (Lambda) ──────────────────────────────────────────────────
 
 resource "aws_subnet" "private_a" {

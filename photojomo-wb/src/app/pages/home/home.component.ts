@@ -29,6 +29,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     },
     { src: 'assets/images/iStock-1316997695.jpg' },
     { src: 'assets/images/iStock-1232115076.jpg' }
+    { src: 'assets/images/BG4.jpg' },
+    { src: 'https://photojomo-dev-media.s3.amazonaws.com/images/iStock-1316997695.jpg' },
+    { src: 'https://photojomo-dev-media.s3.amazonaws.com/images/iStock-1232115076.jpg' }
   ];
 
   currentIndex = 0;

@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-lambda-go/events"
+	"github.com/photojomo/photojomo-be/internal/mailchimp"
 	"github.com/photojomo/photojomo-be/internal/repository"
 )
 
@@ -21,15 +22,17 @@ type PaypalWebhookHandler struct {
 	clientSecret string
 	webhookID    string
 	submissions  *repository.SubmissionRepository
+	mailchimp    *mailchimp.Client
 	httpClient   *http.Client
 }
 
-func NewPaypalWebhookHandler(clientID, clientSecret, webhookID string, submissions *repository.SubmissionRepository) *PaypalWebhookHandler {
+func NewPaypalWebhookHandler(clientID, clientSecret, webhookID string, submissions *repository.SubmissionRepository, mc *mailchimp.Client) *PaypalWebhookHandler {
 	return &PaypalWebhookHandler{
 		clientID:     clientID,
 		clientSecret: clientSecret,
 		webhookID:    webhookID,
 		submissions:  submissions,
+		mailchimp:    mc,
 		httpClient:   &http.Client{Timeout: 10 * time.Second},
 	}
 }
@@ -192,7 +195,23 @@ func (h *PaypalWebhookHandler) handleCaptureCompleted(ctx context.Context, resou
 	}
 	orderID := capture.SupplementaryData.RelatedIDs.OrderID
 	log.Printf("PAYMENT.CAPTURE.COMPLETED: orderID=%s", orderID)
-	return h.submissions.UpdatePaymentStatusByPaypalOrderID(ctx, orderID, "paid")
+
+	if err := h.submissions.UpdatePaymentStatusByPaypalOrderID(ctx, orderID, "paid"); err != nil {
+		return err
+	}
+
+	contact, err := h.submissions.FindContactByPaypalOrderID(ctx, orderID)
+	if err != nil {
+		log.Printf("warning: could not fetch contact for mailchimp after paypal order %s: %v", orderID, err)
+		return nil
+	}
+
+	tag := contact.CategoryName + " Contest"
+	if err := h.mailchimp.SubscribeWithTag(contact.Email, contact.FirstName, contact.LastName, tag); err != nil {
+		log.Printf("warning: mailchimp subscribe failed for %s: %v", contact.Email, err)
+	}
+
+	return nil
 }
 
 func (h *PaypalWebhookHandler) handleCaptureFailed(ctx context.Context, resource json.RawMessage) error {

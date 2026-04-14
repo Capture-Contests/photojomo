@@ -6,6 +6,7 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/photojomo/photojomo-be/internal/db"
 	"github.com/photojomo/photojomo-be/internal/handler"
+	"github.com/photojomo/photojomo-be/internal/mailchimp"
 	"github.com/photojomo/photojomo-be/internal/repository"
 	"github.com/photojomo/photojomo-be/internal/secrets"
 )
@@ -24,8 +25,13 @@ func main() {
 		panic("failed to fetch Stripe secret: " + err.Error())
 	}
 
+	mc, err := secrets.GetMailchimp(ctx)
+	if err != nil {
+		panic("failed to fetch Mailchimp secret: " + err.Error())
+	}
+
 	submissions := repository.NewSubmissionRepository(pool)
-	h := handler.NewStripeWebhookHandler(stripe.WebhookSecret, submissions)
+	h := handler.NewStripeWebhookHandler(stripe.WebhookSecret, submissions, mailchimp.NewClient(mc.APIKey, mc.AudienceID))
 
 	lambda.Start(h.Handle)
 }

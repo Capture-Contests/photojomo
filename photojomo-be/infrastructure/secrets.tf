@@ -55,6 +55,22 @@ resource "aws_secretsmanager_secret_version" "paypal_credentials" {
   })
 }
 
+# ── Mailchimp Secret ──────────────────────────────────────────────────────────
+
+resource "aws_secretsmanager_secret" "mailchimp_credentials" {
+  name        = "${local.name_prefix}/mailchimp"
+  description = "Mailchimp API credentials for ${local.name_prefix}"
+  tags        = { Environment = var.environment, Project = var.project_name }
+}
+
+resource "aws_secretsmanager_secret_version" "mailchimp_credentials" {
+  secret_id = aws_secretsmanager_secret.mailchimp_credentials.id
+  secret_string = jsonencode({
+    apiKey     = var.mailchimp_api_key
+    audienceId = var.mailchimp_audience_id
+  })
+}
+
 # ── IAM: allow Lambda to read the secret ─────────────────────────────────────
 
 resource "aws_iam_policy" "lambda_read_secret" {
@@ -71,6 +87,7 @@ resource "aws_iam_policy" "lambda_read_secret" {
           aws_secretsmanager_secret.db_credentials.arn,
           aws_secretsmanager_secret.stripe_credentials.arn,
           aws_secretsmanager_secret.paypal_credentials.arn,
+          aws_secretsmanager_secret.mailchimp_credentials.arn,
         ]
       }
     ]

@@ -13,17 +13,17 @@ const CATEGORY_IDS: Record<string, string> = {
 };
 
 const TIER_IDS: Record<string, string> = {
-  'Tier 1 – Explorer':   'tie-87b8ff19-7632-454b-a2f2-fafa473d930d',
-  'Tier 2 – Enthusiast': 'tie-113874c3-37a1-437c-b961-b4eeec7c178b',
-  'Tier 3 – Visionary':  'tie-708b7942-7538-47ca-b1ed-cc184757fe68',
-  'Tier 4 – Master':     'tie-a5fd1747-4d05-4c8c-ac08-13671177c3de',
+  'Tier 1 - Explorer':   'tie-87b8ff19-7632-454b-a2f2-fafa473d930d',
+  'Tier 2 - Enthusiast': 'tie-113874c3-37a1-437c-b961-b4eeec7c178b',
+  'Tier 3 - Visionary':  'tie-708b7942-7538-47ca-b1ed-cc184757fe68',
+  'Tier 4 - Master':     'tie-a5fd1747-4d05-4c8c-ac08-13671177c3de',
 };
 
 const TIER_PRICES: Record<string, number> = {
-  'Tier 1 – Explorer':   25,
-  'Tier 2 – Enthusiast': 45,
-  'Tier 3 – Visionary':  65,
-  'Tier 4 – Master':     95,
+  'Tier 1 - Explorer':   25,
+  'Tier 2 - Enthusiast': 45,
+  'Tier 3 - Visionary':  65,
+  'Tier 4 - Master':     95,
 };
 
 export interface SubmitParams {

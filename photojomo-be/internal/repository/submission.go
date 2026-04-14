@@ -69,6 +69,44 @@ func (r *SubmissionRepository) UpdatePaymentStatusByPaypalOrderID(ctx context.Co
 	return nil
 }
 
+// SubmissionContact holds the data needed to subscribe a contestant to Mailchimp.
+type SubmissionContact struct {
+	Email        string
+	FirstName    string
+	LastName     string
+	CategoryName string
+}
+
+func (r *SubmissionRepository) FindContactByPaymentIntentID(ctx context.Context, paymentIntentID string) (*SubmissionContact, error) {
+	var sc SubmissionContact
+	err := r.db.QueryRow(ctx, `
+		SELECT c.email, c.first_name, c.last_name, cc.name
+		FROM submission s
+		JOIN contestant c ON c.id = s.contestant_id
+		JOIN contest_category cc ON cc.id = s.contest_category_id
+		WHERE s.stripe_payment_intent_id = $1
+	`, paymentIntentID).Scan(&sc.Email, &sc.FirstName, &sc.LastName, &sc.CategoryName)
+	if err != nil {
+		return nil, fmt.Errorf("finding contact by payment intent id: %w", err)
+	}
+	return &sc, nil
+}
+
+func (r *SubmissionRepository) FindContactByPaypalOrderID(ctx context.Context, paypalOrderID string) (*SubmissionContact, error) {
+	var sc SubmissionContact
+	err := r.db.QueryRow(ctx, `
+		SELECT c.email, c.first_name, c.last_name, cc.name
+		FROM submission s
+		JOIN contestant c ON c.id = s.contestant_id
+		JOIN contest_category cc ON cc.id = s.contest_category_id
+		WHERE s.paypal_order_id = $1
+	`, paypalOrderID).Scan(&sc.Email, &sc.FirstName, &sc.LastName, &sc.CategoryName)
+	if err != nil {
+		return nil, fmt.Errorf("finding contact by paypal order id: %w", err)
+	}
+	return &sc, nil
+}
+
 func (r *SubmissionRepository) Save(ctx context.Context, tx pgx.Tx, s Submission) (string, error) {
 	id := idgen.New("sub")
 

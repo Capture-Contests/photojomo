@@ -56,25 +56,24 @@
             <span class="contest-card__award-label">Cash Award</span>
           </div>
         </div>
-        <!-- Body -->
-        <div class="contest-card__body">
-          <p class="contest-card__desc">{{ contest.description }}</p>
-          <div class="contest-card__pricing">
-            <span class="contest-card__price-label">Starting From</span>
-            <span class="contest-card__price-value">{{ contest.price }}</span>
-          </div>
-          <a [routerLink]="contest.route" class="contest-card__enter">Enter Contest →</a>
-          <span class="contest-card__tier">{{ contest.tier }}</span>
-          @if (contest.tierInfo) {
-            <span class="contest-card__tier contest-card__tier--info">
-              {{ contest.tierInfo }}
-              @if (contest.tierInfoHighlight) {
-                <span class="contest-card__tier-highlight">{{ contest.tierInfoHighlight }}</span>.
-              }
-            </span>
-          }
+      </div>
+      <!-- Body -->
+      <div class="contest-card__body">
+        <p class="contest-card__desc">{{ contest.description }}</p>
+        <div class="contest-card__pricing">
+          <span class="contest-card__price-label">Starting From</span>
+          <span class="contest-card__price-value">{{ contest.price }}</span>
         </div>
-        
+        <a [routerLink]="contest.route" class="contest-card__enter">Enter Contest →</a>
+        <span class="contest-card__tier">{{ contest.tier }}</span>
+        @if (contest.tierInfo) {
+          <span class="contest-card__tier contest-card__tier--info">
+            {{ contest.tierInfo }}
+            @if (contest.tierInfoHighlight) {
+              <span class="contest-card__tier-highlight">{{ contest.tierInfoHighlight }}</span>.
+            }
+          </span>
+        }
       </div>
     </div>
     }
@@ -252,33 +251,25 @@
             <span class="contest-card__award-amount">{{ contest.award }}</span>
             <span class="contest-card__award-label">Cash Award</span>
           </div>
-
-
         </div>
-        <div class="contest-card__body">
-          <p class="contest-card__desc">{{ contest.description }}</p>
-          <div class="contest-card__pricing">
-            <span class="contest-card__price-label">Starting From</span>
-            <span class="contest-card__price-value">{{ contest.price }}</span>
-          </div>
-          <a [routerLink]="contest.route" class="contest-card__enter">Enter Contest →</a>
-          <span class="contest-card__tier">{{ contest.tier }}</span>
-          @if (contest.tierInfo) {
-            <span class="contest-card__tier contest-card__tier--info">
-              {{ contest.tierInfo }}
-              @if (contest.tierInfoHighlight) {
-                <span class="contest-card__tier-highlight">{{ contest.tierInfoHighlight }}</span>.
-              }
-            </span>
-          }
+      </div>
+      <div class="contest-card__body">
+        <p class="contest-card__desc">{{ contest.description }}</p>
+        <div class="contest-card__pricing">
+          <span class="contest-card__price-label">Starting From</span>
+          <span class="contest-card__price-value">{{ contest.price }}</span>
         </div>
         <a [routerLink]="contest.route" class="contest-card__enter">Enter Contest →</a>
         <span class="contest-card__tier">{{ contest.tier }}</span>
         @if (contest.tierInfo) {
-        <span class="contest-card__tier">{{ contest.tierInfo }}</span>
+          <span class="contest-card__tier contest-card__tier--info">
+            {{ contest.tierInfo }}
+            @if (contest.tierInfoHighlight) {
+              <span class="contest-card__tier-highlight">{{ contest.tierInfoHighlight }}</span>.
+            }
+          </span>
         }
       </div>
-
     </div>
     }
   </div>

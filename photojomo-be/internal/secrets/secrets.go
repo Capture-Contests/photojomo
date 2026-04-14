@@ -74,3 +74,24 @@ func GetPaypal(ctx context.Context) (*PaypalSecret, error) {
 
 	return &p, nil
 }
+
+// MailchimpSecret holds Mailchimp credentials fetched from Secrets Manager.
+type MailchimpSecret struct {
+	APIKey     string `json:"apiKey"`
+	AudienceID string `json:"audienceId"`
+}
+
+// GetMailchimp fetches Mailchimp credentials from the ARN in env var MAILCHIMP_SECRET_ARN.
+func GetMailchimp(ctx context.Context) (*MailchimpSecret, error) {
+	arn := os.Getenv("MAILCHIMP_SECRET_ARN")
+	if arn == "" {
+		return nil, fmt.Errorf("MAILCHIMP_SECRET_ARN environment variable not set")
+	}
+
+	var m MailchimpSecret
+	if err := fetchSecret(ctx, arn, &m); err != nil {
+		return nil, err
+	}
+
+	return &m, nil
+}

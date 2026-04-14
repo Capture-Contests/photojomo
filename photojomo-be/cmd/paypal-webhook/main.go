@@ -6,6 +6,7 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/photojomo/photojomo-be/internal/db"
 	"github.com/photojomo/photojomo-be/internal/handler"
+	"github.com/photojomo/photojomo-be/internal/mailchimp"
 	"github.com/photojomo/photojomo-be/internal/repository"
 	"github.com/photojomo/photojomo-be/internal/secrets"
 )
@@ -18,6 +19,11 @@ func main() {
 		panic("failed to fetch PayPal secret: " + err.Error())
 	}
 
+	mc, err := secrets.GetMailchimp(ctx)
+	if err != nil {
+		panic("failed to fetch Mailchimp secret: " + err.Error())
+	}
+
 	pool, err := db.Connect(ctx)
 	if err != nil {
 		panic("failed to connect to database: " + err.Error())
@@ -25,7 +31,7 @@ func main() {
 	defer pool.Close()
 
 	submissions := repository.NewSubmissionRepository(pool)
-	h := handler.NewPaypalWebhookHandler(paypal.ClientID, paypal.ClientSecret, paypal.WebhookID, submissions)
+	h := handler.NewPaypalWebhookHandler(paypal.ClientID, paypal.ClientSecret, paypal.WebhookID, submissions, mailchimp.NewClient(mc.APIKey, mc.AudienceID))
 
 	lambda.Start(h.Handle)
 }

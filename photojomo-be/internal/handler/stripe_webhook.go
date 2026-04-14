@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-lambda-go/events"
+	"github.com/photojomo/photojomo-be/internal/mailchimp"
 	"github.com/photojomo/photojomo-be/internal/repository"
 )
 
@@ -22,10 +23,11 @@ const stripeSignatureTolerance = 5 * time.Minute
 type StripeWebhookHandler struct {
 	secret      string
 	submissions *repository.SubmissionRepository
+	mailchimp   *mailchimp.Client
 }
 
-func NewStripeWebhookHandler(secret string, submissions *repository.SubmissionRepository) *StripeWebhookHandler {
-	return &StripeWebhookHandler{secret: secret, submissions: submissions}
+func NewStripeWebhookHandler(secret string, submissions *repository.SubmissionRepository, mc *mailchimp.Client) *StripeWebhookHandler {
+	return &StripeWebhookHandler{secret: secret, submissions: submissions, mailchimp: mc}
 }
 
 func (h *StripeWebhookHandler) Handle(ctx context.Context, req events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
@@ -90,7 +92,23 @@ func (h *StripeWebhookHandler) handlePaymentIntentSucceeded(ctx context.Context,
 		return err
 	}
 	log.Printf("payment_intent.succeeded: paymentIntentId=%s", paymentIntentID)
-	return h.submissions.UpdatePaymentStatusByPaymentIntentID(ctx, paymentIntentID, "paid")
+
+	if err := h.submissions.UpdatePaymentStatusByPaymentIntentID(ctx, paymentIntentID, "paid"); err != nil {
+		return err
+	}
+
+	contact, err := h.submissions.FindContactByPaymentIntentID(ctx, paymentIntentID)
+	if err != nil {
+		log.Printf("warning: could not fetch contact for mailchimp after stripe payment %s: %v", paymentIntentID, err)
+		return nil
+	}
+
+	tag := contact.CategoryName + " Contest"
+	if err := h.mailchimp.SubscribeWithTag(contact.Email, contact.FirstName, contact.LastName, tag); err != nil {
+		log.Printf("warning: mailchimp subscribe failed for %s: %v", contact.Email, err)
+	}
+
+	return nil
 }
 
 func (h *StripeWebhookHandler) handlePaymentIntentFailed(ctx context.Context, event stripeEvent) error {

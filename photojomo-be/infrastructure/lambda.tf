@@ -165,7 +165,7 @@ resource "aws_lambda_function" "stripe_webhook_service" {
   role    = aws_iam_role.lambda_exec.arn
 
   memory_size = 128
-  timeout     = 10
+  timeout     = 30
 
   dynamic "vpc_config" {
     for_each = var.create_network ? [1] : []
@@ -177,8 +177,9 @@ resource "aws_lambda_function" "stripe_webhook_service" {
 
   environment {
     variables = {
-      DB_SECRET_ARN     = aws_secretsmanager_secret.db_credentials.arn
-      STRIPE_SECRET_ARN = aws_secretsmanager_secret.stripe_credentials.arn
+      DB_SECRET_ARN         = aws_secretsmanager_secret.db_credentials.arn
+      STRIPE_SECRET_ARN     = aws_secretsmanager_secret.stripe_credentials.arn
+      MAILCHIMP_SECRET_ARN  = aws_secretsmanager_secret.mailchimp_credentials.arn
     }
   }
 
@@ -360,14 +361,15 @@ resource "aws_lambda_function" "paypal_webhook_service" {
   role    = aws_iam_role.lambda_exec.arn
 
   memory_size = 128
-  timeout     = 10
+  timeout     = 30
 
   # No VPC config — needs internet access for PayPal verification API.
 
   environment {
     variables = {
-      PAYPAL_SECRET_ARN = aws_secretsmanager_secret.paypal_credentials.arn
-      DB_SECRET_ARN     = aws_secretsmanager_secret.db_credentials.arn
+      PAYPAL_SECRET_ARN    = aws_secretsmanager_secret.paypal_credentials.arn
+      DB_SECRET_ARN        = aws_secretsmanager_secret.db_credentials.arn
+      MAILCHIMP_SECRET_ARN = aws_secretsmanager_secret.mailchimp_credentials.arn
     }
   }
 

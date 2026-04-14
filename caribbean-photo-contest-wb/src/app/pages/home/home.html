@@ -1,0 +1,49 @@
+<div class="home">
+  <header class="home__header">
+    <img class="home__logo" src="images/Capture-caribbean-Logo.png" alt="Capture Caribbean" />
+    <h1 class="home__title">Photo Contest</h1>
+    <p class="home__subtitle">Select a division to view tiers and enter the competition.</p>
+  </header>
+
+  <section class="contests">
+    <h2 class="contests__heading">Choose your <i class="contests__heading-accent">category</i></h2>
+    <div class="contests__grid">
+      @for (contest of contests; track contest.route) {
+        <div class="contest-card">
+          <div class="contest-card__media">
+            <img class="contest-card__img" [src]="contest.image" [alt]="contest.title" />
+            <div class="contest-card__overlay">
+              <h3 class="contest-card__title">{{ contest.title }}</h3>
+              <div class="contest-card__award">
+                <span class="contest-card__award-amount">{{ contest.award }}</span>
+                <span class="contest-card__award-label">Cash Award</span>
+              </div>
+            </div>
+          </div>
+          <div class="contest-card__body">
+            <p class="contest-card__desc">{{ contest.description }}</p>
+            <div class="contest-card__pricing">
+              <span class="contest-card__price-label">Starting From</span>
+              <span class="contest-card__price-value">{{ contest.price }}</span>
+            </div>
+            <a [routerLink]="contest.route" class="contest-card__enter">Enter Contest →</a>
+            <span class="contest-card__tier">{{ contest.tier }}</span>
+            @if (contest.tierInfo) {
+              <span class="contest-card__tier contest-card__tier--info">
+                {{ contest.tierInfo }}
+                @if (contest.tierInfoHighlight) {
+                  <span class="contest-card__tier-highlight">{{ contest.tierInfoHighlight }}</span>.
+                }
+              </span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <footer class="home__footer">
+    <img class="home__footer-logo" src="images/Capture-caribbean-Logo.png" alt="Capture Caribbean" />
+    <p>&copy; 2025&ndash;2026 Capture Caribbean LLC. All rights reserved.</p>
+  </footer>
+</div>

@@ -1,0 +1,67 @@
+<section class="tiers">
+  <h2 class="tiers__heading">
+    {{ divisionLabel }} Contest Submission
+    <span class="tiers__heading-break"></span>
+    <i>Tier &amp; Fees</i>
+  </h2>
+  <div class="tiers__grid">
+    @for (tier of tiers; track tier.name) {
+      <div class="tier-card" [class.tier-card--featured]="tier.golden">
+        @if (tier.golden) {
+          <div class="tier-card__badge">Most Popular</div>
+        }
+        <div class="tier-card__header">
+          <h3 class="tier-card__name">{{ tier.name }}</h3>
+          <div class="tier-card__price">{{ tier.price }}</div>
+          <div class="tier-card__images">{{ tier.images }}</div>
+        </div>
+        <div class="tier-card__body">
+          <p class="tier-card__benefits-label">Benefits</p>
+          <ul class="tier-card__benefits">
+            @for (benefit of tier.benefits; track $index) {
+              <li>
+                <span class="tier-card__benefit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="7" />
+                    <path d="M5 8.2 7 10.2 11 6.2" />
+                  </svg>
+                </span>
+                <span>{{ benefit }}</span>
+              </li>
+            }
+            @if (tier.golden) {
+              <li class="tier-card__golden">
+                <span class="golden-icon" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none">
+                    <path d="M2 4.5A1.5 1.5 0 0 1 3.5 3h9A1.5 1.5 0 0 1 14 4.5v1.2a1.8 1.8 0 0 0 0 3.6v1.2a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 10.5V9.3a1.8 1.8 0 0 0 0-3.6V4.5Z" />
+                    <path d="M8 4.2v7.6" />
+                  </svg>
+                </span>
+                <span>Includes <strong class="tier-card__golden-emphasis">Golden Ticket</strong></span>
+                <span class="golden-info" aria-hidden="true">i</span>
+              </li>
+            }
+          </ul>
+        </div>
+        <div class="tier-card__footer">
+          <a
+            [routerLink]="['/account/register']"
+            [queryParams]="{ division: division, tier: tier.name }"
+            class="tier-btn"
+          >
+            <span>Register Now</span>
+            <span class="tier-btn__arrow" aria-hidden="true">
+              <svg viewBox="0 0 18 18" fill="none">
+                <path d="M3.5 9h10" />
+                <path d="m9.5 4 5 5-5 5" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    }
+  </div>
+  <p class="tiers__footer-note">
+    By registering you agree to the Contest Rules and Terms &amp; Conditions.
+  </p>
+</section>

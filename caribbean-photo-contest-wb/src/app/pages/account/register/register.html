@@ -1,0 +1,217 @@
+@if (submitted) {
+  <div class="reg-success-page">
+  <div class="reg-success">
+    <div class="reg-success__icon">✓</div>
+    <h2>Entry Submitted!</h2>
+    <p>Thank you, <strong>{{ form.firstName }}</strong>. Your entry to the <strong>{{ division }}</strong> division has been received.</p>
+    <p>Check your email for confirmation and important updates.</p>
+    <a routerLink="/" class="reg-success__btn">Back to Home</a>
+  </div>
+  </div>
+} @else {
+  <div class="reg-page">
+
+    <!-- TOP LOGO -->
+    <div class="reg-page__header">
+      <img src="images/Capture-caribbean-Logo.png" alt="Capture Caribbean" class="reg-page__logo" />
+    </div>
+
+    <div class="reg-page__inner">
+
+      <!-- MAIN FORM -->
+      <form class="reg-form" (ngSubmit)="onSubmit()" #f="ngForm">
+
+        <!-- Personal Info -->
+        <div class="reg-section">
+          <h2 class="reg-section__title">Add personal information</h2>
+          <p class="reg-section__sub">All fields are mandatory.</p>
+
+          <div class="reg-row">
+            <div class="reg-field">
+              <label>First Name <span class="req">*</span></label>
+              <input type="text" name="firstName" [(ngModel)]="form.firstName" required placeholder="First name" />
+            </div>
+            <div class="reg-field">
+              <label>Last Name</label>
+              <input type="text" name="lastName" [(ngModel)]="form.lastName" placeholder="Last name" />
+            </div>
+          </div>
+
+          <div class="reg-field">
+            <label>Enter Your Email <span class="req">*</span></label>
+            <input type="email" name="email" [(ngModel)]="form.email" required placeholder="your@email.com" />
+          </div>
+
+          <div class="reg-field">
+            <label>Email Verification Code</label>
+            <input type="text" name="emailCode" [(ngModel)]="form.emailCode" placeholder="" />
+          </div>
+
+          <div class="reg-field">
+            <label>Country of Residence <span class="req">*</span></label>
+            <select name="country" [(ngModel)]="form.country" required>
+              <option value="" disabled selected>Select</option>
+              @for (c of countries; track c) {
+                <option [value]="c">{{ c }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <!-- Upload Images -->
+        @if (selectedTier) {
+          <div class="reg-section">
+            <h2 class="reg-section__title">Upload Images</h2>
+            <p class="reg-section__sub">
+              Accepted file types: jpeg, png, jpg &nbsp;·&nbsp; Max file size: 8 MB &nbsp;·&nbsp;
+              {{ uploadedCount }} / {{ uploadSlots.length }} uploaded
+            </p>
+            <div class="upload-grid">
+              @for (slot of uploadSlots; track slot.index) {
+                <div class="upload-slot" [class.upload-slot--filled]="slot.file">
+                  <p class="upload-slot__label">
+                    Upload Image {{ slot.index }}
+                    @if (slot.index === 1) { <span class="req">*</span> }
+                  </p>
+                  @if (slot.preview) {
+                    <img [src]="slot.preview" class="upload-slot__preview" alt="Preview" />
+                    <button type="button" class="upload-slot__remove" (click)="removeFile(slot)">✕ Remove</button>
+                  } @else {
+                    <label class="upload-slot__btn">
+                      <input type="file" accept="image/jpeg,image/png" (change)="onFileSelect($event, slot)" hidden />
+                      Choose File
+                    </label>
+                    <span class="upload-slot__none">No file chosen</span>
+                  }
+                  <p class="upload-slot__hint">Accepted file types: jpeg, png, jpg, Max file size: 8 MB.</p>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- Privacy & Rules -->
+        <div class="reg-section reg-section--with-total">
+          <h2 class="reg-section__title">Privacy and Rules</h2>
+          <div class="reg-checks">
+            <label class="reg-check">
+              <input type="checkbox" name="confirmDates" [(ngModel)]="form.confirmDates" required />
+              <span>I confirm that my images were captured between the years 2024, 2025 and 2026.</span>
+            </label>
+            <label class="reg-check">
+              <input type="checkbox" name="confirmAge" [(ngModel)]="form.confirmAge" required />
+              <span>I confirm that I am at least 18 years old as of the opening date of the competition.</span>
+            </label>
+            <label class="reg-check">
+              <input type="checkbox" name="agreeRules" [(ngModel)]="form.agreeRules" required />
+              <span>I have read and agreed to the Contest Rules, Terms and Conditions, and Privacy Policy. <span class="req">*</span></span>
+            </label>
+            <label class="reg-check">
+              <input type="checkbox" name="subscribeOffers" [(ngModel)]="form.subscribeOffers" />
+              <span>Yes! Send me updates and offers from Capture Caribbean and its partners.</span>
+            </label>
+          </div>
+
+          @if (selectedTier) {
+            <div class="reg-total">
+              <span class="reg-total__label">Total</span>
+              <span class="reg-total__price">{{ selectedTier.price }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- Payment -->
+        <div class="reg-section">
+          <h2 class="reg-section__title">Select payment method</h2>
+          <p class="reg-section__sub">Payment Method</p>
+          <div class="payment-options">
+            <label class="payment-opt" [class.payment-opt--active]="paymentMethod === 'stripe'">
+              <input type="radio" name="payment" value="stripe" [(ngModel)]="paymentMethod" (change)="onPaymentMethodChange()" />
+              <span>Stripe</span>
+            </label>
+            <label class="payment-opt" [class.payment-opt--active]="paymentMethod === 'paypal'">
+              <input type="radio" name="payment" value="paypal" [(ngModel)]="paymentMethod" (change)="onPaymentMethodChange()" />
+              <span>Paypal</span>
+            </label>
+          </div>
+
+          <div class="card-fields" [class.card-fields--hidden]="paymentMethod !== 'stripe'">
+            @if (stripeLoading) {
+              <p class="stripe-loading">Loading payment form…</p>
+            }
+            <div id="stripe-payment-element" [class.stripe-element--hidden]="stripeLoading"></div>
+          </div>
+
+        </div>
+
+        @if (errorMessage) {
+          <p class="reg-error">{{ errorMessage }}</p>
+        }
+
+        @if (modalMessage) {
+          <div class="reg-modal-overlay" (click)="closeModal()">
+            <div class="reg-modal" (click)="$event.stopPropagation()">
+              <div class="reg-modal__icon">!</div>
+              <h3 class="reg-modal__title">Unable to Complete Entry</h3>
+              <p class="reg-modal__message">{{ modalMessage }}</p>
+              <button type="button" class="reg-modal__btn" (click)="closeModal()">Close</button>
+            </div>
+          </div>
+        }
+
+        <div class="reg-submit-wrapper">
+          @if (paymentMethod === 'paypal') {
+            @if (paypalLoading) {
+              <p class="stripe-loading">Loading PayPal…</p>
+            }
+            <div id="paypal-button-container"></div>
+          } @else {
+            <button type="submit" class="reg-submit" [disabled]="submitting || stripeLoading || !f.valid">
+              @if (submitting) { Processing… } @else { Complete Purchase }
+            </button>
+          }
+        </div>
+
+      </form>
+
+      <!-- ORDER SUMMARY SIDEBAR -->
+      @if (selectedTier; as tier) {
+        <aside class="order-summary">
+          <h3 class="order-summary__heading">Order Summary</h3>
+          <p class="order-summary__division">{{ division }}</p>
+          <p class="order-summary__tier">{{ tier.name }}</p>
+          <p class="order-summary__images">{{ tier.images }}</p>
+
+          <div class="order-summary__benefits">
+            <p class="order-summary__benefits-label">Benefits</p>
+            <ul>
+              @for (b of tier.benefits; track $index) {
+                <li>{{ b }}</li>
+              }
+              @if (tier.golden) {
+                <li class="order-summary__golden">🎟 Golden Ticket</li>
+              }
+            </ul>
+          </div>
+
+          <div class="order-summary__divider"></div>
+          <div class="order-summary__total">
+            <span>Total</span>
+            <span>{{ tier.price }}</span>
+          </div>
+        </aside>
+      }
+
+    </div>
+
+    <!-- BOTTOM DISCLAIMER -->
+    <footer class="reg-disclaimer">
+      <img src="images/Capture-caribbean-Logo.png" alt="Capture Caribbean" class="reg-disclaimer__logo" />
+      <p>Capture Caribbean™ is the flagship platform celebrating Caribbean and Caribbean-connected visual storytelling.</p>
+      <p>One (1) cash award will be granted per division. The Capture Caribbean™ Jury, comprised of industry professionals and platform founders, selects the winners.</p>
+      <p>Participation constitutes acceptance of the Terms of Use, Privacy Policy, and Official Contest Rules. Contestants may enter multiple divisions per contest period; however, entries are limited to one (1) unique submission per division.</p>
+      <p class="reg-disclaimer__copy">© 2025–2026 Capture Caribbean LLC. All rights reserved.</p>
+    </footer>
+
+  </div>
+}

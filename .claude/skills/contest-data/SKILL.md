@@ -8,10 +8,10 @@ Fetch and display contestant and submission data from the Photojomo PostgreSQL d
 
 ## Steps
 
-1. Run this query using `psql` (password picked up automatically from `~/.pgpass`):
+1. Run this query using `psql`:
 
 ```bash
-psql -h photojomo-dev-postgres.cijkgu6ccmfk.us-east-1.rds.amazonaws.com -p 5432 -U photojomo_ro -d photojomo --no-psqlrc -c "<query>"
+psql -h photojomo-dev-postgres.cijkgu6ccmfk.us-east-1.rds.amazonaws.com -U photojomo_admin -d photojomo --no-psqlrc -c "<query>"
 ```
 
 Using this SQL:

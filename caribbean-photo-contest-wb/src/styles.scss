@@ -1,0 +1,151 @@
+// Open Sauce One - custom font
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/OpenSauceOne-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/OpenSauceOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/OpenSauceOne-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/OpenSauceOne-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/OpenSauceOne-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-gold: #d8a74d;
+  --color-gold-hover: #b88a35;
+  --color-gold-italic: #edbf69;
+  --color-black: #000000;
+  --color-dark: #2d3134;
+  --color-white: #ffffff;
+  --color-border: #d1d5db;
+  --color-cyan: #2bddff;
+  --color-bg-light: #f9f9f9;
+  --color-text-muted: #5b5f62;
+  --font-primary: 'Open Sauce One', sans-serif;
+  --font-serif: 'Instrument Serif', serif;
+  --max-width: 1360px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-dark);
+  background: var(--color-white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.2em;
+  margin: 0;
+}
+
+p {
+  margin-block-end: 1.2em;
+  margin-block-start: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.dual-heading {
+  b, strong {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    color: #fff;
+  }
+
+  i, em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-gold-italic);
+  }
+}
+
+main {
+  padding: 0;
+}
+
+.contest-page {
+  position: relative;
+  isolation: isolate;
+  background: url('/images/mountain.jpg') center/cover no-repeat;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(58, 38, 6, 0.71) 0%,
+      rgba(16, 11, 6, 0.93) 34%,
+      rgba(2, 2, 2, 0.985) 100%
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__hero {
+    position: relative;
+    min-height: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__hero-overlay {
+    display: none;
+  }
+
+  &__hero-content {
+    text-align: center;
+    color: #fff;
+    padding: 2.2rem 2rem 0.75rem;
+  }
+
+  &__hero-content h1,
+  &__hero-content p {
+    display: none;
+  }
+}

@@ -15,6 +15,36 @@
 .hero-main-image {
 }
 
+.hero-photo-credit {
+  position: absolute;
+  right: 24px;
+  bottom: calc(48vh + 60px);
+  z-index: 3;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: 'Open Sauce One', system-ui, sans-serif;
+  font-size: clamp(10px, 1.05vw, 13px);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .hero-photo-credit {
+    right: 18px;
+    bottom: calc(49vh + 60px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-photo-credit {
+    right: 12px;
+    bottom: calc(50vh + 60px);
+    font-size: 10px;
+  }
+}
+
 .hero-image-shell::after {
   content: "";
   position: absolute;

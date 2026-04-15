@@ -20,17 +20,16 @@ interface HeroSlide {
 })
 export class HomeComponent implements OnInit, OnDestroy {
   firstWaveUrl = environment.firstWaveUrl;
+  private mediaBaseUrl = environment.mediaBaseUrl;
 
   heroSlides: HeroSlide[] = [
-    { src: 'assets/images/BG4.jpg' },
+    { src: `${this.mediaBaseUrl}/BG4.jpg` },
     {
-      src: 'assets/images/summer-day-near-palm.jpg',
+      src: `${this.mediaBaseUrl}/summer-day-near-palm.jpg`,
       filter: 'none'
     },
-    { src: 'assets/images/BG4.jpg' },
-    { src: 'https://photojomo-dev-media.s3.amazonaws.com/images/iStock-1316997695.jpg' },
-    { src: 'https://photojomo-dev-media.s3.amazonaws.com/images/iStock-1232115076.jpg' }
-
+    { src: `${this.mediaBaseUrl}/iStock-1316997695.jpg` },
+    { src: `${this.mediaBaseUrl}/iStock-1232115076.jpg` }
   ];
 
   currentIndex = 0;
@@ -63,6 +62,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   get currentObjectPosition(): string | null {
     return this.currentSlide.objectPosition ?? null;
+  }
+
+  get isBg4Slide(): boolean {
+    return this.currentSlide.src.includes('BG4.jpg');
   }
 
   get currentFilter(): string {

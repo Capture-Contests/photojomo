@@ -16,6 +16,23 @@
   object-fit: contain !important;
 }
 
+/* Testimonial avatar — circular crop, transparent gap, thicker ring */
+:host ::ng-deep #container .css-sme8gt {
+  position: relative !important;
+  border-radius: 50% !important;
+  border: 4px solid transparent !important;
+  box-sizing: border-box !important;
+  background-clip: padding-box !important;
+  box-shadow: 0 0 0 2px #4a90e2 !important;
+  overflow: visible !important;
+}
+
+:host ::ng-deep #container .css-sme8gt > img {
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
 :host ::ng-deep .footer-bonus-copy {
   color: #ffffff !important;
   margin: -14px 0 0 !important;

@@ -13,26 +13,28 @@ export class CaribbeanConnectionsComponent {
   readonly testimonials = [
     {
       avatar:
-        'https://capturecaribbean.figma.site/_assets/v11/c750c0042ff0d38ae0247c453ad5a8117c0263ec.png',
+        'https://capturecaribbean.figma.site/_assets/v11/23b861c6b3079cef2ce4c4a94cf13f91475d17c2.png',
+      avatarScale: 1,
       quote:
         '\u201CFinally, a space that celebrates our unique Caribbean perspective and connects us across islands.\u201D',
-      name: 'Harry Maguire',
+      name: 'Nadine Spencer',
       role: 'Visual Artist, Trinidad',
     },
     {
       avatar:
-        'https://capturecaribbean.figma.site/_assets/v11/c750c0042ff0d38ae0247c453ad5a8117c0263ec.png',
+        'https://capturecaribbean.figma.site/_assets/v11/bdcefc9b9199e08c6bad895993cb33774c2c6934.png',
+      avatarScale: 1,
       quote:
-        '\u201CPhotojomo gave me a platform to share my island\u2019s story with a global audience.\u201D',
-      name: 'Amara Clarke',
+        '\u201CWow, this platform is exciting. A truly global platform.\u201D',
+      name: 'Richard Thomas',
       role: 'Photographer, Jamaica',
     },
     {
-      avatar:
-        'https://capturecaribbean.figma.site/_assets/v11/c750c0042ff0d38ae0247c453ad5a8117c0263ec.png',
+      avatar: '/assets/images/iStock-1313422725.jpg',
+      avatarScale: 1,
       quote:
-        '\u201CThis community lifted my work and introduced me to collaborators across the region.\u201D',
-      name: 'Devon Alleyne',
+        '\u201CI\u2019m an amateur photographer, but the advice and well wishes I\u2019ve received from the community shines like a diamond. Thank you!!\u201D',
+      name: 'Stephanie Jansen',
       role: 'Filmmaker, Barbados',
     },
   ];

@@ -7,6 +7,30 @@
   line-height: 1 !important;
 }
 
+/* Message resize handle — hidden on desktop, shown on tablet/mobile */
+:host ::ng-deep .message-resize-handle {
+  display: none;
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: ns-resize;
+  color: #737373;
+  z-index: 2;
+  touch-action: none;
+  user-select: none;
+}
+
+:host ::ng-deep .message-resize-handle:hover {
+  color: #404040;
+}
+
 
 @media (min-width: 769px) and (max-width: 1100px) {
   :host ::ng-deep #container .css-vhq6dg {
@@ -90,6 +114,11 @@
     margin-top: -10px !important;
     margin-bottom: 0 !important;
     line-height: 1 !important;
+  }
+
+  /* Show resize handle on tablet */
+  :host ::ng-deep .message-resize-handle {
+    display: flex;
   }
 }
 
@@ -184,6 +213,17 @@
   :host ::ng-deep #container .css-x13zas form [class*="h-\["] {
     min-height: 48px !important;
     height: 48px !important;
+  }
+
+  /* Message field — 3 lines tall on mobile, drag-to-resize */
+  :host ::ng-deep #container .css-x13zas form .h-\[150px\] {
+    min-height: 96px !important;
+    height: 96px !important;
+  }
+
+  /* Show resize handle on mobile */
+  :host ::ng-deep .message-resize-handle {
+    display: flex;
   }
 
   :host ::ng-deep #container .css-x13zas form input {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../../../components/navbar/navbar.component';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-cc-experience',
@@ -10,6 +11,7 @@ import { NavbarComponent } from '../../../components/navbar/navbar.component';
   styleUrls: ['./experience.component.css'],
 })
 export class ExperienceComponent {
+  mediaBaseUrl = environment.mediaBaseUrl;
   scrollToTop(): void {
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -1908,3 +1908,266 @@
     display: flex !important;
   }
 }
+
+/* ── Phone landscape ─────────────────────────────────────────────────────
+   "Why Our Community Stands Out": desktop default pairs a 698×608 image
+   with a 526px text column side-by-side inside a fixed 773px-tall section —
+   overflows both directions on landscape phones. Collapse to a compact
+   single white card with 4 bullet rows in a 2-column grid, hide the
+   decorative image, and auto-size the section so it fits the viewport.
+   ────────────────────────────────────────────────────────────────────── */
+@media (orientation: landscape) and (max-height: 500px) {
+  :host ::ng-deep #container .css-cfaotp {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    padding: 20px 16px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    overflow: visible !important;
+  }
+
+  /* Hide the decorative side image — not enough vertical room */
+  :host ::ng-deep #container .css-cfaotp .css-15tmrm {
+    display: none !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-umyxx0 {
+    order: 1 !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    background-color: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 16px 18px !important;
+    box-sizing: border-box !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-a8ckuu,
+  :host ::ng-deep #container .css-cfaotp .css-umfsb6 {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+  }
+
+  /* 4 bullet items in a 2-column grid keeps the section short vertically */
+  :host ::ng-deep #container .css-cfaotp .css-a8cja0 {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px 16px !important;
+    align-items: start !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-ehannn,
+  :host ::ng-deep #container .css-cfaotp .css-bp5ajl,
+  :host ::ng-deep #container .css-cfaotp .css-jrz419 {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-ehannn .css-h5xwa9,
+  :host ::ng-deep #container .css-cfaotp .css-jrz419 .css-h5xwa9 {
+    position: relative !important;
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    flex-shrink: 0 !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin: 2px 0 0 0 !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-ehannn .css-h5xwa9 img,
+  :host ::ng-deep #container .css-cfaotp .css-jrz419 .css-h5xwa9 img {
+    position: static !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    object-fit: contain !important;
+    transform: none !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-boob2k {
+    position: relative !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-boob2k p,
+  :host ::ng-deep #container .css-cfaotp .css-snkgse p {
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+  }
+
+  /* Strip the hard line breaks inside bullet copy so it can reflow */
+  :host ::ng-deep #container .css-cfaotp .css-snkgse p br {
+    display: none !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-snkgse {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+  }
+
+  /* Heading + subtitle scale down to keep section compact; keep the
+     "Why Our Community Stands Out" title on a single line.
+     The `* ` selector clears the tablet rule that sets nested spans to
+     40px + max-width:50% (which would otherwise force the .wocso-small
+     span onto its own line). */
+  :host ::ng-deep #container .css-cfaotp p.css-2hxbmz,
+  :host ::ng-deep #container .css-cfaotp p.css-6vp3ws,
+  :host ::ng-deep #container .css-cfaotp .css-2hxbmz,
+  :host ::ng-deep #container .css-cfaotp .css-6vp3ws {
+    font-size: clamp(14px, 3.2vw, 22px) !important;
+    line-height: 1.15 !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    max-width: none !important;
+    width: auto !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-2hxbmz *,
+  :host ::ng-deep #container .css-cfaotp .css-6vp3ws *,
+  :host ::ng-deep #container .css-cfaotp span.wocso-small {
+    font-size: inherit !important;
+    line-height: inherit !important;
+    max-width: none !important;
+    width: auto !important;
+    white-space: nowrap !important;
+    display: inline !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-xapyva,
+  :host ::ng-deep #container .css-cfaotp .css-8ul25a {
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+    text-align: left !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-wr2x4o,
+  :host ::ng-deep #container .css-cfaotp .css-eipe8a {
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+  }
+
+  :host ::ng-deep #container .css-cfaotp .css-u5xyic,
+  :host ::ng-deep #container .css-cfaotp .css-tqgiyl,
+  :host ::ng-deep #container .css-cfaotp .css-boob2k,
+  :host ::ng-deep #container .css-cfaotp .css-w3vc85,
+  :host ::ng-deep #container .css-cfaotp .css-tbg1gm {
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Push "A Platform That Showcases Your Talent" section down 170px
+     and shift its content to the left so it isn't offset right of the
+     viewport (defaults use a 1439px inner wrapper). */
+  :host ::ng-deep #container .css-unouix {
+    margin-top: 170px !important;
+    justify-content: flex-start !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep #container .css-unouix .css-k8aai4 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    align-items: flex-start !important;
+  }
+
+  :host ::ng-deep #container .css-unouix .css-zfhupp,
+  :host ::ng-deep #container .css-unouix .css-ghzu67 {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    align-self: flex-start !important;
+  }
+
+  /* Prospective Partners logos — default flex-nowrap with 170px logos +
+     28px gaps overflows every landscape phone width. Wrap and shrink. */
+  :host ::ng-deep .prospective-partners-logos {
+    flex-wrap: wrap !important;
+    gap: 10px 18px !important;
+    max-width: 100% !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep .prospective-partners-logos > div {
+    min-height: 56px !important;
+    padding: 4px !important;
+  }
+
+  :host ::ng-deep .prospective-partners-logos img,
+  :host ::ng-deep .prospective-partners-logos .css-ce0hlr,
+  :host ::ng-deep .prospective-partners-logos .css-59b3l2 {
+    max-width: 96px !important;
+    max-height: 54px !important;
+  }
+
+  :host ::ng-deep .prospective-partners-logos > div:nth-child(1) img {
+    max-width: 92px !important;
+    max-height: 60px !important;
+  }
+
+  :host ::ng-deep .prospective-partners-logos > div:nth-child(2) img {
+    max-width: 64px !important;
+    max-height: 64px !important;
+  }
+}

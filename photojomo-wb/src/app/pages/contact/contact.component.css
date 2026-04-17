@@ -251,3 +251,108 @@
     max-width: 100% !important;
   }
 }
+
+/* ── Phone landscape ─────────────────────────────────────────────────────
+   Contact form: tablet/desktop defaults give fields fixed pixel widths
+   (437/436/894px) that overflow landscape phone viewports; mobile rules
+   apply only below 769px and also stretch tall vertically. Force fluid
+   two-column fields and cap heights so the form fits within the viewport.
+   ────────────────────────────────────────────────────────────────────── */
+@media (orientation: landscape) and (max-height: 500px) {
+  :host,
+  :host ::ng-deep #container {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  :host ::ng-deep #container .css-j6ldtg,
+  :host ::ng-deep #container .css-7bdg4w {
+    height: auto !important;
+    min-height: 0 !important;
+    --content-min-height: 0 !important;
+  }
+
+  :host ::ng-deep #container .css-x13zas {
+    width: 100% !important;
+    max-width: 100vw !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 16px 20px 24px !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  :host ::ng-deep #container .css-x13zas form {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px 16px !important;
+    align-items: start !important;
+  }
+
+  :host ::ng-deep #container .css-x13zas form > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Message + submit/captcha blocks span both columns */
+  :host ::ng-deep #container .css-x13zas form > div.w-\[894px\],
+  :host ::ng-deep #container .css-x13zas form > div:nth-last-child(1),
+  :host ::ng-deep #container .css-x13zas form > div:nth-last-child(2) {
+    grid-column: 1 / -1 !important;
+  }
+
+  :host ::ng-deep #container .css-x13zas form [class*="w-["] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  :host ::ng-deep #container .css-x13zas form [class*="h-\["] {
+    min-height: 40px !important;
+    height: 40px !important;
+  }
+
+  /* Compact message field so the form fits one landscape screen */
+  :host ::ng-deep #container .css-x13zas form .h-\[150px\] {
+    min-height: 72px !important;
+    height: 72px !important;
+  }
+
+  :host ::ng-deep #container .css-x13zas form .inline-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 4px !important;
+  }
+
+  :host ::ng-deep #container .css-x13zas form .inline-grid > * {
+    grid-area: auto !important;
+    position: relative !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  :host ::ng-deep #container .css-x13zas textarea,
+  :host ::ng-deep #container .css-x13zas input {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep #container .css-x13zas form input {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  :host ::ng-deep .message-resize-handle {
+    display: flex;
+  }
+}

@@ -987,3 +987,38 @@
     letter-spacing: normal !important;
   }
 }
+
+/* ── Phone landscape ─────────────────────────────────────────────────────
+   Our Experience gallery: the 4 fixed-width cards (≈310–321px × 216px)
+   with 30px gaps sum to ~1290px and overflow every phone landscape width.
+   Let them shrink and wrap so they stay inside the viewport.
+   ────────────────────────────────────────────────────────────────────── */
+@media (orientation: landscape) and (max-height: 500px) {
+  #container .css-i9h3z .saint-lucia-experience-gallery {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
+    margin-top: 24px !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-experience-gallery .css-3h04gc,
+  #container .css-i9h3z .saint-lucia-experience-gallery .css-thdnum {
+    flex: 1 1 calc(25% - 10px) !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: calc(25% - 10px) !important;
+    height: auto !important;
+    aspect-ratio: 321 / 216 !important;
+  }
+
+  #container .css-i9h3z .saint-lucia-experience-gallery .css-3h04gc img,
+  #container .css-i9h3z .saint-lucia-experience-gallery .css-thdnum img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+}

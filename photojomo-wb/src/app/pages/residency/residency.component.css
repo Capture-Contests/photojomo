@@ -1238,3 +1238,139 @@
   }
 }
 
+/* ── Phone landscape ─────────────────────────────────────────────────────
+   "A Fully-Funded Creative Journey" row: fix two sources of overflow —
+   (1) .css-4j1w8d has a fixed 1314.75px width that pushes out horizontally
+   on wide landscape phones, and (2) the 3 cards at 352.5px each + 128.25px
+   gap × 2 also exceed phone width. The mobile (max-width: 768px) override
+   stacks the cards vertically, which overflows narrow landscape phones
+   vertically. Force a fluid 3-column row sized to fit.
+   ────────────────────────────────────────────────────────────────────── */
+@media (orientation: landscape) and (max-height: 500px) {
+  #container .css-s21u7j {
+    height: auto !important;
+  }
+
+  #container .css-4j1w8d {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  #container .css-1n48hy {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  #container .css-1n48hy .css-tqgiyl,
+  #container .css-1n48hy .css-vddhoj {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 20px) / 3) !important;
+    height: auto !important;
+  }
+
+  #container .css-1n48hy .css-bhht40,
+  #container .css-1n48hy .css-ayg824,
+  #container .css-1n48hy .css-vf8mzy {
+    width: 100% !important;
+  }
+
+  #container .css-1n48hy .css-ugbsl7 {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3 !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  #container .css-1n48hy .css-vf8mzy img,
+  #container .css-1n48hy .css-ugbsl7 > img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  #container .css-1n48hy .css-trglf0.css-r0azwh img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  #container .css-1n48hy .css-trglf0.css-r0azwh img:not(:first-child) {
+    display: none !important;
+  }
+
+  /* Future Fellows Showcase: mobile stacks cards at 100vw (height overflow
+     on landscape), tablet defaults put them in a row at 388.5px each +
+     75px gaps (width overflow). Force a compact 3-across row. */
+  #container .css-a0r1up.css-7cqmvf {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  #container .css-7cqmvf .css-njtyyc,
+  #container .css-7cqmvf .css-njtyyc:nth-child(2),
+  #container .css-7cqmvf .css-njtyyc:nth-child(3) {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: calc((100% - 20px) / 3) !important;
+    height: auto !important;
+    padding-top: 0 !important;
+  }
+
+  #container .css-gjn7ya .css-32dxzs {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  #container .css-gjn7ya .css-32dxzs.css-wc1msa {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 4 / 3 !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  #container .css-gjn7ya .css-32dxzs img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* Card 3 has an extra decorative aria-hidden overlay (two extra images)
+     that isn't in cards 1 & 2 — hide it so all three cards render at the
+     same size. Also hide the duplicated 2nd image stacked inside cards
+     1 & 3 so each card shows a single cover-sized photo. */
+  #container .css-gjn7ya .css-njtyyc > [aria-hidden="true"] {
+    display: none !important;
+  }
+
+  #container .css-gjn7ya .css-trglf0.css-r0azwh img:not(:first-child) {
+    display: none !important;
+  }
+}
+

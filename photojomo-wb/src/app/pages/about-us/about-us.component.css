@@ -830,3 +830,13 @@
   }
 }
 
+/* ── Phone landscape ─────────────────────────────────────────────────────
+   Hero: move "Presented in Partnership" section down 30px relative to its
+   current position (base margin-top is -168px).
+   ────────────────────────────────────────────────────────────────────── */
+@media (orientation: landscape) and (max-height: 500px) {
+  .partnership-bridge {
+    margin-top: -108px !important; /* was -168 */
+  }
+}
+

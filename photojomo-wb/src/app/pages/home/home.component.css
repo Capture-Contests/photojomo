@@ -1586,3 +1586,139 @@
   }
 }
 
+/* ── Phone landscape ─────────────────────────────────────────────────────
+   Only applies to phones held sideways (short viewport, any width).
+   Leaves portrait mobile, tablet, and desktop untouched.
+   ────────────────────────────────────────────────────────────────────── */
+@media (orientation: landscape) and (max-height: 500px) {
+
+  /* Hero: stop it from consuming the entire landscape viewport */
+  #container .hero-image-shell {
+    height: 100svh !important;
+    min-height: 320px !important;
+    max-height: 520px !important;
+  }
+
+  /* Reposition photo credit for landscape (portrait rule uses 50vh math) */
+  .hero-photo-credit {
+    right: 18px !important;
+    bottom: 14px !important;
+    font-size: 10px !important;
+  }
+
+  /* Shorten bottom fade so it doesn't cover the CTA buttons */
+  .hero-image-shell::after {
+    height: 14vh !important;
+  }
+
+  /* Lift hero CTA buttons above the bottom fade */
+  .hero-primary-cta,
+  .css-wbynap {
+    position: relative !important;
+    z-index: 3 !important;
+  }
+
+  /* Keep top fade off in landscape too (matches mobile portrait intent) */
+  .hero-image-shell::before {
+    display: none !important;
+  }
+
+  /* Main hero title: push down 140px */
+  #container .css-l1ge5b {
+    margin-top: 140px !important;
+  }
+
+  /* Push Presented in Partnership + everything below down 10px */
+  .partnership-bridge {
+    margin-top: 10px !important;
+  }
+
+  /* Tri-path (mobile variant): reclaim width with side-by-side cards */
+  #tri-path-sm {
+    padding: 32px 24px 12px !important;
+    margin-top: -14px !important;
+  }
+
+  #tri-path-sm .css-jff7uw {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 12px !important;
+  }
+
+  #tri-path-sm .tri-card--mobile {
+    flex: 1 1 calc(50% - 12px) !important;
+    min-width: 260px !important;
+    max-width: 360px !important;
+  }
+
+  /* Shift content inside each tri-path panel down 60px */
+  /* Mobile variant: align-items flex-start, so add top padding */
+  #tri-path-sm .tri-card--mobile .tri-card__surface {
+    padding-top: 75px !important;
+  }
+
+  /* Large variant: content is pinned to bottom via justify-end, so
+     shrinking bottom padding is what visually shifts content down */
+  #tri-path-lg [class*="pb-[168px]"],
+  #tri-path-lg [class*="pb-[166px]"],
+  #tri-path-lg [class*="pb-[165px]"] {
+    padding-bottom: 50px !important;
+  }
+
+  /* Tighten gap between logo and label text inside each large panel */
+  #tri-path-lg [class*="gap-[35px]"],
+  #tri-path-lg [class*="gap-[32px]"] {
+    gap: 16px !important;
+  }
+
+  /* Prospective Partners: keep all logos inside the viewport in landscape.
+     Tablet rule uses flex-nowrap + 170px logos + 28px gap (≈8 logos × ~200px
+     ≈ 1600px) which overflows every phone landscape width. Allow wrap and
+     shrink logos so they fit within the visible row. */
+  .prospective-partners-logos {
+    flex-wrap: wrap !important;
+    gap: 10px 18px !important;
+    max-width: 100% !important;
+    padding: 0 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  .prospective-partners-logos > div {
+    min-height: 56px !important;
+    padding: 4px !important;
+  }
+
+  .prospective-partners-logos img,
+  .prospective-partners-logos .css-ce0hlr,
+  .prospective-partners-logos .css-59b3l2 {
+    max-width: 96px !important;
+    max-height: 54px !important;
+  }
+
+  .prospective-partners-logos > div:nth-child(1) img {
+    max-width: 92px !important;
+    max-height: 60px !important;
+  }
+
+  .prospective-partners-logos > div:nth-child(2) img {
+    max-width: 64px !important;
+    max-height: 64px !important;
+  }
+
+}
+
+/* Artist Residency: 70px closer to the section above.
+   Per-width rules since mobile (50px) and tablet (-92px) bases differ. */
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 768px) {
+  .artist-residency-clean {
+    margin-top: -20px !important; /* was 50 */
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) and (min-width: 769px) {
+  .artist-residency-clean {
+    margin: -162px auto 92px !important; /* was -92 92 */
+  }
+}
+

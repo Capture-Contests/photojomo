@@ -32,6 +32,13 @@
     gap: 12px;
   }
 
+  .rotate-prompt__logo {
+    width: clamp(140px, 40vw, 220px);
+    height: auto;
+    margin-bottom: 4px;
+    display: block;
+  }
+
   .rotate-prompt__icon {
     color: #d8a74d;
     animation: rotate-prompt-wiggle 1.8s ease-in-out infinite;

@@ -780,6 +780,13 @@
   }
 }
 
+/* Guided by Visionaries — prevent clipping so full descriptions are visible */
+:host ::ng-deep #container .css-dwyaap {
+  overflow: visible !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
 /* Journey — uniform icon centering across all 4 slots on wide desktop */
 @media (min-width: 1101px) {
   :host ::ng-deep #container .css-cff8ov .css-5idbcs.css-jvpnk3 {
@@ -800,6 +807,26 @@
   :host ::ng-deep #container .css-cff8ov .css-u2sh78 {
     margin-left: auto !important;
     margin-right: auto !important;
+  }
+
+  /* Capture Saint Lucia International Tour — nudge up 40px on desktop */
+  :host ::ng-deep #container .css-mzafbe {
+    margin-top: -40px !important;
+  }
+
+  /* Guided by Visionaries — pull subtitle closer to title on desktop */
+  :host ::ng-deep #container .css-dwyaap .css-zfhscg {
+    margin-top: -45px !important;
+  }
+
+  /* Journey — pull images + descriptions closer to subtitle on desktop */
+  :host ::ng-deep #container .css-cff8ov .css-otjbs4 {
+    margin-top: -40px !important;
+  }
+
+  /* More Than an Island — pull 4 images closer to the text above on desktop */
+  :host ::ng-deep #container .css-z8tyjh {
+    margin-top: -40px !important;
   }
 }
 

@@ -129,13 +129,12 @@ export class Home implements OnInit, OnDestroy {
     if (this.legacyTimer) clearInterval(this.legacyTimer);
   }
 
-  // Staggered 4-col grid: each col has [top, bottom] with alternating sizes.
-  // Col 1 & 3: short on top, tall on bottom. Col 2 & 4: tall on top, short on bottom.
+  // 4-column staggered grid (short-tall ↔ tall-short alternating).
   globalStageColumns: { top: string; bottom: string; layout: 'short-tall' | 'tall-short' }[] = [
-    { top: 'images/stage-1a.png', bottom: 'images/stage-1b.png', layout: 'short-tall' },
-    { top: 'images/stage-2a.png', bottom: 'images/stage-2b.png', layout: 'tall-short' },
-    { top: 'images/stage-3a.png', bottom: 'images/stage-3b.png', layout: 'short-tall' },
-    { top: 'images/stage-4a.png', bottom: 'images/stage-4b.png', layout: 'tall-short' },
+    { top: 'images/beach-2858720_1280.jpg',         bottom: 'images/IMG0008-1-Swim.jpg',                      layout: 'short-tall' },
+    { top: 'images/iStock-464616573.jpg',           bottom: 'images/passion-fruit-daiquiri-906099_1280.jpg', layout: 'tall-short' },
+    { top: 'images/JAM10401-scaled.jpg',            bottom: 'images/iStock-1400130744.jpg',                  layout: 'short-tall' },
+    { top: 'images/IMG_0148.jpg',                   bottom: 'images/IMG0002.jpg',                            layout: 'tall-short' },
   ];
 
   voicesIntro = '“Saint Lucia demands more than postcards—it wants truth.”';

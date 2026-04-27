@@ -1,49 +1,298 @@
-<div class="home">
-  <header class="home__header">
-    <img class="home__logo" src="images/Capture-caribbean-Logo.png" alt="Capture Caribbean" />
-    <h1 class="home__title">Photo Contest</h1>
-    <p class="home__subtitle">Select a division to view tiers and enter the competition.</p>
-  </header>
+<div class="cc-home">
 
-  <section class="contests">
-    <h2 class="contests__heading">Choose your <i class="contests__heading-accent">category</i></h2>
-    <div class="contests__grid">
+  <!-- 1. HERO (Figma frame 2983:5677, 1920x1046) -->
+  <section class="cc-hero">
+    <img class="cc-hero__bg" src="images/hero-marigot.jpg" alt="" />
+    <div class="cc-hero__scrim" aria-hidden="true"></div>
+
+    <img class="cc-hero__badge" src="images/hero-logo-badge.png" alt="Caribbean Photo Contest" />
+
+    <p class="cc-hero__eyebrow">Shape the legacy.</p>
+
+    <h1 class="cc-hero__title">Capture the Caribbean. Experience Luxury.</h1>
+  </section>
+
+  <!-- 2. PARTNERSHIP BRIDGE (Figma 352x177, single flattened image) -->
+  <section class="cc-partnership">
+    <p class="cc-partnership__eyebrow">Presented in Partnership</p>
+    <img src="images/partnership-bay-gardens-30.png" alt="Bay Gardens Resorts · 30 Year Anniversary" class="cc-partnership__image" />
+  </section>
+
+  <!-- 3. CHOOSE YOUR CATEGORY (first) -->
+  <section class="cc-categories">
+    <h2 class="cc-categories__title">Choose your category. Define your perspective.<br />Compete for distinction.</h2>
+    <p class="cc-categories__desc">
+      Immerse yourself in the tranquility of the islands. From crystal-clear waters to golden shores, your exclusive vacation awaits. Discover the perfect blend of thrilling adventure and total relaxation.
+    </p>
+
+    <div class="cc-categories__grid">
       @for (contest of contests; track contest.route) {
-        <div class="contest-card">
-          <div class="contest-card__media">
-            <img class="contest-card__img" [src]="contest.image" [alt]="contest.title" />
-            <div class="contest-card__overlay">
-              <h3 class="contest-card__title">{{ contest.title }}</h3>
-              <div class="contest-card__award">
-                <span class="contest-card__award-amount">{{ contest.award }}</span>
-                <span class="contest-card__award-label">Cash Award</span>
+        <article class="cc-card">
+          <div class="cc-card__media">
+            <img [src]="contest.image" [alt]="contest.title" />
+          </div>
+          <div class="cc-card__body">
+            <div class="cc-card__head">
+              <h3 class="cc-card__title serif-italic">{{ contest.title }}</h3>
+              <div class="cc-card__award">
+                <span class="cc-card__award-amount">{{ contest.award }}</span>
+                <span class="cc-card__award-label">Cash Award</span>
               </div>
             </div>
-          </div>
-          <div class="contest-card__body">
-            <p class="contest-card__desc">{{ contest.description }}</p>
-            <div class="contest-card__pricing">
-              <span class="contest-card__price-label">Starting From</span>
-              <span class="contest-card__price-value">{{ contest.price }}</span>
+            <p class="cc-card__desc">{{ contest.description }}</p>
+            <div class="cc-card__pricing">
+              <span>Starting From</span>
+              <span class="cc-card__price">{{ contest.price }}</span>
             </div>
-            <a [routerLink]="contest.route" class="contest-card__enter">Enter Contest →</a>
-            <span class="contest-card__tier">{{ contest.tier }}</span>
+            <a [routerLink]="contest.route" class="cc-card__cta">Enter Contest <span>→</span></a>
+            @if (contest.tier) {
+              <span class="cc-card__tier">{{ contest.tier }}</span>
+            }
             @if (contest.tierInfo) {
-              <span class="contest-card__tier contest-card__tier--info">
-                {{ contest.tierInfo }}
-                @if (contest.tierInfoHighlight) {
-                  <span class="contest-card__tier-highlight">{{ contest.tierInfoHighlight }}</span>.
-                }
+              <span class="cc-card__tier cc-card__tier--info">
+                <svg class="cc-card__ticket" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                  <path fill="#DEAD54" d="M2 9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V9Zm13 .5-1.5 0 0 2 1.5 0 0-2Zm0 4-1.5 0 0 2 1.5 0 0-2Zm0-8-1.5 0 0 2 1.5 0 0-2Z"/>
+                </svg> {{ contest.tierInfo }}
               </span>
             }
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- 4 + 5. EXPERIENCE TRUE PARADISE + THE CARIBBEAN PHOTO CONTEST (shared map bg) -->
+  <div class="cc-map-band">
+    <section class="cc-paradise">
+      <h2 class="cc-paradise__title"><strong>Experience</strong> <span class="serif-italic">True Paradise</span></h2>
+      <p class="cc-paradise__desc">Show the world your vision of the Caribbean—and be rewarded with an unforgettable escape.</p>
+      <div class="cc-paradise__video">
+        <img src="images/iStock-1203441442.jpg" alt="Caribbean paradise" />
+      </div>
+    </section>
+
+    <section class="cc-contest-intro">
+      <div class="cc-contest-intro__stage">
+        <img src="images/cpc-tray.png"      alt="" class="cc-contest-intro__deco cc-contest-intro__deco--tray" />
+        <img src="images/cpc-dancers.png"   alt="" class="cc-contest-intro__deco cc-contest-intro__deco--dancers" />
+        <img src="images/cpc-musicians.png" alt="" class="cc-contest-intro__deco cc-contest-intro__deco--musicians" />
+        <img src="images/cpc-clarinet.png"  alt="" class="cc-contest-intro__deco cc-contest-intro__deco--clarinet" />
+
+        <div class="cc-contest-intro__center">
+          <h2 class="cc-contest-intro__title"><strong>The Caribbean</strong> <span class="serif-italic">Photo Contest</span></h2>
+          <p class="cc-contest-intro__desc">
+            Compete across four entry divisions, each with distinct tiers, eligibility, and prizes—designed for photographers, storytellers, and creators of all levels.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 6. OUR LEGACY SPONSOR (Figma Frame 2147227333: 1923x1002) -->
+  <section class="cc-legacy">
+    <div class="cc-legacy__header">
+      <h2 class="cc-legacy__title"><strong>Our Legacy</strong> <span class="serif-italic">Sponsor</span></h2>
+      <p class="cc-legacy__desc">Relax in unparalleled comfort at our premier partner resort.</p>
+    </div>
+
+    <div class="cc-legacy__stage">
+      @for (slide of legacyCarousel; let i = $index; track i) {
+        <div class="cc-legacy__slide" [class.is-active]="i === legacyIndex">
+          <img [src]="slide.bg" alt="Bay Gardens Resort" class="cc-legacy__bg" />
+          <div class="cc-legacy__mark">
+            <img [src]="slide.logo" alt="Bay Gardens" class="cc-legacy__logo" />
+            <p class="cc-legacy__label">{{ slide.label }}</p>
+          </div>
+        </div>
+      }
+      <div class="cc-legacy__fade" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- 7. GLOBAL TOUR -->
+  <section class="cc-tour">
+    <h2 class="cc-tour__title"><strong>Global</strong> <span class="serif-italic">Tour</span></h2>
+    <p class="cc-tour__desc">
+      The works created through Capture Saint Lucia will not only debut on the island but will also travel to international cultural capitals. From New York to London, Paris to Toronto, this multi-city exhibition tour will introduce audiences worldwide to Saint Lucia&rsquo;s stories, beauty, and creative excellence.
+    </p>
+
+    <div class="cc-tour__grid">
+      @for (phase of timeline; track phase.years) {
+        <div class="cc-tour__phase">
+          <div class="cc-tour__phase-media">
+            <img [src]="phase.image" [alt]="phase.title" />
+          </div>
+          <h3 class="cc-tour__phase-year">{{ phase.years }}: {{ phase.title }}</h3>
+          <p class="cc-tour__phase-desc">{{ phase.description }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="cc-tour__timeline">
+      <div class="cc-tour__timeline-line"></div>
+      @for (phase of timeline; track phase.years) {
+        <img class="cc-tour__timeline-node" [src]="'images/icon-' + phase.icon + '.svg'" alt="" aria-hidden="true" />
+      }
+    </div>
+  </section>
+
+  <!-- 8. THE GLOBAL STAGE AWAITS (Figma Frame 2147227330: 1923x1102) -->
+  <section class="cc-stage">
+    <div class="cc-stage__header">
+      <h2 class="cc-stage__title"><strong>The Global</strong> <span class="serif-italic">Stage Awaits</span></h2>
+      <p class="cc-stage__desc">
+        The Caribbean Photo Contest unites creators from across the globe for the chance to win a journey to the Caribbean and other exclusive rewards.
+      </p>
+    </div>
+    <div class="cc-stage__grid">
+      @for (col of globalStageColumns; track $index) {
+        <div class="cc-stage__col" [class.is-tall-short]="col.layout === 'tall-short'">
+          <div class="cc-stage__tile cc-stage__tile--top"><img [src]="col.top" alt="" /></div>
+          <div class="cc-stage__tile cc-stage__tile--bottom"><img [src]="col.bottom" alt="" /></div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- 9. CHOOSE YOUR CATEGORY (second) -->
+  <section class="cc-categories cc-categories--repeat">
+    <h2 class="cc-categories__title">Choose your category. Define your perspective.<br />Compete for distinction.</h2>
+    <p class="cc-categories__desc">
+      Compete across four entry divisions with distinct tiers, eligibility, and prizes—open to creators worldwide. Win a journey to the Caribbean and create within the region.
+    </p>
+
+    <div class="cc-categories__grid">
+      @for (contest of contests; track contest.route + '-2') {
+        <article class="cc-card">
+          <div class="cc-card__media">
+            <img [src]="contest.image" [alt]="contest.title" />
+          </div>
+          <div class="cc-card__body">
+            <div class="cc-card__head">
+              <h3 class="cc-card__title serif-italic">{{ contest.title }}</h3>
+              <div class="cc-card__award">
+                <span class="cc-card__award-amount">{{ contest.award }}</span>
+                <span class="cc-card__award-label">Cash Award</span>
+              </div>
+            </div>
+            <p class="cc-card__desc">{{ contest.description }}</p>
+            <div class="cc-card__pricing">
+              <span>Starting From</span>
+              <span class="cc-card__price">{{ contest.price }}</span>
+            </div>
+            <a [routerLink]="contest.route" class="cc-card__cta">Enter Contest <span>→</span></a>
+            @if (contest.tier) {
+              <span class="cc-card__tier">{{ contest.tier }}</span>
+            }
+            @if (contest.tierInfo) {
+              <span class="cc-card__tier cc-card__tier--info">
+                <svg class="cc-card__ticket" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                  <path fill="#DEAD54" d="M2 9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V9Zm13 .5-1.5 0 0 2 1.5 0 0-2Zm0 4-1.5 0 0 2 1.5 0 0-2Zm0-8-1.5 0 0 2 1.5 0 0-2Z"/>
+                </svg> {{ contest.tierInfo }}
+              </span>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- 10. VOICES OF THE FINALISTS (Figma Frame 2095585015 inner: 1072x513) -->
+  <section class="cc-voices">
+    <div class="cc-voices__plus-grid" aria-hidden="true"></div>
+    <h2 class="cc-voices__title"><strong>Voices of the</strong> <span class="serif-italic">Finalists</span></h2>
+    <p class="cc-voices__intro">{{ voicesIntro }}</p>
+    <div class="cc-voices__grid">
+      @for (f of finalists; track f.name) {
+        <div class="cc-voices__card">
+          <img [src]="f.avatar" [alt]="f.name" class="cc-voices__avatar" />
+          <div class="cc-voices__body">
+            <h3 class="cc-voices__name">{{ f.name }}</h3>
+            <p class="cc-voices__role">{{ f.role }}</p>
+            <p class="cc-voices__quote">{{ f.quote }}</p>
           </div>
         </div>
       }
     </div>
   </section>
 
-  <footer class="home__footer">
-    <img class="home__footer-logo" src="images/Capture-caribbean-Logo.png" alt="Capture Caribbean" />
-    <p>&copy; 2025&ndash;2026 Capture Caribbean LLC. All rights reserved.</p>
+  <!-- 11. ARTIST-IN-RESIDENCY (Figma Frame 2095585043: 673x552) -->
+  <section class="cc-residency">
+    <h2 class="cc-residency__title"><strong>Artist-in-</strong><span class="serif-italic">Residency Experience</span></h2>
+    <div class="cc-residency__card">
+      <img [src]="residencyArtist.avatar" [alt]="residencyArtist.name" class="cc-residency__avatar" />
+      <div class="cc-residency__body">
+        <h3 class="cc-residency__name">{{ residencyArtist.name }}</h3>
+        <p class="cc-residency__role">{{ residencyArtist.role }}</p>
+        <p class="cc-residency__quote">{{ residencyArtist.quote }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12+13: Instagram + Footer share the map background -->
+  <div class="cc-map-band cc-map-band--bottom">
+
+  <!-- 12. FOLLOW US ON INSTAGRAM (Figma Frame 128: 1514x656) -->
+  <section class="cc-instagram">
+    <div class="cc-instagram__header">
+      <h2 class="cc-instagram__title">Follow us on Instagram</h2>
+      <p class="cc-instagram__desc">Submit your photos on Instagram for a chance to win</p>
+    </div>
+
+    <div class="cc-instagram__bar">
+      <div class="cc-instagram__bar-left">
+        <img src="images/ig-avatar-cpc.png" alt="" class="cc-instagram__avatar" />
+        <span class="cc-instagram__handle">caribbean_photo_contest</span>
+      </div>
+      <a href="https://www.instagram.com/caribbean_photo_contest/" target="_blank" rel="noopener noreferrer" class="cc-instagram__follow">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+        </svg>
+        FOLLOW US
+      </a>
+    </div>
+
+    <hr class="cc-instagram__divider" />
+
+    <div class="cc-instagram__grid">
+      @for (post of instagramPosts; track $index) {
+        <a href="https://www.instagram.com/caribbean_photo_contest/" target="_blank" rel="noopener noreferrer" class="cc-instagram__tile">
+          <img [src]="post" alt="" />
+        </a>
+      }
+    </div>
+  </section>
+
+  <!-- 13. FOOTER -->
+  <footer class="cc-footer">
+    <img src="images/CPC-Logo-720x720.png" alt="Caribbean Photo Contest" class="cc-footer__logo" />
+    <p class="cc-footer__tagline">
+      Step into the thrill of a lifetime where sun, sea, and sweeping prizes await &mdash; it&rsquo;s time to Capture the Caribbean.
+    </p>
+    <div class="cc-footer__social">
+      <a href="https://x.com/caribbean_photo_contest" target="_blank" rel="noopener noreferrer" aria-label="X">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2H21l-6.52 7.452L22 22h-6.828l-4.78-6.268L4.8 22H2l7-8 L1.5 2h7l4.32 5.712L18.244 2Zm-1.2 18h1.8L7.06 4H5.184L17.044 20Z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/caribbean_photo_contest" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.3-1.5 1.6-1.5h1.7V4.6c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H7.6v3.1h2.8V22h3.1Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/caribbean_photo_contest/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm5.5-3.25a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5Z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@caribbean_photo_contest" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.6A3 3 0 0 0 1 7.2C.4 9 .4 12 .4 12s0 3 .6 4.8A3 3 0 0 0 3.1 19c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.2c.6-1.8.6-4.8.6-4.8s0-3-.6-4.8ZM9.8 15.5v-7l6 3.5-6 3.5Z"/></svg>
+      </a>
+    </div>
+    <p class="cc-footer__links">
+      <a routerLink="/info/terms-of-use">Terms of Use</a> |
+      <a routerLink="/info/privacy-policy">Privacy Policy</a> |
+      <a routerLink="/info/rules">Rules</a>
+    </p>
+    <p class="cc-footer__copy">© 2026 Capture Photo Contest</p>
   </footer>
+
+  </div>
+
 </div>

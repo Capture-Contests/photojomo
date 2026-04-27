@@ -1,0 +1,219 @@
+// Shared modal chrome for Terms of Use / Privacy Policy / Rules.
+// Adapted from photojomo-first-wave-wb/src/app/pages/info/rules/rules.scss.
+.legal-modal {
+  min-height: calc(100dvh + 1px);
+  padding: 12px;
+  background: rgba(8, 8, 8, 0.84);
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+
+  &__panel {
+    min-height: calc(100dvh - 24px);
+    max-width: 1180px;
+    margin: 0 auto;
+    background: #f6f4ef;
+    color: #222;
+    border-radius: 24px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  &__header {
+    padding: 1.25rem 1.5rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+  }
+
+  &__close {
+    position: fixed;
+    top: 1.25rem;
+    right: max(1rem, calc((100vw - 1180px) / 2 + 1rem));
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #5a5a5a;
+    z-index: 20;
+  }
+
+  // CPC logo in color (NOT greyscale like first-wave) — palm tree + Caribbean Photo Contest
+  &__logo {
+    width: min(150px, 32vw);
+    height: auto;
+  }
+
+  &__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+
+  &__tab {
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #494949;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 150ms ease, color 150ms ease;
+    &:hover { background: rgba(0, 0, 0, 0.10); }
+
+    &--active {
+      background: #2f2f2f;
+      color: #fff;
+      &:hover { background: #2f2f2f; }
+    }
+  }
+
+  &__body {
+    padding: 2rem 1.5rem 2.5rem;
+    max-width: 860px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__eyebrow {
+    margin: 0 0 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #7a7a7a;
+  }
+
+  &__title {
+    margin: 0 0 1rem;
+    font-family: var(--font-serif), 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #1f1f1f;
+  }
+
+  &__intro {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #454545;
+    margin-bottom: 1.5rem;
+  }
+
+  &__section {
+    margin-bottom: 1.6rem;
+
+    &--first { margin-top: 15px; }
+
+    h2 {
+      margin: 0 0 0.6rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2a2a2a;
+    }
+
+    h3 {
+      margin: 1rem 0 0.4rem;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    p { line-height: 1.7; color: #454545; margin: 0 0 0.75rem; }
+
+    ul, ol {
+      margin: 0 0 0.9rem;
+      padding-left: 1.4rem;
+      color: #454545;
+      line-height: 1.65;
+      li { margin-bottom: 0.25rem; }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.5rem 0 1rem;
+      font-size: 0.95rem;
+      th, td {
+        text-align: left;
+        padding: 0.5rem 0.75rem;
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        color: #454545;
+      }
+      th { font-weight: 600; color: #2a2a2a; }
+    }
+  }
+
+  &__meta {
+    margin: 0 0 0.35rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  &__meta--spaced {
+    margin-bottom: calc(0.35rem + 5px);
+  }
+
+  // All links inside the modal body render as active blue text-decoration links
+  // (excluding the tab nav and back-to-top button which have their own styling)
+  &__body a:not(.legal-modal__tab):not(.legal-modal__back-to-top) {
+    color: #2a3f8f;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 150ms ease;
+    &:hover { color: #d8a74d; }
+  }
+
+  &__notice {
+    background: rgba(216, 167, 77, 0.12);
+    border-left: 3px solid #d8a74d;
+    padding: 0.85rem 1rem;
+    margin: 0 0 1.25rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #3a3a3a;
+    border-radius: 4px;
+  }
+
+  &__actions {
+    position: fixed;
+    right: max(1rem, calc((100vw - 1180px) / 2 + 1.25rem));
+    bottom: 1.25rem;
+    z-index: 20;
+  }
+
+  &__back-to-top {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #8e8e8e;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.96);
+    color: #2c2c2c;
+    font: inherit;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+
+    &:hover {
+      background: #2f2f2f;
+      border-color: #2f2f2f;
+      color: #fff;
+      transform: translateY(-1px);
+    }
+  }
+}

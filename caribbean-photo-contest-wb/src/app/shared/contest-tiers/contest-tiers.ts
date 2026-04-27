@@ -2,7 +2,9 @@ import { Component, Input, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 export interface Tier {
-  name: string;
+  name: string;        // legacy combined string (kept so {tier: tier.name} query params still work)
+  tierLabel: string;   // "Tier 1"
+  variant: string;     // "Explorer"
   price: string;
   images: string;
   benefits: string[];
@@ -12,6 +14,8 @@ export interface Tier {
 export const TIERS: Tier[] = [
   {
     name: 'Tier 1 - Explorer',
+    tierLabel: 'Tier 1',
+    variant: 'Explorer',
     price: '$25',
     images: '1-5 images',
     benefits: ['Eligible for judging', 'Founding Class Member Badge'],
@@ -19,6 +23,8 @@ export const TIERS: Tier[] = [
   },
   {
     name: 'Tier 2 - Enthusiast',
+    tierLabel: 'Tier 2',
+    variant: 'Enthusiast',
     price: '$45',
     images: 'Up to 10 images',
     benefits: ['Eligible for judging', 'Founding Class Member Badge'],
@@ -26,6 +32,8 @@ export const TIERS: Tier[] = [
   },
   {
     name: 'Tier 3 - Visionary',
+    tierLabel: 'Tier 3',
+    variant: 'Visionary',
     price: '$65',
     images: 'Up to 15 images',
     benefits: ['Eligible for judging', 'Founding Class Member Badge'],
@@ -33,6 +41,8 @@ export const TIERS: Tier[] = [
   },
   {
     name: 'Tier 4 - Master',
+    tierLabel: 'Tier 4',
+    variant: 'Master',
     price: '$95',
     images: 'Up to 25 images',
     benefits: ['Eligible for judging', 'Founding Class Member Badge'],

@@ -1,25 +1,53 @@
-.contest-page__hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+// White schema for the General contest tier page, with hero-marigot background.
+
+.contest-page {
+  position: relative;
+  isolation: auto;
+  background:
+    linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 70%, #fff 100%),
+    url('/images/hero-marigot.jpg') center top / cover no-repeat;
+
+  &::before { display: none; }
+
+  &__hero {
+    min-height: 280px;
+  }
+
+  &__hero-content {
+    color: #1a1a1a;
+    padding: 2.5rem 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  // CPC color logo (square): palm trees + Caribbean Photo Contest text
+  &__logo {
+    width: min(140px, 36vw);
+    height: auto;
+    margin-bottom: 0.25rem;
+  }
 }
 
-.contest-page__logo {
-  width: min(173px, 43.2vw);
-  height: auto;
-  margin-bottom: 1.5rem;
+// Pull the tiers heading up close to the logo (::ng-deep penetrates the child component)
+:host ::ng-deep .tiers {
+  padding-top: 0 !important;
+  margin-top: -2.5rem;
+}
+:host ::ng-deep .tiers__heading {
+  margin-top: 0;
 }
 
 .disclaimer {
-  background: #000;
+  background: #fff;
   padding: 3rem 1.5rem 4rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 
   &__inner {
     max-width: 720px;
     margin: 0 auto;
     text-align: center;
-    color: rgba(255, 255, 255, 0.65);
+    color: #4a4a4a;
     font-size: 0.875rem;
     line-height: 1.8;
 
@@ -29,23 +57,50 @@
     }
 
     strong {
-      color: rgba(255, 255, 255, 0.85);
+      color: #1a1a1a;
       font-style: normal;
     }
+
+    em { font-style: italic; }
   }
 
+  // Smaller CPC logo in the footer
   &__logo {
     display: block;
     margin: 0 auto 2rem;
-    height: 48px;
+    width: 72px;
+    height: auto;
     object-fit: contain;
-    filter: brightness(0) invert(1);
+  }
+
+  &__link {
+    text-decoration: underline;
+    color: #1a1a1a;
+    font-weight: 600;
+    &:hover { color: #DEAD54; }
+
+    &--gold { color: #DEAD54; }
+  }
+
+  &__legal-links {
+    margin-top: 1.75rem;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #1d6f9c;
+    font-style: normal !important;
+
+    a {
+      color: #1d6f9c;
+      text-decoration: none;
+      font-weight: 500;
+      &:hover { text-decoration: underline; }
+    }
   }
 
   &__copyright {
-    margin-top: 1.5rem;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.35);
+    margin-top: 0.5rem;
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.45);
     font-style: normal !important;
   }
 }

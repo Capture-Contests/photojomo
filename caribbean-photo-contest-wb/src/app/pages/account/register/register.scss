@@ -1,20 +1,69 @@
+// White schema for the Caribbean Photo Contest registration page.
+// Mirrors the structure from photojomo-first-wave-wb but inverts the palette.
+
+$ink: #1a1a1a;
+$muted: #4a4a4a;
+$soft-text: #6b7280;
+$border: #e2e2e2;
+$soft-bg: #f7f9fb;
+$gold: #DEAD54;
+$gold-hover: #c8973e;
+$danger: #d83a3a;
+
 .reg-page {
-  background: #18191b;
+  background: #fff;
   min-height: 100vh;
-  padding: 3rem 2rem;
+  padding: 0 2rem 3rem;
+  color: $ink;
 
   @media (max-width: 640px) {
     padding-right: calc(2rem + 4px);
   }
 
+  // 70px hero band with a thin light-grey bottom border separating it from the page
+  &__hero {
+    height: 70px;
+    width: calc(100% + 4rem);
+    margin: 0 -2rem 0;
+    background: url('/images/hero-marigot.jpg') center 38% / cover no-repeat;
+    border-bottom: 1px solid $border;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.10), rgba(255,255,255,0.05));
+      pointer-events: none;
+    }
+  }
+
   &__header {
     text-align: center;
-    padding-bottom: 100px;
+    padding-bottom: 80px;
+    position: relative;
+  }
+
+  // Circular badge around the logo: white interior + thin grey stroke
+  &__logo-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 110px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 11px;
+    box-sizing: border-box;
+    margin-top: -45px;      // keeps the badge top overlap on the 70px hero strip
+    position: relative;
+    z-index: 2;
+    animation: regLogoEntry 900ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
 
   &__logo {
-    height: 48px;
-    width: auto;
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   &__inner {
@@ -27,6 +76,10 @@
 
     @media (max-width: 860px) {
       grid-template-columns: 1fr;
+
+      // Promote the Order Summary above the form on mobile
+      .order-summary { order: -1; position: static; margin-top: -40px; margin-bottom: 0.5rem; }
+      .reg-form      { order: 0; }
     }
 
     @media (max-width: 640px) {
@@ -44,27 +97,31 @@
 }
 
 .reg-section {
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid $border;
   padding: 2rem 0;
 
   &:first-child { padding-top: 0; }
 
   &__title {
     font-family: var(--font-primary);
-    font-weight: 400;
+    font-weight: 600;
     font-size: 1rem;
-    color: #fff;
+    color: $ink;
     margin: 0 0 0.25rem;
   }
 
   &__sub {
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.4);
+    color: $soft-text;
     margin: 0 0 1.5rem;
   }
 
   &--with-total {
     padding-bottom: 0.9rem;
+  }
+
+  &--privacy-rules .reg-section__title {
+    margin-bottom: 1rem;
   }
 }
 
@@ -84,29 +141,32 @@
   label {
     font-size: 0.8rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.65);
+    color: $muted;
   }
 
   input, select {
     padding: 0.65rem 0.85rem;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.15);
+    background: #fff;
+    border: 1px solid $border;
     border-radius: 4px;
     font-family: var(--font-primary);
     font-size: 0.9rem;
-    color: #fff;
-    transition: border-color 0.15s;
+    color: $ink;
+    transition: border-color 0.15s, box-shadow 0.15s;
+
+    &::placeholder { color: $soft-text; }
 
     &:focus {
       outline: none;
-      border-color: var(--color-gold);
+      border-color: $ink;
+      box-shadow: 0 0 0 3px rgba(26,26,26,0.08);
     }
 
-    option { background: #2a2b2d; color: #fff; }
+    option { background: #fff; color: $ink; }
   }
 }
 
-.req { color: #e53e3e; }
+.req { color: $danger; }
 
 // UPLOAD GRID
 .upload-grid {
@@ -122,7 +182,7 @@
 
   &__label {
     font-size: 0.78rem;
-    color: rgba(255,255,255,0.65);
+    color: $muted;
     margin: 0;
     font-weight: 500;
   }
@@ -131,21 +191,21 @@
     display: inline-flex;
     align-items: center;
     padding: 0.45rem 0.85rem;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: #fff;
+    border: 1px solid $border;
     border-radius: 3px;
     font-size: 0.8rem;
-    color: #fff;
+    color: $ink;
     cursor: pointer;
-    transition: background 0.15s;
+    transition: background 0.15s, border-color 0.15s;
     width: fit-content;
 
-    &:hover { background: rgba(255,255,255,0.18); }
+    &:hover { background: $soft-bg; border-color: rgb(180,180,180); }
   }
 
   &__none {
     font-size: 0.75rem;
-    color: rgba(255,255,255,0.35);
+    color: $soft-text;
   }
 
   &__preview {
@@ -153,25 +213,25 @@
     max-height: 120px;
     object-fit: cover;
     border-radius: 4px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid $border;
   }
 
   &__remove {
     background: none;
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid $border;
     border-radius: 3px;
-    color: rgba(255,255,255,0.6);
+    color: $muted;
     font-size: 0.75rem;
     padding: 0.25rem 0.65rem;
     cursor: pointer;
     width: fit-content;
 
-    &:hover { color: #e53e3e; border-color: #e53e3e; }
+    &:hover { color: $danger; border-color: $danger; }
   }
 
   &__hint {
     font-size: 0.7rem;
-    color: rgba(255,255,255,0.25);
+    color: $soft-text;
     margin: 0;
     line-height: 1.4;
   }
@@ -190,18 +250,20 @@
   gap: 0.75rem;
   cursor: pointer;
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.75);
+  color: $muted;
   line-height: 1.5;
 
   input {
     margin-top: 3px;
     flex-shrink: 0;
-    accent-color: var(--color-gold);
+    accent-color: $ink;
   }
 
   a {
-    color: var(--color-gold);
+    color: $ink;
     text-decoration: underline;
+    font-weight: 600;
+    &:hover { color: $gold; }
   }
 }
 
@@ -215,17 +277,17 @@
   align-items: center;
   margin-top: 0.65rem;
   padding-top: 0.35rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid $border;
 
   &__label {
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.55);
+    color: $muted;
   }
 
   &__price {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #fff;
+    color: $ink;
   }
 }
 
@@ -243,30 +305,29 @@
   span {
     display: block;
     padding: 0.55rem 1.5rem;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid $border;
     border-radius: 4px;
     font-size: 0.85rem;
-    color: rgba(255,255,255,0.65);
+    color: $muted;
+    background: #fff;
     transition: all 0.15s;
   }
 
   &--active span {
-    border-color: var(--color-gold);
-    color: var(--color-gold);
-    background: rgba(216,167,77,0.1);
+    border-color: $ink;
+    color: $ink;
+    background: $soft-bg;
   }
 }
 
 .card-fields {
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid $border;
   border-radius: 6px;
   padding: 1.25rem;
-  background: rgba(255,255,255,0.03);
+  background: #fff;
 }
 
-.card-fields--hidden {
-  display: none;
-}
+.card-fields--hidden { display: none; }
 
 .paypal-section {
   &--hidden { display: none; }
@@ -274,7 +335,7 @@
 
 .stripe-loading {
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.45);
+  color: $soft-text;
   text-align: center;
   padding: 1.5rem 0;
   margin: 0;
@@ -294,9 +355,9 @@
 
 .reg-submit {
   width: 100%;
-  background: var(--color-gold);
+  background: $ink;
   color: #fff;
-  border: none;
+  border: 1px solid $ink;
   padding: 1rem;
   font-family: var(--font-primary);
   font-size: 1rem;
@@ -305,16 +366,19 @@
   text-transform: uppercase;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 
-  &:hover:not(:disabled) { background: var(--color-gold-hover); }
+  &:hover:not(:disabled) {
+    background: #fff;
+    color: $ink;
+  }
   &:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 
 // ORDER SUMMARY SIDEBAR
 .order-summary {
-  background: #111213;
-  border: 1px solid rgba(255,255,255,0.08);
+  background: $soft-bg;
+  border: 1px solid $border;
   border-radius: 8px;
   padding: 1.75rem 1.5rem 1.1rem;
   position: sticky;
@@ -327,27 +391,28 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: rgba(255,255,255,0.4);
+    color: $muted;
     margin: 0 0 1.25rem;
   }
 
   &__division {
-    font-size: 0.95rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    color: #fff;
-    margin: 0 0 0.2rem;
+    color: $ink;
+    line-height: 1.2;
+    margin: 0 0 0.4rem;
   }
 
   &__tier {
     font-size: 0.88rem;
-    color: var(--color-gold);
+    color: $gold;
     margin: 0 0 0.2rem;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   &__images {
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.45);
+    color: $muted;
     margin: 0 0 1.25rem;
   }
 
@@ -361,7 +426,7 @@
 
       li {
         font-size: 0.82rem;
-        color: rgba(255,255,255,0.6);
+        color: $muted;
         padding: 0.3rem 0 0.3rem 1.2rem;
         position: relative;
         line-height: 1.4;
@@ -370,7 +435,7 @@
           content: '✓';
           position: absolute;
           left: 0;
-          color: var(--color-gold);
+          color: $gold;
           font-size: 0.75rem;
         }
       }
@@ -378,14 +443,14 @@
   }
 
   &__golden {
-    color: var(--color-gold) !important;
+    color: $gold !important;
     font-weight: 600;
 
     &::before { content: '' !important; }
   }
 
   &__divider {
-    border-top: 1px solid rgba(255,255,255,0.1);
+    border-top: 1px solid $border;
     margin: 0.5rem 0 1rem;
   }
 
@@ -396,13 +461,13 @@
 
     span:first-child {
       font-size: 0.82rem;
-      color: rgba(255,255,255,0.5);
+      color: $muted;
     }
 
     span:last-child {
       font-size: 1.6rem;
       font-weight: 700;
-      color: #fff;
+      color: $ink;
     }
   }
 }
@@ -412,7 +477,7 @@
   max-width: 860px;
   margin: 5rem auto 0;
   padding: 3rem 2rem;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid $border;
   text-align: center;
 
   @media (max-width: 640px) {
@@ -420,23 +485,43 @@
   }
 
   &__logo {
-    height: 36px;
-    width: auto;
+    width: 64px;
+    height: auto;
     margin-bottom: 2rem;
-    opacity: 0.75;
   }
 
   p {
     font-size: 0.78rem;
-    color: rgba(255,255,255,0.35);
+    color: $muted;
     line-height: 1.7;
     margin: 0 0 0.75rem;
   }
 
+  a {
+    color: $ink;
+    text-decoration: underline;
+    font-weight: 600;
+    &:hover { color: $gold; }
+  }
+
+  &__legal-links {
+    margin-top: 1.75rem;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #1d6f9c;
+
+    a {
+      color: #1d6f9c;
+      text-decoration: none;
+      font-weight: 500;
+      &:hover { text-decoration: underline; }
+    }
+  }
+
   &__copy {
-    margin-top: 1.5rem;
-    font-size: 0.75rem;
-    color: rgba(255,255,255,0.25) !important;
+    margin-top: 0.5rem;
+    font-size: 11px;
+    color: $soft-text !important;
   }
 }
 
@@ -444,7 +529,7 @@
 .reg-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -453,18 +538,19 @@
 }
 
 .reg-modal {
-  background: #1e1f22;
-  border: 1px solid rgba(255,255,255,0.12);
+  background: #fff;
+  border: 1px solid $border;
   border-radius: 10px;
   padding: 2.5rem 2rem;
   max-width: 440px;
   width: 100%;
   text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
 
   &__icon {
     width: 52px;
     height: 52px;
-    background: #e53e3e;
+    background: $danger;
     color: #fff;
     border-radius: 50%;
     font-size: 1.5rem;
@@ -479,61 +565,107 @@
     font-family: var(--font-primary);
     font-size: 1.1rem;
     font-weight: 600;
-    color: #fff;
+    color: $ink;
     margin: 0 0 0.75rem;
   }
 
   &__message {
     font-size: 0.9rem;
-    color: rgba(255,255,255,0.65);
+    color: $muted;
     line-height: 1.6;
     margin: 0 0 1.75rem;
   }
 
   &__btn {
-    background: var(--color-gold);
+    background: $ink;
     color: #fff;
-    border: none;
+    border: 1px solid $ink;
     padding: 0.7rem 2rem;
     border-radius: 4px;
     font-family: var(--font-primary);
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
 
-    &:hover { background: var(--color-gold-hover); }
+    &:hover { background: #fff; color: $ink; }
   }
 }
 
 // SUCCESS STATE
 .reg-success-page {
-  background: #000;
+  background: #fff;
   min-height: 100vh;
+  padding: 0 2rem 2rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
 
   @media (max-width: 640px) {
     padding-right: calc(2rem + 4px);
+  }
+
+  // 70px hero strip identical to the register form's hero
+  &__hero {
+    height: 70px;
+    width: calc(100% + 4rem);
+    margin: 0 -2rem 0;
+    background: url('/images/hero-marigot.jpg') center 38% / cover no-repeat;
+    border-bottom: 1px solid $border;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.10), rgba(255,255,255,0.05));
+      pointer-events: none;
+    }
+  }
+
+  &__header {
+    text-align: center;
+    padding-bottom: 2rem;
+    width: 100%;
+  }
+
+  &__logo-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 110px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 11px;
+    box-sizing: border-box;
+    margin-top: -45px;
+    position: relative;
+    z-index: 2;
+    animation: regLogoEntry 900ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  &__logo {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 }
 
 .reg-success {
   max-width: 520px;
-  margin: 5rem auto;
+  margin: 1rem auto 5rem;
   text-align: center;
   padding: 3rem 2rem;
-  background: #000;
-  border: 1px solid rgba(255,255,255,0.1);
+  background: #fff;
+  border: 1px solid $border;
   border-radius: 12px;
-  color: #fff;
+  color: $ink;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
 
   &__icon {
     width: 64px;
     height: 64px;
-    background: var(--color-gold);
+    background: $gold;
     color: #fff;
     border-radius: 50%;
     font-size: 1.75rem;
@@ -543,11 +675,11 @@
     margin: 0 auto 1.5rem;
   }
 
-  h2 { font-size: 1.75rem; margin: 0 0 1rem; }
+  h2 { font-size: 1.75rem; margin: 0 0 1rem; color: $ink; }
 
   p {
     font-size: 0.95rem;
-    color: rgba(255,255,255,0.6);
+    color: $muted;
     margin-bottom: 0.75rem;
     line-height: 1.7;
   }
@@ -555,22 +687,35 @@
   &__btn {
     display: inline-block;
     margin-top: 1rem;
-    background: var(--color-gold);
+    background: $ink;
     color: #fff;
+    border: 1px solid $ink;
     padding: 0.75rem 2rem;
     border-radius: 6px;
     font-weight: 700;
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
 
-    &:hover { background: var(--color-gold-hover); }
+    &:hover { background: #fff; color: $ink; }
   }
 }
 
 .reg-error {
-  color: #e53e3e;
+  color: $danger;
   font-size: 0.85rem;
   margin: 1rem 0 0;
+}
+
+// Subtle fade + bounce entry animation for the hanging logo
+@keyframes regLogoEntry {
+  0%   { opacity: 0; transform: translateY(-14px) scale(0.94); }
+  60%  { opacity: 1; transform: translateY(3px)   scale(1.02); }
+  80%  {              transform: translateY(-1px) scale(1);    }
+  100% { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reg-page__logo-wrap { animation: none; }
 }

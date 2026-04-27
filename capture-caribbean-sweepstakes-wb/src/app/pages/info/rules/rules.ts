@@ -1,15 +1,44 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-rules',
+  standalone: true,
   imports: [RouterLink],
-  template: `
-    <div style="max-width:800px;margin:4rem auto;padding:0 2rem;font-family:'Sora',sans-serif;">
-      <h1 style="margin-bottom:1.5rem;">Sweepstakes Official Rules</h1>
-      <p><a routerLink="/" style="color:#df5e26;">← Back to Sweepstakes</a></p>
-      <p style="margin-top:2rem;color:#505050;">Official rules content coming soon.</p>
-    </div>
-  `,
+  templateUrl: './rules.html',
+  styleUrls: ['../legal-modal.css'],
 })
-export class Rules {}
+export class Rules implements OnInit {
+  private readonly router = inject(Router);
+  readonly returnState = this.resolveReturnState();
+
+  ngOnInit() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }
+
+  close() {
+    if (this.returnState.returnUrl) {
+      this.router.navigateByUrl(this.returnState.returnUrl, { replaceUrl: true }).then(() => {
+        requestAnimationFrame(() => window.scrollTo({ top: this.returnState.returnScrollY, left: 0, behavior: 'auto' }));
+      });
+      return;
+    }
+    this.router.navigateByUrl('/', { replaceUrl: true });
+  }
+
+  private resolveReturnState() {
+    const state = history.state as { returnUrl?: string; returnScrollY?: number } | null;
+    const saved = sessionStorage.getItem('legalModalReturnState');
+    const parsed = saved ? JSON.parse(saved) as { returnUrl?: string; returnScrollY?: number } : null;
+    const returnState = {
+      returnUrl: state?.returnUrl ?? parsed?.returnUrl ?? '/',
+      returnScrollY: state?.returnScrollY ?? parsed?.returnScrollY ?? 0,
+    };
+    sessionStorage.setItem('legalModalReturnState', JSON.stringify(returnState));
+    return returnState;
+  }
+}

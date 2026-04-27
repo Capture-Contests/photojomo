@@ -1,258 +1,1375 @@
-.home {
-  background: #18191b;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  color: #fff;
+// ─────────────────────────────────────────────────────────────────────────────
+// Caribbean Photo Contest — Home
+// Figma: https://www.figma.com/proto/h4mAS5eUve8cEnCgp1QZzR/Capture-Caribbean-MAIN
+// ─────────────────────────────────────────────────────────────────────────────
+
+$max: 1360px;
+$ink: #1a1a1a;
+$muted: #4a4a4a;
+$blue: #2a3f8f;
+$soft: #f6f8fa;
+
+:host { display: block; background: #fff; }
+
+.cc-home {
+  width: 100%;
+  color: $ink;
+  font-family: var(--font-primary);
+  overflow-x: hidden;
 }
 
-.home__header {
-  text-align: center;
-  padding: 3.5rem 2rem 2rem;
-  background: url('/images/mountain.jpg') center/cover no-repeat;
-  position: relative;
-  isolation: isolate;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(58, 38, 6, 0.72) 0%,
-      rgba(10, 8, 5, 0.96) 100%
-    );
-    z-index: 0;
-  }
-
-  > * { position: relative; z-index: 1; }
-}
-
-.home__logo {
-  height: 52px;
-  width: auto;
-  margin-bottom: 1.25rem;
-}
-
-.home__title {
+.serif-italic {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--color-gold-italic);
-  margin: 0 0 0.75rem;
 }
 
-.home__subtitle {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.65);
-  margin: 0;
-}
+// ─── 1. HERO ─────────────────────────────────────────────────────────────────
+// Figma: 1920x1046 frame. All positions preserved via vw scale (100vw = 1920 design px).
+// Design px → vw conversion: N_px / 1920 * 100 = N vw
+.cc-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1920 / 1116;
+  max-height: none;
+  overflow: hidden;
+  background: #fff;
+  color: #fff;
+  font-family: 'Sora', var(--font-primary);
 
-// ─── CONTEST CARDS ────────────────────────────────────────────────────────────
-.contests {
-  padding: 5rem 2rem;
-  background: #18191b;
+  // Image: positioned at (-14, -1), 1946x940 in 1920x1046
+  &__bg {
+    position: absolute;
+    left: calc(-14 / 1920 * 100%);
+    top: calc(-91 / 1046 * 100%);
+    width: calc(1946 / 1920 * 100%);
+    height: calc(970 / 1046 * 100%);
+    object-fit: cover;
+    z-index: 0;
+    user-select: none;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,0) 100%);
+  }
 
-  &__heading {
-    font-family: var(--font-primary);
-    font-weight: 400;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    color: #fff;
-    text-align: center;
-    margin: 0 0 3rem;
+  &__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 40%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 60%, rgba(0,0,0,0) 100%),
+      linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 25%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0) 65%),
+      linear-gradient(to bottom, rgba(255,255,255,0) 70%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+  }
 
-    i {
-      font-family: var(--font-serif);
-      font-style: italic;
-      color: var(--color-gold-italic);
+  // Navbar: top=52, left=108, height=56, right=108 (1920-108-1706=106 ~ 108)
+  &__nav {
+    position: absolute;
+    top: calc(52 / 1046 * 100%);
+    left: calc(108 / 1920 * 100%);
+    right: calc(108 / 1920 * 100%);
+    height: calc(56 / 1046 * 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 3;
+  }
+
+  &__nav-logo {
+    display: inline-flex;
+    align-items: center;
+    img {
+      height: calc(56 / 1046 * 100vh);
+      max-height: 56px;
+      width: auto;
     }
   }
 
-  &__heading-accent {
-    font-size: 1.2em;
+  &__nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.75vw;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    a {
+      font-family: 'Sora', sans-serif;
+      font-weight: 400;
+      font-size: clamp(14px, calc(20 / 1920 * 100vw), 20px);
+      line-height: 25px;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45em;
+      transition: opacity 150ms ease;
+      &:hover { opacity: 0.75; }
+
+      span { font-size: 0.75em; }
+    }
+  }
+
+  // Logo badge: 200x200 (source PNG is 1:1), centered. Brought up 30px from Figma y=194.
+  &__badge {
+    position: absolute;
+    top: calc(164 / 1046 * 100%);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(220 / 1920 * 100%);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    z-index: 2;
+    filter: brightness(0) invert(1);
+  }
+
+  // Shape the legacy: y=404, Sora 26px, uppercase, letterSpacing=1.56, lineHeight=26
+  &__eyebrow {
+    position: absolute;
+    top: calc(434 / 1046 * 100%);
+    left: 0; right: 0;
+    text-align: center;
+    margin: 0;
+    z-index: 2;
+
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: clamp(16px, calc(26 / 1920 * 100vw), 26px);
+    line-height: 26px;
+    letter-spacing: 1.56px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  // Title: y=459 (pushed down 10px from Figma 449), w=1185 (centered), Calvino 70px italic, lh=84
+  &__title {
+    position: absolute;
+    top: calc(469 / 1046 * 100%);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(1185 / 1920 * 100%);
+    margin: 0;
+    text-align: center;
+    z-index: 2;
+
+    font-family: var(--font-serif), 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(32px, calc(70 / 1920 * 100vw), 70px);
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: #fff;
+  }
+
+  // Carousel nav: y=573, x=759, w=274, h=45
+  &__carousel-nav {
+    position: absolute;
+    top: calc(573 / 1046 * 100%);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(274 / 1920 * 100%);
+    min-width: 220px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+  }
+
+  &__arrow {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    transition: background 150ms ease;
+    &:hover { background: rgba(255,255,255,0.28); }
+  }
+
+  &__dashes {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    span {
+      width: 35px;
+      height: 3px;
+      background: rgba(255,255,255,0.45);
+      transition: background 150ms ease;
+      &.is-active { background: #fff; }
+    }
+  }
+
+  // Button: y=707, x=779, w=219, h=52. PP Neue Montreal 500 16px black
+  &__cta {
+    position: absolute;
+    top: calc(707 / 1046 * 100%);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(219 / 1920 * 100%);
+    min-width: 210px;
+    height: 52px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #000;
+    border-radius: 999px;
+    font-family: 'Inter', 'PP Neue Montreal', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0;
+    z-index: 2;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+    &:hover {
+      transform: translateX(-50%) translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+  }
+
+  // Mobile (≤768px) — stacked layout, all content fits viewport
+  @media (max-width: 768px) {
+    aspect-ratio: auto;
+    min-height: auto;
+    height: 100svh;        // small viewport height — accounts for browser chrome
+    max-height: 760px;
+    padding: 0 20px 80px;  // bottom padding shifts the flex-centered content up ~40px
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    // Image fills the entire hero; mask fades the bottom into transparency so the edge is hidden
+    &__bg {
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0) 88%);
+              mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0) 88%);
+    }
+
+    // Linear top→middle dark band (replaces radial spotlight) + bottom-to-white wash
+    &__scrim {
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.40) 25%, rgba(0,0,0,0.20) 50%, rgba(0,0,0,0) 70%),
+        linear-gradient(to bottom, rgba(255,255,255,0) 60%, rgba(255,255,255,0.7) 80%, #fff 92%);
+    }
+
+    &__badge, &__eyebrow, &__title {
+      position: static;
+      transform: none;
+      margin: 0 auto;
+      width: auto;
+    }
+
+    &__badge {
+      width: clamp(110px, 32vw, 150px);
+      filter: brightness(0) invert(1);
+      margin: 0 auto 14px;
+      display: block;
+    }
+
+    &__eyebrow {
+      font-size: clamp(13px, 3.6vw, 16px);
+      letter-spacing: 1.2px;
+      margin: 0 0 14px;
+    }
+
+    &__title {
+      width: 100%;
+      max-width: 90vw;
+      font-size: clamp(28px, 7.5vw, 36px);
+      line-height: 1.15;
+      margin: 0;
+    }
+  }
+}
+
+// ─── 2. PARTNERSHIP BRIDGE ───────────────────────────────────────────────────
+// Figma: "Presented in Partnership" Calvino Grande Trial 300 / 25px / italic / #122175
+// Combined image (Bay Gardens + divider + 30-Year badge) 352x104
+.cc-partnership {
+  text-align: center;
+  padding: 0 2rem 3rem;
+  margin-top: -70px;
+  background: #fff;
+  position: relative;
+  z-index: 3;
+
+  &__eyebrow {
+    font-family: var(--font-serif), 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #122175;
+    font-size: clamp(20px, calc(25 / 1920 * 100vw), 28px);
+    line-height: 31.3px;
+    margin: 0 0 1.5rem;
+  }
+
+  &__image {
+    width: calc(352 / 1920 * 100%);
+    min-width: 280px;
+    max-width: 420px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+// ─── 3 & 9. CHOOSE YOUR CATEGORY ─────────────────────────────────────────────
+.cc-categories {
+  width: 100%;
+  padding: 2.75rem 2rem 5rem;
+  text-align: center;
+  background: #fff;
+
+  // The repeat copy (closer to bottom) starts white at top, fades into light blue,
+  // which then continues solid through the Voices section that follows.
+  &--repeat {
+    background: linear-gradient(to bottom, #ffffff 0%, #fbfdfe 100%);
+  }
+
+  &__title {
+    font-size: clamp(1.375rem, 2.8vw, 1.875rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0 0 1.25rem;
+    color: $ink;
+  }
+
+  &__desc {
+    max-width: 720px;
+    margin: 0 auto 3rem;
+    color: $muted;
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.25rem;
-    max-width: var(--max-width);
+    max-width: $max;
     margin: 0 auto;
-
-    @media (max-width: 900px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @media (max-width: 560px) {
-      grid-template-columns: 1fr;
-    }
+    @media (max-width: 1100px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 640px)  { grid-template-columns: 1fr; }
   }
 }
 
-.contest-card {
-  background: #111213;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+// Figma card spec: 379x564, bg #fff, stroke rgb(226,226,226) 1px, radius 12
+// Image inset 7px on all sides with radius 10 → creates white bezel
+// Button: Open Sauce 500 18.6px, color #DEAD54 (gold); hover uses same gold accent
+$gold: #DEAD54;
+$gold-hover: #c8973e;
+
+.cc-card {
+  background: #fff;
+  border: 1px solid rgb(226,226,226);
   border-radius: 12px;
   overflow: hidden;
+  text-align: left;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 
   &:hover {
-    border-color: rgba(216, 167, 77, 0.35);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    border-color: rgb(200,200,200);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
   }
 
   &__media {
-    position: relative;
+    aspect-ratio: 365 / 269;
+    overflow: hidden;
+    padding: 7px 7px 0;
+    background: #fff;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+    }
   }
 
-  &__img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-  }
+  &__body { padding: 21px 16px 10px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.85) 100%);
+  &__head {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
-    padding: 1rem 1.1rem;
-    gap: 0.5rem;
+    gap: 1rem;
   }
 
   &__title {
-    font-family: var(--font-serif);
+    font-family: var(--font-serif), 'Instrument Serif', serif;
     font-style: italic;
     font-weight: 400;
-    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
-    color: #fff;
+    font-size: 24px;
+    line-height: 1.1;
+    color: #000;
     margin: 0;
-    line-height: 1.15;
   }
 
-  &__award {
-    text-align: right;
-    flex-shrink: 0;
-  }
-
+  &__award { text-align: right; line-height: 1.1; }
   &__award-amount {
     display: block;
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1;
+    font-family: 'Open Sauce One', var(--font-primary);
+    font-size: 26px;
+    font-weight: 600;
+    color: #000;
   }
-
   &__award-label {
     display: block;
-    font-size: 0.68rem;
-    color: rgba(255, 255, 255, 0.65);
-    letter-spacing: 0.5px;
-  }
-
-  &__body {
-    padding: 1.1rem 1.25rem 1.4rem;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #000;
+    white-space: nowrap;
   }
 
   &__desc {
-    font-size: 0.82rem;
-    color: rgba(255, 255, 255, 0.45);
-    line-height: 1.65;
-    text-align: center;
-    flex: 1;
-    margin: 0 0 1.1rem;
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgb(38,38,38);
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   &__pricing {
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
-    margin-bottom: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 0.9rem;
+    align-items: baseline;
+    font-family: 'Sora', sans-serif;
+    font-size: 17px;
+    color: rgb(134,134,134);
   }
-
-  &__price-label {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  &__price-value {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1;
-  }
-
-  &__enter {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 0.75rem 1rem;
-    background: #000;
-    color: #fff;
-    font-family: var(--font-primary);
+  &__price {
+    color: rgb(62,62,62);
     font-weight: 600;
-    font-size: 0.88rem;
-    letter-spacing: 0.5px;
-    border-radius: 6px;
-    text-decoration: none;
-    transition: background 0.2s;
-    box-sizing: border-box;
+    font-size: 20px;
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #fff;
+    color: #000;
+    font-family: 'Open Sauce One', var(--font-primary);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.4;
+    transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+
+    span { transition: transform 180ms ease; color: #000; }
 
     &:hover {
-      background: #1a1a1a;
+      background: #000;
+      border-color: #000;
+      color: #fff;
+      span { color: #fff; transform: translateX(3px); }
     }
   }
 
   &__tier {
-    display: block;
-    text-align: center;
-    font-size: 0.72rem;
-    color: rgba(216, 167, 77, 0.6);
-    margin-top: 0.6rem;
+    font-family: 'Sora', sans-serif;
+    font-size: 10.5px;
+    color: rgb(38,38,38);
+    &--info {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 10.5px;
+      white-space: nowrap;
+    }
   }
 
-  &__tier--info {
-    font-style: italic;
-  }
-
-  &__tier-highlight {
-    font-weight: 700;
-    color: var(--color-gold-italic);
+  &__ticket {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
   }
 }
 
-// ─── FOOTER ───────────────────────────────────────────────────────────────────
-.home__footer {
-  margin-top: auto;
-  padding: 2.5rem 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+// ─── 4. EXPERIENCE TRUE PARADISE ─────────────────────────────────────────────
+.cc-paradise {
+  width: 100%;
+  padding: 4rem 2rem 5rem;
   text-align: center;
-  background: #18191b;
+  background: transparent;
 
-  p {
-    font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.25);
+  &__title {
+    font-size: clamp(1.375rem, 2.8vw, 1.875rem);
+    font-weight: 400;
+    margin: 0 0 1rem;
+    color: $ink;
+
+    strong { font-weight: 600; margin-right: 0.35em; font-size: calc(1em + 2px); }
+
+    .serif-italic {
+      font-size: 1.5em;
+      line-height: 1;
+    }
+  }
+
+  &__desc {
+    color: $muted;
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+  }
+
+  // Width matched to the Photo Contest stage's right-most image (dancers at 93.8% of 1917)
+  // At viewport >=1917, centered 1680 video right edge aligns with dancers right edge.
+  &__video {
+    position: relative;
+    overflow: hidden;
+    max-width: 1321px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  }
+}
+
+// ─── 5. THE CARIBBEAN PHOTO CONTEST ──────────────────────────────────────────
+// Figma Frame 78: 1917x885 with 4 decorative images absolutely positioned around
+// centered title block. Positions scaled as percentages of 1917x885 design.
+// Shared map backdrop spanning Experience + Caribbean Photo Contest sections
+.cc-map-band {
+  width: 100%;
+  background: #fff url('/images/map-bg-edit.png') center/70% auto no-repeat;
+
+  // Bottom variant: spans Instagram + Footer.
+  // Layered backgrounds (front→back):
+  //   1. Top white→transparent fade: softens top of the map
+  //   2. Bottom transparent→light-blue fade: ONLY masks this instance of the map
+  //   3. Map graphic (cover, shifted to a different focal area than the upper band)
+  //   4. Base white→light-blue gradient under everything
+  &--bottom {
+    background:
+      linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0) 18%) top/100% 100% no-repeat,
+      linear-gradient(to bottom, rgba(241,247,252,0) 55%, rgba(241,247,252,0.85) 80%, #f1f7fc 100%) bottom/100% 100% no-repeat,
+      url('/images/map-bg-edit.png') center 25% / cover no-repeat,
+      linear-gradient(to bottom, #ffffff 0%, #ffffff 25%, #fbfdfe 55%, #f1f7fc 100%);
+  }
+}
+
+.cc-contest-intro {
+  width: 100%;
+  padding: 3rem 0;
+  background: transparent;
+
+  &__stage {
+    position: relative;
+    width: 100%;
+    max-width: 1917px;
+    margin: 0 auto;
+    aspect-ratio: 1917 / 885;
+  }
+
+  // Title block (Frame 81): 912x155 @ 503,160 — centered
+  &__center {
+    position: absolute;
+    top: calc(160 / 885 * 100%);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(912 / 1917 * 100%);
+    text-align: center;
+    z-index: 2;
+  }
+
+  // Matches "Experience True Paradise" style — bold lead + larger italic serif accent
+  &__title {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.375rem, 2.8vw, 1.875rem);
+    line-height: 1.2;
+    color: rgb(45, 49, 52);
+    margin: 0 0 0.75rem;
+
+    strong { font-weight: 600; margin-right: 0.35em; font-size: calc(1em + 2px); }
+    .serif-italic { font-size: 1.5em; line-height: 1; }
+  }
+
+  // Body: Sora 300 18px, rgb(38,38,38)
+  &__desc {
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    font-size: clamp(14px, calc(18 / 1920 * 100vw), 18px);
+    line-height: 1.5;
+    color: rgb(38, 38, 38);
+    max-width: calc(713 / 912 * 100%);
+    margin: 0 auto;
+  }
+
+  // 4 decorative images — positions taken directly from Figma
+  &__deco {
+    position: absolute;
+    object-fit: cover;
+    display: block;
+    z-index: 1;
+    border-radius: 7px;
+
+    // Frame 355: 240x266 @ 129,104 (top-left, woman with tray)
+    &--tray {
+      left: calc(129 / 1917 * 100%);
+      top: calc(104 / 885 * 100%);
+      width: calc(240 / 1917 * 100%);
+      height: calc(266 / 885 * 100%);
+    }
+
+    // Frame 353: 250x235 @ 1548,212 (top-right, dancers)
+    &--dancers {
+      left: calc(1548 / 1917 * 100%);
+      top: calc(212 / 885 * 100%);
+      width: calc(250 / 1917 * 100%);
+      height: calc(235 / 885 * 100%);
+    }
+
+    // Frame 354: 327x219 @ 504,457 (bottom-left, musicians)
+    &--musicians {
+      left: calc(504 / 1917 * 100%);
+      top: calc(457 / 885 * 100%);
+      width: calc(327 / 1917 * 100%);
+      height: calc(219 / 885 * 100%);
+    }
+
+    // Frame 2095585324: 345x225 @ 1050,512 (bottom-right, clarinet)
+    &--clarinet {
+      left: calc(1050 / 1917 * 100%);
+      top: calc(512 / 885 * 100%);
+      width: calc(345 / 1917 * 100%);
+      height: calc(225 / 885 * 100%);
+    }
+  }
+
+  // Mobile (≤900px): keep desktop's scattered arrangement at reduced size,
+  // but lift the title block above the cluster of images.
+  @media (max-width: 900px) {
+    padding: 1.25rem 1rem 1.5rem;
+
+    &__stage {
+      aspect-ratio: 1917 / 885;  // preserves desktop deco percentage anchors
+    }
+
+    // Title sits ABOVE the stage on mobile (bottom:100% pulls it out of the stage frame).
+    &__center {
+      top: auto;
+      bottom: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 92vw;
+      padding: 0 0.5rem;
+    }
+
+    // Make room above the stage for the lifted title block (~140px reserved).
+    &__stage {
+      margin-top: 140px;
+    }
+
+    // Decoratives keep desktop positioning anchors but scaled up ~40% on mobile.
+    &__deco {
+      &--tray {
+        width: calc(240 / 1917 * 100% * 1.4);
+        height: calc(266 / 885 * 100% * 1.4);
+      }
+      &--dancers {
+        width: calc(250 / 1917 * 100% * 1.4);
+        height: calc(235 / 885 * 100% * 1.4);
+      }
+      &--musicians {
+        width: calc(327 / 1917 * 100% * 1.4);
+        height: calc(219 / 885 * 100% * 1.4);
+      }
+      &--clarinet {
+        width: calc(345 / 1917 * 100% * 1.4);
+        height: calc(225 / 885 * 100% * 1.4);
+      }
+    }
+
+    &__title {
+      font-size: clamp(20px, 5.4vw, 26px);
+      line-height: 1.2;
+      strong { font-size: calc(1em + 1px); }
+      .serif-italic { font-size: 1.4em; }
+    }
+
+    &__desc {
+      font-size: clamp(13px, 3.6vw, 15px);
+      line-height: 1.45;
+    }
+  }
+}
+
+// ─── 6. LEGACY SPONSOR ───────────────────────────────────────────────────────
+// Figma Frame 2147227333: 1923x1002 total
+// White header (title+desc) above a full-width resort image with centered overlay
+.cc-legacy {
+  width: 100%;
+  background: #fff;
+
+  // Header block — matches Choose/Experience title style
+  &__header {
+    text-align: center;
+    padding: 3rem 2rem 2.5rem;
+  }
+
+  &__title {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.375rem, 2.8vw, 1.875rem);
+    line-height: 1.2;
+    color: #000;
+    margin: 0 0 0.75rem;
+
+    strong { font-weight: 600; margin-right: 0.35em; font-size: calc(1em + 2px); }
+    .serif-italic { font-size: 1.5em; line-height: 1; }
+  }
+
+  &__desc {
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    font-size: clamp(14px, calc(18 / 1920 * 100vw), 18px);
+    line-height: 1.5;
+    color: rgb(38, 38, 38);
+    max-width: 531px;
+    margin: 0 auto;
+  }
+
+  // Resort image stage
+  &__stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1923 / 903;
+    overflow: hidden;
+  }
+
+  // Fading carousel — each slide contains its own bg image + branded wordmark
+  &__slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1200ms ease-in-out;
+    &.is-active { opacity: 1; }
+
+    // Logo + label fade in/out more gently than the background image
+    .cc-legacy__mark {
+      opacity: 0;
+      transition: opacity 2000ms ease-in-out;
+    }
+    &.is-active .cc-legacy__mark { opacity: 1; }
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  // Top: fades to white from the edge. Bottom: subtle dark scrim for logo/label clarity.
+  &__fade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    background:
+      linear-gradient(to bottom, #fff 0%, rgba(255,255,255,0.5) 18%, rgba(255,255,255,0) 45%),
+      linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0.35) 100%);
+  }
+
+  // Per-slide wordmark + label — centered at bottom of each image
+  &__mark {
+    position: absolute;
+    left: 50%;
+    bottom: calc(70 / 903 * 100%);
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+  }
+
+  &__logo {
+    width: clamp(200px, calc(260 / 1920 * 100vw), 320px);
+    height: auto;
+    display: block;
+    filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.35));
+  }
+
+  // Sub-brand label under the logo — italic serif white (matches Figma Calvino 45px italic)
+  &__label {
+    font-family: var(--font-serif), 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, calc(36 / 1920 * 100vw), 40px);
+    line-height: 1.1;
+    color: #fff;
+    margin: 0;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  }
+}
+
+// ─── 7. GLOBAL TOUR ──────────────────────────────────────────────────────────
+.cc-tour {
+  max-width: $max;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  text-align: center;
+
+  // Mobile: push the section down 20px
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
+
+  &__title {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.375rem, 2.8vw, 1.875rem);
+    line-height: 1.2;
+    color: rgb(45, 49, 52);
+    margin: 0 0 1rem;
+
+    strong { font-weight: 600; margin-right: 0.35em; font-size: calc(1em + 2px); }
+    .serif-italic { font-size: 1.5em; line-height: 1; }
+  }
+
+  &__desc {
+    color: $muted;
+    max-width: 780px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 640px)  { grid-template-columns: 1fr; }
+  }
+
+  &__phase-media {
+    aspect-ratio: 403 / 252;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  }
+
+  &__phase-year {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 0.5rem;
+  }
+
+  &__phase-desc {
+    color: $muted;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  &__timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    margin-top: 2rem;
+
+    @media (max-width: 1024px) { display: none; }
+  }
+
+  &__timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 12.5%;
+    right: 12.5%;
+    height: 1px;
+    background: #d6dae0;
+    transform: translateY(-50%);
+  }
+
+  &__timeline-node {
+    justify-self: center;
+    width: 45px;
+    height: 45px;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// ─── 8. GLOBAL STAGE AWAITS ──────────────────────────────────────────────────
+// Figma Frame 2147227330 (1923x1102): 4 cols of 411x648, staggered tile heights
+// Col 1 & 3: [short 251 / tall 383], Col 2 & 4: [tall 383 / short 251]. Gaps 13-14px. Radius 8.
+.cc-stage {
+  width: 100%;
+  padding: 4rem 2rem 5rem;
+  text-align: center;
+  background: linear-gradient(to bottom, #ffffff 0%, #fbfdfe 100%);
+
+  // Mobile: pull section closer to the Global Tour above by 45px (25 + 20)
+  @media (max-width: 768px) {
+    padding-top: calc(4rem - 45px);
+  }
+
+  &__header {
+    max-width: 905px;
+    margin: 0 auto 3rem;
+  }
+
+  &__title {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.375rem, 2.8vw, 1.875rem);
+    line-height: 1.2;
+    color: rgb(45, 49, 52);
+    margin: 0 0 1rem;
+
+    strong { font-weight: 600; margin-right: 0.35em; font-size: calc(1em + 2px); }
+    .serif-italic { font-size: 1.5em; line-height: 1; }
+  }
+
+  &__desc {
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    font-size: clamp(14px, calc(18 / 1920 * 100vw), 18px);
+    line-height: 1.5;
+    color: rgb(38, 38, 38);
+    max-width: 754px;
+    margin: 0 auto;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 13px;
+    max-width: 1214px;
+    margin: 0 auto;
+
+    @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    .cc-stage__tile--top    { aspect-ratio: 411 / 251; }
+    .cc-stage__tile--bottom { aspect-ratio: 411 / 383; }
+
+    &.is-tall-short {
+      .cc-stage__tile--top    { aspect-ratio: 411 / 383; }
+      .cc-stage__tile--bottom { aspect-ratio: 411 / 251; }
+    }
+  }
+
+  &__tile {
+    overflow: hidden;
+    border-radius: 8px;
+    img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  }
+}
+
+// ─── 10. VOICES OF THE FINALISTS ─────────────────────────────────────────────
+// Figma: 1072x513. Title + intro quote + 2 finalists side by side.
+// Each finalist 473x343 with portrait left (187x188), body right.
+.cc-voices {
+  position: relative;
+  width: 100%;
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+  background: #fbfdfe;
+
+  // Decorative + grid (Figma Group 5 at 322,1072 — 5 cols × 5 rows of '+' glyphs)
+  &__plus-grid {
+    position: absolute;
+    top: 30%;
+    left: 8%;
+    width: 220px;
+    height: 200px;
+    background-image: radial-gradient(circle, #e5e5e5 1px, transparent 1.5px);
+    background-size: 50px 42px;
+    opacity: 0.7;
+    pointer-events: none;
+    @media (max-width: 768px) { display: none; }
+  }
+
+  &__title {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.375rem, 2.8vw, 1.875rem);
+    line-height: 1.2;
+    color: rgb(45, 49, 52);
+    margin: 0 0 1rem;
+
+    strong { font-weight: 600; margin-right: 0.35em; font-size: calc(1em + 2px); }
+    .serif-italic { font-size: 1.5em; line-height: 1; }
+  }
+
+  &__intro {
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(14px, calc(18 / 1920 * 100vw), 18px);
+    line-height: 1.5;
+    color: rgb(38, 38, 38);
+    max-width: 776px;
+    margin: 0 auto 3rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    max-width: 1072px;
+    margin: 0 auto;
+
+    @media (max-width: 768px) { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+
+  // Card: portrait left, body right
+  &__card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    text-align: left;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__avatar {
+    width: clamp(140px, calc(187 / 1920 * 100vw), 187px);
+    height: clamp(140px, calc(188 / 1920 * 100vw), 188px);
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+    background: #eee;
+  }
+
+  &__body { flex: 1; min-width: 0; }
+
+  &__name {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: 28.9px;
+    line-height: 1.2;
+    color: rgb(45, 49, 52);
+    margin: 0 0 0.4rem;
+  }
+
+  &__role {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.3;
+    color: rgb(38, 38, 38);
+    margin: 0 0 0.75rem;
+  }
+
+  &__quote {
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgb(38, 38, 38);
     margin: 0;
   }
 }
 
-.home__footer-logo {
-  height: 32px;
-  width: auto;
-  margin-bottom: 1rem;
-  opacity: 0.5;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+// ─── 11. ARTIST-IN-RESIDENCY ─────────────────────────────────────────────────
+// Figma 673x552: title + single artist card 473x432 (portrait 280x277 + body)
+.cc-residency {
+  width: 100%;
+  padding: 2rem 2rem 5rem;
+  text-align: center;
+  background: #fbfdfe;
+
+  &__title {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.375rem, 2.8vw, 1.875rem);
+    line-height: 1.2;
+    color: rgb(45, 49, 52);
+    margin: 0 0 2.5rem;
+
+    strong { font-weight: 600; font-size: calc(1em + 2px); }
+    .serif-italic { font-size: 1.5em; line-height: 1; margin-left: 0.05em; }
+  }
+
+  &__card {
+    max-width: 473px;
+    margin: 0 auto;
+    text-align: left;
+
+    @media (max-width: 480px) { text-align: center; }
+  }
+
+  &__avatar {
+    width: clamp(220px, calc(280 / 1920 * 100vw), 280px);
+    height: clamp(220px, calc(277 / 1920 * 100vw), 277px);
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 1.5rem;
+    background: #eee;
+  }
+
+  &__name {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: 28.9px;
+    line-height: 1.2;
+    color: rgb(45, 49, 52);
+    margin: 0 0 0.4rem;
+  }
+
+  &__role {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.3;
+    color: rgb(38, 38, 38);
+    margin: 0 0 0.75rem;
+  }
+
+  &__quote {
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgb(38, 38, 38);
+    margin: 0;
+  }
+}
+
+// ─── 12. INSTAGRAM ───────────────────────────────────────────────────────────
+// Figma Frame 128: 1514x656. Header (title + desc) + handle bar + 4-tile grid.
+.cc-instagram {
+  width: 100%;
+  padding: 4rem 2rem 3rem;
+  background: transparent;
+  text-align: center;
+
+  &__header {
+    max-width: 564px;
+    margin: 0 auto 2.5rem;
+  }
+
+  // "Follow us on Instagram" — Sora 400 35px black
+  &__title {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: clamp(22px, calc(35 / 1920 * 100vw), 35px);
+    line-height: 1.25;
+    color: #000;
+    margin: 0 0 0.75rem;
+  }
+
+  // "Submit your photos…" — Sora 300 18px rgb(38,38,38)
+  &__desc {
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    font-size: clamp(14px, calc(18 / 1920 * 100vw), 18px);
+    line-height: 1.5;
+    color: rgb(38, 38, 38);
+    margin: 0;
+  }
+
+  // Handle bar: avatar + handle on left, FOLLOW button on right
+  &__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1514px;
+    margin: 0 auto 0;
+    padding: 0 0.5rem;
+  }
+
+  &__bar-left { display: flex; align-items: center; gap: 0.85rem; }
+
+  // Logo bubble: 83x83 circle (Figma r=54.5 ≈ full circle)
+  &__avatar {
+    width: 83px;
+    height: 83px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: #fff;
+    padding: 6px;
+    box-shadow: 0 0 0 1px #ececec;
+  }
+
+  // Handle: Sora 400 22px black
+  &__handle {
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: clamp(16px, calc(22 / 1920 * 100vw), 22px);
+    color: #000;
+  }
+
+  // FOLLOW US button: 148x40, radius 4, black bg, white text + IG icon
+  &__follow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    transition: background 150ms ease;
+    &:hover { background: #222; }
+    svg { display: block; }
+  }
+
+  // Divider line above the grid (Figma Vector 2: 1514x0)
+  &__divider {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    max-width: 1514px;
+    margin: 1.5rem auto 2.5rem;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 33px;
+    max-width: 1511px;
+    margin: 0 auto;
+
+    @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  }
+
+  &__tile {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: block;
+    background: #eee;
+    border-radius: 11px;
+    transition: transform 200ms ease;
+    img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    &:hover { transform: translateY(-2px); }
+  }
+
+  // Mobile: same structure as desktop, with a stacked + centered bar and smaller elements
+  @media (max-width: 768px) {
+    padding: 2.5rem 1rem 2rem;
+
+    &__header { margin: 0 auto 1.5rem; }
+
+    &__title { font-size: 24px; }
+    &__desc  { font-size: 14px; }
+
+    &__bar {
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 0;
+    }
+
+    &__bar-left { gap: 0.6rem; }
+
+    &__avatar { width: 56px; height: 56px; padding: 4px; }
+
+    &__handle { font-size: 16px; }
+
+    &__follow {
+      padding: 9px 18px;
+      font-size: 14px;
+    }
+
+    &__divider { margin: 1.25rem auto 1.5rem; }
+  }
+}
+
+// ─── 13. FOOTER ──────────────────────────────────────────────────────────────
+// Figma footer: 1920x492. Color CPC logo + tagline + social row + links + copy
+.cc-footer {
+  text-align: center;
+  padding: 4rem 2rem 3rem;
+  background: transparent;
+
+  &__logo {
+    width: 140px;
+    height: auto;
+    margin: 0 auto 0.25rem;
+  }
+
+  &__tagline {
+    max-width: 490px;
+    margin: 0 auto 1.5rem;
+    color: rgb(38, 38, 38);
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  &__social {
+    display: inline-flex;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+
+    a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #111;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 120ms ease;
+      &:hover { transform: translateY(-2px); }
+    }
+  }
+
+  &__links {
+    color: #df5e26;
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 0 0 0.5rem;
+    a { color: #df5e26; &:hover { text-decoration: underline; } }
+  }
+
+  &__copy {
+    color: $muted;
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 0;
+  }
 }

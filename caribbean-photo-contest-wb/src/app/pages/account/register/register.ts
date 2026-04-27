@@ -65,6 +65,14 @@ export class Register implements OnInit {
       this.buildUploadSlots(match);
       this.initStripeElements(match.name);
     }
+
+    // Preview hook: ?preview=success renders the thank-you state directly,
+    // bypassing payment + backend (useful for design review).
+    if (this.route.snapshot.queryParamMap.get('preview') === 'success') {
+      this.form.firstName = this.route.snapshot.queryParamMap.get('firstName') ?? 'Friend';
+      if (!this.division) this.division = 'general';
+      this.submitted = true;
+    }
   }
 
   private async initStripeElements(tierName: string) {
@@ -83,9 +91,11 @@ export class Register implements OnInit {
       this.elements = stripe.elements({
         clientSecret,
         appearance: {
-          theme: 'night',
+          theme: 'stripe',
           variables: {
-            colorPrimary: '#d8a74d',
+            colorPrimary: '#1a1a1a',
+            colorText: '#1a1a1a',
+            colorBackground: '#ffffff',
             fontFamily: 'Open Sauce One, system-ui, sans-serif',
             borderRadius: '4px',
           },
@@ -283,6 +293,21 @@ export class Register implements OnInit {
     } finally {
       this.submitting = false;
     }
+  }
+
+  get divisionLabel(): string {
+    const labels: Record<string, string> = {
+      'general':           'General',
+      'emerging-creator':  'Emerging Creator',
+      'college-creator':   'College Creator',
+      'master-your-craft': 'Master Your Craft',
+    };
+    return labels[this.division] ?? this.division.replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  get tierDisplay(): string {
+    if (!this.selectedTier) return '';
+    return `${this.selectedTier.tierLabel} ${this.selectedTier.variant}`;
   }
 
   legalModalState() {

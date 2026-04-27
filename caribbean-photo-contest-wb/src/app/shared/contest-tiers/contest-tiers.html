@@ -1,6 +1,6 @@
 <section class="tiers">
   <h2 class="tiers__heading">
-    {{ divisionLabel }} Contest Submission
+    <strong>{{ divisionLabel }} Contest</strong> Submission
     <span class="tiers__heading-break"></span>
     <i>Tier &amp; Fees</i>
   </h2>
@@ -11,7 +11,7 @@
           <div class="tier-card__badge">Most Popular</div>
         }
         <div class="tier-card__header">
-          <h3 class="tier-card__name">{{ tier.name }}</h3>
+          <h3 class="tier-card__name">{{ tier.tierLabel }} - <span class="tier-card__name-variant">{{ tier.variant }}</span></h3>
           <div class="tier-card__price">{{ tier.price }}</div>
           <div class="tier-card__images">{{ tier.images }}</div>
         </div>

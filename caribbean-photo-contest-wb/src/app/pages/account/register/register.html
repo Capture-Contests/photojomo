@@ -1,19 +1,28 @@
 @if (submitted) {
   <div class="reg-success-page">
-  <div class="reg-success">
-    <div class="reg-success__icon">✓</div>
-    <h2>Entry Submitted!</h2>
-    <p>Thank you, <strong>{{ form.firstName }}</strong>. Your entry to the <strong>{{ division }}</strong> division has been received.</p>
-    <p>Check your email for confirmation and important updates.</p>
-    <a routerLink="/" class="reg-success__btn">Back to Home</a>
-  </div>
+    <div class="reg-success-page__hero" aria-hidden="true"></div>
+    <div class="reg-success-page__header">
+      <span class="reg-success-page__logo-wrap">
+        <img src="images/CPC-Logo-720x720.png" alt="Capture Caribbean" class="reg-success-page__logo" />
+      </span>
+    </div>
+    <div class="reg-success">
+      <div class="reg-success__icon">✓</div>
+      <h2>Entry Submitted!</h2>
+      <p>Thank you, <strong>{{ form.firstName }}</strong>. Your entry to the <strong>{{ divisionLabel }}</strong> division has been received.</p>
+      <p>Check your email for confirmation and important updates.</p>
+      <a routerLink="/" class="reg-success__btn">Back to Home</a>
+    </div>
   </div>
 } @else {
   <div class="reg-page">
 
-    <!-- TOP LOGO -->
+    <!-- THIN HERO STRIP + HANGING LOGO (white-stroke badge) -->
+    <div class="reg-page__hero" aria-hidden="true"></div>
     <div class="reg-page__header">
-      <img src="images/Capture-caribbean-Logo.png" alt="Capture Caribbean" class="reg-page__logo" />
+      <span class="reg-page__logo-wrap">
+        <img src="images/CPC-Logo-720x720.png" alt="Capture Caribbean" class="reg-page__logo" />
+      </span>
     </div>
 
     <div class="reg-page__inner">
@@ -91,7 +100,7 @@
         }
 
         <!-- Privacy & Rules -->
-        <div class="reg-section reg-section--with-total">
+        <div class="reg-section reg-section--with-total reg-section--privacy-rules">
           <h2 class="reg-section__title">Privacy and Rules</h2>
           <div class="reg-checks">
             <label class="reg-check">
@@ -178,8 +187,8 @@
       @if (selectedTier; as tier) {
         <aside class="order-summary">
           <h3 class="order-summary__heading">Order Summary</h3>
-          <p class="order-summary__division">{{ division }}</p>
-          <p class="order-summary__tier">{{ tier.name }}</p>
+          <p class="order-summary__division">{{ divisionLabel }}</p>
+          <p class="order-summary__tier">{{ tier.tierLabel }} {{ tier.variant }}</p>
           <p class="order-summary__images">{{ tier.images }}</p>
 
           <div class="order-summary__benefits">
@@ -206,10 +215,19 @@
 
     <!-- BOTTOM DISCLAIMER -->
     <footer class="reg-disclaimer">
-      <img src="images/Capture-caribbean-Logo.png" alt="Capture Caribbean" class="reg-disclaimer__logo" />
+      <img src="images/CPC-Logo-720x720.png" alt="Capture Caribbean" class="reg-disclaimer__logo" />
       <p>Capture Caribbean™ is the flagship platform celebrating Caribbean and Caribbean-connected visual storytelling.</p>
       <p>One (1) cash award will be granted per division. The Capture Caribbean™ Jury, comprised of industry professionals and platform founders, selects the winners.</p>
-      <p>Participation constitutes acceptance of the Terms of Use, Privacy Policy, and Official Contest Rules. Contestants may enter multiple divisions per contest period; however, entries are limited to one (1) unique submission per division.</p>
+      <p>Participation constitutes acceptance of the
+        <a routerLink="/info/terms-of-use" [state]="legalModalState()" [replaceUrl]="true">Terms of Use</a>,
+        <a routerLink="/info/privacy-policy" [state]="legalModalState()" [replaceUrl]="true">Privacy Policy</a>, and
+        <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true">Official Contest Rules</a>.
+        Contestants may enter multiple divisions per contest period; however, entries are limited to one (1) unique submission per division.</p>
+      <p class="reg-disclaimer__legal-links">
+        <a routerLink="/info/terms-of-use" [state]="legalModalState()" [replaceUrl]="true">Terms of Use</a> |
+        <a routerLink="/info/privacy-policy" [state]="legalModalState()" [replaceUrl]="true">Privacy Policy</a> |
+        <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true">Rules</a>
+      </p>
       <p class="reg-disclaimer__copy">© 2025–2026 Capture Caribbean LLC. All rights reserved.</p>
     </footer>
 

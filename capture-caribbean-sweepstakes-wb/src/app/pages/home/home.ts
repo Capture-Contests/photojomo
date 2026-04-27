@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { firstValueFrom } from 'rxjs';
 
@@ -19,6 +19,13 @@ interface SweepstakesRequest {
   countryOfResidence: string;
   contentType: string;
   agreedToRules: boolean;
+  descriptors: string[];
+  travelContentDetail: string;
+  sharingPlatforms: string[];
+  topExperiences: string[];
+  typicalSpend: string;
+  referralSource: string;
+  bonusEntry: boolean;
 }
 
 interface SweepstakesResponse {
@@ -36,7 +43,7 @@ interface SweepstakesResponse {
   encapsulation: ViewEncapsulation.None,
 })
 export class Home {
-  // Form fields
+  // Tier 1 — contact details
   firstName = '';
   lastName = '';
   email = '';
@@ -50,14 +57,52 @@ export class Home {
   contentType = '';
   agreedToRules = false;
 
-  // State
+  // Tier 2 — about-you details
+  descriptors: string[] = [];
+  travelContentDetail = '';
+  sharingPlatforms: string[] = [];
+  topExperiences: string[] = [];
+  typicalSpend = '';
+  referralSource = '';
+  bonusEntry = false;
+
+  // Static option lists for chip groups + selects
+  readonly descriptorOptions = [
+    'Photographer', 'Videographer', 'Content Creator', 'Cultural Explorer',
+    'Adventure Traveler', 'Travel Blogger', 'Filmmaker', 'Other',
+  ];
+  readonly platformOptions = [
+    'Instagram', 'YouTube', 'TikTok', 'Blog', 'LinkedIn', 'Other',
+  ];
+  readonly experienceOptions = [
+    'Cultural Immersion', 'Adventure / Thrill Seeking', 'Relaxation',
+    'Luxury Stays', 'Wellness / Spirituality', 'Food & Culinary Experiences',
+  ];
+  readonly spendOptions = [
+    'Under $1,000', '$1,000 – $2,500', '$2,500 – $5,000',
+    '$5,000 – $10,000', '$10,000+',
+  ];
+  readonly referralOptions = [
+    'Instagram', 'Facebook', 'TikTok', 'YouTube',
+    'Friend / Word of mouth', 'Email', 'Other',
+  ];
+
+  // Navigation + submit state
+  currentTier: 1 | 2 = 1;
   submitting = false;
   submitted = false;
   errorMessage = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  get formValid(): boolean {
+  captureLegalReturnState(): void {
+    sessionStorage.setItem('legalModalReturnState', JSON.stringify({
+      returnUrl: this.router.url || '/',
+      returnScrollY: window.scrollY,
+    }));
+  }
+
+  get tier1Valid(): boolean {
     return (
       this.firstName.trim() !== '' &&
       this.lastName.trim() !== '' &&
@@ -73,8 +118,39 @@ export class Home {
     );
   }
 
+  toggleSelection(list: string[], value: string, max?: number): void {
+    const idx = list.indexOf(value);
+    if (idx >= 0) {
+      list.splice(idx, 1);
+      return;
+    }
+    if (max !== undefined && list.length >= max) return;
+    list.push(value);
+  }
+
+  isSelected(list: string[], value: string): boolean {
+    return list.indexOf(value) >= 0;
+  }
+
+  goToTier2(): void {
+    if (!this.tier1Valid) return;
+    this.currentTier = 2;
+    window.scrollTo({ top: this.scrollAnchor(), behavior: 'smooth' });
+  }
+
+  goToTier1(): void {
+    this.currentTier = 1;
+    window.scrollTo({ top: this.scrollAnchor(), behavior: 'smooth' });
+  }
+
+  private scrollAnchor(): number {
+    const el = document.querySelector('.sw-form-section');
+    if (!el) return 0;
+    return (el as HTMLElement).offsetTop - 16;
+  }
+
   async onSubmit(): Promise<void> {
-    if (!this.formValid || this.submitting) return;
+    if (!this.tier1Valid || this.submitting) return;
 
     this.submitting = true;
     this.errorMessage = '';
@@ -92,6 +168,13 @@ export class Home {
       countryOfResidence: this.countryOfResidence.trim(),
       contentType: this.contentType.trim(),
       agreedToRules: this.agreedToRules,
+      descriptors: [...this.descriptors],
+      travelContentDetail: this.travelContentDetail.trim(),
+      sharingPlatforms: [...this.sharingPlatforms],
+      topExperiences: [...this.topExperiences],
+      typicalSpend: this.typicalSpend,
+      referralSource: this.referralSource,
+      bonusEntry: this.bonusEntry,
     };
 
     try {

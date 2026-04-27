@@ -1,26 +1,36 @@
+// White schema for the Caribbean Photo Contest tier pages.
+// Mirrors first-wave structure but inverts the palette to a light theme,
+// consistent with the home page typography and CTA patterns.
+
+$gold: #DEAD54;
+$ink: #1a1a1a;
+$muted: #4a4a4a;
+$border: #e2e2e2;
+
 .tiers {
   position: relative;
   padding: 0.5rem 2rem 3.8rem;
   background: transparent;
 
   &__heading {
-    font-family: var(--font-primary);
+    font-family: 'Sora', var(--font-primary);
     font-weight: 400;
     font-size: clamp(1.9rem, 2.6vw, 2.35rem);
     text-align: center;
     margin: 0 0 2.8rem;
-    color: #fbf8f2;
+    color: $ink;
+
+    strong { font-weight: 700; }
 
     i {
-      font-family: var(--font-primary);
-      font-style: normal;
-      color: #fff;
+      font-family: var(--font-serif), 'Instrument Serif', serif;
+      font-style: italic;
+      font-weight: 400;
+      color: $ink;
     }
   }
 
-  &__heading-break {
-    display: none;
-  }
+  &__heading-break { display: block; }
 
   &__grid {
     display: grid;
@@ -36,45 +46,41 @@
     margin: 2.6rem auto 0;
     font-size: 0.82rem;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.82);
+    color: $muted;
 
     a {
-      color: var(--color-gold);
+      color: $ink;
       text-decoration: underline;
       font-weight: 600;
+      &:hover { color: $gold; }
     }
   }
 }
 
-@media (max-width: 640px) {
-  .tiers__heading-break {
-    display: block;
-  }
-}
 
 .tier-card {
   position: relative;
-  border: 1px solid rgba(124, 91, 40, 0.34);
+  border: 1px solid $border;
   border-radius: 18px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: rgba(8, 6, 4, 0.9);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 
   &:hover {
-    border-color: rgba(158, 118, 55, 0.42);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+    border-color: rgb(200,200,200);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+    transform: translateY(-2px);
   }
 
   &--featured {
-    border-color: rgba(170, 127, 59, 0.46);
+    border-color: $gold;
+    &:hover { border-color: $gold; }
   }
 
-  &__badge {
-    display: none;
-  }
+  &__badge { display: none; }
 
   &__header {
     padding: 1.65rem 1.65rem 0.55rem;
@@ -82,26 +88,31 @@
   }
 
   &__name {
-    font-family: var(--font-serif);
+    font-family: var(--font-serif), 'Instrument Serif', serif;
     font-style: italic;
     font-weight: 400;
     font-size: clamp(1.58rem, 2.74vw, 2.09rem);
     line-height: 1.18;
     margin: 0 0 1.94rem;
-    color: #b4b0bb;
+    color: #000;
+  }
+
+  &__name-variant {
+    color: #5DB7DD;
   }
 
   &__price {
+    font-family: 'Open Sauce One', var(--font-primary);
     font-size: clamp(3.29rem, 5.13vw, 4.46rem);
     font-weight: 700;
-    color: #fff;
+    color: $ink;
     line-height: 1;
     margin-bottom: 1.14rem;
   }
 
   &__images {
     font-size: 1.12rem;
-    color: #fff;
+    color: $ink;
   }
 
   &__body {
@@ -112,7 +123,7 @@
   &__benefits-label {
     font-size: 0.8rem;
     font-weight: 600;
-    color: #fff;
+    color: $ink;
     margin: 0 0 0.48rem;
   }
 
@@ -127,7 +138,7 @@
       gap: 0.42rem;
       padding: 0.18rem 0;
       font-size: 0.78rem;
-      color: #b2c2db;
+      color: $muted;
       line-height: 1.32;
     }
   }
@@ -142,7 +153,7 @@
       display: block;
       width: 100%;
       height: 100%;
-      stroke: #b2c2db;
+      stroke: $muted;
       stroke-width: 1.5;
     }
   }
@@ -150,7 +161,7 @@
   &__golden {
     margin-top: 0.24rem;
     font-weight: 500;
-    color: #d0a24f !important;
+    color: $gold !important;
 
     .golden-icon {
       flex: 0 0 auto;
@@ -162,7 +173,7 @@
         display: block;
         width: 100%;
         height: 100%;
-        stroke: #d0a24f;
+        stroke: $gold;
         stroke-width: 1.2;
       }
     }
@@ -175,8 +186,8 @@
       height: 0.82rem;
       margin-left: 0.14rem;
       border-radius: 999px;
-      background: rgba(208, 162, 79, 0.16);
-      color: #d0a24f;
+      background: rgba(216,167,77,0.18);
+      color: $gold;
       font-size: 0.62rem;
       font-weight: 700;
       line-height: 1;
@@ -196,37 +207,32 @@
 }
 
 .tier-btn {
-  display: block;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
+  width: 100%;
   padding: 0.88rem 1.08rem;
-  background: #070707;
-  color: #fff;
-  font-family: var(--font-primary);
-  font-weight: 600;
+  background: #fff;
+  color: $ink;
+  font-family: 'Open Sauce One', var(--font-primary);
+  font-weight: 500;
   font-size: 1.04rem;
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid $ink;
   border-radius: 5px;
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 
   &:hover {
-    color: #070707;
-    background: var(--color-gold-italic);
-    border-color: rgba(216, 167, 77, 0.32);
+    color: #fff;
+    background: $ink;
+    border-color: $ink;
   }
 
   .tier-card--featured & {
-    background: #070707;
+    background: $ink;
     color: #fff;
-
-    &:hover {
-      color: #070707;
-      background: var(--color-gold-italic);
-    }
+    &:hover { background: $gold; border-color: $gold; color: $ink; }
   }
 
   &__arrow {

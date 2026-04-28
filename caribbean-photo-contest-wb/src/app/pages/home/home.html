@@ -286,9 +286,9 @@
       </a>
     </div>
     <p class="cc-footer__links">
-      <a routerLink="/info/terms-of-use">Terms of Use</a> |
-      <a routerLink="/info/privacy-policy">Privacy Policy</a> |
-      <a routerLink="/info/rules">Rules</a>
+      <a routerLink="/info/terms-of-use" [state]="legalModalState()" [replaceUrl]="true">Terms of Use</a> |
+      <a routerLink="/info/privacy-policy" [state]="legalModalState()" [replaceUrl]="true">Privacy Policy</a> |
+      <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true">Rules</a>
     </p>
     <p class="cc-footer__copy">© 2026 Capture Photo Contest</p>
   </footer>

@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 interface ContestCard {
   title: string;
@@ -37,6 +37,15 @@ interface Finalist {
   styleUrl: './home.scss',
 })
 export class Home implements OnInit, OnDestroy {
+  private readonly router = inject(Router);
+
+  legalModalState() {
+    return {
+      returnUrl: this.router.url,
+      returnScrollY: window.scrollY,
+    };
+  }
+
   contests: ContestCard[] = [
     {
       title: 'General',

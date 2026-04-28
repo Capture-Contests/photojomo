@@ -1,5 +1,7 @@
-const USERNAME = 'photojomo';
-const PASSWORD = 'p0t0j0m0';
+const CREDENTIALS = [
+  { username: 'photojomo', password: 'p0t0j0m0' },
+  { username: 'BayGardens', password: 'B4yG4rd3ns' },
+];
 
 function unauthorized() {
   return new Response('Unauthorized', {
@@ -21,7 +23,7 @@ export default {
     const credentials = atob(authorization.slice(6));
     const [user, pass] = credentials.split(':');
 
-    if (user !== USERNAME || pass !== PASSWORD) {
+    if (!CREDENTIALS.some(c => c.username === user && c.password === pass)) {
       return unauthorized();
     }
 

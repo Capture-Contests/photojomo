@@ -109,10 +109,10 @@ $soft: #f6f8fa;
     }
   }
 
-  // Logo badge: 200x200 (source PNG is 1:1), centered. Brought up 30px from Figma y=194.
+  // Logo badge: 200x200 (source PNG is 1:1), centered. Figma y=194 (desktop position).
   &__badge {
     position: absolute;
-    top: calc(164 / 1046 * 100%);
+    top: calc(204 / 1046 * 100%);
     left: 50%;
     transform: translateX(-50%);
     width: calc(220 / 1920 * 100%);
@@ -299,7 +299,7 @@ $soft: #f6f8fa;
 .cc-partnership {
   text-align: center;
   padding: 0 2rem 3rem;
-  margin-top: -70px;
+  margin-top: -120px;
   background: #fff;
   position: relative;
   z-index: 3;

@@ -47,10 +47,12 @@
     z-index: 20;
   }
 
-  // CPC logo in color (NOT greyscale like first-wave) — palm tree + Caribbean Photo Contest
+  // Caribbean Photo Contest logo (pre-rendered dark grey copy), proportional
   &__logo {
-    width: min(150px, 32vw);
+    width: min(120px, 28vw);
     height: auto;
+    display: block;
+    object-fit: contain;
   }
 
   &__tabs {

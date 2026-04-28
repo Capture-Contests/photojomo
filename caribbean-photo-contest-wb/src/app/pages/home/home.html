@@ -67,16 +67,16 @@
       <h2 class="cc-paradise__title"><strong>Experience</strong> <span class="serif-italic">True Paradise</span></h2>
       <p class="cc-paradise__desc">Show the world your vision of the Caribbean—and be rewarded with an unforgettable escape.</p>
       <div class="cc-paradise__video">
-        <img src="images/iStock-1203441442.jpg" alt="Caribbean paradise" />
+        <img src="images/boat-image_copyright.webp" alt="Caribbean paradise" />
       </div>
     </section>
 
     <section class="cc-contest-intro">
       <div class="cc-contest-intro__stage">
-        <img src="images/cpc-tray.png"      alt="" class="cc-contest-intro__deco cc-contest-intro__deco--tray" />
-        <img src="images/cpc-dancers.png"   alt="" class="cc-contest-intro__deco cc-contest-intro__deco--dancers" />
-        <img src="images/cpc-musicians.png" alt="" class="cc-contest-intro__deco cc-contest-intro__deco--musicians" />
-        <img src="images/cpc-clarinet.png"  alt="" class="cc-contest-intro__deco cc-contest-intro__deco--clarinet" />
+        <img src="images/cpc-tray.png"             alt="" class="cc-contest-intro__deco cc-contest-intro__deco--tray" />
+        <img src="images/DSC_0166_1600px-.jpg"     alt="" class="cc-contest-intro__deco cc-contest-intro__deco--dancers" />
+        <img src="images/IMG0018-1_1600px.jpg"     alt="" class="cc-contest-intro__deco cc-contest-intro__deco--musicians" />
+        <img src="images/staniel-cay-171925_1280.jpg" alt="" class="cc-contest-intro__deco cc-contest-intro__deco--clarinet" />
 
         <div class="cc-contest-intro__center">
           <h2 class="cc-contest-intro__title"><strong>The Caribbean</strong> <span class="serif-italic">Photo Contest</span></h2>
@@ -286,9 +286,9 @@
       </a>
     </div>
     <p class="cc-footer__links">
-      <a routerLink="/info/terms-of-use">Terms of Use</a> |
-      <a routerLink="/info/privacy-policy">Privacy Policy</a> |
-      <a routerLink="/info/rules">Rules</a>
+      <a routerLink="/info/terms-of-use" [state]="legalModalState()" [replaceUrl]="true">Terms of Use</a> |
+      <a routerLink="/info/privacy-policy" [state]="legalModalState()" [replaceUrl]="true">Privacy Policy</a> |
+      <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true">Rules</a>
     </p>
     <p class="cc-footer__copy">© 2026 Capture Photo Contest</p>
   </footer>

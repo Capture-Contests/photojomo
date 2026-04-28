@@ -12,18 +12,25 @@ import (
 )
 
 type SweepstakesRequest struct {
-	FirstName           string `json:"firstName"`
-	LastName            string `json:"lastName"`
-	Email               string `json:"email"`
-	ConfirmEmail        string `json:"confirmEmail"`
-	PhoneNumber         string `json:"phoneNumber"`
-	Address             string `json:"address"`
-	City                string `json:"city"`
-	StateProvince       string `json:"stateProvince"`
-	ZipPostalCode       string `json:"zipPostalCode"`
-	CountryOfResidence  string `json:"countryOfResidence"`
-	ContentType         string `json:"contentType,omitempty"`
-	AgreedToRules       bool   `json:"agreedToRules"`
+	FirstName           string   `json:"firstName"`
+	LastName            string   `json:"lastName"`
+	Email               string   `json:"email"`
+	ConfirmEmail        string   `json:"confirmEmail"`
+	PhoneNumber         string   `json:"phoneNumber"`
+	Address             string   `json:"address"`
+	City                string   `json:"city"`
+	StateProvince       string   `json:"stateProvince"`
+	ZipPostalCode       string   `json:"zipPostalCode"`
+	CountryOfResidence  string   `json:"countryOfResidence"`
+	ContentType         string   `json:"contentType,omitempty"`
+	AgreedToRules       bool     `json:"agreedToRules"`
+	Descriptors         []string `json:"descriptors,omitempty"`
+	TravelContentDetail string   `json:"travelContentDetail,omitempty"`
+	SharingPlatforms    []string `json:"sharingPlatforms,omitempty"`
+	TopExperiences      []string `json:"topExperiences,omitempty"`
+	TypicalSpend        string   `json:"typicalSpend,omitempty"`
+	ReferralSource      string   `json:"referralSource,omitempty"`
+	BonusEntry          bool     `json:"bonusEntry"`
 }
 
 type SweepstakesResponse struct {
@@ -79,17 +86,24 @@ func (h *SweepstakesHandler) Handle(ctx context.Context, req events.APIGatewayV2
 	}
 
 	id, err := h.repo.Save(ctx, repository.SweepstakesEntry{
-		FirstName:          strings.TrimSpace(body.FirstName),
-		LastName:           strings.TrimSpace(body.LastName),
-		Email:              strings.ToLower(strings.TrimSpace(body.Email)),
-		PhoneNumber:        strings.TrimSpace(body.PhoneNumber),
-		Address:            strings.TrimSpace(body.Address),
-		City:               strings.TrimSpace(body.City),
-		StateProvince:      strings.TrimSpace(body.StateProvince),
-		ZipPostalCode:      strings.TrimSpace(body.ZipPostalCode),
-		CountryOfResidence: strings.TrimSpace(body.CountryOfResidence),
-		ContentType:        strings.TrimSpace(body.ContentType),
-		AgreedToRules:      body.AgreedToRules,
+		FirstName:           strings.TrimSpace(body.FirstName),
+		LastName:            strings.TrimSpace(body.LastName),
+		Email:               strings.ToLower(strings.TrimSpace(body.Email)),
+		PhoneNumber:         strings.TrimSpace(body.PhoneNumber),
+		Address:             strings.TrimSpace(body.Address),
+		City:                strings.TrimSpace(body.City),
+		StateProvince:       strings.TrimSpace(body.StateProvince),
+		ZipPostalCode:       strings.TrimSpace(body.ZipPostalCode),
+		CountryOfResidence:  strings.TrimSpace(body.CountryOfResidence),
+		ContentType:         strings.TrimSpace(body.ContentType),
+		AgreedToRules:       body.AgreedToRules,
+		Descriptors:         body.Descriptors,
+		TravelContentDetail: strings.TrimSpace(body.TravelContentDetail),
+		SharingPlatforms:    body.SharingPlatforms,
+		TopExperiences:      body.TopExperiences,
+		TypicalSpend:        strings.TrimSpace(body.TypicalSpend),
+		ReferralSource:      strings.TrimSpace(body.ReferralSource),
+		BonusEntry:          body.BonusEntry,
 	})
 	if err != nil {
 		log.Printf("error saving sweepstakes entry: %v", err)

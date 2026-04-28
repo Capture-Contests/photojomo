@@ -136,6 +136,12 @@ variable "paypal_webhook_id" {
 
 # ── Mailchimp ──────────────────────────────────────────────────────────────────
 
+variable "sweepstakes_service_zip_path" {
+  description = "Local path to the sweepstakes-service Go binary zip"
+  type        = string
+  default     = "../dist/sweepstakes.zip"
+}
+
 variable "mailchimp_api_key" {
   description = "Mailchimp API key"
   type        = string

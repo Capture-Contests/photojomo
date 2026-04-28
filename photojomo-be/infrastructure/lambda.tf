@@ -388,6 +388,62 @@ resource "aws_lambda_function" "paypal_webhook_service" {
 
 # ── Lambda Function: contest-entry-service ────────────────────────────────────
 
+# ── Lambda Function: sweepstakes-service ─────────────────────────────────────
+
+resource "aws_cloudwatch_log_group" "sweepstakes_service" {
+  name              = "/aws/lambda/${local.name_prefix}-sweepstakes-service"
+  retention_in_days = 30
+
+  tags = {
+    Environment = var.environment
+    Project     = var.project_name
+  }
+}
+
+resource "aws_lambda_function" "sweepstakes_service" {
+  function_name = "${local.name_prefix}-sweepstakes-service"
+  description   = "Saves sweepstakes entries to PostgreSQL"
+
+  s3_bucket        = aws_s3_bucket.artifacts.id
+  s3_key           = aws_s3_object.sweepstakes_service_zip.key
+  source_code_hash = filebase64sha256(var.sweepstakes_service_zip_path)
+
+  runtime = "provided.al2023"
+  handler = "bootstrap"
+  role    = aws_iam_role.lambda_exec.arn
+
+  memory_size = 128
+  timeout     = 10
+
+  dynamic "vpc_config" {
+    for_each = var.create_network ? [1] : []
+    content {
+      subnet_ids         = [aws_subnet.private_a[0].id, aws_subnet.private_b[0].id]
+      security_group_ids = [aws_security_group.lambda[0].id]
+    }
+  }
+
+  environment {
+    variables = {
+      DB_SECRET_ARN = aws_secretsmanager_secret.db_credentials.arn
+    }
+  }
+
+  depends_on = [
+    aws_cloudwatch_log_group.sweepstakes_service,
+    aws_iam_role_policy_attachment.lambda_basic,
+    aws_iam_role_policy_attachment.lambda_read_secret,
+  ]
+
+  tags = {
+    Name        = "${local.name_prefix}-sweepstakes-service"
+    Environment = var.environment
+    Project     = var.project_name
+  }
+}
+
+# ── Lambda Function: contest-entry-service ────────────────────────────────────
+
 resource "aws_cloudwatch_log_group" "contest_entry_service" {
   name              = "/aws/lambda/${local.name_prefix}-contest-entry-service"
   retention_in_days = 30

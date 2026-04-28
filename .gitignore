@@ -11,7 +11,7 @@ yarn-error.log
 
 # Angular build output
 dist/
-.angular/cache/
+.angular/
 
 # Java / Maven
 target/

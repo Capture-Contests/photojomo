@@ -25,10 +25,10 @@ deploy: build
 
 deploy-dev: build
 	CLOUDFLARE_ACCOUNT_ID=$(CF_ACCOUNT) $(NPX) wrangler pages deploy $(DIST) \
-		--project-name $(PROJECT)-dev \
+		--project-name $(PROJECT) \
 		--branch=dev-sweepstakes \
 		--commit-dirty=true
-	@echo "Deployed to Cloudflare Pages: $(PROJECT)-dev"
+	@echo "Deployed to Cloudflare Pages: $(PROJECT)"
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 

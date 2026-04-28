@@ -1,4 +1,4 @@
-PROJECT      = capture-caribbean-sweepstakes
+PROJECT      = capture-caribbean-sweepstakes-dev
 DIST         = dist/capture-caribbean-sweepstakes-wb/browser
 CF_ACCOUNT   = e6a409663bf73140c8bd4caaadd9ebc2
 NPX          = npx

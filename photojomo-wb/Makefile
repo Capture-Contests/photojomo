@@ -13,6 +13,7 @@ build:
 deploy: build
 	CLOUDFLARE_ACCOUNT_ID=$(ACCOUNT_ID) $(NPX) wrangler pages deploy $(DIST) \
 		--project-name $(PROJECT) \
+		--branch=main \
 		--commit-dirty=true
 
 build-dev:

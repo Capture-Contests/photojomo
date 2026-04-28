@@ -6,7 +6,7 @@ NODE         = node
 
 # ── Targets ───────────────────────────────────────────────────────────────────
 
-.PHONY: build deploy-dev clean
+.PHONY: build deploy deploy-dev clean
 
 # ── Build ─────────────────────────────────────────────────────────────────────
 
@@ -15,6 +15,13 @@ build:
 	@echo "Built: $(DIST)"
 
 # ── Deploy ────────────────────────────────────────────────────────────────────
+
+deploy: build
+	CLOUDFLARE_ACCOUNT_ID=$(CF_ACCOUNT) $(NPX) wrangler pages deploy $(DIST) \
+		--project-name $(PROJECT) \
+		--branch=main \
+		--commit-dirty=true
+	@echo "Deployed to Cloudflare Pages: $(PROJECT)"
 
 deploy-dev: build
 	CLOUDFLARE_ACCOUNT_ID=$(CF_ACCOUNT) $(NPX) wrangler pages deploy $(DIST) \

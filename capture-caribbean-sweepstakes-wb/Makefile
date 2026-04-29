@@ -14,6 +14,10 @@ build:
 	$(NPX) ng build
 	@echo "Built: $(DIST)"
 
+build:
+	$(NPX) ng build --configuration development
+	@echo "Built: $(DIST)"
+
 # ── Deploy ────────────────────────────────────────────────────────────────────
 
 deploy: build

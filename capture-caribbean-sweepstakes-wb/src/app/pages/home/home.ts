@@ -93,6 +93,8 @@ export class Home {
   submitted = false;
   errorMessage = '';
 
+  readonly version = environment.version;
+
   constructor(private http: HttpClient, private router: Router) {}
 
   captureLegalReturnState(): void {

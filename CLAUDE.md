@@ -11,8 +11,10 @@ photojomo/
 ├── CLAUDE.md                    # This file
 ├── SPECIFICATION.md             # Backend technical specification
 ├── photojomo-be/                # Backend — Spring Boot AWS Lambda functions
-├── photojomo-wb/                # Photojomo main web app — Angular
+├── photojomo-wb/                # Official contest website — Angular
 ├── photojomo-first-wave-wb/     # Capture Caribbean: First Wave Challenge — Angular 20
+├── caribbean-photo-contest-wb/  # Photo Contest website — Angular
+├── capture-caribbean-sweepstakes-wb/ # Sweepstakes website — Angular
 ├── screenshots/
 └── scripts/
 ```
@@ -31,7 +33,8 @@ photojomo/
 
 ---
 
-### `photojomo-wb` — Photojomo Main Web App
+### `photojomo-wb` — Official Contest Website
+- **Purpose**: The official Capture Caribbean photography contest website
 - **Framework**: Angular (standalone components)
 - **Branch**: `main`
 
@@ -55,6 +58,25 @@ photojomo/
 - **Shared components**: `src/app/shared/contest-tiers/` (tier selector used by all division pages)
 - **Registration flow**: Division page → select tier → "Register Now" → `/account/register` pre-populated with division + tier via query params
 - **WordPress source**: caribbeanphotocontests.com (reference for design/content)
+
+---
+
+### `caribbean-photo-contest-wb` — Photo Contest Website
+- **Purpose**: The Capture Caribbean photo contest website
+- **Framework**: Angular (standalone components)
+
+---
+
+### `capture-caribbean-sweepstakes-wb` — Sweepstakes Website
+- **Purpose**: The Capture Caribbean sweepstakes entry site
+- **Framework**: Angular 20 (standalone components)
+- **Dev server**: `npx ng serve` (from `capture-caribbean-sweepstakes-wb/`)
+- **Build**: `make build NPX=npx NODE=node`
+- **Deploy dev**: `make deploy-dev NPX=npx NODE=node`
+- **Deploy prod**: `make deploy NPX=npx NODE=node`
+- **Cloudflare project**: `capture-caribbean-sweepstakes`
+- **API**: Dev → `49124qqimj.execute-api.us-east-1.amazonaws.com`, Prod → `dbvxth6wi4.execute-api.us-east-1.amazonaws.com`
+- **Mailchimp**: Entrants tagged `Sweepstakes Entrant` on successful submission
 
 ---
 

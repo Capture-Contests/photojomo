@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
+	"github.com/photojomo/photojomo-be/internal/mailchimp"
 	"github.com/photojomo/photojomo-be/internal/repository"
 )
 
@@ -40,11 +41,12 @@ type SweepstakesResponse struct {
 }
 
 type SweepstakesHandler struct {
-	repo *repository.SweepstakesRepository
+	repo      *repository.SweepstakesRepository
+	mailchimp *mailchimp.Client
 }
 
-func NewSweepstakesHandler(repo *repository.SweepstakesRepository) *SweepstakesHandler {
-	return &SweepstakesHandler{repo: repo}
+func NewSweepstakesHandler(repo *repository.SweepstakesRepository, mc *mailchimp.Client) *SweepstakesHandler {
+	return &SweepstakesHandler{repo: repo, mailchimp: mc}
 }
 
 func (h *SweepstakesHandler) Handle(ctx context.Context, req events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
@@ -111,6 +113,15 @@ func (h *SweepstakesHandler) Handle(ctx context.Context, req events.APIGatewayV2
 			"message": "Failed to save entry",
 			"success": false,
 		}), nil
+	}
+
+	if err := h.mailchimp.SubscribeWithTag(
+		strings.ToLower(strings.TrimSpace(body.Email)),
+		strings.TrimSpace(body.FirstName),
+		strings.TrimSpace(body.LastName),
+		"Sweepstakes Entrant",
+	); err != nil {
+		log.Printf("warning: mailchimp subscribe failed for %s: %v", body.Email, err)
 	}
 
 	return jsonResponse(http.StatusCreated, SweepstakesResponse{

@@ -47,8 +47,12 @@ $soft: #f6f8fa;
     z-index: 0;
     user-select: none;
     pointer-events: none;
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,0) 100%);
+    // No mask fade on desktop: the inside partnership has a 200px transparent →
+    // white gradient at its top, so the image visibly fades through the
+    // partnership's gradient zone instead of being abruptly clipped.
+    // (Mobile keeps its own mask in the @media (max-width: 768px) override.)
+    // Image darkening is handled entirely by .cc-hero__scrim, matching the
+    // dev site's approach (no CSS filter on the image itself).
   }
 
   &__scrim {
@@ -56,9 +60,16 @@ $soft: #f6f8fa;
     inset: 0;
     z-index: 1;
     background:
+      // Centered radial darkening — matches the dev site's shading: a 60% × 40%
+      // ellipse at (50%, 40%) reaching 0.45 alpha at the center and fading to 0
+      // at the edges. Gives the image a darker middle.
       radial-gradient(ellipse 60% 40% at 50% 40%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 60%, rgba(0,0,0,0) 100%),
-      linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 25%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0) 65%),
-      linear-gradient(to bottom, rgba(255,255,255,0) 70%, rgba(255,255,255,0) 100%);
+      // Under-title darkening — dev site's pattern: peaks at 45% (just below
+      // the title) at 0.25 alpha black, fading to 0 by 65% so the partnership
+      // gradient region remains clean white.
+      linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 25%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0) 65%);
+    // No bottom white wash: the partnership's transparent → white gradient
+    // (top 200px of the inside block) handles the fade through the image.
     pointer-events: none;
   }
 
@@ -246,21 +257,23 @@ $soft: #f6f8fa;
     align-items: center;
     justify-content: center;
 
-    // Image fills the entire hero; mask fades the bottom into transparency so the edge is hidden
+    // Image solid until 65%, gradual fade to transparent by 78% — fade ends near
+    // where partnership covers on mobile (~71–77% depending on hero height).
     &__bg {
       width: 100%;
       height: 100%;
       left: 0;
       top: 0;
-      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0) 88%);
-              mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0) 88%);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 65%, rgba(0,0,0,0) 78%);
+              mask-image: linear-gradient(to bottom, #000 0%, #000 65%, rgba(0,0,0,0) 78%);
     }
 
-    // Linear top→middle dark band (replaces radial spotlight) + bottom-to-white wash
+    // Match the dev site's mobile shading: top-to-middle dark band
+    // (0.5 → 0.4 → 0.2 → 0 from 0% to 70%) + white wash for the bottom.
     &__scrim {
       background:
         linear-gradient(to bottom, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.40) 25%, rgba(0,0,0,0.20) 50%, rgba(0,0,0,0) 70%),
-        linear-gradient(to bottom, rgba(255,255,255,0) 60%, rgba(255,255,255,0.7) 80%, #fff 92%);
+        linear-gradient(to bottom, rgba(255,255,255,0) 65%, #fff 78%);
     }
 
     &__badge, &__eyebrow, &__title {
@@ -296,13 +309,55 @@ $soft: #f6f8fa;
 // ─── 2. PARTNERSHIP BRIDGE ───────────────────────────────────────────────────
 // Figma: "Presented in Partnership" Calvino Grande Trial 300 / 25px / italic / #122175
 // Combined image (Bay Gardens + divider + 30-Year badge) 352x104
+//
+// Two render targets:
+//   --inside  → desktop only, position: absolute at the bottom of the hero
+//   --outside → mobile only, normal flow with negative margin (legacy behavior)
 .cc-partnership {
   text-align: center;
   padding: 0 2rem 3rem;
-  margin-top: -120px;
+  margin-top: -170px;
   background: #fff;
   position: relative;
   z-index: 3;
+
+  // Desktop: render the inside-hero copy, hide the outside one.
+  &--inside {
+    display: none;
+
+    @media (min-width: 769px) {
+      display: block;
+      position: absolute;
+      bottom: 80px;
+      left: 0;
+      right: 0;
+      margin: 0;
+      // Top 200px of the block is a transparent → white gradient so the hero
+      // image fades smoothly to white through the partnership's top region.
+      // padding-top of 200px keeps the eyebrow + Bay Gardens content sitting
+      // on solid white (just below where the gradient reaches #fff).
+      padding-top: 200px;
+      background: linear-gradient(to bottom, transparent 0px, #fff 200px);
+    }
+
+    // Tablet + iMac 24 (1120×630): hero shrinks proportionally with viewport
+    // width (aspect-ratio 1920/1116), but the partnership uses fixed pixel
+    // offsets. At ~1024w the hero is ~595px tall and at 1120w it's ~651px, so
+    // a 407px partnership block hides most of the image. Shrink the gradient
+    // zone + bottom offset here to keep more image visible.
+    @media (min-width: 769px) and (max-width: 1280px) {
+      bottom: 30px;
+      padding-top: 60px;
+      background: linear-gradient(to bottom, transparent 0px, #fff 60px);
+    }
+  }
+
+  // Mobile: hide on desktop so only the inside copy shows.
+  &--outside {
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
 
   &__eyebrow {
     font-family: var(--font-serif), 'Instrument Serif', serif;

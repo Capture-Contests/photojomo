@@ -30,7 +30,7 @@ export class CaribbeanConnectionsComponent {
       role: 'Photographer, Jamaica',
     },
     {
-      avatar: '/assets/images/iStock-1313422725.jpg',
+      avatar: '/assets/images/WhatsApp%20Image%202026-05-03%20at%205.46.03%20PM.jpeg',
       avatarScale: 1,
       quote:
         '\u201CI\u2019m an amateur photographer, but the advice and well wishes I\u2019ve received from the community shines like a diamond. Thank you!!\u201D',

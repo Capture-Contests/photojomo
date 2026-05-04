@@ -3790,8 +3790,10 @@
         height: 26.606px;
       }
       #container .css-3zz5a0 {
-        width: 65.02px;
-        height: 52.601px;
+        /* Footer CPC logo (middle of the three Capture Initiatives icons),
+           sized 5% larger than the Figma export — 65.02 → 68.271, 52.601 → 55.231. */
+        width: 68.271px;
+        height: 55.231px;
       }
       #container .css-q7nfxi {
         width: 106.696px;
@@ -6737,8 +6739,10 @@
         height: 26.606px;
       }
       #container .css-3zz5a0 {
-        width: 65.02px;
-        height: 52.601px;
+        /* Footer CPC logo (middle of the three Capture Initiatives icons),
+           sized 5% larger than the Figma export — 65.02 → 68.271, 52.601 → 55.231. */
+        width: 68.271px;
+        height: 55.231px;
       }
       #container .css-q7nfxi {
         width: 106.696px;
@@ -9435,8 +9439,10 @@
         height: 26.606px;
       }
       #container .css-3zz5a0 {
-        width: 65.02px;
-        height: 52.601px;
+        /* Footer CPC logo (middle of the three Capture Initiatives icons),
+           sized 5% larger than the Figma export — 65.02 → 68.271, 52.601 → 55.231. */
+        width: 68.271px;
+        height: 55.231px;
       }
       #container .css-q7nfxi {
         width: 106.696px;
@@ -19036,8 +19042,10 @@
         height: 26.606px;
       }
       #container .css-3zz5a0 {
-        width: 65.02px;
-        height: 52.601px;
+        /* Footer CPC logo (middle of the three Capture Initiatives icons),
+           sized 5% larger than the Figma export — 65.02 → 68.271, 52.601 → 55.231. */
+        width: 68.271px;
+        height: 55.231px;
       }
       #container .css-q7nfxi {
         width: 106.696px;
@@ -29800,8 +29808,10 @@
         height: 26.606px;
       }
       #container .css-3zz5a0 {
-        width: 65.02px;
-        height: 52.601px;
+        /* Footer CPC logo (middle of the three Capture Initiatives icons),
+           sized 5% larger than the Figma export — 65.02 → 68.271, 52.601 → 55.231. */
+        width: 68.271px;
+        height: 55.231px;
       }
       #container .css-q7nfxi {
         width: 106.696px;
@@ -32448,8 +32458,10 @@
         height: 26.606px;
       }
       #container .css-3zz5a0 {
-        width: 65.02px;
-        height: 52.601px;
+        /* Footer CPC logo (middle of the three Capture Initiatives icons),
+           sized 5% larger than the Figma export — 65.02 → 68.271, 52.601 → 55.231. */
+        width: 68.271px;
+        height: 55.231px;
       }
       #container .css-q7nfxi {
         width: 106.696px;
@@ -36331,8 +36343,10 @@
         height: 26.606px;
       }
       #container .css-3zz5a0 {
-        width: 65.02px;
-        height: 52.601px;
+        /* Footer CPC logo (middle of the three Capture Initiatives icons),
+           sized 5% larger than the Figma export — 65.02 → 68.271, 52.601 → 55.231. */
+        width: 68.271px;
+        height: 55.231px;
       }
       #container .css-q7nfxi {
         width: 106.696px;
@@ -37340,6 +37354,79 @@
   .footer-legal-links {
     gap: 4px 14px;
     font-size: 11px;
+  }
+}
+
+/* ── Caribbean Connections: Join + Explore button text +3px ─────────────────
+   Both "Join the Waitlist" and "Explore Communities" buttons across all 4
+   connections pages use the .css-tyqn17 wrapper (role="button"). The text is
+   in a .textContents div with inline font-size: 8.44px set via Figma export,
+   so we use !important to override the inline style. 8.44 + 3 = 11.44. */
+#container .css-tyqn17 .textContents {
+  font-size: 11.44px !important;
+}
+
+/* ── 1920×1080 and 2560×1440 only ───────────────────────────────────────────
+   Two narrow viewport bands — anything below 1920 (or in between, like 2000)
+   is untouched. The Figma export sets explicit width/height (often >100%) on
+   key images and fixed font-sizes on body text; on these two specific sizes
+   we want larger body type and stretch-free imagery. Lives in global
+   styles.css (not the home component) so the rules bypass component
+   scoping and reliably win the cascade against the Figma-exported sizing. */
+@media (min-width: 1900px) and (max-width: 1940px),
+       (min-width: 2540px) and (max-width: 2580px) {
+
+  /* Legacy Sponsor — Saint Lucia bg photo: original Figma sizing was
+     100% × 129.48% with negative top, which (under default object-fit:fill)
+     stretches the image at wide viewports. Collapse to a 100% × (100% + 40px)
+     box shifted up 40px inside the parent .css-m80az1 (height: 740.25px), with
+     object-fit:cover preserving the photo's aspect. The +40px height keeps
+     the image filling the parent's visible area despite the upward shift. */
+  #container img.css-vbq78l,
+  #container .css-trglf0.css-vbq78l {
+    width: 100% !important;
+    height: calc(100% + 40px) !important;
+    top: -40px !important;
+    left: 0 !important;
+    max-width: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+  /* Legacy Sponsor — Bay Gardens logo: original Figma sizing was 215% × 147%,
+     which non-uniformly stretches the logo. Collapse to 100% × 100% with
+     object-fit:contain so the logo never crops or distorts. */
+  #container img.css-zrdb6,
+  #container .css-trglf0.css-zrdb6 {
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+  }
+
+  /* Body text: bump by ~5px on these two viewports. calc(1em + 5px) resolves
+     against the inherited (parent) font-size, so a typical 14–16px body gets
+     19–21px. Targets paragraphs, list items, and the .textContents wrapper
+     used across the Figma-exported markup; titles/headings/buttons untouched.
+     :not(.css-p70z91 *) excludes the footer; :not(.hero-section *) excludes
+     the hero block — both should stay exactly as designed. */
+  #container p:not(.css-p70z91 *):not(.hero-section *),
+  #container li:not(.css-p70z91 *):not(.hero-section *),
+  #container .textContents:not(.css-p70z91 *):not(.hero-section *) {
+    font-size: calc(1em + 5px) !important;
+  }
+}
+
+/* 2560×1440 only: shift the Saint Lucia bg photo a total of -280px up from
+   its original position. 1920×1080 stays at -40px. */
+@media (min-width: 2540px) and (max-width: 2580px) {
+  #container img.css-vbq78l,
+  #container .css-trglf0.css-vbq78l {
+    height: calc(100% + 280px) !important;
+    top: -280px !important;
   }
 }
 

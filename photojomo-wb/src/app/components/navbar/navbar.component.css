@@ -5,6 +5,12 @@
   padding-top: 50px !important;
 }
 
+/* Logo home link — keeps the original flex layout intact */
+.nav-logo-link {
+  display: contents;
+  cursor: pointer;
+}
+
 .global-site-navbar {
   position: absolute;
   left: 50%;

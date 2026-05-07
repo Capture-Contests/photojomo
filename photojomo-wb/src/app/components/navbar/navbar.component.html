@@ -3,13 +3,20 @@
 
     <!-- Logo -->
     <div class="css-8ouu4i css-9uyk0n css-paq0kv" [class.nav-logo-cc]="cc">
-      <div class="css-hv8sls css-wc1msa" data-isimage="true">
-        <img
-          [src]="cc ? '/assets/images/caribbean-connections-footer-logo.png' : 'https://capturecaribbean.figma.site/_assets/v11/298bca564b3aa0d4bda992214a988b1fb44ebdfd.svg'"
-          alt=""
-          class="css-tzn6qh css-ez8men"
-        />
-      </div>
+      <a
+        [routerLink]="cc ? '/caribbean-connections' : '/'"
+        class="nav-logo-link"
+        aria-label="Home"
+        (click)="closeMenu()"
+      >
+        <div class="css-hv8sls css-wc1msa" data-isimage="true">
+          <img
+            [src]="cc ? '/assets/images/caribbean-connections-footer-logo.png' : 'https://capturecaribbean.figma.site/_assets/v11/298bca564b3aa0d4bda992214a988b1fb44ebdfd.svg'"
+            alt=""
+            class="css-tzn6qh css-ez8men"
+          />
+        </div>
+      </a>
     </div>
 
     <!-- Desktop nav links -->

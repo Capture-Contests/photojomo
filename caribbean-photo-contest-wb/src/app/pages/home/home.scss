@@ -280,7 +280,10 @@ $soft: #f6f8fa;
     }
 
     &__badge, &__eyebrow, &__title {
-      position: static;
+      position: relative;
+      top: auto;
+      left: auto;
+      z-index: 2;
       transform: none;
       margin: 0 auto;
       width: auto;
@@ -288,7 +291,6 @@ $soft: #f6f8fa;
 
     &__badge {
       width: clamp(110px, 32vw, 150px);
-      filter: brightness(0) invert(1);
       margin: 0 auto 14px;
       display: block;
     }

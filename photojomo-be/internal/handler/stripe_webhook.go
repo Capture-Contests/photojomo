@@ -103,9 +103,11 @@ func (h *StripeWebhookHandler) handlePaymentIntentSucceeded(ctx context.Context,
 		return nil
 	}
 
-	tag := contact.CategoryName + " Contest"
-	if err := h.mailchimp.SubscribeWithTag(contact.Email, contact.FirstName, contact.LastName, tag); err != nil {
+	tags := mailchimpTags(contact.ContestID, contact.CategoryName)
+	if err := h.mailchimp.SubscribeWithTags(contact.Email, contact.FirstName, contact.LastName, tags); err != nil {
 		log.Printf("warning: mailchimp subscribe failed for %s: %v", contact.Email, err)
+	} else {
+		log.Printf("mailchimp: subscribed %s with tags %v", contact.Email, tags)
 	}
 
 	return nil

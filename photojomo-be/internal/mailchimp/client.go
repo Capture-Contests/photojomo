@@ -31,9 +31,15 @@ func NewClient(apiKey, audienceID string) *Client {
 	}
 }
 
-// SubscribeWithTag upserts a member into the audience and applies a tag.
+// SubscribeWithTag upserts a member into the audience and applies a single tag.
 // If the member already exists their status is left unchanged (status_if_new).
 func (c *Client) SubscribeWithTag(email, firstName, lastName, tag string) error {
+	return c.SubscribeWithTags(email, firstName, lastName, []string{tag})
+}
+
+// SubscribeWithTags upserts a member into the audience and applies multiple tags in one call.
+// If the member already exists their status is left unchanged (status_if_new).
+func (c *Client) SubscribeWithTags(email, firstName, lastName string, tags []string) error {
 	hash := emailHash(email)
 
 	member := map[string]interface{}{
@@ -49,14 +55,14 @@ func (c *Client) SubscribeWithTag(email, firstName, lastName, tag string) error 
 		return fmt.Errorf("upserting mailchimp member: %w", err)
 	}
 
-	tagPayload := map[string]interface{}{
-		"tags": []map[string]string{
-			{"name": tag, "status": "active"},
-		},
+	tagItems := make([]map[string]string, len(tags))
+	for i, tag := range tags {
+		tagItems[i] = map[string]string{"name": tag, "status": "active"}
 	}
+	tagPayload := map[string]interface{}{"tags": tagItems}
 	tagURL := fmt.Sprintf("%s/lists/%s/members/%s/tags", c.baseURL, c.audienceID, hash)
 	if err := c.doRequest("POST", tagURL, tagPayload); err != nil {
-		return fmt.Errorf("adding mailchimp tag: %w", err)
+		return fmt.Errorf("adding mailchimp tags: %w", err)
 	}
 
 	return nil

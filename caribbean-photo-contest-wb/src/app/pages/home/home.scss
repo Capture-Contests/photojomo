@@ -47,8 +47,12 @@ $soft: #f6f8fa;
     z-index: 0;
     user-select: none;
     pointer-events: none;
-    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,0) 100%);
+    // No mask fade on desktop: the inside partnership has a 200px transparent →
+    // white gradient at its top, so the image visibly fades through the
+    // partnership's gradient zone instead of being abruptly clipped.
+    // (Mobile keeps its own mask in the @media (max-width: 768px) override.)
+    // Image darkening is handled entirely by .cc-hero__scrim, matching the
+    // dev site's approach (no CSS filter on the image itself).
   }
 
   &__scrim {
@@ -56,9 +60,16 @@ $soft: #f6f8fa;
     inset: 0;
     z-index: 1;
     background:
+      // Centered radial darkening — matches the dev site's shading: a 60% × 40%
+      // ellipse at (50%, 40%) reaching 0.45 alpha at the center and fading to 0
+      // at the edges. Gives the image a darker middle.
       radial-gradient(ellipse 60% 40% at 50% 40%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.20) 60%, rgba(0,0,0,0) 100%),
-      linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 25%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0) 65%),
-      linear-gradient(to bottom, rgba(255,255,255,0) 70%, rgba(255,255,255,0) 100%);
+      // Under-title darkening — dev site's pattern: peaks at 45% (just below
+      // the title) at 0.25 alpha black, fading to 0 by 65% so the partnership
+      // gradient region remains clean white.
+      linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 25%, rgba(0,0,0,0.25) 45%, rgba(0,0,0,0) 65%);
+    // No bottom white wash: the partnership's transparent → white gradient
+    // (top 200px of the inside block) handles the fade through the image.
     pointer-events: none;
   }
 
@@ -112,7 +123,9 @@ $soft: #f6f8fa;
   // Logo badge: 200x200 (source PNG is 1:1), centered. Figma y=194 (desktop position).
   &__badge {
     position: absolute;
-    top: calc(204 / 1046 * 100%);
+    // +5px shifts the badge down on desktop without affecting the eyebrow/title
+    // below (each has its own absolute top). Mobile overrides position to static.
+    top: calc(204 / 1046 * 100% + 5px);
     left: 50%;
     transform: translateX(-50%);
     width: calc(220 / 1920 * 100%);
@@ -246,25 +259,31 @@ $soft: #f6f8fa;
     align-items: center;
     justify-content: center;
 
-    // Image fills the entire hero; mask fades the bottom into transparency so the edge is hidden
+    // Image solid until 65%, gradual fade to transparent by 78% — fade ends near
+    // where partnership covers on mobile (~71–77% depending on hero height).
     &__bg {
       width: 100%;
       height: 100%;
       left: 0;
       top: 0;
-      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0) 88%);
-              mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgba(0,0,0,0) 88%);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 65%, rgba(0,0,0,0) 78%);
+              mask-image: linear-gradient(to bottom, #000 0%, #000 65%, rgba(0,0,0,0) 78%);
     }
 
-    // Linear top→middle dark band (replaces radial spotlight) + bottom-to-white wash
+    // Mobile shading: top-to-middle dark band slightly stronger than the dev
+    // site default (0.6 → 0.5 → 0.3 → 0) for better white-text contrast on
+    // smaller viewports + white wash for the bottom.
     &__scrim {
       background:
-        linear-gradient(to bottom, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.40) 25%, rgba(0,0,0,0.20) 50%, rgba(0,0,0,0) 70%),
-        linear-gradient(to bottom, rgba(255,255,255,0) 60%, rgba(255,255,255,0.7) 80%, #fff 92%);
+        linear-gradient(to bottom, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.50) 25%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0) 70%),
+        linear-gradient(to bottom, rgba(255,255,255,0) 65%, #fff 78%);
     }
 
     &__badge, &__eyebrow, &__title {
-      position: static;
+      position: relative;
+      top: auto;
+      left: auto;
+      z-index: 2;
       transform: none;
       margin: 0 auto;
       width: auto;
@@ -272,7 +291,6 @@ $soft: #f6f8fa;
 
     &__badge {
       width: clamp(110px, 32vw, 150px);
-      filter: brightness(0) invert(1);
       margin: 0 auto 14px;
       display: block;
     }
@@ -296,13 +314,55 @@ $soft: #f6f8fa;
 // ─── 2. PARTNERSHIP BRIDGE ───────────────────────────────────────────────────
 // Figma: "Presented in Partnership" Calvino Grande Trial 300 / 25px / italic / #122175
 // Combined image (Bay Gardens + divider + 30-Year badge) 352x104
+//
+// Two render targets:
+//   --inside  → desktop only, position: absolute at the bottom of the hero
+//   --outside → mobile only, normal flow with negative margin (legacy behavior)
 .cc-partnership {
   text-align: center;
   padding: 0 2rem 3rem;
-  margin-top: -120px;
+  margin-top: -170px;
   background: #fff;
   position: relative;
   z-index: 3;
+
+  // Desktop: render the inside-hero copy, hide the outside one.
+  &--inside {
+    display: none;
+
+    @media (min-width: 769px) {
+      display: block;
+      position: absolute;
+      bottom: 80px;
+      left: 0;
+      right: 0;
+      margin: 0;
+      // Top 200px of the block is a transparent → white gradient so the hero
+      // image fades smoothly to white through the partnership's top region.
+      // padding-top of 200px keeps the eyebrow + Bay Gardens content sitting
+      // on solid white (just below where the gradient reaches #fff).
+      padding-top: 200px;
+      background: linear-gradient(to bottom, transparent 0px, #fff 200px);
+    }
+
+    // Tablet + iMac 24 (1120×630): hero shrinks proportionally with viewport
+    // width (aspect-ratio 1920/1116), but the partnership uses fixed pixel
+    // offsets. At ~1024w the hero is ~595px tall and at 1120w it's ~651px, so
+    // a 407px partnership block hides most of the image. Shrink the gradient
+    // zone + bottom offset here to keep more image visible.
+    @media (min-width: 769px) and (max-width: 1280px) {
+      bottom: 30px;
+      padding-top: 60px;
+      background: linear-gradient(to bottom, transparent 0px, #fff 60px);
+    }
+  }
+
+  // Mobile: hide on desktop so only the inside copy shows.
+  &--outside {
+    @media (min-width: 769px) {
+      display: none;
+    }
+  }
 
   &__eyebrow {
     font-family: var(--font-serif), 'Instrument Serif', serif;
@@ -311,7 +371,7 @@ $soft: #f6f8fa;
     color: #122175;
     font-size: clamp(20px, calc(25 / 1920 * 100vw), 28px);
     line-height: 31.3px;
-    margin: 0 0 1.5rem;
+    margin: 0 0 calc(1.5rem - 5px);
   }
 
   &__image {
@@ -330,6 +390,12 @@ $soft: #f6f8fa;
   padding: 2.75rem 2rem 5rem;
   text-align: center;
   background: #fff;
+
+  // Pull the first "Choose Your" section up 30px (the --repeat copy lower
+  // on the page keeps its original position).
+  &:not(&--repeat) {
+    margin-top: -30px;
+  }
 
   // The repeat copy (closer to bottom) starts white at top, fades into light blue,
   // which then continues solid through the Voices section that follows.
@@ -448,6 +514,14 @@ $gold-hover: #c8973e;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    // Honor explicit \n in description data (used to force a break in shorter
+    // descriptions so all card CTAs align at the same bottom edge).
+    white-space: pre-line;
+
+    // Desktop: add 2px between "Cash Award" (above) and the description text.
+    @media (min-width: 769px) {
+      margin-top: 2px;
+    }
   }
 
   &__pricing {
@@ -790,15 +864,14 @@ $gold-hover: #c8973e;
     display: block;
   }
 
-  // Top: fades to white from the edge. Bottom: subtle dark scrim for logo/label clarity.
+  // Decorative top/bottom fade element — kept in DOM (used as positioning
+  // context) but with no gradient overlay so the slide reads at full clarity.
   &__fade {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 2;
-    background:
-      linear-gradient(to bottom, #fff 0%, rgba(255,255,255,0.5) 18%, rgba(255,255,255,0) 45%),
-      linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0.35) 100%);
+    background: none;
   }
 
   // Per-slide wordmark + label — centered at bottom of each image
@@ -891,7 +964,7 @@ $gold-hover: #c8973e;
 
   &__phase-desc {
     color: $muted;
-    font-size: 0.9rem;
+    font-size: calc(0.9rem - 3px);
     margin: 0;
   }
 
@@ -1007,20 +1080,6 @@ $gold-hover: #c8973e;
   text-align: center;
   background: #fbfdfe;
 
-  // Decorative + grid (Figma Group 5 at 322,1072 — 5 cols × 5 rows of '+' glyphs)
-  &__plus-grid {
-    position: absolute;
-    top: 30%;
-    left: 8%;
-    width: 220px;
-    height: 200px;
-    background-image: radial-gradient(circle, #e5e5e5 1px, transparent 1.5px);
-    background-size: 50px 42px;
-    opacity: 0.7;
-    pointer-events: none;
-    @media (max-width: 768px) { display: none; }
-  }
-
   &__title {
     font-family: 'Sora', sans-serif;
     font-weight: 400;
@@ -1075,6 +1134,13 @@ $gold-hover: #c8973e;
     display: block;
     flex-shrink: 0;
     background: #eee;
+
+    // Amanya's photo has hair extending up — anchor to the top so her
+    // forehead/hair stay flush with the container's top edge rather than
+    // being centered (which crops the top off).
+    &[alt="Amanya Brook"] {
+      object-position: center top;
+    }
   }
 
   &__body { flex: 1; min-width: 0; }
@@ -1124,15 +1190,13 @@ $gold-hover: #c8973e;
     margin: 0 0 2.5rem;
 
     strong { font-weight: 600; font-size: calc(1em + 2px); }
-    .serif-italic { font-size: 1.5em; line-height: 1; margin-left: 0.05em; }
+    .serif-italic { font-size: 1.5em; line-height: 1; margin-left: 0.35em; }
   }
 
   &__card {
     max-width: 473px;
     margin: 0 auto;
-    text-align: left;
-
-    @media (max-width: 480px) { text-align: center; }
+    text-align: center;
   }
 
   &__avatar {

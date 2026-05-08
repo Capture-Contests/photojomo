@@ -5,17 +5,27 @@
     <img class="cc-hero__bg" src="images/hero-marigot.jpg" alt="" />
     <div class="cc-hero__scrim" aria-hidden="true"></div>
 
-    <img class="cc-hero__badge" src="images/hero-logo-badge.png" alt="Caribbean Photo Contest" />
+    <a routerLink="/" aria-label="Home"><img class="cc-hero__badge" src="images/hero-logo-badge.png" alt="Caribbean Photo Contest" /></a>
 
     <p class="cc-hero__eyebrow">Shape the legacy.</p>
 
     <h1 class="cc-hero__title">Capture the Caribbean. Experience Luxury.</h1>
+
+    <!-- 2a. PARTNERSHIP BRIDGE — desktop only, positioned at the bottom of the hero -->
+    <section class="cc-partnership cc-partnership--inside">
+      <p class="cc-partnership__eyebrow">Presented in Partnership</p>
+      <a href="https://www.baygardensresorts.com/" target="_blank" rel="noopener noreferrer">
+        <img src="images/partnership-bay-gardens-30.png" alt="Bay Gardens Resorts · 30 Year Anniversary" class="cc-partnership__image" />
+      </a>
+    </section>
   </section>
 
-  <!-- 2. PARTNERSHIP BRIDGE (Figma 352x177, single flattened image) -->
-  <section class="cc-partnership">
+  <!-- 2b. PARTNERSHIP BRIDGE — mobile only, normal flow with negative margin -->
+  <section class="cc-partnership cc-partnership--outside">
     <p class="cc-partnership__eyebrow">Presented in Partnership</p>
-    <img src="images/partnership-bay-gardens-30.png" alt="Bay Gardens Resorts · 30 Year Anniversary" class="cc-partnership__image" />
+    <a href="https://www.baygardensresorts.com/" target="_blank" rel="noopener noreferrer">
+      <img src="images/partnership-bay-gardens-30.png" alt="Bay Gardens Resorts · 30 Year Anniversary" class="cc-partnership__image" />
+    </a>
   </section>
 
   <!-- 3. CHOOSE YOUR CATEGORY (first) -->
@@ -199,7 +209,6 @@
 
   <!-- 10. VOICES OF THE FINALISTS (Figma Frame 2095585015 inner: 1072x513) -->
   <section class="cc-voices">
-    <div class="cc-voices__plus-grid" aria-hidden="true"></div>
     <h2 class="cc-voices__title"><strong>Voices of the</strong> <span class="serif-italic">Finalists</span></h2>
     <p class="cc-voices__intro">{{ voicesIntro }}</p>
     <div class="cc-voices__grid">
@@ -218,7 +227,7 @@
 
   <!-- 11. ARTIST-IN-RESIDENCY (Figma Frame 2095585043: 673x552) -->
   <section class="cc-residency">
-    <h2 class="cc-residency__title"><strong>Artist-in-</strong><span class="serif-italic">Residency Experience</span></h2>
+    <h2 class="cc-residency__title"><strong>Artist-in-Residency</strong> <span class="serif-italic">Experience</span></h2>
     <div class="cc-residency__card">
       <img [src]="residencyArtist.avatar" [alt]="residencyArtist.name" class="cc-residency__avatar" />
       <div class="cc-residency__body">
@@ -267,7 +276,7 @@
 
   <!-- 13. FOOTER -->
   <footer class="cc-footer">
-    <img src="images/CPC-Logo-720x720.png" alt="Caribbean Photo Contest" class="cc-footer__logo" />
+    <a routerLink="/" aria-label="Home"><img src="images/CPC-Logo-720x720.png" alt="Caribbean Photo Contest" class="cc-footer__logo" /></a>
     <p class="cc-footer__tagline">
       Step into the thrill of a lifetime where sun, sea, and sweeping prizes await &mdash; it&rsquo;s time to Capture the Caribbean.
     </p>

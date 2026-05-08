@@ -33,7 +33,7 @@
       >
         <div class="css-fsqjq9 css-v27th6 css-paq0kv">
           <!-- Hero Section -->
-          <div class="css-dczajm css-v27th6 css-paq0kv">
+          <div class="css-dczajm css-v27th6 css-paq0kv hero-section">
             <!-- Outter Layer -->
             <div class="css-5knerd css-v27th6 hero-image-shell" style="opacity: 1; height: 100vh">
               <!-- start -->
@@ -240,7 +240,7 @@
                               ></div>
                               <div class="css-pfzypp css-paq0kv css-v27th6">
                                 <a
-                                  routerLink="/contest"
+                                  [href]="contestUrl"
                                   class="css-5knerd css-134pm3 hero-primary-cta"
                                   style="opacity: 1; text-decoration: none;"
                                 >
@@ -280,7 +280,7 @@
                                   </div>
                                 </a>
                                 <a
-                                  routerLink="/contest"
+                                  [href]="sweepstakesUrl"
                                   class="css-wbynap css-5knerd css-134pm3"
                                   style="opacity: 1; text-decoration: none;"
                                 >
@@ -447,8 +447,7 @@
               <p class="css-nqwmvk">
                 <span class="css-idcn1d">Discover the</span>
                 <span class="css-iv7ltk css-b54yok">Tri Path</span></p>
-              <p class="css-l1mcow css-29l6m css-8hexdp css-lale textContents">Choose your journey through three unique
-                pathways to Caribbean photography excellence </p>
+              <p class="css-l1mcow css-29l6m css-8hexdp css-lale textContents">Where creators begin&mdash;choose your path through Caribbean visual storytelling.</p>
             </div>
             <div class="css-jff7uw css-nj1xcx css-paq0kv">
               <div class="css-5knerd css-v27th6 css-werfb2 tri-card tri-card--mobile">
@@ -485,7 +484,7 @@
                           </div>
                           <div class="css-qbg6gv css-wc1msa tri-card__logo-wrap tri-card__logo-wrap--contest" data-isimage="true"><img loading="lazy" src="assets/images/CPC-Logo-720x720_r.png" alt="" width="94.57" height="76.505" class="tri-card__logo tri-card__logo--contest" srcset="assets/images/CPC-Logo-720x720_r.png 75w" sizes="auto,74.659423828125px"></div>
                         </div>
-                      </div><a class="css-5e1eaj css-cqiawt css-hf9sha tri-card__cta" routerLink="/contest" target="_self">
+                      </div><a class="css-5e1eaj css-cqiawt css-hf9sha tri-card__cta" [href]="contestUrl" target="_self">
                       <p class="css-nf5ac4 css-wdvxzp css-yjlbxz css-qdd7cm textContents tri-card__cta-label">Explore Now</p>
                       <div class="css-xk4pie css-wc1msa tri-card__cta-arrow" data-isimage="true">
                         <span class="tri-card__cta-arrow-img" aria-hidden="true">→</span>
@@ -540,8 +539,7 @@
                         <p
                           class="css-nf5ac4 css-59rdls css-wb9eri css-uot4si textContents"
                         >
-                          Choose your journey through three unique pathways to
-                          Caribbean photography excellence
+                          Where creators begin&mdash;choose your path through Caribbean visual storytelling.
                         </p>
                       </div>
                     </div>
@@ -610,7 +608,7 @@
               </div>
               <div class="tailwind css-hdqalq css-uwf2km">
                 <a
-                  routerLink="/contest"
+                  [href]="contestUrl"
                   target="_self"
                   class="relative size-full group"
                   data-name="Property 1=Default"
@@ -744,7 +742,7 @@
               >
               <div class="artist-residency-clean__hosted-mobile">
                 <p>Generously Hosted By</p>
-                <img src="assets/images/bay-gardens-logo.png" alt="Bay Gardens Resorts">
+                <a href="https://www.baygardensresorts.com/" target="_blank" rel="noopener noreferrer" aria-label="Bay Gardens Resorts"><img src="assets/images/bay-gardens-logo.png" alt="Bay Gardens Resorts"></a>
               </div>
             </div>
             <div class="artist-residency-clean__content">
@@ -757,7 +755,7 @@
               </p>
               <div class="artist-residency-clean__hosted">
                 <p>Generously Hosted By</p>
-                <img src="assets/images/bay-gardens-logo.png" alt="Bay Gardens Resorts">
+                <a href="https://www.baygardensresorts.com/" target="_blank" rel="noopener noreferrer" aria-label="Bay Gardens Resorts"><img src="assets/images/bay-gardens-logo.png" alt="Bay Gardens Resorts"></a>
               </div>
               <div class="artist-residency-clean__benefits">
                 <div class="artist-residency-clean__benefit">
@@ -990,18 +988,26 @@
                   </p>
                   <div class="css-xeyfn0 css-wc1msa">
                     <div class="css-phc9f9 css-trglf0 css-trglf0 css-r0azwh">
-                      <img
-                        alt=""
-                        loading="lazy"
-                        class="css-trglf0 css-zrdb6"
-                        src="https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png"
-                        srcset="
-                          https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png        1920w,
-                          https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png?w=1102 1102w,
-                          https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png?w=2203 2203w
-                        "
-                        sizes="auto,295.2794236277844px"
-                      />
+                      <a
+                        href="https://www.baygardensresorts.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Bay Gardens Resorts"
+                        style="pointer-events: auto; display: inline-block;"
+                      >
+                        <img
+                          alt="Bay Gardens Resorts"
+                          loading="lazy"
+                          class="css-trglf0 css-zrdb6"
+                          src="https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png"
+                          srcset="
+                            https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png        1920w,
+                            https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png?w=1102 1102w,
+                            https://capturecaribbean.figma.site/_assets/v11/b389f95373c6b10f212664fde6bf0ff9ebf533ea.png?w=2203 2203w
+                          "
+                          sizes="auto,295.2794236277844px"
+                        />
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -1096,7 +1102,7 @@
                             class="css-tzn6qh css-ez8men" /></a
                         ><a
                           class="css-3zz5a0 css-wc1msa css-134pm3"
-                          routerLink="/contest"
+                          [href]="contestUrl"
                           target="_self"
                           data-isimage="true"
                           ><img

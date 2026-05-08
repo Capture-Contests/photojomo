@@ -58,8 +58,8 @@ export class Home implements OnInit, OnDestroy {
     },
     {
       title: 'Emerging Creator',
-      image: 'images/card-emerging.png',
-      description: 'For young visual artists ages 18+. No professional experience required — just passion and creativity.',
+      image: 'images/iStock-1313422725.jpg',
+      description: 'For young visual artists ages 18+. No professional experience required —\njust passion and creativity.',
       price: '$25',
       award: '$500',
       tier: 'General Admission',

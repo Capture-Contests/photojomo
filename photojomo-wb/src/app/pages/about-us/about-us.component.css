@@ -58,7 +58,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 40%;
+  height: 50%;
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0) 0%,
@@ -73,7 +73,7 @@
 .partnership-bridge {
   position: relative;
   z-index: 5;
-  margin-top: -168px;
+  margin-top: -198px;
   margin-bottom: -14px;
   padding-bottom: 12px;
   text-align: center;
@@ -837,6 +837,120 @@
 @media (orientation: landscape) and (max-height: 500px) {
   .partnership-bridge {
     margin-top: -108px !important; /* was -168 */
+  }
+}
+
+/* ── Short landscape (1280×720 / 1120×632 / 1280×832) ────────────────────
+   Header runs off-screen at these heights — relax the Figma wrapper's
+   clipping and shorten the hero so the heading stays inside the viewport.
+   ────────────────────────────────────────────────────────────────────── */
+@media (orientation: landscape) and (min-width: 1100px) and (min-height: 501px) and (max-height: 850px) {
+  :host ::ng-deep #container .css-rn2hh9,
+  :host ::ng-deep #container .css-50jkpj,
+  :host ::ng-deep #container .css-cuerbe {
+    overflow: visible !important;
+  }
+  :host ::ng-deep #container .css-8fq6lu {
+    height: 100vh !important;
+    max-height: 100vh !important;
+    min-height: 0 !important;
+  }
+  :host ::ng-deep .partnership-bridge {
+    margin-top: -108px !important;
+  }
+}
+
+/* ── Specific previews: small portrait tablet (688×1031) ────────────────
+   Move partnership-bridge another 40px up. Width-only since 688 is a
+   distinctive preview dimension — height left open to absorb browser
+   chrome variations in the preview tool. Wrapper override added in case
+   the Figma wrapper is fighting the negative margin at this breakpoint.
+   ────────────────────────────────────────────────────────────────────── */
+@media (orientation: portrait) and (min-width: 680px) and (max-width: 705px) {
+  :host ::ng-deep #container .css-rn2hh9 {
+    overflow: visible !important;
+  }
+  :host ::ng-deep .partnership-bridge {
+    margin-top: -238px !important; /* base -198 - 40 */
+  }
+}
+
+/* ── Specific preview: large desktop (1728×1117) ────────────────────────
+   Move partnership-bridge another 40px up.
+   ────────────────────────────────────────────────────────────────────── */
+@media (min-width: 1715px) and (max-width: 1745px) {
+  :host ::ng-deep #container .css-rn2hh9 {
+    overflow: visible !important;
+  }
+  :host ::ng-deep .partnership-bridge {
+    margin-top: -238px !important; /* base -198 - 40 */
+  }
+}
+
+/* ── Specific preview: 1120×630 ──────────────────────────────────────────
+   Tighten the navbar gap so links sit closer together at this width,
+   and shift the logo 50px to the right.
+   Base gap is 76.457px (Figma: #container .css-kf6bp5).
+   ────────────────────────────────────────────────────────────────────── */
+@media (min-width: 1115px) and (max-width: 1130px) {
+  :host ::ng-deep #container .css-kf6bp5 {
+    gap: 32px !important;
+  }
+  :host ::ng-deep #container .css-8ouu4i {
+    transform: translateX(130px) !important;
+  }
+}
+
+/* ── 1920×1080 + 2560×1440 ───────────────────────────────────────────────
+   Scale just the "The Capture Vision" wordmark to 300% (3× base 58.322px).
+   ────────────────────────────────────────────────────────────────────── */
+@media (min-width: 1900px) and (max-width: 1940px) {
+  :host ::ng-deep #container p.css-lb0d0l.textContents {
+    font-size: 55px !important;
+  }
+}
+
+@media (min-width: 2540px) and (max-width: 2580px) {
+  :host ::ng-deep #container p.css-lb0d0l.textContents {
+    font-size: 75px !important;
+  }
+}
+
+/* ── 1920×1080 + 2560×1440: render TM as superscript on the wordmark line ─ */
+@media (min-width: 1900px) and (max-width: 1940px),
+       (min-width: 2540px) and (max-width: 2580px) {
+  :host ::ng-deep #container .css-ydxjl1 {
+    display: none !important;
+  }
+  :host ::ng-deep #container p.css-lb0d0l.textContents::after {
+    content: 'TM';
+    font-size: 0.38em;
+    vertical-align: super;
+    margin-left: 0.15em;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.04em;
+  }
+
+  /* All top-right nav links unified to a single size (overriding the global
+     `calc(1em + 5px)` rule that resolves to different values per parent). */
+  :host ::ng-deep #container .nav-links a p,
+  :host ::ng-deep #container .nav-links .nav-dropdown-trigger p {
+    font-size: 22px !important;
+  }
+
+  /* Dropdown menu scaled up ~1.55x with all internal spacing scaled
+     proportionally so the visual rhythm stays consistent. */
+  :host ::ng-deep #container .nav-dropdown-menu {
+    max-width: 372px;
+    padding: 9px 0;
+    border-radius: 14px;
+    top: calc(100% + 18px);
+  }
+  :host ::ng-deep #container .nav-dropdown-menu a {
+    font-size: 17px !important;
+    padding: 11px 12px 11px 18px;
+    line-height: 1.15;
   }
 }
 

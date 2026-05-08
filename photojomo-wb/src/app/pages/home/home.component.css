@@ -781,7 +781,7 @@
     gap: 28px !important;
     width: 100% !important;
     max-width: 1240px !important;
-    margin: 18px auto 0 !important;
+    margin: 8px auto 0 !important;
   }
 
   .prospective-partners-logos > div {
@@ -1857,6 +1857,23 @@
   :host ::ng-deep #container .css-p70z91 > * {
     max-width: 100% !important;
     box-sizing: border-box !important;
+  }
+}
+
+/* ── Tri-Path panel backgrounds (1920×1080 and 2560×1440) ────────────────
+   Targeted at the two specific viewport sizes only.
+   (Legacy Sponsor image + body text overrides live in global styles.css so
+   they bypass Angular component scoping and reliably win the cascade.) */
+@media (min-width: 1900px) and (max-width: 1940px),
+       (min-width: 2540px) and (max-width: 2580px) {
+  #tri-path-lg [aria-hidden="true"] > .overflow-hidden > img {
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
   }
 }
 

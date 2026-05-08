@@ -21,6 +21,7 @@ interface HeroSlide {
 export class HomeComponent implements OnInit, OnDestroy {
   firstWaveUrl = environment.firstWaveUrl;
   sweepstakesUrl = environment.sweepstakesUrl;
+  contestUrl = environment.contestUrl;
   private mediaBaseUrl = environment.mediaBaseUrl;
 
   heroSlides: HeroSlide[] = [

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { SubmissionService, Tier } from '../../services/submission.service';
 
 interface ContestInfo {
   title: string;
@@ -24,11 +25,29 @@ const CONTESTS: Record<string, ContestInfo> = {
 export class ContestEntryComponent implements OnInit {
   contest: ContestInfo = CONTESTS['general'];
   contestId = 'general';
+  tiers: Tier[] = [];
+  tiersLoading = true;
+  tiersError = false;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private submissionService: SubmissionService,
+  ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.contestId = this.route.snapshot.paramMap.get('id') ?? 'general';
     this.contest   = CONTESTS[this.contestId] ?? CONTESTS['general'];
+
+    try {
+      this.tiers = await this.submissionService.getTiers();
+    } catch {
+      this.tiersError = true;
+    } finally {
+      this.tiersLoading = false;
+    }
+  }
+
+  formatImages(maxImages: number): string {
+    return maxImages === 5 ? '1-5 images' : `Up to ${maxImages} images`;
   }
 }

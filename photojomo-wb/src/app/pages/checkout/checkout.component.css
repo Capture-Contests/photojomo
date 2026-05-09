@@ -187,7 +187,6 @@
   align-items: flex-start;
   gap: 10px;
   margin-bottom: 12px;
-  cursor: pointer;
   font-size: 13px;
   color: rgba(255,255,255,0.7);
   line-height: 1.5;
@@ -197,6 +196,11 @@
   margin-top: 2px;
   accent-color: #c9a84c;
   min-width: 14px;
+  cursor: pointer;
+}
+
+.checkbox-row .form-link {
+  cursor: pointer;
 }
 
 .form-link {

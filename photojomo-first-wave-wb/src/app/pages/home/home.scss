@@ -429,14 +429,14 @@
 .founding {
   position: relative;
   background-size: cover;
-  background-position: center;
+  background-position: center 80%;
   color: #fff;
   padding: 0;
 
   &__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.82);
+    background: rgba(0, 0, 0, 0.6);
   }
 
   // Part 1: Forge the Founding Class

@@ -77,25 +77,25 @@
         <section class="form-section">
           <h2 class="form-section-title">Privacy and Rules</h2>
 
-          <label class="checkbox-row">
-            <input type="checkbox" [(ngModel)]="confirm1" />
-            <span>I confirm that my images were captured between the years 2025 and 2026.</span>
-          </label>
+          <div class="checkbox-row">
+            <input id="confirm1" type="checkbox" [(ngModel)]="confirm1" />
+            <span>I confirm that my images were captured between the years 2025 and 2026. <span class="req">*</span></span>
+          </div>
 
-          <label class="checkbox-row">
-            <input type="checkbox" [(ngModel)]="confirm2" />
-            <span>I confirm that I am at least 18 years old as of the opening date of the competition.</span>
-          </label>
+          <div class="checkbox-row">
+            <input id="confirm2" type="checkbox" [(ngModel)]="confirm2" />
+            <span>I confirm that I am at least 18 years old as of the opening date of the competition. <span class="req">*</span></span>
+          </div>
 
-          <label class="checkbox-row">
-            <input type="checkbox" [(ngModel)]="confirm3" />
-            <span>I have read and agreed to the <a href="https://caribbeanphotocontests.com/rules/" target="_blank" class="form-link">Rules</a>, <a href="https://caribbeanphotocontests.com/terms-and-conditions/" target="_blank" class="form-link">Terms and Conditions</a> and <a href="https://caribbeanphotocontests.com/privacy-policy/" target="_blank" class="form-link">Privacy Policy</a>.</span>
-          </label>
+          <div class="checkbox-row">
+            <input id="confirm3" type="checkbox" [(ngModel)]="confirm3" />
+            <span>I have read and agreed to the <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true" class="form-link">Rules</a>, <a routerLink="/info/terms-and-conditions" [state]="legalModalState()" [replaceUrl]="true" class="form-link">Terms and Conditions</a> and <a routerLink="/info/privacy-policy" [state]="legalModalState()" [replaceUrl]="true" class="form-link">Privacy Policy</a>. <span class="req">*</span></span>
+          </div>
 
-          <label class="checkbox-row">
-            <input type="checkbox" [(ngModel)]="confirm4" />
+          <div class="checkbox-row">
+            <input id="confirm4" type="checkbox" [(ngModel)]="confirm4" />
             <span>Yes! Send me exclusive Saint Lucia travel offers from the Official Hospitality Partners.</span>
-          </label>
+          </div>
           <div class="offer-bullets">
             <span class="offer-bullet golden">● Win a Luxury Caribbean Escape</span>
             <span class="offer-bullet golden">● Participate caribbean photo contest</span>

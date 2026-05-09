@@ -13,6 +13,7 @@ export class ContestTiers implements OnInit {
   tiers: Tier[] = [];
   tiersLoading = true;
   tiersError = false;
+  goldenInfoOpen = false;
 
   private readonly router = inject(Router);
   private readonly submissionService = inject(SubmissionService);
@@ -50,5 +51,15 @@ export class ContestTiers implements OnInit {
       returnUrl: this.router.url,
       returnScrollY: window.scrollY,
     };
+  }
+
+  openGoldenInfo(event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.goldenInfoOpen = true;
+  }
+
+  closeGoldenInfo(): void {
+    this.goldenInfoOpen = false;
   }
 }

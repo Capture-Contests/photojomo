@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 
@@ -9,7 +9,13 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
   templateUrl: './caribbean-connections.component.html',
   styleUrls: ['./caribbean-connections.component.css'],
 })
-export class CaribbeanConnectionsComponent {
+export class CaribbeanConnectionsComponent implements OnInit {
+  ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
+  }
+
   readonly testimonials = [
     {
       avatar:

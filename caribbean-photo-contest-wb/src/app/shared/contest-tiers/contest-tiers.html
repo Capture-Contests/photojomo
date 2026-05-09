@@ -70,6 +70,9 @@
   }
 
   <p class="tiers__footer-note">
-    By registering you agree to the Contest Rules and Terms &amp; Conditions.
+    By registering you agree to the
+    <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true" class="tiers__footer-link">Contest Rules</a>
+    and
+    <a routerLink="/info/terms-of-use" [state]="legalModalState()" [replaceUrl]="true" class="tiers__footer-link">Terms &amp; Conditions</a>.
   </p>
 </section>

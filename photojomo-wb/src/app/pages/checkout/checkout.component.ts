@@ -73,6 +73,13 @@ export class CheckoutComponent implements OnInit {
     private http: HttpClient,
   ) {}
 
+  legalModalState() {
+    return {
+      returnUrl: this.router.url,
+      returnScrollY: typeof window !== 'undefined' ? window.scrollY : 0,
+    };
+  }
+
   ngOnInit() {
     const contestId = this.route.snapshot.paramMap.get('contestId') ?? 'general';
     const tierId    = this.route.snapshot.paramMap.get('tierId')    ?? 'tier-1';

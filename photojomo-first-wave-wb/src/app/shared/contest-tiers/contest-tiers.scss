@@ -174,25 +174,109 @@
       width: 0.82rem;
       height: 0.82rem;
       margin-left: 0.14rem;
+      padding: 0;
+      border: 0;
       border-radius: 999px;
       background: rgba(208, 162, 79, 0.16);
       color: #d0a24f;
+      font-family: inherit;
       font-size: 0.62rem;
       font-weight: 700;
       line-height: 1;
+      cursor: pointer;
+      transition: background 200ms ease, transform 200ms ease;
+
+      &:hover { background: rgba(208, 162, 79, 0.32); transform: scale(1.1); }
     }
   }
+}
 
-  &__golden-emphasis {
-    font-family: var(--font-primary);
-    font-weight: 600;
-    font-style: italic;
-    color: inherit;
-  }
+/* ── Golden Ticket info modal ─────────────────────────────────────────── */
+.golden-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(8, 8, 8, 0.84);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: golden-modal-fade 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-  &__footer {
-    padding: 0.02rem 1.43rem 0.96rem;
-  }
+.golden-modal__panel {
+  position: relative;
+  max-width: 560px;
+  width: 100%;
+  background: #f6f4ef;
+  color: #222;
+  border-radius: 24px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+  padding: 2.5rem 2.25rem 2.25rem;
+  transform-origin: center 60%;
+  animation: golden-modal-rise 1200ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.golden-modal__close {
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  background: transparent;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #5a5a5a;
+  cursor: pointer;
+  transition: color 150ms ease;
+  &:hover { color: #1f1f1f; }
+}
+
+.golden-modal__title {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+  font-weight: 700;
+  color: #1f1f1f;
+  line-height: 1.2;
+}
+
+.golden-modal__list {
+  margin: 0;
+  padding: 0 0 0 1.2rem;
+  list-style: disc;
+  color: #2c2c2c;
+  font-size: 0.95rem;
+  line-height: 1.55;
+
+  li + li { margin-top: 0.85rem; }
+}
+
+@keyframes golden-modal-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes golden-modal-rise {
+  0%   { opacity: 0; transform: translateY(36px) scale(0.86); }
+  45%  { opacity: 1; transform: translateY(-10px) scale(1.04); }
+  65%  { transform: translateY(6px) scale(0.985); }
+  82%  { transform: translateY(-3px) scale(1.012); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.tier-card__golden-emphasis {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-style: italic;
+  color: inherit;
+}
+
+.tier-card__footer {
+  padding: 0.02rem 1.43rem 0.96rem;
 }
 
 .tier-btn {

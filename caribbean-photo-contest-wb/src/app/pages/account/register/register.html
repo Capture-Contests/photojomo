@@ -103,22 +103,22 @@
         <div class="reg-section reg-section--with-total reg-section--privacy-rules">
           <h2 class="reg-section__title">Privacy and Rules</h2>
           <div class="reg-checks">
-            <label class="reg-check">
-              <input type="checkbox" name="confirmDates" [(ngModel)]="form.confirmDates" required />
-              <span>I confirm that my images were captured between the years 2025 and 2026.</span>
-            </label>
-            <label class="reg-check">
-              <input type="checkbox" name="confirmAge" [(ngModel)]="form.confirmAge" required />
-              <span>I confirm that I am at least 18 years old as of the opening date of the competition.</span>
-            </label>
-            <label class="reg-check">
-              <input type="checkbox" name="agreeRules" [(ngModel)]="form.agreeRules" required />
-              <span>I have read and agreed to the Contest Rules, Terms and Conditions, and Privacy Policy. <span class="req">*</span></span>
-            </label>
-            <label class="reg-check">
-              <input type="checkbox" name="subscribeOffers" [(ngModel)]="form.subscribeOffers" />
+            <div class="reg-check">
+              <input id="confirmDates" type="checkbox" name="confirmDates" [(ngModel)]="form.confirmDates" required />
+              <span>I confirm that my images were captured between the years 2025 and 2026. <span class="req">*</span></span>
+            </div>
+            <div class="reg-check">
+              <input id="confirmAge" type="checkbox" name="confirmAge" [(ngModel)]="form.confirmAge" required />
+              <span>I confirm that I am at least 18 years old as of the opening date of the competition. <span class="req">*</span></span>
+            </div>
+            <div class="reg-check">
+              <input id="agreeRules" type="checkbox" name="agreeRules" [(ngModel)]="form.agreeRules" required />
+              <span>I have read and agreed to the <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true" class="reg-check__link">Contest Rules</a>, <a routerLink="/info/terms-of-use" [state]="legalModalState()" [replaceUrl]="true" class="reg-check__link">Terms and Conditions</a>, and <a routerLink="/info/privacy-policy" [state]="legalModalState()" [replaceUrl]="true" class="reg-check__link">Privacy Policy</a>. <span class="req">*</span></span>
+            </div>
+            <div class="reg-check">
+              <input id="subscribeOffers" type="checkbox" name="subscribeOffers" [(ngModel)]="form.subscribeOffers" />
               <span>Yes! Send me updates and offers from Capture Caribbean and its partners.</span>
-            </label>
+            </div>
           </div>
 
           @if (selectedTier) {

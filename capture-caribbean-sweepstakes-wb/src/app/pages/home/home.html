@@ -143,8 +143,28 @@
 <section class="sw-form-section">
 
   <div *ngIf="submitted" class="sw-success">
-    <h2>You're entered!</h2>
-    <p>Thank you for entering the Capture Caribbean Sweepstakes. Good luck!</p>
+    <div class="sw-success__confetti" aria-hidden="true">
+      <span
+        *ngFor="let p of confettiPieces"
+        class="sw-success__confetti-piece"
+        [style.background]="p.color"
+        [style.left.%]="p.left"
+        [style.animation-delay.s]="p.delay"
+        [style.animation-duration.s]="p.duration"
+        [style.--rotate.deg]="p.rotate"
+        [style.--drift.px]="p.drift"
+      ></span>
+    </div>
+    <div class="sw-success__check" aria-hidden="true">
+      <svg viewBox="0 0 52 52">
+        <circle class="sw-success__check-circle" cx="26" cy="26" r="24" fill="none"/>
+        <path class="sw-success__check-mark" fill="none" d="M14 27 l8 8 l16 -16"/>
+      </svg>
+    </div>
+    <h2 class="sw-success__heading">You're entered!</h2>
+    <p class="sw-success__lede">Thank you for entering the</p>
+    <img class="sw-success__logo" src="images/capture-sweepstakes-logo.svg" alt="Capture Caribbean Sweepstakes" />
+    <p class="sw-success__wish">Good luck!</p>
   </div>
 
   <ng-container *ngIf="!submitted">

@@ -77,6 +77,17 @@
     max-width: 860px;
     width: 100%;
     margin: 0 auto;
+
+    a:not(.legal-modal__tab):not(.legal-modal__back-to-top) {
+      color: #2a3f8f;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 150ms ease;
+    }
+
+    a:not(.legal-modal__tab):not(.legal-modal__back-to-top):hover {
+      color: #d8a74d;
+    }
   }
 
   &__eyebrow {

@@ -49,6 +49,7 @@ export const TIERS: Tier[] = [
 export class ContestTiers {
   @Input() division = 'general';
   tiers = TIERS;
+  goldenInfoOpen = false;
   private readonly router = inject(Router);
 
   get divisionLabel() {
@@ -67,5 +68,15 @@ export class ContestTiers {
       returnUrl: this.router.url,
       returnScrollY: window.scrollY,
     };
+  }
+
+  openGoldenInfo(event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.goldenInfoOpen = true;
+  }
+
+  closeGoldenInfo(): void {
+    this.goldenInfoOpen = false;
   }
 }

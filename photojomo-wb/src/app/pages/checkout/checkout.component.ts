@@ -5,33 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { firstValueFrom } from 'rxjs';
-
-interface TierInfo {
-  name: string;
-  price: number;
-  maxImages: number;
-  label: string;
-  apiTier: string;
-}
+import { SubmissionService, Tier } from '../../services/submission.service';
 
 interface ContestInfo {
   name: string;
   entryLabel: string;
-  apiCategory: string;
 }
 
-const TIERS: Record<string, TierInfo> = {
-  'tier-1': { name: 'Tier 1 – Explorer',    price: 25, maxImages: 5,  label: 'Explorer Entry',    apiTier: 'explorer' },
-  'tier-2': { name: 'Tier 2 – Enthusiast',  price: 45, maxImages: 10, label: 'Enthusiast Entry',  apiTier: 'enthusiast' },
-  'tier-3': { name: 'Tier 3 – Visionary',   price: 65, maxImages: 15, label: 'Visionary Entry',   apiTier: 'visionary' },
-  'tier-4': { name: 'Tier 4 – Master',      price: 95, maxImages: 25, label: 'Master Entry',      apiTier: 'master' },
-};
-
 const CONTESTS: Record<string, ContestInfo> = {
-  'general':           { name: 'General',           entryLabel: 'Founding Creator Entry', apiCategory: 'general' },
-  'emerging-creator':  { name: 'Emerging Creator',  entryLabel: 'Founding Creator Entry', apiCategory: 'emerging_creator' },
-  'college-creator':   { name: 'College Creator',   entryLabel: 'Founding Creator Entry', apiCategory: 'college_creator' },
-  'master-your-craft': { name: 'Master Your Craft', entryLabel: 'Founding Creator Entry', apiCategory: 'master_your_craft' },
+  'general':           { name: 'General',           entryLabel: 'Founding Creator Entry' },
+  'emerging-creator':  { name: 'Emerging Creator',  entryLabel: 'Founding Creator Entry' },
+  'college-creator':   { name: 'College Creator',   entryLabel: 'Founding Creator Entry' },
+  'master-your-craft': { name: 'Master Your Craft', entryLabel: 'Founding Creator Entry' },
 };
 
 @Component({
@@ -43,8 +28,9 @@ const CONTESTS: Record<string, ContestInfo> = {
 })
 export class CheckoutComponent implements OnInit {
   contest: ContestInfo = CONTESTS['general'];
-  tier: TierInfo = TIERS['tier-1'];
-  contestId = 'general';
+  contestSlug = 'general';
+  tier: Tier | null = null;
+  tiersLoading = true;
   imageSlots: number[] = [];
 
   // Form fields
@@ -58,7 +44,6 @@ export class CheckoutComponent implements OnInit {
   confirm3 = false;
   confirm4 = false;
 
-  // Image files per slot (index = slot - 1)
   imageFiles: (File | null)[] = [];
 
   // UI state
@@ -71,6 +56,7 @@ export class CheckoutComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private http: HttpClient,
+    private submissionService: SubmissionService,
   ) {}
 
   legalModalState() {
@@ -80,14 +66,24 @@ export class CheckoutComponent implements OnInit {
     };
   }
 
-  ngOnInit() {
-    const contestId = this.route.snapshot.paramMap.get('contestId') ?? 'general';
-    const tierId    = this.route.snapshot.paramMap.get('tierId')    ?? 'tier-1';
-    this.contestId  = contestId;
-    this.contest    = CONTESTS[contestId] ?? CONTESTS['general'];
-    this.tier       = TIERS[tierId]       ?? TIERS['tier-1'];
-    this.imageSlots = Array.from({ length: this.tier.maxImages }, (_, i) => i + 1);
-    this.imageFiles = new Array(this.tier.maxImages).fill(null);
+  async ngOnInit() {
+    this.contestSlug = this.route.snapshot.paramMap.get('contestId') ?? 'general';
+    const tierId     = this.route.snapshot.paramMap.get('tierId')    ?? '';
+    this.contest     = CONTESTS[this.contestSlug] ?? CONTESTS['general'];
+
+    try {
+      const tiers = await this.submissionService.getTiers();
+      this.tier = tiers.find(t => t.id === tierId) ?? tiers[0] ?? null;
+    } catch {
+      this.submitError = 'Failed to load tier information. Please refresh.';
+    } finally {
+      this.tiersLoading = false;
+    }
+
+    if (this.tier) {
+      this.imageSlots = Array.from({ length: this.tier.maxImages }, (_, i) => i + 1);
+      this.imageFiles = new Array(this.tier.maxImages).fill(null);
+    }
   }
 
   onFileChange(event: Event, index: number) {
@@ -101,6 +97,7 @@ export class CheckoutComponent implements OnInit {
 
   get formValid(): boolean {
     return !!(
+      this.tier &&
       this.firstName &&
       this.lastName &&
       this.email &&
@@ -113,7 +110,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   async submit() {
-    if (!this.formValid || this.submitting) return;
+    if (!this.formValid || this.submitting || !this.tier) return;
 
     this.submitting = true;
     this.submitError = '';
@@ -125,18 +122,19 @@ export class CheckoutComponent implements OnInit {
         this.http.post<{ success: boolean; message: string; submissionId: string; contestantId: string }>(
           `${environment.apiBaseUrl}/submissions`,
           {
-            firstName:          this.firstName,
-            lastName:           this.lastName,
-            email:              this.email,
-            country:            this.country,
-            confirmImagesDates: this.confirm1,
-            confirmAge:         this.confirm2,
-            confirmRules:       this.confirm3,
-            marketingConsent:   this.confirm4,
-            category:           this.contest.apiCategory,
-            tier:               this.tier.apiTier,
-            amountPaid:         this.tier.price,
-            paymentMethod:      this.paymentMethod,
+            firstName:             this.firstName,
+            lastName:              this.lastName,
+            email:                 this.email,
+            country:               this.country,
+            confirmImagesDates:    this.confirm1,
+            confirmAge:            this.confirm2,
+            confirmRules:          this.confirm3,
+            marketingConsent:      this.confirm4,
+            contestId:             environment.contestId,
+            contestCategoryId:     this.submissionService.getCategoryId(this.contestSlug),
+            contestTierId:         this.tier.id,
+            amountPaid:            this.tier.price,
+            paymentMethod:         this.paymentMethod,
           }
         )
       );
@@ -144,8 +142,6 @@ export class CheckoutComponent implements OnInit {
       if (!submissionRes.success) {
         throw new Error(submissionRes.message || 'Submission failed');
       }
-
-      const submissionId = submissionRes.submissionId;
 
       // Step 2: Get presigned upload URLs
       this.submitStatus = 'Preparing image uploads…';
@@ -155,7 +151,8 @@ export class CheckoutComponent implements OnInit {
           `${environment.apiBaseUrl}/contest-entries/presigned-urls`,
           {
             contestantId: submissionRes.contestantId,
-            submissionId,
+            submissionId: submissionRes.submissionId,
+            contestId:    environment.contestId,
             files: files.map(f => ({ fileName: f.name, contentType: f.type || 'image/jpeg' })),
           }
         )
@@ -165,7 +162,7 @@ export class CheckoutComponent implements OnInit {
         throw new Error('Failed to prepare image uploads');
       }
 
-      // Step 3: Upload images directly to S3
+      // Step 3: Upload images to S3
       this.submitStatus = 'Uploading images…';
       await Promise.all(
         presignRes.entries.map((entry, i) =>

@@ -3,9 +3,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { loadStripe, Stripe, StripeElements } from '@stripe/stripe-js';
 import { loadScript } from '@paypal/paypal-js';
-import { TIERS, Tier } from '../../../shared/contest-tiers/contest-tiers';
+import { SubmissionService, Tier } from '../../../core/submission.service';
 import { COUNTRIES } from '../../../shared/entry-form/countries';
-import { SubmissionService } from '../../../core/submission.service';
 import { environment } from '../../../../environments/environment';
 
 interface UploadSlot { index: number; file: File | null; preview: string | null; }
@@ -19,6 +18,8 @@ interface UploadSlot { index: number; file: File | null; preview: string | null;
 export class Register implements OnInit {
   private readonly router = inject(Router);
   division = '';
+  tiers: Tier[] = [];
+  tiersLoading = true;
   selectedTier: Tier | null = null;
   countries = COUNTRIES;
 
@@ -56,29 +57,48 @@ export class Register implements OnInit {
     private submissionService: SubmissionService,
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.division = this.route.snapshot.queryParamMap.get('division') ?? '';
-    const tierName = this.route.snapshot.queryParamMap.get('tier') ?? '';
-    const match = TIERS.find(t => t.name === tierName);
-    if (match) {
-      this.selectedTier = match;
-      this.buildUploadSlots(match);
-      this.initStripeElements(match.name);
-    }
+    const tierId = this.route.snapshot.queryParamMap.get('tierId') ?? '';
 
-    // Preview hook: ?preview=success renders the thank-you state directly,
-    // bypassing payment + backend (useful for design review).
+    // Preview hook: ?preview=success renders the thank-you state directly
     if (this.route.snapshot.queryParamMap.get('preview') === 'success') {
       this.form.firstName = this.route.snapshot.queryParamMap.get('firstName') ?? 'Friend';
       if (!this.division) this.division = 'general';
       this.submitted = true;
     }
+
+    try {
+      this.tiers = await this.submissionService.getTiers();
+      const match = tierId
+        ? this.tiers.find(t => t.id === tierId) ?? this.tiers[0]
+        : this.tiers[0];
+      if (match) {
+        this.selectedTier = match;
+        this.buildUploadSlots(match);
+        this.initStripeElements(match.id);
+      }
+    } catch {
+      this.errorMessage = 'Failed to load tier information. Please refresh.';
+    } finally {
+      this.tiersLoading = false;
+    }
   }
 
-  private async initStripeElements(tierName: string) {
+  onTierChange() {
+    if (!this.selectedTier) return;
+    this.buildUploadSlots(this.selectedTier);
+    this.stripe = null;
+    this.elements = null;
+    this.paymentIntentId = '';
+    this.paypalButtons = null;
+    this.initStripeElements(this.selectedTier.id);
+  }
+
+  private async initStripeElements(tierId: string) {
     this.stripeLoading = true;
     try {
-      const { clientSecret, paymentIntentId } = await this.submissionService.createPaymentIntent(tierName);
+      const { clientSecret, paymentIntentId } = await this.submissionService.createPaymentIntent(tierId);
       this.paymentIntentId = paymentIntentId;
 
       const stripe = await loadStripe(environment.stripePublishableKey);
@@ -137,7 +157,7 @@ export class Register implements OnInit {
           }
           this.paypalFormInvalid = false;
 
-          const { orderId } = await this.submissionService.createPaypalOrder(this.selectedTier!.name);
+          const { orderId } = await this.submissionService.createPaypalOrder(this.selectedTier!.id);
 
           try {
             await this.submissionService.submit({
@@ -150,7 +170,8 @@ export class Register implements OnInit {
               confirmRules:          this.form.agreeRules,
               marketingConsent:      this.form.subscribeOffers,
               division:              this.division,
-              tierName:              this.selectedTier!.name,
+              tierId:                this.selectedTier!.id,
+              amountPaid:            this.selectedTier!.price,
               paymentMethod:         'paypal',
               stripePaymentIntentId: '',
               paypalOrderId:         orderId,
@@ -198,17 +219,9 @@ export class Register implements OnInit {
   }
 
   private buildUploadSlots(tier: Tier) {
-    const max = this.maxImages(tier);
-    this.uploadSlots = Array.from({ length: max }, (_, i) => ({
+    this.uploadSlots = Array.from({ length: tier.maxImages }, (_, i) => ({
       index: i + 1, file: null, preview: null,
     }));
-  }
-
-  maxImages(tier: Tier): number {
-    if (tier.name.includes('1')) return 5;
-    if (tier.name.includes('2')) return 10;
-    if (tier.name.includes('3')) return 15;
-    return 25;
   }
 
   onFileSelect(event: Event, slot: UploadSlot) {
@@ -257,7 +270,8 @@ export class Register implements OnInit {
           confirmRules:          this.form.agreeRules,
           marketingConsent:      this.form.subscribeOffers,
           division:              this.division,
-          tierName:              this.selectedTier.name,
+          tierId:                this.selectedTier.id,
+          amountPaid:            this.selectedTier.price,
           paymentMethod:         'stripe',
           stripePaymentIntentId: this.paymentIntentId,
           paypalOrderId:         '',
@@ -307,7 +321,8 @@ export class Register implements OnInit {
 
   get tierDisplay(): string {
     if (!this.selectedTier) return '';
-    return `${this.selectedTier.tierLabel} ${this.selectedTier.variant}`;
+    const parts = this.selectedTier.name.split(' - ');
+    return parts.length >= 2 ? `${parts[0]} ${parts[1]}` : this.selectedTier.name;
   }
 
   legalModalState() {

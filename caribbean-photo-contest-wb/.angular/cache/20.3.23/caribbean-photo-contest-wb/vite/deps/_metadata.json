@@ -1,73 +1,79 @@
 {
-  "hash": "3eb3bf1a",
-  "configHash": "78eb53a6",
+  "hash": "5bbf9ca0",
+  "configHash": "b080e81b",
   "lockfileHash": "dff875aa",
-  "browserHash": "b44e5232",
+  "browserHash": "c3f48ed3",
   "optimized": {
+    "@angular/common": {
+      "src": "../../../../../../node_modules/@angular/common/fesm2022/common.mjs",
+      "file": "@angular_common.js",
+      "fileHash": "ab8a6983",
+      "needsInterop": false
+    },
     "@angular/common/http": {
       "src": "../../../../../../node_modules/@angular/common/fesm2022/http.mjs",
       "file": "@angular_common_http.js",
-      "fileHash": "21181c37",
+      "fileHash": "59a5135d",
       "needsInterop": false
     },
     "@angular/core": {
       "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
       "file": "@angular_core.js",
-      "fileHash": "d2d36faf",
+      "fileHash": "a9fc9291",
       "needsInterop": false
     },
     "@angular/forms": {
       "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
       "file": "@angular_forms.js",
-      "fileHash": "56a1af4d",
+      "fileHash": "4b78c7dc",
       "needsInterop": false
     },
     "@angular/platform-browser": {
       "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
       "file": "@angular_platform-browser.js",
-      "fileHash": "296703ca",
+      "fileHash": "b5044256",
       "needsInterop": false
     },
     "@angular/router": {
       "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
       "file": "@angular_router.js",
-      "fileHash": "6a87cfd7",
+      "fileHash": "c9a91ed1",
       "needsInterop": false
     },
     "@paypal/paypal-js": {
       "src": "../../../../../../node_modules/@paypal/paypal-js/dist/esm/paypal-js.js",
       "file": "@paypal_paypal-js.js",
-      "fileHash": "245064b8",
+      "fileHash": "22c462d9",
       "needsInterop": false
     },
     "@stripe/stripe-js": {
       "src": "../../../../../../node_modules/@stripe/stripe-js/lib/index.mjs",
       "file": "@stripe_stripe-js.js",
-      "fileHash": "248e08d6",
+      "fileHash": "ac209cb5",
       "needsInterop": false
     },
     "rxjs": {
       "src": "../../../../../../node_modules/rxjs/dist/esm5/index.js",
       "file": "rxjs.js",
-      "fileHash": "5f006f2b",
+      "fileHash": "429735d6",
       "needsInterop": false
     },
     "zone.js": {
       "src": "../../../../../../node_modules/zone.js/fesm2015/zone.js",
       "file": "zone__js.js",
-      "fileHash": "a3bdfa77",
+      "fileHash": "d815a7b1",
       "needsInterop": true
     }
   },
   "chunks": {
-    "chunk-WRUVWXUU": {
-      "file": "chunk-WRUVWXUU.js"
+    "chunk-5UDVWJQL": {
+      "file": "chunk-5UDVWJQL.js"
     },
     "chunk-J3OXSIVN": {
       "file": "chunk-J3OXSIVN.js"
     },
-    "chunk-EADCDRTI": {
-      "file": "chunk-EADCDRTI.js"
+    "chunk-SZE5MKPI": {
+      "file": "chunk-SZE5MKPI.js"
     },
     "chunk-WT4MODDA": {
       "file": "chunk-WT4MODDA.js"

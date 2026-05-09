@@ -5,59 +5,23 @@
       <a routerLink="/contest" class="entry-back">&larr; Back to Categories</a>
       <h1 class="entry-heading">{{ contest.title }} <em>Submission Tier &amp; Fees</em></h1>
 
-      <div class="tier-grid">
+      <p *ngIf="tiersLoading" class="tier-loading">Loading tiers…</p>
+      <p *ngIf="!tiersLoading && tiersError" class="tier-error">Unable to load tiers. Please refresh the page.</p>
 
-        <div class="tier-card">
-          <p class="tier-name"><em>Tier 1 – Explorer</em></p>
-          <p class="tier-price">$25</p>
-          <p class="tier-images">1-5 images</p>
+      <div *ngIf="!tiersLoading && !tiersError" class="tier-grid">
+        <div *ngFor="let tier of tiers" class="tier-card" [class.tier-card--golden]="tier.golden">
+          <p class="tier-name"><em>{{ tier.name }}</em></p>
+          <p class="tier-price">${{ tier.price }}</p>
+          <p class="tier-images">{{ formatImages(tier.maxImages) }}</p>
           <div class="tier-benefits">
             <p class="tier-benefits-label">Benefits</p>
-            <p class="tier-benefit-item">&#10003; Eligible for judging</p>
-            <p class="tier-benefit-item">&#10003; Founding Class Member Badge</p>
+            <p *ngFor="let benefit of tier.benefits" class="tier-benefit-item">&#10003; {{ benefit }}</p>
+            <p *ngIf="tier.golden" class="tier-benefit-item golden">&#10003; &#x1F3AB; Golden Ticket</p>
           </div>
-          <a [routerLink]="['/checkout', contestId, 'tier-1']" class="tier-register-btn">Register Now &rarr;</a>
+          <a [routerLink]="['/checkout', contestId, tier.id]" class="tier-register-btn">Register Now &rarr;</a>
         </div>
-
-        <div class="tier-card">
-          <p class="tier-name"><em>Tier 2 – Enthusiast</em></p>
-          <p class="tier-price">$45</p>
-          <p class="tier-images">Up to 10 images</p>
-          <div class="tier-benefits">
-            <p class="tier-benefits-label">Benefits</p>
-            <p class="tier-benefit-item">&#10003; Eligible for judging</p>
-            <p class="tier-benefit-item">&#10003; Founding Class Member Badge</p>
-          </div>
-          <a [routerLink]="['/checkout', contestId, 'tier-2']" class="tier-register-btn">Register Now &rarr;</a>
-        </div>
-
-        <div class="tier-card">
-          <p class="tier-name"><em>Tier 3 – Visionary</em></p>
-          <p class="tier-price">$65</p>
-          <p class="tier-images">Up to 15 images</p>
-          <div class="tier-benefits">
-            <p class="tier-benefits-label">Benefits</p>
-            <p class="tier-benefit-item">&#10003; Eligible for judging</p>
-            <p class="tier-benefit-item">&#10003; Founding Class Member Badge</p>
-          </div>
-          <a [routerLink]="['/checkout', contestId, 'tier-3']" class="tier-register-btn">Register Now &rarr;</a>
-        </div>
-
-        <div class="tier-card tier-card--golden">
-          <p class="tier-name"><em>Tier 4 – Master</em></p>
-          <p class="tier-price">$95</p>
-          <p class="tier-images">Up to 25 images</p>
-          <div class="tier-benefits">
-            <p class="tier-benefits-label">Benefits</p>
-            <p class="tier-benefit-item">&#10003; Eligible for judging</p>
-            <p class="tier-benefit-item">&#10003; Founding Class Member Badge</p>
-            <p class="tier-benefit-item golden">&#10003; &#x1F3AB; Golden Ticket</p>
-          </div>
-          <a [routerLink]="['/checkout', contestId, 'tier-4']" class="tier-register-btn">Register Now &rarr;</a>
-        </div>
-
       </div>
     </div>
   </div>
 </div>
-    <app-navbar wrapperClass="css-fbgm56 css-8hhw9a css-roiesn" />
+<app-navbar wrapperClass="css-fbgm56 css-8hhw9a css-roiesn" />

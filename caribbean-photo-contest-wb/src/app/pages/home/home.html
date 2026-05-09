@@ -5,9 +5,10 @@
     <img class="cc-hero__bg" src="images/hero-marigot.jpg" alt="" />
     <div class="cc-hero__scrim" aria-hidden="true"></div>
 
-    <a routerLink="/" aria-label="Home"><img class="cc-hero__badge" src="images/hero-logo-badge.png" alt="Caribbean Photo Contest" /></a>
+    <a routerLink="/" aria-label="Home"><img class="cc-hero__badge" src="images/hero-logo-badge.png"
+        alt="Caribbean Photo Contest" /></a>
 
-    <p class="cc-hero__eyebrow">Shape the legacy.</p>
+    <p class="cc-hero__eyebrow">Shape the legacy</p>
 
     <h1 class="cc-hero__title">Capture the Caribbean. Experience Luxury.</h1>
 
@@ -15,7 +16,8 @@
     <section class="cc-partnership cc-partnership--inside">
       <p class="cc-partnership__eyebrow">Presented in Partnership</p>
       <a href="https://www.baygardensresorts.com/" target="_blank" rel="noopener noreferrer">
-        <img src="images/partnership-bay-gardens-30.png" alt="Bay Gardens Resorts · 30 Year Anniversary" class="cc-partnership__image" />
+        <img src="images/partnership-bay-gardens-30.png" alt="Bay Gardens Resorts · 30 Year Anniversary"
+          class="cc-partnership__image" />
       </a>
     </section>
   </section>
@@ -24,7 +26,8 @@
   <section class="cc-partnership cc-partnership--outside">
     <p class="cc-partnership__eyebrow">Presented in Partnership</p>
     <a href="https://www.baygardensresorts.com/" target="_blank" rel="noopener noreferrer">
-      <img src="images/partnership-bay-gardens-30.png" alt="Bay Gardens Resorts · 30 Year Anniversary" class="cc-partnership__image" />
+      <img src="images/partnership-bay-gardens-30.png" alt="Bay Gardens Resorts · 30 Year Anniversary"
+        class="cc-partnership__image" />
     </a>
   </section>
 
@@ -32,41 +35,43 @@
   <section class="cc-categories">
     <h2 class="cc-categories__title">Choose your category. Define your perspective.<br />Compete for distinction.</h2>
     <p class="cc-categories__desc">
-      Immerse yourself in the tranquility of the islands. From crystal-clear waters to golden shores, your exclusive vacation awaits. Discover the perfect blend of thrilling adventure and total relaxation.
+      Immerse yourself in the tranquility of the islands. From crystal-clear waters to golden shores, your exclusive
+      vacation awaits. Discover the perfect blend of thrilling adventure and total relaxation.
     </p>
 
     <div class="cc-categories__grid">
       @for (contest of contests; track contest.route) {
-        <article class="cc-card">
-          <div class="cc-card__media">
-            <img [src]="contest.image" [alt]="contest.title" />
-          </div>
-          <div class="cc-card__body">
-            <div class="cc-card__head">
-              <h3 class="cc-card__title serif-italic">{{ contest.title }}</h3>
-              <div class="cc-card__award">
-                <span class="cc-card__award-amount">{{ contest.award }}</span>
-                <span class="cc-card__award-label">Cash Award</span>
-              </div>
+      <article class="cc-card">
+        <div class="cc-card__media">
+          <img [src]="contest.image" [alt]="contest.title" />
+        </div>
+        <div class="cc-card__body">
+          <div class="cc-card__head">
+            <h3 class="cc-card__title serif-italic">{{ contest.title }}</h3>
+            <div class="cc-card__award">
+              <span class="cc-card__award-amount">{{ contest.award }}</span>
+              <span class="cc-card__award-label">Cash Award</span>
             </div>
-            <p class="cc-card__desc">{{ contest.description }}</p>
-            <div class="cc-card__pricing">
-              <span>Starting From</span>
-              <span class="cc-card__price">{{ contest.price }}</span>
-            </div>
-            <a [routerLink]="contest.route" class="cc-card__cta">Enter Contest <span>→</span></a>
-            @if (contest.tier) {
-              <span class="cc-card__tier">{{ contest.tier }}</span>
-            }
-            @if (contest.tierInfo) {
-              <span class="cc-card__tier cc-card__tier--info">
-                <svg class="cc-card__ticket" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
-                  <path fill="#DEAD54" d="M2 9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V9Zm13 .5-1.5 0 0 2 1.5 0 0-2Zm0 4-1.5 0 0 2 1.5 0 0-2Zm0-8-1.5 0 0 2 1.5 0 0-2Z"/>
-                </svg> {{ contest.tierInfo }}
-              </span>
-            }
           </div>
-        </article>
+          <p class="cc-card__desc">{{ contest.description }}</p>
+          <div class="cc-card__pricing">
+            <span>Starting From</span>
+            <span class="cc-card__price">{{ contest.price }}</span>
+          </div>
+          <a [routerLink]="contest.route" class="cc-card__cta">Enter Contest <span>→</span></a>
+          @if (contest.tier) {
+          <span class="cc-card__tier">{{ contest.tier }}</span>
+          }
+          @if (contest.tierInfo) {
+          <span class="cc-card__tier cc-card__tier--info">
+            <svg class="cc-card__ticket" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+              <path fill="#DEAD54"
+                d="M2 9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V9Zm13 .5-1.5 0 0 2 1.5 0 0-2Zm0 4-1.5 0 0 2 1.5 0 0-2Zm0-8-1.5 0 0 2 1.5 0 0-2Z" />
+            </svg> {{ contest.tierInfo }}
+          </span>
+          }
+        </div>
+      </article>
       }
     </div>
   </section>
@@ -75,7 +80,8 @@
   <div class="cc-map-band">
     <section class="cc-paradise">
       <h2 class="cc-paradise__title"><strong>Experience</strong> <span class="serif-italic">True Paradise</span></h2>
-      <p class="cc-paradise__desc">Show the world your vision of the Caribbean—and be rewarded with an unforgettable escape.</p>
+      <p class="cc-paradise__desc">Show the world your vision of the Caribbean—and be rewarded with an unforgettable
+        escape.</p>
       <div class="cc-paradise__video">
         <img src="images/boat-image_copyright.webp" alt="Caribbean paradise" />
       </div>
@@ -83,15 +89,19 @@
 
     <section class="cc-contest-intro">
       <div class="cc-contest-intro__stage">
-        <img src="images/cpc-tray.png"             alt="" class="cc-contest-intro__deco cc-contest-intro__deco--tray" />
-        <img src="images/DSC_0166_1600px-.jpg"     alt="" class="cc-contest-intro__deco cc-contest-intro__deco--dancers" />
-        <img src="images/IMG0018-1_1600px.jpg"     alt="" class="cc-contest-intro__deco cc-contest-intro__deco--musicians" />
-        <img src="images/staniel-cay-171925_1280.jpg" alt="" class="cc-contest-intro__deco cc-contest-intro__deco--clarinet" />
+        <img src="images/cpc-tray.png" alt="" class="cc-contest-intro__deco cc-contest-intro__deco--tray" />
+        <img src="images/DSC_0166_1600px-.jpg" alt="" class="cc-contest-intro__deco cc-contest-intro__deco--dancers" />
+        <img src="images/IMG0018-1_1600px.jpg" alt=""
+          class="cc-contest-intro__deco cc-contest-intro__deco--musicians" />
+        <img src="images/staniel-cay-171925_1280.jpg" alt=""
+          class="cc-contest-intro__deco cc-contest-intro__deco--clarinet" />
 
         <div class="cc-contest-intro__center">
-          <h2 class="cc-contest-intro__title"><strong>The Caribbean</strong> <span class="serif-italic">Photo Contest</span></h2>
+          <h2 class="cc-contest-intro__title"><strong>The Caribbean</strong> <span class="serif-italic">Photo
+              Contest</span></h2>
           <p class="cc-contest-intro__desc">
-            Compete across four entry divisions, each with distinct tiers, eligibility, and prizes—designed for photographers, storytellers, and creators of all levels.
+            Compete across four entry divisions, each with distinct tiers, eligibility, and prizes—designed for
+            photographers, storytellers, and creators of all levels.
           </p>
         </div>
       </div>
@@ -107,13 +117,13 @@
 
     <div class="cc-legacy__stage">
       @for (slide of legacyCarousel; let i = $index; track i) {
-        <div class="cc-legacy__slide" [class.is-active]="i === legacyIndex">
-          <img [src]="slide.bg" alt="Bay Gardens Resort" class="cc-legacy__bg" />
-          <div class="cc-legacy__mark">
-            <img [src]="slide.logo" alt="Bay Gardens" class="cc-legacy__logo" />
-            <p class="cc-legacy__label">{{ slide.label }}</p>
-          </div>
+      <div class="cc-legacy__slide" [class.is-active]="i === legacyIndex">
+        <img [src]="slide.bg" alt="Bay Gardens Resort" class="cc-legacy__bg" />
+        <div class="cc-legacy__mark">
+          <img [src]="slide.logo" alt="Bay Gardens" class="cc-legacy__logo" />
+          <p class="cc-legacy__label">{{ slide.label }}</p>
         </div>
+      </div>
       }
       <div class="cc-legacy__fade" aria-hidden="true"></div>
     </div>
@@ -123,25 +133,27 @@
   <section class="cc-tour">
     <h2 class="cc-tour__title"><strong>Global</strong> <span class="serif-italic">Tour</span></h2>
     <p class="cc-tour__desc">
-      The works created through Capture Saint Lucia will not only debut on the island but will also travel to international cultural capitals. From New York to London, Paris to Toronto, this multi-city exhibition tour will introduce audiences worldwide to Saint Lucia&rsquo;s stories, beauty, and creative excellence.
+      The works created through Capture Saint Lucia will not only debut on the island but will also travel to
+      international cultural capitals. From New York to London, Paris to Toronto, this multi-city exhibition tour will
+      introduce audiences worldwide to Saint Lucia&rsquo;s stories, beauty, and creative excellence.
     </p>
 
     <div class="cc-tour__grid">
       @for (phase of timeline; track phase.years) {
-        <div class="cc-tour__phase">
-          <div class="cc-tour__phase-media">
-            <img [src]="phase.image" [alt]="phase.title" />
-          </div>
-          <h3 class="cc-tour__phase-year">{{ phase.years }}: {{ phase.title }}</h3>
-          <p class="cc-tour__phase-desc">{{ phase.description }}</p>
+      <div class="cc-tour__phase">
+        <div class="cc-tour__phase-media">
+          <img [src]="phase.image" [alt]="phase.title" />
         </div>
+        <h3 class="cc-tour__phase-year">{{ phase.years }}: {{ phase.title }}</h3>
+        <p class="cc-tour__phase-desc">{{ phase.description }}</p>
+      </div>
       }
     </div>
 
     <div class="cc-tour__timeline">
       <div class="cc-tour__timeline-line"></div>
       @for (phase of timeline; track phase.years) {
-        <img class="cc-tour__timeline-node" [src]="'images/icon-' + phase.icon + '.svg'" alt="" aria-hidden="true" />
+      <img class="cc-tour__timeline-node" [src]="'images/icon-' + phase.icon + '.svg'" alt="" aria-hidden="true" />
       }
     </div>
   </section>
@@ -151,15 +163,16 @@
     <div class="cc-stage__header">
       <h2 class="cc-stage__title"><strong>The Global</strong> <span class="serif-italic">Stage Awaits</span></h2>
       <p class="cc-stage__desc">
-        The Caribbean Photo Contest unites creators from across the globe for the chance to win a journey to the Caribbean and other exclusive rewards.
+        The Caribbean Photo Contest unites creators from across the globe for the chance to win a journey to the
+        Caribbean and other exclusive rewards.
       </p>
     </div>
     <div class="cc-stage__grid">
       @for (col of globalStageColumns; track $index) {
-        <div class="cc-stage__col" [class.is-tall-short]="col.layout === 'tall-short'">
-          <div class="cc-stage__tile cc-stage__tile--top"><img [src]="col.top" alt="" /></div>
-          <div class="cc-stage__tile cc-stage__tile--bottom"><img [src]="col.bottom" alt="" /></div>
-        </div>
+      <div class="cc-stage__col" [class.is-tall-short]="col.layout === 'tall-short'">
+        <div class="cc-stage__tile cc-stage__tile--top"><img [src]="col.top" alt="" /></div>
+        <div class="cc-stage__tile cc-stage__tile--bottom"><img [src]="col.bottom" alt="" /></div>
+      </div>
       }
     </div>
   </section>
@@ -168,41 +181,43 @@
   <section class="cc-categories cc-categories--repeat">
     <h2 class="cc-categories__title">Choose your category. Define your perspective.<br />Compete for distinction.</h2>
     <p class="cc-categories__desc">
-      Compete across four entry divisions with distinct tiers, eligibility, and prizes—open to creators worldwide. Win a journey to the Caribbean and create within the region.
+      Compete across four entry divisions with distinct tiers, eligibility, and prizes—open to creators worldwide. Win a
+      journey to the Caribbean and create within the region.
     </p>
 
     <div class="cc-categories__grid">
       @for (contest of contests; track contest.route + '-2') {
-        <article class="cc-card">
-          <div class="cc-card__media">
-            <img [src]="contest.image" [alt]="contest.title" />
-          </div>
-          <div class="cc-card__body">
-            <div class="cc-card__head">
-              <h3 class="cc-card__title serif-italic">{{ contest.title }}</h3>
-              <div class="cc-card__award">
-                <span class="cc-card__award-amount">{{ contest.award }}</span>
-                <span class="cc-card__award-label">Cash Award</span>
-              </div>
+      <article class="cc-card">
+        <div class="cc-card__media">
+          <img [src]="contest.image" [alt]="contest.title" />
+        </div>
+        <div class="cc-card__body">
+          <div class="cc-card__head">
+            <h3 class="cc-card__title serif-italic">{{ contest.title }}</h3>
+            <div class="cc-card__award">
+              <span class="cc-card__award-amount">{{ contest.award }}</span>
+              <span class="cc-card__award-label">Cash Award</span>
             </div>
-            <p class="cc-card__desc">{{ contest.description }}</p>
-            <div class="cc-card__pricing">
-              <span>Starting From</span>
-              <span class="cc-card__price">{{ contest.price }}</span>
-            </div>
-            <a [routerLink]="contest.route" class="cc-card__cta">Enter Contest <span>→</span></a>
-            @if (contest.tier) {
-              <span class="cc-card__tier">{{ contest.tier }}</span>
-            }
-            @if (contest.tierInfo) {
-              <span class="cc-card__tier cc-card__tier--info">
-                <svg class="cc-card__ticket" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
-                  <path fill="#DEAD54" d="M2 9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V9Zm13 .5-1.5 0 0 2 1.5 0 0-2Zm0 4-1.5 0 0 2 1.5 0 0-2Zm0-8-1.5 0 0 2 1.5 0 0-2Z"/>
-                </svg> {{ contest.tierInfo }}
-              </span>
-            }
           </div>
-        </article>
+          <p class="cc-card__desc">{{ contest.description }}</p>
+          <div class="cc-card__pricing">
+            <span>Starting From</span>
+            <span class="cc-card__price">{{ contest.price }}</span>
+          </div>
+          <a [routerLink]="contest.route" class="cc-card__cta">Enter Contest <span>→</span></a>
+          @if (contest.tier) {
+          <span class="cc-card__tier">{{ contest.tier }}</span>
+          }
+          @if (contest.tierInfo) {
+          <span class="cc-card__tier cc-card__tier--info">
+            <svg class="cc-card__ticket" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+              <path fill="#DEAD54"
+                d="M2 9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-4V9Zm13 .5-1.5 0 0 2 1.5 0 0-2Zm0 4-1.5 0 0 2 1.5 0 0-2Zm0-8-1.5 0 0 2 1.5 0 0-2Z" />
+            </svg> {{ contest.tierInfo }}
+          </span>
+          }
+        </div>
+      </article>
       }
     </div>
   </section>
@@ -213,21 +228,22 @@
     <p class="cc-voices__intro">{{ voicesIntro }}</p>
     <div class="cc-voices__grid">
       @for (f of finalists; track f.name) {
-        <div class="cc-voices__card">
-          <img [src]="f.avatar" [alt]="f.name" class="cc-voices__avatar" />
-          <div class="cc-voices__body">
-            <h3 class="cc-voices__name">{{ f.name }}</h3>
-            <p class="cc-voices__role">{{ f.role }}</p>
-            <p class="cc-voices__quote">{{ f.quote }}</p>
-          </div>
+      <div class="cc-voices__card">
+        <img [src]="f.avatar" [alt]="f.name" class="cc-voices__avatar" />
+        <div class="cc-voices__body">
+          <h3 class="cc-voices__name">{{ f.name }}</h3>
+          <p class="cc-voices__role">{{ f.role }}</p>
+          <p class="cc-voices__quote">{{ f.quote }}</p>
         </div>
+      </div>
       }
     </div>
   </section>
 
   <!-- 11. ARTIST-IN-RESIDENCY (Figma Frame 2095585043: 673x552) -->
   <section class="cc-residency">
-    <h2 class="cc-residency__title"><strong>Artist-in-Residency</strong> <span class="serif-italic">Experience</span></h2>
+    <h2 class="cc-residency__title"><strong>Artist-in-Residency</strong> <span class="serif-italic">Experience</span>
+    </h2>
     <div class="cc-residency__card">
       <img [src]="residencyArtist.avatar" [alt]="residencyArtist.name" class="cc-residency__avatar" />
       <div class="cc-residency__body">
@@ -241,38 +257,41 @@
   <!-- 12+13: Instagram + Footer share the map background -->
   <div class="cc-map-band cc-map-band--bottom">
 
-  <!-- 12. FOLLOW US ON INSTAGRAM (Figma Frame 128: 1514x656) -->
-  <section class="cc-instagram">
-    <div class="cc-instagram__header">
-      <h2 class="cc-instagram__title">Follow us on Instagram</h2>
-      <p class="cc-instagram__desc">Submit your photos on Instagram for a chance to win</p>
-    </div>
-
-    <div class="cc-instagram__bar">
-      <div class="cc-instagram__bar-left">
-        <img src="images/ig-avatar-cpc.png" alt="" class="cc-instagram__avatar" />
-        <span class="cc-instagram__handle">caribbean_photo_contest</span>
+    <!-- 12. FOLLOW US ON INSTAGRAM (Figma Frame 128: 1514x656) -->
+    <section class="cc-instagram">
+      <div class="cc-instagram__header">
+        <h2 class="cc-instagram__title">Follow us on Instagram</h2>
+        <p class="cc-instagram__desc">Submit your photos on Instagram for a chance to win</p>
       </div>
-      <a href="https://www.instagram.com/caribbean_photo_contest/" target="_blank" rel="noopener noreferrer" class="cc-instagram__follow">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
-          <circle cx="12" cy="12" r="4" />
-          <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
-        </svg>
-        FOLLOW US
-      </a>
-    </div>
 
-    <hr class="cc-instagram__divider" />
+      <div class="cc-instagram__bar">
+        <div class="cc-instagram__bar-left">
+          <img src="images/ig-avatar-cpc.png" alt="" class="cc-instagram__avatar" />
+          <span class="cc-instagram__handle">caribbean_photo_contest</span>
+        </div>
+        <a href="https://www.instagram.com/caribbean_photo_contest/" target="_blank" rel="noopener noreferrer"
+          class="cc-instagram__follow">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"
+            aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
+          </svg>
+          FOLLOW US
+        </a>
+      </div>
 
-    <div class="cc-instagram__grid">
-      @for (post of instagramPosts; track $index) {
-        <a href="https://www.instagram.com/caribbean_photo_contest/" target="_blank" rel="noopener noreferrer" class="cc-instagram__tile">
+      <hr class="cc-instagram__divider" />
+
+      <div class="cc-instagram__grid">
+        @for (post of instagramPosts; track $index) {
+        <a href="https://www.instagram.com/caribbean_photo_contest/" target="_blank" rel="noopener noreferrer"
+          class="cc-instagram__tile">
           <img [src]="post" alt="" />
         </a>
-      }
-    </div>
-  </section>
+        }
+      </div>
+    </section>
 
   <!-- 13. FOOTER -->
   <footer class="cc-footer">

@@ -13,13 +13,17 @@ import (
 	"time"
 
 	"github.com/aws/aws-lambda-go/events"
+	"github.com/photojomo/photojomo-be/internal/repository"
 )
 
-const paypalBaseURL = "https://api-m.sandbox.paypal.com"
+const (
+	paypalSandboxBaseURL = "https://api-m.sandbox.paypal.com"
+	paypalLiveBaseURL    = "https://api-m.paypal.com"
+)
 
 type paypalOrderRequest struct {
-	Amount   float64 `json:"amount"`
-	Currency string  `json:"currency"`
+	ContestTierID string `json:"contestTierId"`
+	Currency      string `json:"currency"`
 }
 
 type paypalOrderResponse struct {
@@ -34,13 +38,21 @@ type paypalCaptureResponse struct {
 type PaypalOrderHandler struct {
 	clientID     string
 	clientSecret string
+	baseURL      string
+	tiers        *repository.ContestTierRepository
 	httpClient   *http.Client
 }
 
-func NewPaypalOrderHandler(clientID, clientSecret string) *PaypalOrderHandler {
+func NewPaypalOrderHandler(clientID, clientSecret string, live bool, tiers *repository.ContestTierRepository) *PaypalOrderHandler {
+	baseURL := paypalSandboxBaseURL
+	if live {
+		baseURL = paypalLiveBaseURL
+	}
 	return &PaypalOrderHandler{
 		clientID:     clientID,
 		clientSecret: clientSecret,
+		baseURL:      baseURL,
+		tiers:        tiers,
 		httpClient:   &http.Client{Timeout: 10 * time.Second},
 	}
 }
@@ -54,9 +66,18 @@ func (h *PaypalOrderHandler) HandleCreate(ctx context.Context, req events.APIGat
 		}), nil
 	}
 
-	if body.Amount <= 0 {
+	if body.ContestTierID == "" {
 		return jsonResponse(http.StatusBadRequest, map[string]interface{}{
-			"message": "amount is required",
+			"message": "contestTierId is required",
+			"success": false,
+		}), nil
+	}
+
+	tier, err := h.tiers.FindByID(ctx, body.ContestTierID)
+	if err != nil {
+		log.Printf("error looking up tier %s: %v", body.ContestTierID, err)
+		return jsonResponse(http.StatusBadRequest, map[string]interface{}{
+			"message": "invalid contestTierId",
 			"success": false,
 		}), nil
 	}
@@ -75,7 +96,7 @@ func (h *PaypalOrderHandler) HandleCreate(ctx context.Context, req events.APIGat
 		}), nil
 	}
 
-	orderID, err := h.createOrder(token, body.Amount, currency)
+	orderID, err := h.createOrder(token, tier.Price, currency)
 	if err != nil {
 		log.Printf("error creating paypal order: %v", err)
 		return jsonResponse(http.StatusInternalServerError, map[string]interface{}{
@@ -129,7 +150,7 @@ func (h *PaypalOrderHandler) getAccessToken() (string, error) {
 	form := url.Values{}
 	form.Set("grant_type", "client_credentials")
 
-	req, err := http.NewRequest("POST", paypalBaseURL+"/v1/oauth2/token", bytes.NewBufferString(form.Encode()))
+	req, err := http.NewRequest("POST", h.baseURL+"/v1/oauth2/token", bytes.NewBufferString(form.Encode()))
 	if err != nil {
 		return "", fmt.Errorf("building token request: %w", err)
 	}
@@ -193,7 +214,7 @@ func (h *PaypalOrderHandler) createOrder(token string, amount float64, currency 
 		return "", fmt.Errorf("marshalling order request: %w", err)
 	}
 
-	req, err := http.NewRequest("POST", paypalBaseURL+"/v2/checkout/orders", bytes.NewReader(bodyBytes))
+	req, err := http.NewRequest("POST", h.baseURL+"/v2/checkout/orders", bytes.NewReader(bodyBytes))
 	if err != nil {
 		return "", fmt.Errorf("building create order request: %w", err)
 	}
@@ -220,7 +241,7 @@ func (h *PaypalOrderHandler) createOrder(token string, amount float64, currency 
 }
 
 func (h *PaypalOrderHandler) captureOrder(token, orderID string) error {
-	req, err := http.NewRequest("POST", paypalBaseURL+"/v2/checkout/orders/"+orderID+"/capture", bytes.NewReader([]byte("{}")))
+	req, err := http.NewRequest("POST", h.baseURL+"/v2/checkout/orders/"+orderID+"/capture", bytes.NewReader([]byte("{}")))
 	if err != nil {
 		return fmt.Errorf("building capture request: %w", err)
 	}

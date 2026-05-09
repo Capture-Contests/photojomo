@@ -22,6 +22,23 @@
       <!-- MAIN FORM -->
       <form class="reg-form" (ngSubmit)="onSubmit()" #f="ngForm">
 
+        <!-- Tier Selection -->
+        @if (tiersLoading) {
+          <div class="reg-section"><p class="stripe-loading">Loading tiers…</p></div>
+        } @else {
+          <div class="reg-section">
+            <h2 class="reg-section__title">Select Your Tier</h2>
+            <div class="payment-options">
+              @for (tier of tiers; track tier.id) {
+                <label class="payment-opt" [class.payment-opt--active]="selectedTier?.id === tier.id">
+                  <input type="radio" name="tierSelect" [value]="tier" [(ngModel)]="selectedTier" (ngModelChange)="onTierChange()" />
+                  <span>{{ tier.name }} — ${{ tier.price }}</span>
+                </label>
+              }
+            </div>
+          </div>
+        }
+
         <!-- Personal Info -->
         <div class="reg-section">
           <h2 class="reg-section__title">Add personal information</h2>
@@ -116,7 +133,7 @@
           @if (selectedTier) {
             <div class="reg-total">
               <span class="reg-total__label">Total</span>
-              <span class="reg-total__price">{{ selectedTier.price }}</span>
+              <span class="reg-total__price">${{ selectedTier.price }}</span>
             </div>
           }
         </div>
@@ -167,7 +184,7 @@
             }
             <div id="paypal-button-container"></div>
           } @else {
-            <button type="submit" class="reg-submit" [disabled]="submitting || stripeLoading || !f.valid">
+            <button type="submit" class="reg-submit" [disabled]="submitting || stripeLoading || tiersLoading || !f.valid">
               @if (submitting) { Processing… } @else { Complete Purchase }
             </button>
           }
@@ -181,7 +198,7 @@
           <h3 class="order-summary__heading">Order Summary</h3>
           <p class="order-summary__division">{{ division }}</p>
           <p class="order-summary__tier">{{ tier.name }}</p>
-          <p class="order-summary__images">{{ tier.images }}</p>
+          <p class="order-summary__images">Up to {{ tier.maxImages }} images</p>
 
           <div class="order-summary__benefits">
             <p class="order-summary__benefits-label">Benefits</p>
@@ -198,7 +215,7 @@
           <div class="order-summary__divider"></div>
           <div class="order-summary__total">
             <span>Total</span>
-            <span>{{ tier.price }}</span>
+            <span>${{ tier.price }}</span>
           </div>
         </aside>
       }

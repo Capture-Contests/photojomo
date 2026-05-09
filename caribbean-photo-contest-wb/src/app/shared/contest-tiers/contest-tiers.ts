@@ -1,54 +1,6 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-
-export interface Tier {
-  name: string;        // legacy combined string (kept so {tier: tier.name} query params still work)
-  tierLabel: string;   // "Tier 1"
-  variant: string;     // "Explorer"
-  price: string;
-  images: string;
-  benefits: string[];
-  golden: boolean;
-}
-
-export const TIERS: Tier[] = [
-  {
-    name: 'Tier 1 - Explorer',
-    tierLabel: 'Tier 1',
-    variant: 'Explorer',
-    price: '$25',
-    images: '1-5 images',
-    benefits: ['Eligible for judging', 'Founding Class Member Badge'],
-    golden: false,
-  },
-  {
-    name: 'Tier 2 - Enthusiast',
-    tierLabel: 'Tier 2',
-    variant: 'Enthusiast',
-    price: '$45',
-    images: 'Up to 10 images',
-    benefits: ['Eligible for judging', 'Founding Class Member Badge'],
-    golden: false,
-  },
-  {
-    name: 'Tier 3 - Visionary',
-    tierLabel: 'Tier 3',
-    variant: 'Visionary',
-    price: '$65',
-    images: 'Up to 15 images',
-    benefits: ['Eligible for judging', 'Founding Class Member Badge'],
-    golden: false,
-  },
-  {
-    name: 'Tier 4 - Master',
-    tierLabel: 'Tier 4',
-    variant: 'Master',
-    price: '$95',
-    images: 'Up to 25 images',
-    benefits: ['Eligible for judging', 'Founding Class Member Badge'],
-    golden: true,
-  },
-];
+import { SubmissionService, Tier } from '../../core/submission.service';
 
 @Component({
   selector: 'app-contest-tiers',
@@ -56,10 +8,23 @@ export const TIERS: Tier[] = [
   templateUrl: './contest-tiers.html',
   styleUrl: './contest-tiers.scss',
 })
-export class ContestTiers {
+export class ContestTiers implements OnInit {
   @Input() division = 'general';
-  tiers = TIERS;
+  tiers: Tier[] = [];
+  tiersLoading = true;
+  tiersError = false;
   private readonly router = inject(Router);
+  private readonly submissionService = inject(SubmissionService);
+
+  async ngOnInit() {
+    try {
+      this.tiers = await this.submissionService.getTiers();
+    } catch {
+      this.tiersError = true;
+    } finally {
+      this.tiersLoading = false;
+    }
+  }
 
   get divisionLabel() {
     const labels: Record<string, string> = {
@@ -68,8 +33,25 @@ export class ContestTiers {
       'college-creator':   'College Creator',
       'master-your-craft': 'Master Your Craft',
     };
-
     return labels[this.division] ?? 'Contest';
+  }
+
+  tierLabel(tier: Tier): string {
+    const parts = tier.name.split(' - ');
+    return parts[0] ?? tier.name;
+  }
+
+  tierVariant(tier: Tier): string {
+    const parts = tier.name.split(' - ');
+    return parts[1] ?? '';
+  }
+
+  formatPrice(price: number): string {
+    return `$${price}`;
+  }
+
+  formatImages(maxImages: number): string {
+    return maxImages === 5 ? '1-5 images' : `Up to ${maxImages} images`;
   }
 
   legalModalState() {

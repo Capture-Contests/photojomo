@@ -124,7 +124,7 @@
           @if (selectedTier) {
             <div class="reg-total">
               <span class="reg-total__label">Total</span>
-              <span class="reg-total__price">{{ selectedTier.price }}</span>
+              <span class="reg-total__price">${{ selectedTier.price }}</span>
             </div>
           }
         </div>
@@ -188,8 +188,8 @@
         <aside class="order-summary">
           <h3 class="order-summary__heading">Order Summary</h3>
           <p class="order-summary__division">{{ divisionLabel }}</p>
-          <p class="order-summary__tier">{{ tier.tierLabel }} {{ tier.variant }}</p>
-          <p class="order-summary__images">{{ tier.images }}</p>
+          <p class="order-summary__tier">{{ tierDisplay }}</p>
+          <p class="order-summary__images">{{ tier.maxImages === 5 ? '1-5 images' : 'Up to ' + tier.maxImages + ' images' }}</p>
 
           <div class="order-summary__benefits">
             <p class="order-summary__benefits-label">Benefits</p>
@@ -206,7 +206,7 @@
           <div class="order-summary__divider"></div>
           <div class="order-summary__total">
             <span>Total</span>
-            <span>{{ tier.price }}</span>
+            <span>${{ tier.price }}</span>
           </div>
         </aside>
       }

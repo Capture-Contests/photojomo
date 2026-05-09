@@ -75,17 +75,18 @@ type SubmissionContact struct {
 	FirstName    string
 	LastName     string
 	CategoryName string
+	ContestID    string
 }
 
 func (r *SubmissionRepository) FindContactByPaymentIntentID(ctx context.Context, paymentIntentID string) (*SubmissionContact, error) {
 	var sc SubmissionContact
 	err := r.db.QueryRow(ctx, `
-		SELECT c.email, c.first_name, c.last_name, cc.name
+		SELECT c.email, c.first_name, c.last_name, cc.name, s.contest_id
 		FROM submission s
 		JOIN contestant c ON c.id = s.contestant_id
 		JOIN contest_category cc ON cc.id = s.contest_category_id
 		WHERE s.stripe_payment_intent_id = $1
-	`, paymentIntentID).Scan(&sc.Email, &sc.FirstName, &sc.LastName, &sc.CategoryName)
+	`, paymentIntentID).Scan(&sc.Email, &sc.FirstName, &sc.LastName, &sc.CategoryName, &sc.ContestID)
 	if err != nil {
 		return nil, fmt.Errorf("finding contact by payment intent id: %w", err)
 	}
@@ -95,12 +96,12 @@ func (r *SubmissionRepository) FindContactByPaymentIntentID(ctx context.Context,
 func (r *SubmissionRepository) FindContactByPaypalOrderID(ctx context.Context, paypalOrderID string) (*SubmissionContact, error) {
 	var sc SubmissionContact
 	err := r.db.QueryRow(ctx, `
-		SELECT c.email, c.first_name, c.last_name, cc.name
+		SELECT c.email, c.first_name, c.last_name, cc.name, s.contest_id
 		FROM submission s
 		JOIN contestant c ON c.id = s.contestant_id
 		JOIN contest_category cc ON cc.id = s.contest_category_id
 		WHERE s.paypal_order_id = $1
-	`, paypalOrderID).Scan(&sc.Email, &sc.FirstName, &sc.LastName, &sc.CategoryName)
+	`, paypalOrderID).Scan(&sc.Email, &sc.FirstName, &sc.LastName, &sc.CategoryName, &sc.ContestID)
 	if err != nil {
 		return nil, fmt.Errorf("finding contact by paypal order id: %w", err)
 	}

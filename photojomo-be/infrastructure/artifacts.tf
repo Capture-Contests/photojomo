@@ -83,6 +83,13 @@ resource "aws_s3_object" "paypal_webhook_service_zip" {
   etag   = filemd5(var.paypal_webhook_service_zip_path)
 }
 
+resource "aws_s3_object" "contest_tier_service_zip" {
+  bucket = aws_s3_bucket.artifacts.id
+  key    = "contest-tier-service/contest-tier.zip"
+  source = var.contest_tier_service_zip_path
+  etag   = filemd5(var.contest_tier_service_zip_path)
+}
+
 resource "aws_s3_object" "sweepstakes_service_zip" {
   bucket = aws_s3_bucket.artifacts.id
   key    = "sweepstakes-service/sweepstakes.zip"

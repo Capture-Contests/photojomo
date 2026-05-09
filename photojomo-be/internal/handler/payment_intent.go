@@ -12,12 +12,12 @@ import (
 	"strings"
 
 	"github.com/aws/aws-lambda-go/events"
+	"github.com/photojomo/photojomo-be/internal/repository"
 )
 
 type paymentIntentRequest struct {
-	SubmissionID string  `json:"submissionId"`
-	Amount       float64 `json:"amount"`
-	Currency     string  `json:"currency"`
+	ContestTierID string `json:"contestTierId"`
+	Currency      string `json:"currency"`
 }
 
 type paymentIntentResponse struct {
@@ -27,10 +27,11 @@ type paymentIntentResponse struct {
 
 type PaymentIntentHandler struct {
 	stripeKey string
+	tiers     *repository.ContestTierRepository
 }
 
-func NewPaymentIntentHandler(stripeKey string) *PaymentIntentHandler {
-	return &PaymentIntentHandler{stripeKey: stripeKey}
+func NewPaymentIntentHandler(stripeKey string, tiers *repository.ContestTierRepository) *PaymentIntentHandler {
+	return &PaymentIntentHandler{stripeKey: stripeKey, tiers: tiers}
 }
 
 func (h *PaymentIntentHandler) Handle(ctx context.Context, req events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse, error) {
@@ -42,9 +43,18 @@ func (h *PaymentIntentHandler) Handle(ctx context.Context, req events.APIGateway
 		}), nil
 	}
 
-	if body.Amount <= 0 {
+	if body.ContestTierID == "" {
 		return jsonResponse(http.StatusBadRequest, map[string]interface{}{
-			"message": "amount is required",
+			"message": "contestTierId is required",
+			"success": false,
+		}), nil
+	}
+
+	tier, err := h.tiers.FindByID(ctx, body.ContestTierID)
+	if err != nil {
+		log.Printf("error looking up tier %s: %v", body.ContestTierID, err)
+		return jsonResponse(http.StatusBadRequest, map[string]interface{}{
+			"message": "invalid contestTierId",
 			"success": false,
 		}), nil
 	}
@@ -54,7 +64,7 @@ func (h *PaymentIntentHandler) Handle(ctx context.Context, req events.APIGateway
 		currency = "usd"
 	}
 
-	pi, err := h.createPaymentIntent(body.SubmissionID, body.Amount, currency)
+	pi, err := h.createPaymentIntent(tier.Price, currency)
 	if err != nil {
 		log.Printf("error creating payment intent: %v", err)
 		return jsonResponse(http.StatusInternalServerError, map[string]interface{}{
@@ -74,16 +84,13 @@ type stripePaymentIntentResult struct {
 	ClientSecret string `json:"client_secret"`
 }
 
-func (h *PaymentIntentHandler) createPaymentIntent(submissionID string, amount float64, currency string) (*stripePaymentIntentResult, error) {
+func (h *PaymentIntentHandler) createPaymentIntent(amount float64, currency string) (*stripePaymentIntentResult, error) {
 	amountCents := strconv.FormatInt(int64(amount*100), 10)
 
 	form := url.Values{}
 	form.Set("amount", amountCents)
 	form.Set("currency", currency)
 	form.Set("automatic_payment_methods[enabled]", "true")
-	if submissionID != "" {
-		form.Set("metadata[submissionId]", submissionID)
-	}
 
 	req, err := http.NewRequest("POST", "https://api.stripe.com/v1/payment_intents", strings.NewReader(form.Encode()))
 	if err != nil {

@@ -3,27 +3,21 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { firstValueFrom, catchError, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-const CONTEST_ID = 'con-eea0aef2-df89-49ab-ac26-e05cb0ee6346';
+export interface Tier {
+  id: string;
+  name: string;
+  price: number;
+  maxImages: number;
+  golden: boolean;
+  sortOrder: number;
+  benefits: string[];
+}
 
 const CATEGORY_IDS: Record<string, string> = {
   'general':          'cat-fd72cc65-2e4e-4ddd-8fb4-3baa81e6994d',
   'emerging-creator': 'cat-f09e8657-a3f7-4d62-bcd8-66e949aaaa99',
   'college-creator':  'cat-6348b22a-6e80-4dd6-a7fd-98baeca7521f',
   'professional':     'cat-ad124888-7c4b-480b-a4c4-cf2f39f33afa',
-};
-
-const TIER_IDS: Record<string, string> = {
-  'Tier 1 - Explorer':   'tie-87b8ff19-7632-454b-a2f2-fafa473d930d',
-  'Tier 2 - Enthusiast': 'tie-113874c3-37a1-437c-b961-b4eeec7c178b',
-  'Tier 3 - Visionary':  'tie-708b7942-7538-47ca-b1ed-cc184757fe68',
-  'Tier 4 - Master':     'tie-a5fd1747-4d05-4c8c-ac08-13671177c3de',
-};
-
-const TIER_PRICES: Record<string, number> = {
-  'Tier 1 - Explorer':   25,
-  'Tier 2 - Enthusiast': 45,
-  'Tier 3 - Visionary':  65,
-  'Tier 4 - Master':     95,
 };
 
 export interface SubmitParams {
@@ -36,7 +30,7 @@ export interface SubmitParams {
   confirmRules:          boolean;
   marketingConsent:      boolean;
   division:              string;
-  tierName:              string;
+  tier:                  Tier;
   paymentMethod:         'stripe' | 'paypal';
   stripePaymentIntentId: string;
   paypalOrderId:         string;
@@ -47,14 +41,20 @@ export interface SubmitParams {
 export class SubmissionService {
   constructor(private http: HttpClient) {}
 
-  async createPaypalOrder(tierName: string): Promise<{ orderId: string }> {
-    const amount = TIER_PRICES[tierName];
-    if (!amount) throw new Error(`Unknown tier: ${tierName}`);
+  async getTiers(): Promise<Tier[]> {
+    const res = await firstValueFrom(
+      this.http.get<{ tiers: Tier[] }>(
+        `${environment.apiBaseUrl}/contests/${environment.contestId}/tiers`
+      )
+    );
+    return res.tiers;
+  }
 
+  async createPaypalOrder(tierId: string): Promise<{ orderId: string }> {
     return firstValueFrom(
       this.http.post<{ orderId: string }>(
         `${environment.apiBaseUrl}/paypal-orders`,
-        { amount, currency: 'usd' }
+        { contestTierId: tierId }
       )
     );
   }
@@ -68,25 +68,18 @@ export class SubmissionService {
     );
   }
 
-  async createPaymentIntent(tierName: string): Promise<{ clientSecret: string; paymentIntentId: string }> {
-    const amount = TIER_PRICES[tierName];
-    if (!amount) throw new Error(`Unknown tier: ${tierName}`);
-
+  async createPaymentIntent(tierId: string): Promise<{ clientSecret: string; paymentIntentId: string }> {
     return firstValueFrom(
       this.http.post<{ clientSecret: string; paymentIntentId: string }>(
         `${environment.apiBaseUrl}/payment-intents`,
-        { amount, currency: 'usd' }
+        { contestTierId: tierId }
       )
     );
   }
 
   async submit(params: SubmitParams): Promise<void> {
     const contestCategoryId = CATEGORY_IDS[params.division];
-    const contestTierId     = TIER_IDS[params.tierName];
-    const amountPaid        = TIER_PRICES[params.tierName];
-
     if (!contestCategoryId) throw new Error(`Unknown division: ${params.division}`);
-    if (!contestTierId)     throw new Error(`Unknown tier: ${params.tierName}`);
 
     // 1. Create contestant + submission
     const submission = await firstValueFrom(
@@ -101,10 +94,10 @@ export class SubmissionService {
           confirmAge:            params.confirmAge,
           confirmRules:          params.confirmRules,
           marketingConsent:      params.marketingConsent,
-          contestId:             CONTEST_ID,
+          contestId:             environment.contestId,
           contestCategoryId,
-          contestTierId,
-          amountPaid,
+          contestTierId:         params.tier.id,
+          amountPaid:            params.tier.price,
           paymentMethod:         params.paymentMethod,
           stripePaymentIntentId: params.stripePaymentIntentId || undefined,
           paypalOrderId:         params.paypalOrderId || undefined,
@@ -129,7 +122,7 @@ export class SubmissionService {
           {
             contestantId: submission.contestantId,
             submissionId: submission.submissionId,
-            contestId:    CONTEST_ID,
+            contestId:    environment.contestId,
             files: params.files.map(f => ({
               fileName:    f.name,
               contentType: f.type,

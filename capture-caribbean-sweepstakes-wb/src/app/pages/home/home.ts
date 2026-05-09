@@ -93,6 +93,8 @@ export class Home {
   submitted = false;
   errorMessage = '';
 
+  readonly version = environment.version;
+
   // Confetti pieces for the success animation — count + per-piece random
   // colour/left/delay/duration baked at component init so the template can
   // bind to them via *ngFor.

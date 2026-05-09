@@ -4,16 +4,21 @@
     <span class="tiers__heading-break"></span>
     <i>Tier &amp; Fees</i>
   </h2>
+  @if (tiersLoading) {
+    <p class="tiers__loading">Loading tiers…</p>
+  } @else if (tiersError) {
+    <p class="tiers__error">Unable to load tiers. Please refresh the page.</p>
+  } @else {
   <div class="tiers__grid">
-    @for (tier of tiers; track tier.name) {
+    @for (tier of tiers; track tier.id) {
       <div class="tier-card" [class.tier-card--featured]="tier.golden">
         @if (tier.golden) {
           <div class="tier-card__badge">Most Popular</div>
         }
         <div class="tier-card__header">
           <h3 class="tier-card__name">{{ tier.name }}</h3>
-          <div class="tier-card__price">{{ tier.price }}</div>
-          <div class="tier-card__images">{{ tier.images }}</div>
+          <div class="tier-card__price">{{ formatPrice(tier.price) }}</div>
+          <div class="tier-card__images">{{ formatImages(tier.maxImages) }}</div>
         </div>
         <div class="tier-card__body">
           <p class="tier-card__benefits-label">Benefits</p>
@@ -51,7 +56,7 @@
         <div class="tier-card__footer">
           <a
             [routerLink]="['/account/register']"
-            [queryParams]="{ division: division, tier: tier.name }"
+            [queryParams]="{ division: division, tier: tier.name, tierId: tier.id }"
             class="tier-btn"
           >
             <span>Register Now</span>
@@ -70,6 +75,7 @@
     By registering you agree to the <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true">Rules</a> and
     <a routerLink="/info/terms-and-conditions" [state]="legalModalState()" [replaceUrl]="true">Terms &amp; Conditions</a>.
   </p>
+  }
 
   @if (goldenInfoOpen) {
     <div class="golden-modal" role="dialog" aria-modal="true" aria-labelledby="golden-modal-title" (click)="closeGoldenInfo()">

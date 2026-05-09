@@ -21,8 +21,8 @@
               <input type="radio" name="tier" [value]="tier" [(ngModel)]="selectedTier" (ngModelChange)="onTierChange()" />
               <div class="tier-option__card">
                 <div class="tier-option__name">{{ tier.name }}</div>
-                <div class="tier-option__price">{{ tier.price }}</div>
-                <div class="tier-option__images">{{ tier.images }}</div>
+                <div class="tier-option__price">${{ tier.price }}</div>
+                <div class="tier-option__images">Up to {{ tier.maxImages }} images</div>
                 @if (tier.golden) {
                   <div class="tier-option__golden">🎟 Golden Ticket</div>
                 }
@@ -112,15 +112,16 @@
       </div>
 
       <!-- ORDER SUMMARY -->
+      @if (selectedTier) {
       <div class="form-section">
         <h3 class="form-section__title">Order Summary</h3>
         <div class="order-summary">
           <div class="order-summary__row">
             <span>{{ selectedTier.name }}</span>
-            <span>{{ selectedTier.price }}</span>
+            <span>${{ selectedTier.price }}</span>
           </div>
           <div class="order-summary__row">
-            <span>{{ selectedTier.images }}</span>
+            <span>Up to {{ selectedTier.maxImages }} images</span>
           </div>
           @if (selectedTier.golden) {
             <div class="order-summary__row order-summary__row--golden">
@@ -130,7 +131,7 @@
           <div class="order-summary__divider"></div>
           <div class="order-summary__total">
             <span>Total</span>
-            <span>{{ selectedTier.price }}</span>
+            <span>${{ selectedTier.price }}</span>
           </div>
         </div>
       </div>
@@ -159,10 +160,11 @@
           @if (submitting) {
             Processing…
           } @else {
-            Submit Entry — {{ selectedTier.price }}
+            Submit Entry — ${{ selectedTier.price }}
           }
         </button>
       </div>
+      }
 
     </form>
   </section>

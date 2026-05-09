@@ -1,44 +1,6 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-
-export interface Tier {
-  name: string;
-  price: string;
-  images: string;
-  benefits: string[];
-  golden: boolean;
-}
-
-export const TIERS: Tier[] = [
-  {
-    name: 'Tier 1 - Explorer',
-    price: '$25',
-    images: '1-5 images',
-    benefits: ['Eligible for judging', 'Founding Class Member Badge'],
-    golden: false,
-  },
-  {
-    name: 'Tier 2 - Enthusiast',
-    price: '$45',
-    images: 'Up to 10 images',
-    benefits: ['Eligible for judging', 'Founding Class Member Badge'],
-    golden: false,
-  },
-  {
-    name: 'Tier 3 - Visionary',
-    price: '$65',
-    images: 'Up to 15 images',
-    benefits: ['Eligible for judging', 'Founding Class Member Badge'],
-    golden: false,
-  },
-  {
-    name: 'Tier 4 - Master',
-    price: '$95',
-    images: 'Up to 25 images',
-    benefits: ['Eligible for judging', 'Founding Class Member Badge'],
-    golden: true,
-  },
-];
+import { SubmissionService, Tier } from '../../core/submission.service';
 
 @Component({
   selector: 'app-contest-tiers',
@@ -46,10 +8,24 @@ export const TIERS: Tier[] = [
   templateUrl: './contest-tiers.html',
   styleUrl: './contest-tiers.scss',
 })
-export class ContestTiers {
+export class ContestTiers implements OnInit {
   @Input() division = 'general';
-  tiers = TIERS;
+  tiers: Tier[] = [];
+  tiersLoading = true;
+  tiersError = false;
+
   private readonly router = inject(Router);
+  private readonly submissionService = inject(SubmissionService);
+
+  async ngOnInit() {
+    try {
+      this.tiers = await this.submissionService.getTiers();
+    } catch {
+      this.tiersError = true;
+    } finally {
+      this.tiersLoading = false;
+    }
+  }
 
   get divisionLabel() {
     const labels: Record<string, string> = {
@@ -58,8 +34,15 @@ export class ContestTiers {
       'college-creator': 'College Creator',
       professional: 'Master Your Craft',
     };
-
     return labels[this.division] ?? 'Contest';
+  }
+
+  formatPrice(price: number): string {
+    return '$' + price.toFixed(0);
+  }
+
+  formatImages(maxImages: number): string {
+    return maxImages === 5 ? '1-5 images' : `Up to ${maxImages} images`;
   }
 
   legalModalState() {

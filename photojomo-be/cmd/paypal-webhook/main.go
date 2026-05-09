@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"os"
 
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/photojomo/photojomo-be/internal/db"
@@ -30,8 +31,9 @@ func main() {
 	}
 	defer pool.Close()
 
+	live := os.Getenv("PAYPAL_ENV") == "live"
 	submissions := repository.NewSubmissionRepository(pool)
-	h := handler.NewPaypalWebhookHandler(paypal.ClientID, paypal.ClientSecret, paypal.WebhookID, submissions, mailchimp.NewClient(mc.APIKey, mc.AudienceID))
+	h := handler.NewPaypalWebhookHandler(paypal.ClientID, paypal.ClientSecret, paypal.WebhookID, live, submissions, mailchimp.NewClient(mc.APIKey, mc.AudienceID))
 
 	lambda.Start(h.Handle)
 }

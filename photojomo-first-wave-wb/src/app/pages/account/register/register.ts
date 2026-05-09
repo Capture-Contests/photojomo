@@ -3,9 +3,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { loadStripe, Stripe, StripeElements } from '@stripe/stripe-js';
 import { loadScript } from '@paypal/paypal-js';
-import { TIERS, Tier } from '../../../shared/contest-tiers/contest-tiers';
 import { COUNTRIES } from '../../../shared/entry-form/countries';
-import { SubmissionService } from '../../../core/submission.service';
+import { SubmissionService, Tier } from '../../../core/submission.service';
 import { environment } from '../../../../environments/environment';
 
 interface UploadSlot { index: number; file: File | null; preview: string | null; }
@@ -19,6 +18,8 @@ interface UploadSlot { index: number; file: File | null; preview: string | null;
 export class Register implements OnInit {
   private readonly router = inject(Router);
   division = '';
+  tiers: Tier[] = [];
+  tiersLoading = true;
   selectedTier: Tier | null = null;
   countries = COUNTRIES;
 
@@ -56,21 +57,36 @@ export class Register implements OnInit {
     private submissionService: SubmissionService,
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.division = this.route.snapshot.queryParamMap.get('division') ?? '';
     const tierName = this.route.snapshot.queryParamMap.get('tier') ?? '';
-    const match = TIERS.find(t => t.name === tierName);
+    const tierId   = this.route.snapshot.queryParamMap.get('tierId') ?? '';
+
+    try {
+      this.tiers = await this.submissionService.getTiers();
+    } catch {
+      this.errorMessage = 'Failed to load tier information. Please refresh.';
+      return;
+    } finally {
+      this.tiersLoading = false;
+    }
+
+    // Match by ID first (from division page link), fall back to name
+    const match = tierId
+      ? this.tiers.find(t => t.id === tierId)
+      : this.tiers.find(t => t.name === tierName);
+
     if (match) {
       this.selectedTier = match;
       this.buildUploadSlots(match);
-      this.initStripeElements(match.name);
+      this.initStripeElements(match.id);
     }
   }
 
-  private async initStripeElements(tierName: string) {
+  private async initStripeElements(tierId: string) {
     this.stripeLoading = true;
     try {
-      const { clientSecret, paymentIntentId } = await this.submissionService.createPaymentIntent(tierName);
+      const { clientSecret, paymentIntentId } = await this.submissionService.createPaymentIntent(tierId);
       this.paymentIntentId = paymentIntentId;
 
       const stripe = await loadStripe(environment.stripePublishableKey);
@@ -94,7 +110,6 @@ export class Register implements OnInit {
 
       const paymentElement = this.elements.create('payment');
 
-      // Wait for Angular to finish rendering before mounting
       setTimeout(() => {
         const mountEl = document.getElementById('stripe-payment-element');
         if (mountEl) paymentElement.mount(mountEl);
@@ -128,10 +143,10 @@ export class Register implements OnInit {
           }
           this.paypalFormInvalid = false;
 
-          // 1. Create PayPal order to get orderId
-          const { orderId } = await this.submissionService.createPaypalOrder(this.selectedTier!.name);
-
-          // 2. Create submission first — if it fails, show modal and abort
+          const { orderId } = await this.submissionService.createPaypalOrder(this.selectedTier!.id);
+          return orderId;
+        },
+        onApprove: async (data: any) => {
           try {
             await this.submissionService.submit({
               firstName:             this.form.firstName,
@@ -143,26 +158,23 @@ export class Register implements OnInit {
               confirmRules:          this.form.agreeRules,
               marketingConsent:      this.form.subscribeOffers,
               division:              this.division,
-              tierName:              this.selectedTier!.name,
+              tier:                  this.selectedTier!,
               paymentMethod:         'paypal',
               stripePaymentIntentId: '',
-              paypalOrderId:         orderId,
+              paypalOrderId:         data.orderID,
               files:                 this.uploadSlots.map(s => s.file).filter((f): f is File => f !== null),
             });
           } catch (err: any) {
             this.modalMessage = err?.message || 'Something went wrong. Please try again.';
-            throw new Error('submission-failed');
+            return;
           }
 
-          return orderId;
-        },
-        onApprove: async (data: any) => {
           await this.submissionService.capturePaypalOrder(data.orderID);
           this.submitted = true;
         },
         onError: (err: any) => {
           console.error('PayPal onError:', err);
-          if ((err as Error)?.message === 'submission-failed') return; // modal already shown
+          if ((err as Error)?.message === 'submission-failed') return;
           if (this.paypalFormInvalid) {
             this.paypalFormInvalid = false;
             this.errorMessage = 'Please complete all required fields before proceeding with PayPal.';
@@ -184,6 +196,18 @@ export class Register implements OnInit {
     this.modalMessage = '';
   }
 
+  onTierChange() {
+    if (!this.selectedTier) return;
+    this.buildUploadSlots(this.selectedTier);
+    // Re-init Stripe with new tier price
+    this.stripe = null;
+    this.elements = null;
+    this.paymentIntentId = '';
+    this.initStripeElements(this.selectedTier.id);
+    // Reset PayPal buttons so they re-init with new tier on next switch
+    this.paypalButtons = null;
+  }
+
   onPaymentMethodChange() {
     if (this.paymentMethod === 'paypal' && !this.paypalButtons) {
       setTimeout(() => this.initPaypalButtons(), 0);
@@ -191,17 +215,9 @@ export class Register implements OnInit {
   }
 
   private buildUploadSlots(tier: Tier) {
-    const max = this.maxImages(tier);
-    this.uploadSlots = Array.from({ length: max }, (_, i) => ({
+    this.uploadSlots = Array.from({ length: tier.maxImages }, (_, i) => ({
       index: i + 1, file: null, preview: null,
     }));
-  }
-
-  maxImages(tier: Tier): number {
-    if (tier.name.includes('1')) return 5;
-    if (tier.name.includes('2')) return 10;
-    if (tier.name.includes('3')) return 15;
-    return 25;
   }
 
   onFileSelect(event: Event, slot: UploadSlot) {
@@ -227,11 +243,9 @@ export class Register implements OnInit {
     if (!this.selectedTier) return;
 
     if (this.paymentMethod === 'paypal') {
-      // Payment is handled by PayPal buttons' onApprove callback
       return;
     }
 
-    // Stripe flow
     this.submitting = true;
     this.errorMessage = '';
 
@@ -241,7 +255,6 @@ export class Register implements OnInit {
         return;
       }
 
-      // 1. Create submission first — if it fails, show modal and stop
       try {
         await this.submissionService.submit({
           firstName:             this.form.firstName,
@@ -253,7 +266,7 @@ export class Register implements OnInit {
           confirmRules:          this.form.agreeRules,
           marketingConsent:      this.form.subscribeOffers,
           division:              this.division,
-          tierName:              this.selectedTier.name,
+          tier:                  this.selectedTier,
           paymentMethod:         'stripe',
           stripePaymentIntentId: this.paymentIntentId,
           paypalOrderId:         '',
@@ -264,7 +277,6 @@ export class Register implements OnInit {
         return;
       }
 
-      // 2. Confirm payment
       const result = await this.stripe.confirmPayment({
         elements: this.elements,
         redirect: 'if_required',

@@ -6,9 +6,9 @@ DIST        = dist
 
 # ── Targets ───────────────────────────────────────────────────────────────────
 
-.PHONY: all clean $(DIST) build-contact deploy-contact build-submission deploy-submission build-contest-entry deploy-contest-entry build-stripe-webhook deploy-stripe-webhook build-payment-intent deploy-payment-intent build-paypal-order deploy-paypal-order build-paypal-capture deploy-paypal-capture build-paypal-webhook deploy-paypal-webhook build-sweepstakes deploy-sweepstakes
+.PHONY: all clean $(DIST) build-contact deploy-contact build-submission deploy-submission build-contest-entry deploy-contest-entry build-stripe-webhook deploy-stripe-webhook build-payment-intent deploy-payment-intent build-paypal-order deploy-paypal-order build-paypal-capture deploy-paypal-capture build-paypal-webhook deploy-paypal-webhook build-sweepstakes deploy-sweepstakes build-contest-tier deploy-contest-tier
 
-all: build-contact build-submission build-contest-entry build-stripe-webhook build-payment-intent build-paypal-order build-paypal-capture build-paypal-webhook build-sweepstakes
+all: build-contact build-submission build-contest-entry build-stripe-webhook build-payment-intent build-paypal-order build-paypal-capture build-paypal-webhook build-sweepstakes build-contest-tier
 
 # ── Build ─────────────────────────────────────────────────────────────────────
 
@@ -175,6 +175,24 @@ deploy-sweepstakes: build-sweepstakes
 		--s3-key sweepstakes-service/sweepstakes.zip \
 		--region $(REGION)
 	@echo "Deployed sweepstakes lambda to $(ENV)"
+
+build-contest-tier: $(DIST)
+	GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=$(CGO_ENABLED) \
+		go build $(LDFLAGS) -o bootstrap ./cmd/contest-tier/
+	zip -j $(DIST)/contest-tier.zip bootstrap
+	rm bootstrap
+	@echo "Built: $(DIST)/contest-tier.zip"
+
+deploy-contest-tier: build-contest-tier
+	aws s3 cp $(DIST)/contest-tier.zip \
+		s3://$(PROJECT)-$(ENV)-lambda-artifacts/contest-tier-service/contest-tier.zip \
+		--region $(REGION)
+	aws lambda update-function-code \
+		--function-name $(PROJECT)-$(ENV)-contest-tier-service \
+		--s3-bucket $(PROJECT)-$(ENV)-lambda-artifacts \
+		--s3-key contest-tier-service/contest-tier.zip \
+		--region $(REGION)
+	@echo "Deployed contest-tier lambda to $(ENV)"
 
 deploy-contact: build-contact
 	aws s3 cp $(DIST)/contact.zip \

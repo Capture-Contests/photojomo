@@ -108,6 +108,22 @@
   }
 }
 
+/* 1024×800 preview only: pull the hero content block up 80px (50+30) and
+   shave 2px off the eyebrow + heading. Width-only bound — 1024 is a
+   distinctive preview width. Uses !important so it definitively beats the
+   broader 641–1024 rule above. */
+@media (min-width: 1015px) and (max-width: 1035px) {
+  .sw-hero__content {
+    transform: translate(20px, -25px) !important;
+  }
+  .sw-hero__eyebrow {
+    font-size: 1.25rem !important;
+  }
+  .sw-hero__heading {
+    font-size: calc(clamp(2.125rem, 3.74vw, 3.4rem) - 2px) !important;
+  }
+}
+
 @media (min-width: 2560px) {
   .sw-hero__content {
     max-width: 988px; /* 760 × 1.3 — keeps each heading line on one row */
@@ -145,6 +161,14 @@
   .sw-hero__heading {
     font-size: clamp(1.125rem, 4.4vw, 1.5rem); /* ~18–24px */
     line-height: 1.2;
+  }
+}
+
+/* Mobile landscape (rotated phone): pull the entire hero content block up
+   30px (logo + eyebrow + heading move together). */
+@media (orientation: landscape) and (max-height: 500px) {
+  .sw-hero__content {
+    transform: translate(-40px, 10px); /* base translate y=40 minus 30 */
   }
 }
 

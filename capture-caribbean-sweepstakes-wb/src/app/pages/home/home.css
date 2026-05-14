@@ -114,13 +114,38 @@
    broader 641–1024 rule above. */
 @media (min-width: 1015px) and (max-width: 1035px) {
   .sw-hero__content {
-    transform: translate(20px, -25px) !important;
+    transform: translate(20px, -25px) !important; /* moved 30px down from prior -55 */
+    max-width: 55% !important; /* keep text off the hat figure on the right */
   }
   .sw-hero__eyebrow {
     font-size: 1.25rem !important;
   }
   .sw-hero__heading {
-    font-size: calc(clamp(2.125rem, 3.74vw, 3.4rem) - 2px) !important;
+    font-size: 1.75rem !important; /* 28px — fits cleanly inside the 55% column */
+  }
+}
+
+/* Medium Screen ROTATE view (800 × 1024 portrait — the rotated state of
+   the 1024×800 medium-screen preset). Width+height+orientation together
+   pin this to that specific rotated view. Pushes content further left
+   and compresses the logo/eyebrow so the heading sits in the sky area,
+   clear of the white hat figure. */
+@media (min-width: 790px) and (max-width: 810px) and (min-height: 1010px) and (max-height: 1040px) and (orientation: portrait) {
+  .sw-hero__content {
+    transform: translate(-40px, 30px) !important; /* base -100,-30 + (60,60) */
+    max-width: 60% !important; /* 20% wider column to fit larger text */
+    padding: 25px 50px 0 !important;
+  }
+  .sw-hero__logo-img {
+    width: 180px !important; /* 150 × 1.2 */
+    margin-bottom: 0.5rem !important;
+  }
+  .sw-hero__eyebrow {
+    font-size: 1.2rem !important; /* 1rem × 1.2 */
+    margin-bottom: 0.5rem !important;
+  }
+  .sw-hero__heading {
+    font-size: 1.8rem !important; /* 1.5rem × 1.2 */
   }
 }
 
@@ -164,11 +189,33 @@
   }
 }
 
+/* 375×812 preview only: shift logo + heading 30px further right.
+   Tight bounds + !important to beat the broader max-width:640 rule. */
+@media (min-width: 370px) and (max-width: 380px) and (min-height: 800px) and (max-height: 820px) {
+  .sw-hero__content {
+    transform: translate(-10px, 40px) !important; /* base -40 plus 30 */
+  }
+}
+
 /* Mobile landscape (rotated phone): pull the entire hero content block up
-   30px (logo + eyebrow + heading move together). */
+   30px (logo + eyebrow + heading move together), and keep the text in the
+   left half so headings don't overlap the hat figure on the right. */
 @media (orientation: landscape) and (max-height: 500px) {
   .sw-hero__content {
     transform: translate(-40px, 10px); /* base translate y=40 minus 30 */
+    max-width: 55%;
+  }
+  .sw-hero__heading {
+    font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+  }
+}
+
+/* Galaxy S9 landscape (~740×360): bring the content off the left edge —
+   the broader landscape rule's -40px translate pushes the logo/text flush
+   against the edge on narrower landscape phones. */
+@media (orientation: landscape) and (max-width: 760px) and (max-height: 400px) {
+  .sw-hero__content {
+    transform: translate(0, 10px); /* removes the -40px leftward push */
   }
 }
 

@@ -43,7 +43,12 @@
                   </svg>
                 </span>
                 <span>Includes <strong class="tier-card__golden-emphasis">Golden Ticket</strong></span>
-                <span class="golden-info" aria-hidden="true">i</span>
+                <button
+                  type="button"
+                  class="golden-info"
+                  aria-label="About the Golden Ticket"
+                  (click)="openGoldenInfo($event)"
+                >i</button>
               </li>
             }
           </ul>
@@ -70,5 +75,19 @@
     By registering you agree to the <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true">Rules</a> and
     <a routerLink="/info/terms-and-conditions" [state]="legalModalState()" [replaceUrl]="true">Terms &amp; Conditions</a>.
   </p>
+  }
+
+  @if (goldenInfoOpen) {
+    <div class="golden-modal" role="dialog" aria-modal="true" aria-labelledby="golden-modal-title" (click)="closeGoldenInfo()">
+      <div class="golden-modal__panel" (click)="$event.stopPropagation()">
+        <button type="button" class="golden-modal__close" aria-label="Close" (click)="closeGoldenInfo()">×</button>
+        <h3 id="golden-modal-title" class="golden-modal__title">Exclusive: The Golden Ticket</h3>
+        <ul class="golden-modal__list">
+          <li>One (1) standard entry fee waived for the Official Capture Caribbean Contest (Summer 2026)</li>
+          <li>Eligible to compete for the Summer 2026 Grand Prize vacation package</li>
+          <li>High-tier performance may qualify creators for invitation consideration to the Capture Saint Lucia Invitational (Invite-Only)</li>
+        </ul>
+      </div>
+    </div>
   }
 </section>

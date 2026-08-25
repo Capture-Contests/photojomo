@@ -95,6 +95,18 @@ export class Home {
 
   readonly version = environment.version;
 
+  // Confetti pieces for the success animation — count + per-piece random
+  // colour/left/delay/duration baked at component init so the template can
+  // bind to them via *ngFor.
+  readonly confettiPieces = Array.from({ length: 60 }, (_, i) => ({
+    left: Math.random() * 100,
+    color: ['#d8a74d', '#1f9d55', '#2563eb', '#e11d48', '#9333ea', '#f97316'][i % 6],
+    delay: Math.random() * 1.4,
+    duration: 2.4 + Math.random() * 2.2,
+    rotate: Math.random() * 360,
+    drift: (Math.random() - 0.5) * 200,
+  }));
+
   constructor(private http: HttpClient, private router: Router) {}
 
   captureLegalReturnState(): void {

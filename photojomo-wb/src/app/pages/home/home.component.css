@@ -502,6 +502,17 @@
   color: #000000;
 }
 
+/* Tri-Path desktop: only the arrow button is clickable. The card-wrapping
+   <a> stays in place so group-hover effects (image scale, button bg colour)
+   continue to work, but its onTriCardLgClick handler cancels navigation
+   unless the click target is inside .tri-card-lg__cta-button. */
+#tri-path-lg .tailwind > a {
+  cursor: default;
+}
+.tri-card-lg__cta-button {
+  cursor: pointer;
+}
+
 .tri-path-section-logo--desktop {
   width: 363px;
   margin: 0 auto 16px;

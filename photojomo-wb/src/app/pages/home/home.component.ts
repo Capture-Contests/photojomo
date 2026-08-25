@@ -54,6 +54,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.stopAutoPlay();
   }
 
+  /**
+   * Tri-Path desktop cards wrap the whole panel in <a> so the group-hover
+   * scale + colour effects work, but clicks should only navigate when the
+   * user clicks the arrow button. Cancels navigation otherwise.
+   */
+  onTriCardLgClick(event: MouseEvent): void {
+    const target = event.target as Element | null;
+    if (!target?.closest('.tri-card-lg__cta-button')) {
+      event.preventDefault();
+    }
+  }
+
   get currentSlide(): HeroSlide {
     return this.heroSlides[this.currentIndex];
   }

@@ -1,0 +1,677 @@
+/* =========================================================
+   capture-nigeria.css
+   Page styles for capture-nigeria.html.
+
+   Loaded AFTER styles.css. Same contract as capture-africa.css:
+   reuse that file's tokens, nav, hero, footer and button/eyebrow
+   primitives, then add the sections unique to the Nigeria layout:
+
+     .ng-intro    Open to creators from around the world
+     .ng-journey  A Nation of Creativity, Culture & Possibility
+     .ng-why      Why Capture Nigeria / More Than a Contest
+     .ng-dest     Explore Nigeria (six cards, the last a map placeholder)
+     .ng-split    The Stories / For Creators / For Tourism & Cultural Partners
+     .ng-quote    Pull quote
+     .ng-ahead    Looking Ahead
+     .ng-cta      Two-panel closing CTA
+
+   Breakpoints mirror styles.css: 1024 / 860 / 560.
+   ========================================================= */
+
+/* The destination cards and the journey photos both sit inside a
+   positioned context; `clip` contains the page without creating a
+   scroll container the way overflow-x:hidden would. */
+body { overflow-x: clip; }
+
+/* One content column for every band — styles.css otherwise runs
+   1292 (nav/hero) / 1264 (sections) / 1332 (footer), which reads as a
+   ragged left edge on wide screens. */
+:root {
+  --max-wide: 1264px;
+  --max-foot: 1264px;
+}
+
+/* ---------- page identity ----------
+   The Nigeria lockup is the shared "Capture" wordmark (with the globe set
+   into the C) over a wide-tracked country name — the same two-part mark
+   index.html uses, painted solid white rather than the gold gradient. */
+.nav__logo { flex-direction: column; align-items: flex-start; text-decoration: none; }
+.nav__logo-mark {
+  position: relative;
+  display: block;
+  width: 148px;
+  aspect-ratio: 306 / 73;
+  background-color: #ffffff;
+  -webkit-mask: url("images/gc-wordmark.png") no-repeat center / contain;
+          mask: url("images/gc-wordmark.png") no-repeat center / contain;
+}
+.nav__logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  -webkit-mask: url("images/gc-globe.png") no-repeat center / contain;
+          mask: url("images/gc-globe.png") no-repeat center / contain;
+}
+.nav__logo-sub {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  /* tracked so the country name spans the full width of the wordmark above
+     it — CSS puts a trailing space after the last letter, so the visible run
+     is one letter-space narrower than the element box */
+  letter-spacing: 1.60em;
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: color .45s ease;
+}
+/* styles.css recolours the mark white → gold once the nav is scrolled;
+   the country name follows it so the lockup stays one colour. */
+.nav.is-scrolled .nav__logo-sub { color: var(--gold); }
+
+.footer__logo {
+  width: auto;
+  display: inline-block;
+  text-decoration: none;
+}
+.footer__logo-mark {
+  position: relative;
+  display: block;
+  width: 172px;
+  aspect-ratio: 306 / 73;
+  background: #ffffff;
+  -webkit-mask: url("images/gc-wordmark.png") no-repeat center / contain;
+          mask: url("images/gc-wordmark.png") no-repeat center / contain;
+}
+.footer__logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  -webkit-mask: url("images/gc-globe.png") no-repeat center / contain;
+          mask: url("images/gc-globe.png") no-repeat center / contain;
+}
+.footer__logo-sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 1.65em;
+  /* cancel the trailing letter-space so the lockup's box matches its
+     visible width and the centred footer column centres it truly */
+  margin-right: -1.65em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.hero__bg {
+  background: #000 url("images/ng-hero.jpg?v=2") no-repeat center center / cover;
+}
+/* styles.css scrims the Caribbean hero from the left, because that hero's
+   type is left-aligned. The Nigeria lockup is centred, so the left wash is
+   replaced with a soft pool under the middle of the frame: enough to hold
+   the title and buttons, little enough to leave the rocks and the town
+   reading as they do in the prototype. */
+.hero__bg::after {
+  background:
+    radial-gradient(116% 74% at 50% 47%,
+      rgba(0,0,0,.40) 0%,
+      rgba(0,0,0,.24) 44%,
+      rgba(0,0,0,0)  76%),
+    linear-gradient(180deg,
+      rgba(0,0,0,.14) 0%,
+      rgba(0,0,0,0)  38%,
+      rgba(0,0,0,.24) 100%);
+}
+/* the nav still needs its own darker band to sit on */
+.hero__bg::before {
+  height: 190px;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,.62) 0%,
+    rgba(0,0,0,.42) 40%,
+    rgba(0,0,0,.16) 72%,
+    rgba(0,0,0,0) 100%);
+}
+
+/* ---------- hero: brand lockup on one line ---------- */
+.hero__title--brand {
+  max-width: none;
+  font-size: clamp(34px, 6.2vw, 86px);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+}
+.hero__title--brand em {
+  display: inline;
+  font-size: 1.08em;
+  margin-left: .12em;
+}
+.hero__lede {
+  font-size: clamp(15px, 1.1vw, 19px);
+  max-width: 720px;
+}
+/* Figma centres the Nigeria hero rather than left-aligning it. */
+.hero__inner { text-align: center; }
+.hero__title--brand,
+.hero__lede { margin-inline: auto; }
+.hero__actions { justify-content: center; }
+
+/* ---------- shared section heading ---------- */
+.ng-h2 {
+  margin: 0;
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+}
+.ng-h2 em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.06em;
+  letter-spacing: 0;
+}
+.ng-h2--center { text-align: center; }
+.ng-h2--center + .lede { margin-top: 18px; }
+
+/* Dark and light buttons used by the hero and the two split sections.
+   .btn--white in styles.css is the small tracked-caps nav pill; the hero
+   pair needs a plain sentence-case button at the same size as .btn--dark. */
+.btn--dark { background: var(--ink); color: #fff; height: 46px; padding: 0 26px; }
+.btn--dark:hover { background: #262626; }
+.btn--light {
+  background: #fff; color: #111;
+  height: 46px; padding: 0 26px;
+  font-size: 14px; font-weight: 600;
+}
+.btn--light:hover { background: #f0eee8; }
+.hero__actions .btn { height: 52px; padding: 0 32px; font-size: 15px; }
+
+/* ---------- back to top ----------
+   styles.css only reveals this below 860px; Nigeria keeps it at every
+   width, matching capture-africa.html. script.js adds .is-visible
+   once the page has scrolled past 600px. */
+.to-top { display: flex; }
+
+/* =========================================================
+   OPEN TO CREATORS
+   ========================================================= */
+.ng-intro {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 120px 0 96px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+  gap: 72px;
+  align-items: start;
+}
+.ng-intro__copy p {
+  margin: 26px 0 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--body);
+  max-width: 560px;
+}
+.ng-intro__media { margin: 0; }
+.ng-intro__media img {
+  width: 100%;
+  height: 410px;
+  object-fit: cover;
+}
+
+/* =========================================================
+   A JOURNEY THROUGH HISTORY, CULTURE & DISCOVERY
+   Centred column with four photos pinned to the outer edges,
+   over a pale Nigeria silhouette.
+   ========================================================= */
+.ng-journey {
+  position: relative;
+  padding: 96px 0 300px;
+  overflow: hidden;
+}
+.ng-journey::before,
+.ng-quote::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("images/ng-map-wash.png?v=1") no-repeat center / auto 62%;
+  pointer-events: none;
+}
+/* Nigeria is a wide country, so the silhouette is sized off the section
+   height rather than its width. The two sections are different heights,
+   so each gets its own scale to match the prototype. */
+.ng-quote::before { background-size: auto 82%; }
+.ng-journey__photo {
+  position: absolute;
+  z-index: 1;
+  width: 216px;
+  aspect-ratio: 216 / 226;
+  object-fit: cover;
+}
+.ng-journey__photo--tl { left: 69px;  top: 105px; }
+.ng-journey__photo--tr { right: 81px; top: 130px; }
+.ng-journey__photo--bl { left: 108px; bottom: 189px; }
+.ng-journey__photo--br { right: 101px; bottom: 178px; }
+
+.ng-journey__copy {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 2 * var(--pad), 760px);
+  margin-inline: auto;
+  text-align: center;
+  padding-top: 190px;
+}
+.ng-journey__copy p {
+  margin: 26px 0 0;
+  font-size: 15px;
+  line-height: 1.68;
+  color: var(--body);
+}
+
+/* =========================================================
+   WHY CAPTURE GHANA
+   ========================================================= */
+.ng-why {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 96px 0 110px;
+}
+.ng-why__grid {
+  margin: 76px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 52px 30px;
+}
+.ng-why__item { text-align: left; }
+.ng-why__media { margin: 0; overflow: hidden; }
+.ng-why__media img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+.ng-why__item:hover .ng-why__media img { transform: scale(1.04); }
+.ng-why__item h3 {
+  margin: 20px 0 0;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+/* =========================================================
+   FEATURED DESTINATIONS — four cards
+   ========================================================= */
+.ng-dest {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 96px 0 118px;
+}
+.ng-dest .section-head { margin-bottom: 56px; }
+
+.ng-dest__grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 34px 30px;
+}
+.ng-dcard {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.ng-dcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, .10);
+}
+.ng-dcard__media { margin: 0; aspect-ratio: 288 / 192; overflow: hidden; }
+.ng-dcard__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+.ng-dcard:hover .ng-dcard__media img { transform: scale(1.045); }
+
+/* The sixth card has no photograph — the Figma frame sets the country
+   outline on a cream field in place of the image. */
+.ng-dcard--future { background: #fbf8ec; }
+.ng-dcard__media--map {
+  background: url("images/ng-map-outline.png?v=1") no-repeat center / auto 78%;
+}
+
+.ng-dcard__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 26px 24px 28px;
+}
+.ng-dcard__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+}
+.ng-dcard__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1em;
+}
+.ng-dcard__body p {
+  margin: 16px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--body);
+}
+.ng-dcard__soon {
+  margin-top: auto;
+  padding-top: 22px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--orange, #d4581f);
+}
+
+/* =========================================================
+   FOR CREATORS / FOR PARTNERS — full-bleed image beside copy
+   ========================================================= */
+.ng-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 0;
+  background: var(--cream);
+}
+.ng-split--rev .ng-split__media { order: 2; }
+.ng-split--rev .ng-split__copy  { order: 1; justify-self: end; }
+
+.ng-split__media { margin: 0; align-self: stretch; }
+.ng-split__media img {
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  object-fit: cover;
+}
+.ng-split__copy {
+  padding: 96px clamp(24px, 4vw, 72px);
+  max-width: 680px;
+}
+.ng-split__copy > p {
+  margin: 24px 0 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--body);
+}
+.ng-split__label {
+  margin: 44px 0 0;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--brown);
+}
+
+.ng-list {
+  margin: 22px 0 0;
+  padding: 0 0 0 18px;
+  list-style: none;
+}
+.ng-list li {
+  position: relative;
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.ng-list li::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: .55em;
+  width: 5px;
+  height: 5px;
+  background: var(--body);
+}
+.ng-split__copy .btn { margin-top: 26px; }
+/* The Stories block is a lede plus a themes list — no label, no button. */
+#stories .ng-list { margin-top: 30px; }
+
+/* =========================================================
+   PULL QUOTE
+   ========================================================= */
+.ng-quote {
+  position: relative;
+  width: min(100% - 2 * var(--pad), 1040px);
+  margin-inline: auto;
+  padding: 130px 0 140px;
+  text-align: center;
+}
+.ng-quote__text,
+.ng-quote .btn { position: relative; z-index: 1; }
+.ng-quote__text {
+  margin: 0;
+  font-size: clamp(21px, 2.1vw, 31px);
+  line-height: 1.42;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+}
+.ng-quote__text em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.06em;
+}
+.ng-quote .btn { margin-top: 42px; }
+
+/* =========================================================
+   LOOKING AHEAD
+   ========================================================= */
+.ng-ahead {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 20px 0 120px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.06fr);
+  gap: 72px;
+  align-items: center;
+}
+.ng-ahead__copy p {
+  margin: 24px 0 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--body);
+  max-width: 560px;
+}
+.ng-ahead__media { margin: 0; }
+.ng-ahead__media img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+}
+
+/* =========================================================
+   SPLIT CTA
+   ========================================================= */
+.ng-cta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.ng-cta__panel {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #6f6a68;
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+}
+.ng-cta__panel--partner { background-image: url("images/ng-cta-partner.jpg?v=1"); }
+.ng-cta__panel--creator { background-image: url("images/ng-cta-creator.jpg?v=1"); }
+.ng-cta__panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transition: background .3s ease;
+}
+/* The herder frame is knocked back hard; the portrait is left almost clean
+   because its own dark areas already carry the type. */
+.ng-cta__panel--partner::after { background: rgba(40, 36, 34, .46); }
+.ng-cta__panel--creator::after { background: rgba(40, 36, 34, .26); }
+.ng-cta__panel--partner:hover::after { background: rgba(40, 36, 34, .34); }
+.ng-cta__panel--creator:hover::after { background: rgba(40, 36, 34, .14); }
+
+.ng-cta__title {
+  font-size: clamp(26px, 2.6vw, 38px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.ng-cta__arrow {
+  width: 62px;
+  height: 62px;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s ease;
+}
+.ng-cta__arrow svg { width: 24px; height: 24px; color: #fff; }
+.ng-cta__panel:hover .ng-cta__arrow { transform: translateX(6px); }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+/* Above 1400px the four Journey photos hold their relationship to the
+   centred copy instead of drifting out to the viewport edges. */
+@media (min-width: 1400px) {
+  .ng-journey__photo--tl { left:  calc(50% - 651px); }
+  .ng-journey__photo--tr { right: calc(50% - 639px); }
+  .ng-journey__photo--bl { left:  calc(50% - 612px); }
+  .ng-journey__photo--br { right: calc(50% - 619px); }
+}
+
+@media (min-width: 1600px) {
+  .ng-cta__panel { min-height: 30vw; max-height: 620px; }
+  .ng-split__media img { min-height: 640px; }
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 1180px) {
+  .ng-dest__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 26px; }
+}
+
+@media (max-width: 1024px) {
+  .ng-intro,
+  .ng-ahead { gap: 44px; }
+  .ng-intro { padding: 92px 0 76px; }
+
+  .ng-journey__photo { width: 204px; height: 204px; }
+  .ng-journey__photo--tl,
+  .ng-journey__photo--bl { left: 24px; }
+  .ng-journey__photo--tr,
+  .ng-journey__photo--br { right: 24px; }
+  .ng-journey { padding-bottom: 300px; }
+  .ng-journey__copy { padding-top: 150px; }
+
+  .ng-why__grid { gap: 48px 36px; }
+  .ng-why__media img { height: 190px; }
+
+  .ng-split__media img { min-height: 460px; }
+  .ng-split__copy { padding: 72px 40px; }
+}
+
+/* ---------- phone ---------- */
+@media (max-width: 860px) {
+  .ng-intro,
+  .ng-ahead,
+  .ng-split,
+  .ng-cta { grid-template-columns: minmax(0, 1fr); }
+
+  .ng-intro { padding: 72px 0 64px; gap: 34px; }
+  .ng-intro__media img { height: 300px; }
+
+  /* photos come out of the corners and sit above the copy */
+  .ng-journey { padding: 64px 0 76px; }
+  .ng-journey__photo--bl,
+  .ng-journey__photo--br { bottom: auto; }
+  .ng-journey__photo {
+    position: relative;          /* not static — static would discard z-index
+                                    and let the map wash paint over the photo */
+    z-index: 1;
+    inset: auto;
+    width: min(100% - 2 * var(--pad), 460px);
+    height: 230px;
+    aspect-ratio: auto;
+    margin: 0 auto 18px;
+    display: block;
+  }
+  .ng-journey__copy { padding-top: 34px; }
+
+  .ng-why { padding: 72px 0 80px; }
+  .ng-why__grid {
+    margin-top: 52px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 22px;
+  }
+  .ng-why__media img { height: 200px; }
+
+  .ng-dest { padding: 72px 0 80px; }
+  .ng-dest .section-head { margin-bottom: 40px; }
+  .ng-dcard__body { padding: 22px 20px 24px; }
+
+  /* keep image above copy in BOTH split sections once stacked */
+  .ng-split--rev .ng-split__media { order: 1; }
+  .ng-split--rev .ng-split__copy  { order: 2; justify-self: stretch; }
+  .ng-split__media img { min-height: 0; height: 320px; }
+  .ng-split__copy { padding: 56px var(--pad) 64px; max-width: none; }
+
+  .ng-quote { padding: 84px 0 88px; }
+  .ng-quote .btn { margin-top: 32px; }
+
+  .ng-ahead { padding: 0 0 76px; gap: 30px; }
+  .ng-ahead__media img { height: 280px; }
+
+  .ng-cta__panel { min-height: 300px; gap: 22px; }
+  .ng-cta__arrow { width: 54px; height: 54px; }
+}
+
+@media (max-width: 700px) {
+  .ng-dest__grid { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .ng-dcard__media { aspect-ratio: 16 / 10; }
+}
+
+@media (max-width: 560px) {
+  .ng-journey::before { background-size: auto 42%; opacity: .75; }
+  .ng-quote::before   { background-size: auto 62%; opacity: .75; }
+  .ng-intro__copy p,
+  .ng-journey__copy p,
+  .ng-ahead__copy p,
+  .ng-split__copy > p { font-size: 14.5px; }
+
+  .ng-why__grid { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  .ng-why__item h3 { margin-top: 16px; font-size: 16px; }
+  .ng-why__media img { height: 210px; }
+
+  .ng-journey__photo { height: 200px; }
+  .ng-intro__media img { height: 220px; }
+  .ng-split__media img { height: 250px; }
+  .ng-ahead__media img { height: 230px; }
+
+  .ng-list li { font-size: 15px; }
+  .ng-split__copy { padding: 48px var(--pad) 56px; }
+  .ng-cta__panel { min-height: 250px; }
+}

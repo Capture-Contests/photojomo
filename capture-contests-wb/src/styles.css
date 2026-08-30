@@ -1,0 +1,168 @@
+/* =========================================================
+   Capture Contests — global foundation
+   Only what must live at document level: design tokens, the
+   reset, html/body and the scrollbar. Everything else is
+   component-scoped, because the two page families (Capture
+   Contests vs the regional sites) define 83 of the same
+   selectors with different values and cannot both be global.
+   ========================================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --cream: #fffdf9;
+  --card: #fffdf7;
+  --white-warm: #fffefd;
+  --ink: #000000;
+  --body: #636362;
+  --border: #e7e3d7;
+  --orange: #df5e26;
+  --orange-hover: #c85118;
+  --brown: #59260f;
+  --gold: #d8a74d;
+  --charcoal: #333333;
+  --map: #e9edf5;
+  --footer-bg: #040404;
+  --footer-text: #f2f0ec;
+
+  --font-sans: 'Open Sauce One', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+
+  --max: 1264px;
+  --max-wide: 1292px;
+  --max-foot: 1332px;
+  --pad: 40px;
+}
+html { scroll-behavior: smooth; }
+html {
+  scrollbar-color: var(--charcoal) var(--gold);
+  scrollbar-width: auto;
+}
+html::-webkit-scrollbar { width: 13px; height: 13px; }
+html::-webkit-scrollbar-track { background: var(--gold); }
+html::-webkit-scrollbar-thumb {
+  background: var(--charcoal);
+  border: 3px solid var(--gold);
+  border-radius: 999px;
+}
+html::-webkit-scrollbar-thumb:hover { background: #1f1f1f; }
+html::-webkit-scrollbar-corner { background: var(--gold); }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 860px) {
+:root { --pad: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+html { scroll-behavior: auto; }
+}
+
+/* ---------------------------------------------------------
+   The two places the families genuinely differ. Each page
+   component sets html[data-family] on activation.
+   --------------------------------------------------------- */
+html[data-family='contests'] body { overflow-x: clip; }   /* not 'hidden' — breaks position:sticky */
+html[data-family='region']   body { overflow-x: hidden; }
+
+/* Originally `:root { --pad: 30px }` at <=1024 followed by `--pad: 22px` at
+   <=860, where equal specificity let the later rule win. Scoping this one to a
+   family raised its specificity above the plain `:root` 860 rule, so it was
+   winning at 834px too. Bounding the range restores the original behaviour
+   without a specificity contest. */
+@media (max-width: 1024px) and (min-width: 861px) {
+  html[data-family='contests'] { --pad: 30px; }
+}
+
+
+/* ---------------------------------------------------------
+   Per-page document-level overrides. These were :root / body
+   rules in the page stylesheets; scoped component styles cannot
+   express them, so they are keyed off html[data-page] which each
+   page component sets on activation.
+   --------------------------------------------------------- */
+
+/* capture-barbados */
+html[data-page='capture-barbados'] {
+  --max-wide: 1264px;
+  --max-foot: 1264px;
+  --bb-ink: #1f1f1f;
+  --bb-body: #4a4a4a;
+  --bb-band: #f8fafc;    /* Art of Exploration band, sampled from the render */
+}
+
+/* capture-guyana */
+html[data-page='capture-guyana'] {
+  --max-wide: 1264px;
+  --max-foot: 1264px;
+  --gy-ink: #1f1f1f;
+  --gy-body: #4a4a4a;
+}
+
+/* capture-jamaica */
+html[data-page='capture-jamaica'] {
+  --max-wide: 1264px;
+  --max-foot: 1264px;
+  --jm-ink: #1f1f1f;
+  --jm-body: #4a4a4a;
+  --jm-band: #fcf9f3;   /* the split / quote / ahead bands */
+}
+
+/* capture-saint-lucia */
+html[data-page='capture-saint-lucia'] {
+  --max-wide: 1264px;
+  --max-foot: 1264px;
+  --sl-ink: #1f1f1f;
+  --sl-body: #4a4a4a;
+  --sl-navy: #233f93;      /* "Presented in Partnership" */
+  --sl-hosted: #1f2f77;    /* "Generously Hosted By" */
+}
+
+/* second pass: rules whose selector was preceded by a comment */
+
+/* capture-africa */
+html[data-page='capture-africa'] body { overflow-x: clip; }
+html[data-page='capture-africa'] {
+  --max-wide: 1264px;
+  --max-foot: 1264px;
+}
+
+/* capture-barbados */
+html[data-page='capture-barbados'] body {
+  overflow-x: clip;
+  background: #ffffff;   /* the Barbados frame sits on white */
+}
+
+/* capture-ghana */
+html[data-page='capture-ghana'] body { overflow-x: clip; }
+html[data-page='capture-ghana'] {
+  --max-wide: 1264px;
+  --max-foot: 1264px;
+}
+
+/* capture-guyana */
+html[data-page='capture-guyana'] body {
+  overflow-x: clip;
+  background: #ffffff;
+}
+
+/* capture-jamaica */
+html[data-page='capture-jamaica'] body { overflow-x: clip; }
+
+/* capture-nigeria */
+html[data-page='capture-nigeria'] body { overflow-x: clip; }
+html[data-page='capture-nigeria'] {
+  --max-wide: 1264px;
+  --max-foot: 1264px;
+}
+
+/* capture-saint-lucia */
+html[data-page='capture-saint-lucia'] body {
+  overflow-x: clip;
+  background: #ffffff;
+}

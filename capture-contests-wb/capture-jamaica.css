@@ -1,0 +1,704 @@
+/* =========================================================
+   capture-jamaica.css
+   Page styles for capture-jamaica.html — a Caribbean child page,
+   sibling to capture-saint-lucia.html and capture-guyana.html.
+
+   The Jamaica frame is a hybrid: the photo rows and the Art of
+   Exploration mosaic come from capture-guyana.css (including its
+   hover-to-enlarge behaviour and its spacing), while the contest
+   grid, destination cards, split sections, pull quote and Looking
+   Ahead follow the Africa family (capture-nigeria.css).
+
+   Unlike Guyana and Saint Lucia this page sits on CREAM, not white —
+   the prototype's ground is #fffdf9 with #fcf9f3 on the split bands,
+   and the island silhouette behind the heritage copy is #f8f6df.
+
+   Breakpoints mirror styles.css: 1024 / 860 / 560.
+   ========================================================= */
+
+body { overflow-x: clip; }
+
+:root {
+  --max-wide: 1264px;
+  --max-foot: 1264px;
+  --jm-ink: #1f1f1f;
+  --jm-body: #4a4a4a;
+  --jm-band: #fcf9f3;   /* the split / quote / ahead bands */
+}
+
+/* ---------- page identity ---------- */
+.nav__logo { flex-direction: column; align-items: flex-start; text-decoration: none; }
+.nav__logo-mark {
+  position: relative;
+  display: block;
+  width: 148px;
+  aspect-ratio: 306 / 73;
+  background-color: #ffffff;
+  -webkit-mask: url("images/gc-wordmark.png") no-repeat center / contain;
+          mask: url("images/gc-wordmark.png") no-repeat center / contain;
+}
+.nav__logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  -webkit-mask: url("images/gc-globe.png") no-repeat center / contain;
+          mask: url("images/gc-globe.png") no-repeat center / contain;
+}
+.nav__logo-sub {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  /* tracked to span 98.9% of the wordmark above it, measured off the
+     exported Figma lockup (I579:2849;433:1230) rather than estimated */
+  letter-spacing: 1.51em;
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: color .45s ease;
+}
+.nav.is-scrolled .nav__logo-sub { color: var(--gold); }
+
+.footer__logo { width: auto; display: inline-block; text-decoration: none; }
+.footer__logo-mark {
+  position: relative;
+  display: block;
+  width: 172px;
+  aspect-ratio: 306 / 73;
+  background-color: #ffffff;
+  -webkit-mask: url("images/gc-wordmark.png") no-repeat center / contain;
+          mask: url("images/gc-wordmark.png") no-repeat center / contain;
+}
+.footer__logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  -webkit-mask: url("images/gc-globe.png") no-repeat center / contain;
+          mask: url("images/gc-globe.png") no-repeat center / contain;
+}
+.footer__logo-sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 1.00em;   /* spans 97.5% of the mark, per the Figma lockup */
+  margin-right: -1.00em;    /* cancel the trailing space so it stays centred */
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* ---------- hero ---------- */
+.hero { height: 780px; }
+.hero__bg {
+  background: #000 url("images/jm-hero.jpg?v=1") no-repeat center / cover;
+}
+.hero__bg::after {
+  background:
+    radial-gradient(108% 68% at 50% 44%,
+      rgba(0,0,0,.30) 0%, rgba(0,0,0,.16) 46%, rgba(0,0,0,0) 78%),
+    linear-gradient(180deg,
+      rgba(0,0,0,.08) 0%, rgba(0,0,0,0) 42%, rgba(0,0,0,.12) 100%);
+}
+.hero__bg::before {
+  height: 180px;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,.34) 0%, rgba(0,0,0,.22) 42%, rgba(0,0,0,.07) 74%, rgba(0,0,0,0) 100%);
+}
+.hero__title--brand {
+  max-width: none;
+  font-size: clamp(32px, 5.2vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+}
+.hero__title--brand em { display: inline; font-size: 1.06em; margin-left: .1em; }
+.hero__lede { font-size: clamp(14px, 1vw, 17px); max-width: 720px; }
+.hero__inner { text-align: center; }
+.hero__title--brand, .hero__lede { margin-inline: auto; }
+.hero__actions { justify-content: center; }
+
+/* ---------- shared heading ---------- */
+.jm-h2 {
+  margin: 0;
+  font-size: clamp(27px, 2.7vw, 40px);
+  line-height: 1.16;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+  color: var(--jm-ink);
+}
+.jm-h2 em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.06em;
+  letter-spacing: 0;
+}
+.jm-h2--center { text-align: center; }
+.jm-serif-line {
+  margin: 6px 0 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(24px, 2.4vw, 36px);
+  line-height: 1.2;
+  color: var(--jm-ink);
+}
+
+.btn--dark { background: #000; color: #fff; height: 46px; padding: 0 26px; }
+.btn--dark:hover { background: #262626; }
+.btn--light {
+  background: #fff; color: #111;
+  height: 46px; padding: 0 26px;
+  font-size: 14px; font-weight: 600;
+}
+.btn--light:hover { background: #f0eee8; }
+.hero__actions .btn { height: 48px; padding: 0 28px; font-size: 14.5px; }
+
+.to-top { display: flex; }
+
+/* =========================================================
+   MOST INFLUENTIAL ISLAND — Guyana's photo row, same spacing
+   ========================================================= */
+.jm-infl {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 92px 0 90px;
+}
+.jm-infl__copy {
+  width: min(100%, 700px);
+  margin-inline: auto;
+  text-align: center;
+}
+.jm-infl__lede {
+  margin: 22px 0 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--jm-body);
+}
+.jm-infl__grid {
+  margin: 46px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.jm-infl__grid li { overflow: hidden; }
+.jm-infl__grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 216 / 148;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+.jm-infl__grid li:hover img { transform: scale(1.05); }
+
+/* =========================================================
+   THE MAROON TRAIL INITIATIVE — full-bleed band, copy at left
+   ========================================================= */
+.jm-maroon {
+  position: relative;
+  min-height: 676px;
+  display: grid;
+  align-items: center;
+  background: #17201a url("images/jm-maroon.jpg?v=1") no-repeat center / cover;
+  isolation: isolate;
+}
+.jm-maroon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg,
+    rgba(8, 12, 9, .88) 0%, rgba(8, 12, 9, .66) 34%, rgba(8, 12, 9, .10) 68%, rgba(8, 12, 9, 0) 100%);
+}
+.jm-maroon__copy {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  max-width: none;
+  color: #fff;
+}
+.jm-maroon__title {
+  margin: 0;
+  font-size: clamp(26px, 2.5vw, 36px);
+  font-weight: 500;
+  letter-spacing: -0.018em;
+}
+.jm-maroon__sub {
+  margin: 14px 0 0;
+  font-size: 15px;
+  color: rgba(255,255,255,.94);
+}
+.jm-maroon__lede {
+  margin: 16px 0 0;
+  max-width: 560px;
+  font-size: 13.5px;
+  line-height: 1.72;
+  color: rgba(255,255,255,.84);
+}
+
+/* =========================================================
+   A HERITAGE THAT REFUSED — centred copy over the island wash
+   ========================================================= */
+.jm-heritage {
+  position: relative;
+  padding: 96px 0 128px;
+  overflow: hidden;
+}
+.jm-heritage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("images/jm-map-wash.png?v=1") no-repeat center 58% / 62% auto;
+  pointer-events: none;
+}
+.jm-heritage__photo {
+  position: absolute;
+  z-index: 1;
+  width: 214px;
+  aspect-ratio: 214 / 212;
+  object-fit: cover;
+}
+.jm-heritage__photo--tl { left: 44px;  top: 24px; }
+.jm-heritage__photo--tr { right: 44px; top: 88px; }
+.jm-heritage__photo--bl { left: 88px;  top: 322px; }
+.jm-heritage__photo--br { right: 88px; top: 386px; }
+
+.jm-heritage__copy {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 2 * var(--pad), 620px);
+  margin-inline: auto;
+  text-align: center;
+  padding-top: 96px;
+}
+.jm-heritage__copy p {
+  margin: 22px 0 0;
+  font-size: 14px;
+  line-height: 1.72;
+  color: var(--jm-body);
+}
+
+/* =========================================================
+   MORE THAN A CONTEST — the Africa-family why grid
+   ========================================================= */
+.jm-why {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 40px 0 100px;
+}
+.jm-why__grid {
+  margin: 62px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 44px 14px;
+}
+.jm-why__item { text-align: left; }
+.jm-why__media { margin: 0; overflow: hidden; }
+.jm-why__media img {
+  width: 100%;
+  height: 228px;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+.jm-why__item:hover .jm-why__media img { transform: scale(1.04); }
+.jm-why__item h3 {
+  margin: 18px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--jm-ink);
+}
+
+/* =========================================================
+   FEATURED DESTINATIONS — four cards
+   ========================================================= */
+.jm-dest {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 20px 0 100px;
+}
+.jm-dest .section-head { margin-bottom: 46px; }
+.jm-dest__grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.jm-dcard {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.jm-dcard:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(15,23,42,.10); }
+.jm-dcard__media { margin: 0; aspect-ratio: 288 / 192; overflow: hidden; }
+.jm-dcard__media img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .6s ease;
+}
+.jm-dcard:hover .jm-dcard__media img { transform: scale(1.045); }
+.jm-dcard__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 22px 26px;
+}
+.jm-dcard__title { margin: 0; font-size: 20px; font-weight: 500; letter-spacing: -0.012em; }
+.jm-dcard__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1em;
+}
+.jm-dcard__body p {
+  margin: 14px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--jm-body);
+}
+.jm-dcard__soon {
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--orange);
+}
+
+/* =========================================================
+   THE ART OF EXPLORATION — Guyana's mosaic, effect and spacing
+   ========================================================= */
+.jm-art { padding: 20px 0 96px; }
+.jm-art__head {
+  width: min(100% - 2 * var(--pad), 760px);
+  margin-inline: auto;
+  text-align: center;
+}
+.jm-art__mosaic {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin: 40px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: stretch;
+}
+.jm-art__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 604px;
+}
+.jm-art__col figure {
+  margin: 0;
+  overflow: hidden;
+  flex-basis: 0;
+  min-height: 0;
+  transition: flex-grow .55s cubic-bezier(.4, 0, .2, 1);
+}
+.jm-art__col img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.jm-art__col:nth-child(odd)  figure:first-child { flex-grow: .78; }
+.jm-art__col:nth-child(odd)  figure:last-child  { flex-grow: 1.22; }
+.jm-art__col:nth-child(even) figure:first-child { flex-grow: 1.22; }
+.jm-art__col:nth-child(even) figure:last-child  { flex-grow: .78; }
+/* scoped through the column so these match the :nth-child specificity above */
+.jm-art__col:hover figure:not(:hover) { flex-grow: .68; }
+.jm-art__col:hover figure:hover       { flex-grow: 1.32; }
+
+@media (prefers-reduced-motion: reduce) {
+  .jm-art__col figure { transition: none; }
+}
+
+/* =========================================================
+   FOR CREATORS / FOR PARTNERS
+   ========================================================= */
+.jm-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  background: var(--jm-band);
+}
+.jm-split--rev .jm-split__media { order: 2; }
+.jm-split--rev .jm-split__copy  { order: 1; justify-self: end; }
+.jm-split__media { margin: 0; align-self: stretch; }
+.jm-split__media img {
+  width: 100%; height: 100%;
+  min-height: 560px;
+  object-fit: cover;
+}
+.jm-split__copy { padding: 92px clamp(24px, 4vw, 72px); max-width: 680px; }
+.jm-split__copy > p {
+  margin: 22px 0 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--jm-body);
+}
+.jm-split__label {
+  margin: 40px 0 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--brown);
+}
+.jm-list { margin: 20px 0 0; padding: 0 0 0 18px; list-style: none; }
+.jm-list li {
+  position: relative;
+  margin: 0 0 13px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.jm-list li::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: .55em;
+  width: 5px;
+  height: 5px;
+  background: var(--body);
+}
+.jm-split__copy .btn { margin-top: 24px; }
+
+/* =========================================================
+   PULL QUOTE — over the island silhouette
+   ========================================================= */
+.jm-quote {
+  position: relative;
+  padding: 118px var(--pad) 126px;
+  text-align: center;
+  overflow: hidden;
+  background: #fffcf7;
+}
+.jm-quote::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("images/jm-map-wash.png?v=1") no-repeat center / 44% auto;
+  pointer-events: none;
+}
+.jm-quote__text,
+.jm-quote .btn { position: relative; z-index: 1; }
+.jm-quote__text {
+  margin: 0 auto;
+  max-width: 900px;
+  font-size: clamp(19px, 1.9vw, 28px);
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  color: var(--jm-ink);
+}
+.jm-quote__text em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.06em;
+}
+.jm-quote .btn { margin-top: 34px; }
+
+/* =========================================================
+   LOOKING AHEAD
+   ========================================================= */
+.jm-ahead {
+  background: var(--jm-band);
+}
+.jm-ahead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.06fr);
+  gap: 60px;
+  align-items: center;
+  padding: 92px max(var(--pad), calc((100% - var(--max)) / 2));
+}
+.jm-ahead__copy p {
+  margin: 22px 0 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--jm-body);
+  max-width: 520px;
+}
+.jm-ahead__media { margin: 0; overflow: hidden; }
+.jm-ahead__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 604 / 400;
+  object-fit: cover;
+}
+
+/* =========================================================
+   SPLIT CTA
+   ========================================================= */
+.jm-cta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.jm-cta__panel {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #6f6a68;
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+}
+.jm-cta__panel--partner { background-image: url("images/ng-cta-partner.jpg?v=1"); }
+.jm-cta__panel--creator { background-image: url("images/ng-cta-creator.jpg?v=1"); }
+.jm-cta__panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transition: background .3s ease;
+}
+.jm-cta__panel--partner::after { background: rgba(40, 36, 34, .46); }
+.jm-cta__panel--creator::after { background: rgba(40, 36, 34, .26); }
+.jm-cta__panel--partner:hover::after { background: rgba(40, 36, 34, .34); }
+.jm-cta__panel--creator:hover::after { background: rgba(40, 36, 34, .14); }
+.jm-cta__title {
+  font-size: clamp(26px, 2.6vw, 38px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.jm-cta__arrow {
+  width: 62px;
+  height: 62px;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s ease;
+}
+.jm-cta__arrow svg { width: 24px; height: 24px; color: #fff; }
+.jm-cta__panel:hover .jm-cta__arrow { transform: translateX(6px); }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (min-width: 1400px) {
+  .jm-heritage__photo--tl { left:  calc(50% - 676px); }
+  .jm-heritage__photo--tr { right: calc(50% - 676px); }
+  .jm-heritage__photo--bl { left:  calc(50% - 632px); }
+  .jm-heritage__photo--br { right: calc(50% - 632px); }
+}
+@media (min-width: 1600px) {
+  .jm-cta__panel { min-height: 30vw; max-height: 620px; }
+  .jm-maroon { min-height: 42vw; max-height: 820px; }
+}
+
+@media (max-width: 1024px) {
+  .jm-infl__grid { gap: 12px; }
+  .jm-art__mosaic { gap: 10px; }
+  .jm-art__col { gap: 10px; height: 520px; }
+
+  /* the heritage copy is narrowed so it clears both photo columns */
+  .jm-heritage { padding: 72px 0 108px; }
+  .jm-heritage__photo { width: 168px; }
+  .jm-heritage__photo--tl { left: 22px;  top: 20px; }
+  .jm-heritage__photo--tr { right: 22px; top: 76px; }
+  .jm-heritage__photo--bl { left: 22px;  top: 252px; }
+  .jm-heritage__photo--br { right: 22px; top: 308px; }
+  .jm-heritage__copy { width: min(100% - 2 * var(--pad), 540px); padding-top: 84px; }
+
+  .jm-why__grid { gap: 40px 14px; }
+  .jm-why__media img { height: 190px; }
+  .jm-dest__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 14px; }
+  .jm-split__media img { min-height: 460px; }
+  .jm-split__copy { padding: 72px 40px; }
+  .jm-maroon { min-height: 560px; }
+  .jm-ahead { gap: 40px; padding: 76px var(--pad); }
+}
+
+@media (max-width: 860px) {
+  .hero { height: auto; min-height: 560px; }
+
+  .jm-infl { padding: 68px 0 66px; }
+  .jm-infl__grid {
+    margin-top: 34px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .jm-maroon { min-height: 460px; }
+  .jm-maroon::after {
+    background: linear-gradient(180deg, rgba(8,12,9,.42) 0%, rgba(8,12,9,.86) 100%);
+  }
+  .jm-maroon__copy { padding: 40px 0; align-self: end; }
+
+  /* the four heritage photos leave the corners and stack above the copy */
+  .jm-heritage { padding: 56px 0 64px; }
+  .jm-heritage__photo {
+    position: relative;      /* not static — static drops z-index and the
+                                wash would paint over the photographs */
+    z-index: 1;
+    inset: auto;
+    width: min(100% - 2 * var(--pad), 420px);
+    aspect-ratio: 16 / 11;
+    margin: 0 auto 14px;
+    display: block;
+  }
+  .jm-heritage__copy { width: min(100% - 2 * var(--pad), 620px); padding-top: 28px; }
+
+  .jm-why { padding: 24px 0 76px; }
+  .jm-why__grid {
+    margin-top: 44px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 12px;
+  }
+  .jm-why__media img { height: 190px; }
+
+  .jm-dest { padding-bottom: 76px; }
+  .jm-art { padding-bottom: 72px; }
+  .jm-art__mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .jm-art__col { height: 470px; }
+
+  .jm-split { grid-template-columns: minmax(0, 1fr); }
+  .jm-split--rev .jm-split__media { order: 1; }
+  .jm-split--rev .jm-split__copy  { order: 2; justify-self: stretch; }
+  .jm-split__media img { min-height: 0; height: 320px; }
+  .jm-split__copy { padding: 56px var(--pad) 64px; max-width: none; }
+
+  .jm-quote { padding: 84px var(--pad) 88px; }
+  .jm-ahead { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 68px var(--pad) 76px; }
+  .jm-ahead__copy p { max-width: none; }
+
+  .jm-cta { grid-template-columns: minmax(0, 1fr); }
+  .jm-cta__panel { min-height: 300px; gap: 22px; }
+  .jm-cta__arrow { width: 54px; height: 54px; }
+}
+
+@media (max-width: 700px) {
+  .jm-dest__grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .jm-dcard__media { aspect-ratio: 16 / 10; }
+}
+
+@media (max-width: 560px) {
+  .jm-infl__lede,
+  .jm-heritage__copy p,
+  .jm-ahead__copy p,
+  .jm-split__copy > p { font-size: 13.5px; }
+
+  .jm-infl__grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .jm-infl__grid img { aspect-ratio: 16 / 10; }
+
+  .jm-why__grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .jm-why__media img { height: 210px; }
+
+  .jm-art__mosaic { grid-template-columns: minmax(0, 1fr); }
+  .jm-art__col { height: auto; display: grid; }
+  .jm-art__col figure { flex: none; aspect-ratio: 16 / 11; }
+
+  .jm-heritage::before { background-size: 96% auto; opacity: .85; }
+  .jm-quote::before { background-size: 88% auto; opacity: .85; }
+  .jm-split__media img { height: 250px; }
+  .jm-list li { font-size: 14.5px; }
+  .jm-cta__panel { min-height: 250px; }
+}

@@ -1,0 +1,879 @@
+/* ---------- page identity ----------
+   Same two-part mark as Ghana and Nigeria: the shared "Capture"
+   wordmark over a wide-tracked place name, painted solid white. */
+.nav__logo { flex-direction: column; align-items: flex-start; text-decoration: none; }
+
+.nav__logo-mark {
+  position: relative;
+  display: block;
+  width: 148px;
+  aspect-ratio: 306 / 73;
+  background-color: #ffffff;
+  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+}
+
+.nav__logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
+          mask: url("/images/gc-globe.png") no-repeat center / contain;
+}
+
+.nav__logo-sub {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  /* "SAINT LUCIA" is 11 characters against Ghana's 5, so it needs far less
+     tracking to span the same wordmark width */
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: color .45s ease;
+}
+
+.nav.is-scrolled .nav__logo-sub { color: var(--gold); }
+
+.footer__logo {
+  width: auto;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.footer__logo-mark {
+  position: relative;
+  display: block;
+  width: 172px;
+  aspect-ratio: 306 / 73;
+  background-color: #ffffff;
+  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+}
+
+.footer__logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
+          mask: url("/images/gc-globe.png") no-repeat center / contain;
+}
+
+.footer__logo-sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.86em;
+  margin-right: -0.86em;   /* cancel the trailing letter-space so it centres */
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.hero__bg {
+  background: #000 url("/images/sl-hero.jpg?v=1") no-repeat center / cover;
+  background-position: center calc(50% - 40px);
+}
+/* The hero type is centred, so the left-to-right wash styles.css uses for
+   the Caribbean hero is replaced with a soft pool under the middle. */
+.hero__bg::after {
+  background:
+    radial-gradient(112% 72% at 50% 44%,
+      rgba(0,0,0,.34) 0%, rgba(0,0,0,.20) 46%, rgba(0,0,0,0) 78%),
+    linear-gradient(180deg,
+      rgba(0,0,0,.12) 0%, rgba(0,0,0,0) 40%, rgba(0,0,0,.16) 100%);
+}
+
+.hero__bg::before {
+  height: 180px;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,.38) 0%, rgba(0,0,0,.24) 42%, rgba(0,0,0,.08) 74%, rgba(0,0,0,0) 100%);
+}
+/* The frame runs long and dissolves into the page: the lower third of the
+   hero fades to white so the partnership lockup can sit inside it rather
+   than starting a separate band. */
+.hero { height: 880px; }
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 300px;
+  z-index: 3;
+  /* The fade starts higher than the design's 200px because the partnership
+     lockup was raised 80px into it; the white has to reach the type before
+     the type reaches the photograph. Measured worst case behind the title
+     across 390-1440: 5.4:1 navy-on-backdrop (WCAG AA).
+     The final stops go fully opaque before 100% so the image's bottom edge
+     can never read as a hard line, however the hero is scaled. */
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.16) 20%,
+    rgba(255,255,255,.55) 36%,
+    rgba(255,255,255,.82) 45%,
+    rgba(255,255,255,.96) 58%,
+    #ffffff 72%,
+    #ffffff 100%);
+  pointer-events: none;
+}
+
+.hero__inner { padding-bottom: 190px; }
+/* the design puts the partnership lockup here instead of a scroll cue */
+.scroll-cue { display: none; }
+
+.hero__title--brand {
+  max-width: none;
+  font-size: clamp(32px, 5.4vw, 74px);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+}
+
+.hero__title--brand em { display: inline; font-size: 1.06em; margin-left: .1em; }
+
+.hero__lede { font-size: clamp(14px, 1vw, 17px); max-width: 760px; }
+
+.hero__inner { text-align: center; }
+
+.hero__title--brand, .hero__lede { margin-inline: auto; }
+
+.hero__actions { justify-content: center; }
+/* ---------- shared heading ---------- */
+.sl-h2 {
+  margin: 0;
+  font-size: clamp(28px, 2.8vw, 42px);
+  line-height: 1.14;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+  color: var(--sl-ink);
+}
+
+.sl-h2 em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.06em;
+  letter-spacing: 0;
+}
+
+.sl-h2--center { text-align: center; }
+
+.btn--dark { background: #000; color: #fff; height: 46px; padding: 0 26px; }
+
+.btn--dark:hover { background: #262626; }
+
+.btn--light {
+  background: #fff; color: #111;
+  height: 46px; padding: 0 26px;
+  font-size: 14px; font-weight: 600;
+}
+
+.btn--light:hover { background: #f0eee8; }
+
+.hero__actions .btn { height: 50px; padding: 0 30px; font-size: 15px; }
+/* back to top at every width, matching the sibling destination pages */
+.to-top { display: flex; }
+/* =========================================================
+   PRESENTED IN PARTNERSHIP
+   ========================================================= */
+.sl-bridge {
+  position: relative;
+  z-index: 4;
+  margin-top: -172px;          /* pulls the lockup onto the hero's white fade */
+  /* the extra 80px of bottom padding cancels the 80px the lockup moved up,
+     so everything below the hero stays exactly where it was */
+  padding: 0 var(--pad) 106px;
+  text-align: center;
+}
+
+.sl-bridge__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(19px, 1.7vw, 25px);
+  line-height: 1;              /* trims the descender space above the logo */
+  color: var(--sl-navy);
+}
+
+.sl-bridge__logo { display: inline-block; margin-top: -14px; }
+
+.sl-bridge__logo img { width: 320px; max-width: 76vw; height: auto; }
+/* =========================================================
+   OUR EXPERIENCE
+   Centred copy and a four-up photo row over the island silhouette.
+   ========================================================= */
+.sl-experience {
+  position: relative;
+  padding: 76px 0 96px;
+  overflow: hidden;
+}
+
+.sl-experience::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/images/sl-map-wash.png?v=1") no-repeat center 42% / auto 96%;
+  pointer-events: none;
+}
+
+.sl-experience__copy,
+.sl-experience__grid { position: relative; z-index: 1; }
+
+.sl-experience__copy {
+  width: min(100% - 2 * var(--pad), 760px);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.sl-experience__lede {
+  margin: 20px 0 0;
+  font-size: 14.5px;
+  line-height: 1.72;
+  color: var(--sl-body);
+}
+
+.sl-experience__grid {
+  margin: 56px auto 0;
+  padding: 0;
+  list-style: none;
+  width: min(100% - 2 * var(--pad), var(--max));
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.sl-experience__grid li { overflow: hidden; }
+
+.sl-experience__grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 216 / 148;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.sl-experience__grid li:hover img { transform: scale(1.05); }
+/* =========================================================
+   TRI-PATH — three full-bleed panels
+   ========================================================= */
+.sl-tri { padding: 60px 0 0; }
+
+.sl-tri__head {
+  width: min(100% - 2 * var(--pad), 760px);
+  margin-inline: auto;
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.sl-tri__lede {
+  margin: 14px 0 0;
+  font-size: 14.5px;
+  line-height: 1.66;
+  color: var(--sl-body);
+}
+
+.sl-tri__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sl-tri__panel {
+  position: relative;
+  min-height: 604px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.sl-tri__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  transition: transform .6s ease;
+}
+
+.sl-tri__panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(0, 0, 0, .55);
+  transition: background .3s ease;
+}
+
+.sl-tri__panel:hover .sl-tri__photo { transform: scale(1.05); }
+
+.sl-tri__panel:hover::after { background: rgba(0, 0, 0, .46); }
+
+.sl-tri__body {
+  height: 100%;
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 48px 26px;
+  text-align: center;
+  transform: translateY(20px);   /* the lockup sits below centre, as in the frame */
+}
+
+.sl-tri__logo { width: 168px; max-width: 60%; height: auto; }
+
+.sl-tri__label {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.sl-tri__cta {
+  margin-top: 10px;
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  transition: background .3s ease, color .3s ease;
+}
+
+.sl-tri__cta svg { width: 22px; height: 22px; }
+
+.sl-tri__cta:hover { background: #fff; color: #111; }
+/* =========================================================
+   ARTIST RESIDENCY
+   ========================================================= */
+.sl-residency {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 96px 0 100px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+  gap: 62px;
+  align-items: stretch;        /* the photo runs the full height of the copy */
+}
+
+.sl-residency__media { margin: 0; display: flex; }
+
+.sl-residency__media img {
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  object-fit: cover;
+}
+
+.sl-residency__copy > p {
+  margin: 22px 0 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--sl-body);
+  max-width: 560px;
+}
+
+.sl-residency__hosted {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 28px 0 0;
+}
+
+.sl-residency__hosted span {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--sl-hosted);
+}
+
+.sl-residency__hosted img { width: 118px; height: auto; }
+
+.sl-benefits { margin: 30px 0 0; padding: 0; list-style: none; }
+
+.sl-benefits li {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 22px;
+}
+
+.sl-benefits__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sl-benefits__icon svg { width: 21px; height: 21px; }
+
+.sl-benefits h3 {
+  margin: 2px 0 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--sl-ink);
+}
+
+.sl-benefits p {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--sl-body);
+}
+
+.sl-residency__copy .btn { margin-top: 12px; }
+/* =========================================================
+   INTRODUCING — video block
+   ========================================================= */
+.sl-intro {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 0 0 100px;
+}
+
+.sl-intro__video {
+  position: relative;
+  display: block;
+  margin-top: 30px;
+  border: 1px solid #dcdcdc;
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  background: #000;
+}
+
+.sl-intro__video img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.sl-intro__video:hover img { transform: scale(1.02); }
+
+.sl-intro__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 68px;
+  height: 48px;
+  opacity: .92;
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+.sl-intro__play svg { width: 100%; height: 100%; display: block; }
+
+.sl-intro__video:hover .sl-intro__play { opacity: 1; transform: scale(1.06); }
+/* =========================================================
+   PROSPECTIVE PARTNERS
+   ========================================================= */
+.sl-partners {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 0 0 96px;
+}
+
+.sl-partners__logos {
+  margin: 46px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 26px;
+  align-items: center;
+}
+
+.sl-partners__logos li { display: flex; align-items: center; justify-content: center; }
+
+.sl-partners__logos img {
+  max-width: 100%;
+  max-height: 54px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+/* =========================================================
+   OUR LEGACY SPONSOR
+   ========================================================= */
+.sl-legacy {
+  position: relative;
+  min-height: 900px;
+  display: grid;
+  align-items: start;
+  background: #7fb4d8 url("/images/sl-legacy.jpg?v=1") no-repeat center / cover;
+  background-position: center calc(50% - 40px);
+  isolation: isolate;
+}
+
+.sl-legacy::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(255,255,255,.34) 0%, rgba(255,255,255,.05) 46%, rgba(0,0,0,.06) 100%);
+}
+
+.sl-legacy__inner {
+  width: min(100% - 2 * var(--pad), 760px);
+  margin-inline: auto;
+  text-align: center;
+  padding: 92px 0 0;
+}
+
+.sl-legacy__sub {
+  margin: 14px 0 0;
+  font-size: 14.5px;
+  color: var(--sl-ink);
+}
+
+.sl-legacy__logo { display: inline-block; margin-top: 22px; }
+
+.sl-legacy__logo img { width: 158px; height: auto; }
+/* =========================================================
+   INTERNATIONAL TOUR
+   ========================================================= */
+.sl-tour {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 92px 0 96px;
+}
+
+.sl-tour__head {
+  width: min(100%, 720px);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.sl-tour__lede {
+  margin: 18px 0 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--sl-body);
+}
+
+.sl-tour__media { margin: 42px 0 0; overflow: hidden; }
+
+.sl-tour__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1136 / 466;
+  object-fit: cover;
+}
+/* =========================================================
+   GUIDED BY VISIONARIES
+   ========================================================= */
+.sl-visionaries {
+  padding: 88px var(--pad) 96px;
+  background: #f7f7f7;
+  text-align: center;
+}
+
+.sl-visionaries__quote {
+  margin: 30px auto 0;
+  max-width: 640px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--sl-body);
+}
+
+.sl-visionaries__grid {
+  margin: 44px auto 0;
+  padding: 0;
+  list-style: none;
+  width: min(100%, 640px);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+}
+
+.sl-person__media { margin: 0; overflow: hidden; }
+
+.sl-person__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 224 / 262;
+  object-fit: cover;
+}
+
+.sl-person__name {
+  margin: 18px 0 0;
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--sl-ink);
+}
+
+.sl-person__role {
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  color: var(--sl-body);
+}
+
+.sl-person__bio {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.62;
+  color: var(--sl-body);
+}
+/* =========================================================
+   SPLIT CTA
+   ========================================================= */
+.sl-cta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sl-cta__panel {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #6f6a68;
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+}
+
+.sl-cta__panel--partner { background-image: url("/images/ng-cta-partner.jpg?v=1"); }
+
+.sl-cta__panel--creator { background-image: url("/images/ng-cta-creator.jpg?v=1"); }
+
+.sl-cta__panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transition: background .3s ease;
+}
+
+.sl-cta__panel--partner::after { background: rgba(40, 36, 34, .46); }
+
+.sl-cta__panel--creator::after { background: rgba(40, 36, 34, .26); }
+
+.sl-cta__panel--partner:hover::after { background: rgba(40, 36, 34, .34); }
+
+.sl-cta__panel--creator:hover::after { background: rgba(40, 36, 34, .14); }
+
+.sl-cta__title {
+  font-size: clamp(26px, 2.6vw, 38px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.sl-cta__arrow {
+  width: 62px;
+  height: 62px;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s ease;
+}
+
+.sl-cta__arrow svg { width: 24px; height: 24px; color: #fff; }
+
+.sl-cta__panel:hover .sl-cta__arrow { transform: translateX(6px); }
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (min-width: 1600px) {
+
+.sl-cta__panel { min-height: 30vw; max-height: 620px; }
+
+.sl-legacy { min-height: 40vw; max-height: 780px; }
+
+
+}
+
+@media (max-width: 1024px) {
+
+.sl-experience__grid { gap: 18px; }
+
+.sl-partners__logos { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px 26px; }
+
+.sl-residency { gap: 40px; padding: 76px 0 80px; }
+
+.sl-tri__panel { min-height: 500px; }
+
+.sl-legacy__inner { padding: 78px 0 0; }
+
+
+
+
+}
+
+@media (max-width: 860px) {
+
+.hero { height: auto; min-height: 620px; }
+
+.hero::after { height: 300px; }
+
+.hero__inner { padding-bottom: 120px; }
+
+.sl-bridge { margin-top: -176px; }
+
+.sl-experience { padding: 60px 0 72px; }
+
+.sl-experience__grid {
+    margin-top: 40px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+.sl-tri__grid { grid-template-columns: minmax(0, 1fr); }
+
+.sl-tri__panel { min-height: 420px; }
+
+.sl-residency { grid-template-columns: minmax(0, 1fr); gap: 30px; padding: 64px 0 72px; }
+
+.sl-residency__media img { min-height: 0; aspect-ratio: 16 / 11; }
+
+.sl-residency__copy > p { max-width: none; }
+
+.sl-intro { padding-bottom: 76px; }
+
+.sl-intro__video { aspect-ratio: 16 / 9; }
+
+.sl-partners { padding-bottom: 76px; }
+
+.sl-partners__logos { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 22px; }
+
+.sl-legacy { min-height: 620px; }
+
+.sl-legacy__inner { padding: 60px 0 0; }
+
+.sl-tour { padding: 72px 0 76px; }
+
+.sl-tour__media { margin-top: 30px; }
+
+.sl-tour__media img { aspect-ratio: 16 / 10; }
+
+.sl-visionaries { padding: 72px var(--pad) 80px; }
+
+.sl-visionaries__grid { gap: 30px; }
+
+.sl-cta { grid-template-columns: minmax(0, 1fr); }
+
+.sl-cta__panel { min-height: 300px; gap: 22px; }
+
+.sl-cta__arrow { width: 54px; height: 54px; }
+
+
+
+
+}
+
+@media (max-width: 560px) {
+
+.sl-experience::before { background-size: auto 74%; opacity: .8; }
+
+.sl-experience__lede,
+  .sl-tour__lede,
+  .sl-residency__copy > p { font-size: 14px; }
+
+.sl-bridge { padding-top: 52px; }
+
+.sl-bridge__logo img { width: 264px; }
+
+.sl-partners__logos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
+
+.sl-partners__logos img { max-height: 46px; }
+
+.sl-residency__hosted { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+.sl-visionaries__grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+
+.sl-person__media img { aspect-ratio: 4 / 5; }
+
+.sl-legacy { min-height: 520px; }
+
+.sl-legacy__inner { padding: 50px 0 0; }
+
+.sl-cta__panel { min-height: 250px; }
+
+
+
+
+}
+/* =========================================================
+   HERO PHOTO CREDIT
+   Sits at the right, vertically centred on the photograph. The
+   backdrop is a dark blurred pill because this part of the frame
+   runs from pale stone to dark foliage — white type alone would
+   only be legible over half of it.
+   ========================================================= */
+.hero__credit {
+  position: absolute;
+  right: 40px;
+  top: 46%;
+  transform: translateY(-50%);
+  z-index: 4;
+  margin: 0;
+  padding: 9px 16px;
+  border-radius: 999px;
+  /* The plate is deliberately faint. Most of the legibility comes from the
+     halo on the glyphs plus a wider backdrop blur that flattens highlights,
+     so the panel only has to take the edge off the brightest patches.
+     Measured worst case across 390-1440: 4.6:1 white-on-backdrop (WCAG AA). */
+  background: rgba(0, 0, 0, .30);
+  -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(14px);
+  border: 0;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .015em;
+  color: #ffffff;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, .95),
+    0 0 8px  rgba(0, 0, 0, .92),
+    0 0 16px rgba(0, 0, 0, .72),
+    0 0 26px rgba(0, 0, 0, .48);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+
+.hero__credit { right: 28px; font-size: 14px; padding: 8px 14px; }
+
+
+
+
+}
+/* Below 860px the hero shortens to 620px and the centred title/lede run
+   nearly edge to edge, so the credit drops clear of them to the lower
+   right of the photograph rather than crossing the type. */
+@media (max-width: 860px) {
+
+.hero__credit { top: auto; bottom: 150px; transform: none; }
+
+
+}
+
+@media (max-width: 700px) {
+
+.hero__credit { right: 18px; font-size: 13px; padding: 7px 12px; }
+
+
+
+
+}
+
+

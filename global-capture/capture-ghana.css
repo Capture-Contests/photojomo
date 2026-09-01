@@ -1,0 +1,641 @@
+/* =========================================================
+   capture-ghana.css
+   Page styles for capture-ghana.html.
+
+   Loaded AFTER styles.css. Same contract as capture-africa.css:
+   reuse that file's tokens, nav, hero, footer and button/eyebrow
+   primitives, then add the sections unique to the Ghana layout:
+
+     .gh-intro    Open to creators from around the world
+     .gh-journey  A Journey Through History, Culture & Discovery
+     .gh-why      Why Capture Ghana / More Than a Contest
+     .gh-dest     Featured Destinations (four cards)
+     .gh-split    For Creators / For Tourism & Cultural Partners
+     .gh-quote    Pull quote
+     .gh-ahead    Looking Ahead
+     .gh-cta      Two-panel closing CTA
+
+   Breakpoints mirror styles.css: 1024 / 860 / 560.
+   ========================================================= */
+
+/* The destination cards and the journey photos both sit inside a
+   positioned context; `clip` contains the page without creating a
+   scroll container the way overflow-x:hidden would. */
+body { overflow-x: clip; }
+
+/* One content column for every band — styles.css otherwise runs
+   1292 (nav/hero) / 1264 (sections) / 1332 (footer), which reads as a
+   ragged left edge on wide screens. */
+:root {
+  --max-wide: 1264px;
+  --max-foot: 1264px;
+}
+
+/* ---------- page identity ----------
+   The Ghana lockup is the shared "Capture" wordmark (with the globe set
+   into the C) over a wide-tracked country name — the same two-part mark
+   index.html uses, painted solid white rather than the gold gradient. */
+.nav__logo { flex-direction: column; align-items: flex-start; text-decoration: none; }
+.nav__logo-mark {
+  position: relative;
+  display: block;
+  width: 148px;
+  aspect-ratio: 306 / 73;
+  background-color: #ffffff;
+  -webkit-mask: url("images/gc-wordmark.png") no-repeat center / contain;
+          mask: url("images/gc-wordmark.png") no-repeat center / contain;
+}
+.nav__logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  -webkit-mask: url("images/gc-globe.png") no-repeat center / contain;
+          mask: url("images/gc-globe.png") no-repeat center / contain;
+}
+.nav__logo-sub {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  /* tracked so the country name spans the full width of the wordmark above
+     it — CSS puts a trailing space after the last letter, so the visible run
+     is one letter-space narrower than the element box */
+  letter-spacing: 2.48em;
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: color .45s ease;
+}
+/* styles.css recolours the mark white → gold once the nav is scrolled;
+   the country name follows it so the lockup stays one colour. */
+.nav.is-scrolled .nav__logo-sub { color: var(--gold); }
+
+.footer__logo {
+  width: auto;
+  display: inline-block;
+  text-decoration: none;
+}
+.footer__logo-mark {
+  position: relative;
+  display: block;
+  width: 172px;
+  aspect-ratio: 306 / 73;
+  background: #ffffff;
+  -webkit-mask: url("images/gc-wordmark.png") no-repeat center / contain;
+          mask: url("images/gc-wordmark.png") no-repeat center / contain;
+}
+.footer__logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  -webkit-mask: url("images/gc-globe.png") no-repeat center / contain;
+          mask: url("images/gc-globe.png") no-repeat center / contain;
+}
+.footer__logo-sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 2.56em;
+  /* cancel the trailing letter-space so the lockup's box matches its
+     visible width and the centred footer column centres it truly */
+  margin-right: -2.56em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.hero__bg {
+  background: #000 url("images/gh-hero.jpg?v=3") no-repeat center / cover;
+  /* the frame sits 70px lower than a centred cover crop, so more open water
+     shows above the shoreline */
+  background-position: center calc(50% + 70px);
+}
+
+/* ---------- hero: brand lockup on one line ---------- */
+.hero__title--brand {
+  max-width: none;
+  font-size: clamp(34px, 6.2vw, 86px);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+}
+.hero__title--brand em {
+  display: inline;
+  font-size: 1.08em;
+  margin-left: .12em;
+}
+.hero__lede {
+  font-size: clamp(15px, 1.1vw, 19px);
+  max-width: 720px;
+}
+/* Figma centres the Ghana hero rather than left-aligning it. */
+.hero__inner { text-align: center; }
+.hero__title--brand,
+.hero__lede { margin-inline: auto; }
+.hero__actions { justify-content: center; }
+
+/* ---------- shared section heading ---------- */
+.gh-h2 {
+  margin: 0;
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1.12;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+}
+.gh-h2 em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.06em;
+  letter-spacing: 0;
+}
+.gh-h2--center { text-align: center; }
+.gh-h2--center + .lede { margin-top: 18px; }
+
+/* Dark and light buttons used by the hero and the two split sections.
+   .btn--white in styles.css is the small tracked-caps nav pill; the hero
+   pair needs a plain sentence-case button at the same size as .btn--dark. */
+.btn--dark { background: var(--ink); color: #fff; height: 46px; padding: 0 26px; }
+.btn--dark:hover { background: #262626; }
+.btn--light {
+  background: #fff; color: #111;
+  height: 46px; padding: 0 26px;
+  font-size: 14px; font-weight: 600;
+}
+.btn--light:hover { background: #f0eee8; }
+.hero__actions .btn { height: 52px; padding: 0 32px; font-size: 15px; }
+
+/* ---------- back to top ----------
+   styles.css only reveals this below 860px; Ghana keeps it at every
+   width, matching capture-africa.html. script.js adds .is-visible
+   once the page has scrolled past 600px. */
+.to-top { display: flex; }
+
+/* =========================================================
+   OPEN TO CREATORS
+   ========================================================= */
+.gh-intro {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 120px 0 96px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+  gap: 72px;
+  align-items: start;
+}
+.gh-intro__copy p {
+  margin: 26px 0 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--body);
+  max-width: 560px;
+}
+.gh-intro__media { margin: 0; }
+.gh-intro__media img {
+  width: 100%;
+  height: 410px;
+  object-fit: cover;
+}
+
+/* =========================================================
+   A JOURNEY THROUGH HISTORY, CULTURE & DISCOVERY
+   Centred column with four photos pinned to the outer edges,
+   over a pale Ghana silhouette.
+   ========================================================= */
+.gh-journey {
+  position: relative;
+  padding: 96px 0 392px;
+  overflow: hidden;
+}
+.gh-journey::before,
+.gh-quote::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("images/gh-map-wash.png?v=1") no-repeat center / auto 92%;
+  pointer-events: none;
+}
+.gh-journey__photo {
+  position: absolute;
+  z-index: 1;
+  width: 286px;
+  height: 286px;
+  object-fit: cover;
+}
+.gh-journey__photo--tl { left: 40px;  top: 40px; }
+.gh-journey__photo--tr { right: 40px; top: 168px; }
+.gh-journey__photo--bl { left: 72px;  bottom: 168px; }
+.gh-journey__photo--br { right: 72px; bottom: 96px; }
+
+.gh-journey__copy {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 2 * var(--pad), 760px);
+  margin-inline: auto;
+  text-align: center;
+  padding-top: 210px;
+}
+.gh-journey__copy p {
+  margin: 26px 0 0;
+  font-size: 15px;
+  line-height: 1.68;
+  color: var(--body);
+}
+
+/* =========================================================
+   WHY CAPTURE GHANA
+   ========================================================= */
+.gh-why {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 96px 0 110px;
+}
+.gh-why__grid {
+  margin: 76px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 52px 30px;
+}
+.gh-why__item { text-align: left; }
+.gh-why__media { margin: 0; overflow: hidden; }
+.gh-why__media img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+.gh-why__item:hover .gh-why__media img { transform: scale(1.04); }
+.gh-why__item h3 {
+  margin: 20px 0 0;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+/* =========================================================
+   FEATURED DESTINATIONS — four cards
+   ========================================================= */
+.gh-dest {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 96px 0 118px;
+}
+.gh-dest .section-head { margin-bottom: 56px; }
+
+.gh-dest__grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 30px;
+}
+.gh-dcard {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.gh-dcard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(15, 23, 42, .10);
+}
+.gh-dcard__media { margin: 0; aspect-ratio: 288 / 192; overflow: hidden; }
+.gh-dcard__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+.gh-dcard:hover .gh-dcard__media img { transform: scale(1.045); }
+
+.gh-dcard__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 26px 24px 28px;
+}
+.gh-dcard__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+}
+.gh-dcard__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1em;
+}
+.gh-dcard__body p {
+  margin: 16px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--body);
+}
+.gh-dcard__soon {
+  margin-top: auto;
+  padding-top: 22px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--orange, #d4581f);
+}
+
+/* =========================================================
+   FOR CREATORS / FOR PARTNERS — full-bleed image beside copy
+   ========================================================= */
+.gh-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 0;
+  background: var(--cream);
+}
+.gh-split--rev .gh-split__media { order: 2; }
+.gh-split--rev .gh-split__copy  { order: 1; justify-self: end; }
+
+.gh-split__media { margin: 0; align-self: stretch; }
+.gh-split__media img {
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  object-fit: cover;
+}
+.gh-split__copy {
+  padding: 96px clamp(24px, 4vw, 72px);
+  max-width: 680px;
+}
+.gh-split__copy > p {
+  margin: 24px 0 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--body);
+}
+.gh-split__label {
+  margin: 44px 0 0;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--brown);
+}
+
+.gh-list {
+  margin: 22px 0 0;
+  padding: 0 0 0 18px;
+  list-style: none;
+}
+.gh-list li {
+  position: relative;
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.gh-list li::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: .55em;
+  width: 5px;
+  height: 5px;
+  background: var(--body);
+}
+.gh-split__copy .btn { margin-top: 26px; }
+
+/* =========================================================
+   PULL QUOTE
+   ========================================================= */
+.gh-quote {
+  position: relative;
+  width: min(100% - 2 * var(--pad), 1040px);
+  margin-inline: auto;
+  padding: 130px 0 140px;
+  text-align: center;
+}
+.gh-quote__text,
+.gh-quote .btn { position: relative; z-index: 1; }
+.gh-quote__text {
+  margin: 0;
+  font-size: clamp(21px, 2.1vw, 31px);
+  line-height: 1.42;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+}
+.gh-quote__text em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.06em;
+}
+.gh-quote .btn { margin-top: 42px; }
+
+/* =========================================================
+   LOOKING AHEAD
+   ========================================================= */
+.gh-ahead {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 20px 0 120px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.06fr);
+  gap: 72px;
+  align-items: center;
+}
+.gh-ahead__copy p {
+  margin: 24px 0 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--body);
+  max-width: 560px;
+}
+.gh-ahead__media { margin: 0; }
+.gh-ahead__media img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+}
+
+/* =========================================================
+   SPLIT CTA
+   ========================================================= */
+.gh-cta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.gh-cta__panel {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #6f6a68;
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+}
+.gh-cta__panel--partner { background-image: url("images/gh-cta-partner.jpg?v=1"); }
+.gh-cta__panel--creator { background-image: url("images/gh-cta-creator.jpg?v=1"); }
+.gh-cta__panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transition: background .3s ease;
+}
+/* The herder frame is knocked back hard; the portrait is left almost clean
+   because its own dark areas already carry the type. */
+.gh-cta__panel--partner::after { background: rgba(40, 36, 34, .46); }
+.gh-cta__panel--creator::after { background: rgba(40, 36, 34, .26); }
+.gh-cta__panel--partner:hover::after { background: rgba(40, 36, 34, .34); }
+.gh-cta__panel--creator:hover::after { background: rgba(40, 36, 34, .14); }
+
+.gh-cta__title {
+  font-size: clamp(26px, 2.6vw, 38px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.gh-cta__arrow {
+  width: 62px;
+  height: 62px;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s ease;
+}
+.gh-cta__arrow svg { width: 24px; height: 24px; color: #fff; }
+.gh-cta__panel:hover .gh-cta__arrow { transform: translateX(6px); }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+/* Above 1400px the four Journey photos hold their relationship to the
+   centred copy instead of drifting out to the viewport edges. */
+@media (min-width: 1400px) {
+  .gh-journey__photo--tl { left:  calc(50% - 690px); }
+  .gh-journey__photo--tr { right: calc(50% - 690px); }
+  .gh-journey__photo--bl { left:  calc(50% - 658px); }
+  .gh-journey__photo--br { right: calc(50% - 658px); }
+}
+
+@media (min-width: 1600px) {
+  .gh-cta__panel { min-height: 30vw; max-height: 620px; }
+  .gh-split__media img { min-height: 640px; }
+}
+
+/* ---------- tablet ---------- */
+@media (max-width: 1180px) {
+  .gh-dest__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 26px; }
+}
+
+@media (max-width: 1024px) {
+  .gh-intro,
+  .gh-ahead { gap: 44px; }
+  .gh-intro { padding: 92px 0 76px; }
+
+  .gh-journey__photo { width: 204px; height: 204px; }
+  .gh-journey__photo--tl,
+  .gh-journey__photo--bl { left: 24px; }
+  .gh-journey__photo--tr,
+  .gh-journey__photo--br { right: 24px; }
+  .gh-journey { padding-bottom: 300px; }
+  .gh-journey__copy { padding-top: 150px; }
+
+  .gh-why__grid { gap: 48px 36px; }
+  .gh-why__media img { height: 190px; }
+
+  .gh-split__media img { min-height: 460px; }
+  .gh-split__copy { padding: 72px 40px; }
+}
+
+/* ---------- phone ---------- */
+@media (max-width: 860px) {
+  .gh-intro,
+  .gh-ahead,
+  .gh-split,
+  .gh-cta { grid-template-columns: minmax(0, 1fr); }
+
+  .gh-intro { padding: 72px 0 64px; gap: 34px; }
+  .gh-intro__media img { height: 300px; }
+
+  /* photos come out of the corners and sit above the copy */
+  .gh-journey { padding: 64px 0 76px; }
+  .gh-journey__photo--bl,
+  .gh-journey__photo--br { bottom: auto; }
+  .gh-journey__photo {
+    position: relative;          /* not static — static would discard z-index
+                                    and let the map wash paint over the photo */
+    z-index: 1;
+    inset: auto;
+    width: min(100% - 2 * var(--pad), 460px);
+    height: 230px;
+    margin: 0 auto 18px;
+    display: block;
+  }
+  .gh-journey__copy { padding-top: 34px; }
+
+  .gh-why { padding: 72px 0 80px; }
+  .gh-why__grid {
+    margin-top: 52px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 22px;
+  }
+  .gh-why__media img { height: 200px; }
+
+  .gh-dest { padding: 72px 0 80px; }
+  .gh-dest .section-head { margin-bottom: 40px; }
+  .gh-dcard__body { padding: 22px 20px 24px; }
+
+  /* keep image above copy in BOTH split sections once stacked */
+  .gh-split--rev .gh-split__media { order: 1; }
+  .gh-split--rev .gh-split__copy  { order: 2; justify-self: stretch; }
+  .gh-split__media img { min-height: 0; height: 320px; }
+  .gh-split__copy { padding: 56px var(--pad) 64px; max-width: none; }
+
+  .gh-quote { padding: 84px 0 88px; }
+  .gh-quote .btn { margin-top: 32px; }
+
+  .gh-ahead { padding: 0 0 76px; gap: 30px; }
+  .gh-ahead__media img { height: 280px; }
+
+  .gh-cta__panel { min-height: 300px; gap: 22px; }
+  .gh-cta__arrow { width: 54px; height: 54px; }
+}
+
+@media (max-width: 700px) {
+  .gh-dest__grid { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .gh-dcard__media { aspect-ratio: 16 / 10; }
+}
+
+@media (max-width: 560px) {
+  .gh-journey::before,
+  .gh-quote::before { background-size: auto 70%; opacity: .75; }
+  .gh-intro__copy p,
+  .gh-journey__copy p,
+  .gh-ahead__copy p,
+  .gh-split__copy > p { font-size: 14.5px; }
+
+  .gh-why__grid { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  .gh-why__item h3 { margin-top: 16px; font-size: 16px; }
+  .gh-why__media img { height: 210px; }
+
+  .gh-journey__photo { height: 200px; }
+  .gh-intro__media img { height: 220px; }
+  .gh-split__media img { height: 250px; }
+  .gh-ahead__media img { height: 230px; }
+
+  .gh-list li { font-size: 15px; }
+  .gh-split__copy { padding: 48px var(--pad) 56px; }
+  .gh-cta__panel { min-height: 250px; }
+}

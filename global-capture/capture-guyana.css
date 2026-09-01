@@ -1,0 +1,574 @@
+/* =========================================================
+   capture-guyana.css
+   Page styles for capture-guyana.html — a Caribbean child page,
+   sibling to capture-saint-lucia.html.
+
+   Loaded AFTER styles.css. Reuses that file's nav, hero, footer and
+   button primitives, then adds the sections unique to Guyana:
+
+     .gy-treasure     South America's Hidden Treasure (+ 4 photos)
+     .gy-invitational The Mike Charles Invitational
+     .gy-legacy       Honoring the legacy of Lt. Col. Michael Charles
+     .gy-art          The Art of Exploration (mosaic)
+     .gy-journeys     Inspired by Real Journeys (+ 4 photos)
+     .gy-visionaries  Guided by Visionaries
+     .gy-cta          Two-panel closing CTA
+
+   Like Saint Lucia this page sits on WHITE, not the Africa family's
+   cream. Its two washes differ: the Guyana silhouette is #eef0f4 and
+   the Caribbean archipelago behind Visionaries is #e2f1fe.
+
+   Breakpoints mirror styles.css: 1024 / 860 / 560.
+   ========================================================= */
+
+body {
+  overflow-x: clip;
+  background: #ffffff;
+}
+
+:root {
+  --max-wide: 1264px;
+  --max-foot: 1264px;
+  --gy-ink: #1f1f1f;
+  --gy-body: #4a4a4a;
+}
+
+/* ---------- page identity ---------- */
+.nav__logo { flex-direction: column; align-items: flex-start; text-decoration: none; }
+.nav__logo-mark {
+  position: relative;
+  display: block;
+  width: 148px;
+  aspect-ratio: 306 / 73;
+  background-color: #ffffff;
+  -webkit-mask: url("images/gc-wordmark.png") no-repeat center / contain;
+          mask: url("images/gc-wordmark.png") no-repeat center / contain;
+}
+.nav__logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  -webkit-mask: url("images/gc-globe.png") no-repeat center / contain;
+          mask: url("images/gc-globe.png") no-repeat center / contain;
+}
+.nav__logo-sub {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.86em;   /* "GUYANA" is 6 characters; spans the wordmark */
+  text-transform: uppercase;
+  color: #ffffff;
+  transition: color .45s ease;
+}
+.nav.is-scrolled .nav__logo-sub { color: var(--gold); }
+
+.footer__logo { width: auto; display: inline-block; text-decoration: none; }
+.footer__logo-mark {
+  position: relative;
+  display: block;
+  width: 172px;
+  aspect-ratio: 306 / 73;
+  background-color: #ffffff;
+  -webkit-mask: url("images/gc-wordmark.png") no-repeat center / contain;
+          mask: url("images/gc-wordmark.png") no-repeat center / contain;
+}
+.footer__logo-mark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  -webkit-mask: url("images/gc-globe.png") no-repeat center / contain;
+          mask: url("images/gc-globe.png") no-repeat center / contain;
+}
+.footer__logo-sub {
+  display: block;
+  margin-top: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.86em;
+  margin-right: -0.86em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+/* ---------- hero ---------- */
+.hero { height: 760px; }
+.hero__bg {
+  background: #000 url("images/gy-hero.jpg?v=1") no-repeat center / cover;
+}
+/* centred type, so the Caribbean page's left-to-right wash is replaced
+   with a soft pool under the middle of the frame */
+.hero__bg::after {
+  background:
+    radial-gradient(110% 70% at 50% 42%,
+      rgba(0,0,0,.36) 0%, rgba(0,0,0,.20) 46%, rgba(0,0,0,0) 78%),
+    linear-gradient(180deg,
+      rgba(0,0,0,.10) 0%, rgba(0,0,0,0) 42%, rgba(0,0,0,.14) 100%);
+}
+.hero__bg::before {
+  height: 180px;
+  background: linear-gradient(180deg,
+    rgba(0,0,0,.40) 0%, rgba(0,0,0,.26) 42%, rgba(0,0,0,.08) 74%, rgba(0,0,0,0) 100%);
+}
+.hero__title--brand {
+  max-width: none;
+  font-size: clamp(32px, 5.2vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+}
+.hero__title--brand em { display: inline; font-size: 1.06em; margin-left: .1em; }
+.hero__lede { font-size: clamp(14px, 1vw, 17px); max-width: 700px; }
+.hero__inner { text-align: center; }
+.hero__title--brand, .hero__lede { margin-inline: auto; }
+.hero__actions { justify-content: center; }
+
+/* ---------- shared heading ---------- */
+.gy-h2 {
+  margin: 0;
+  font-size: clamp(27px, 2.7vw, 40px);
+  line-height: 1.16;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+  color: var(--gy-ink);
+}
+.gy-h2 em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.06em;
+  letter-spacing: 0;
+}
+.gy-h2--center { text-align: center; }
+
+/* the serif line that sits directly under a sans heading */
+.gy-serif-line {
+  margin: 6px 0 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(24px, 2.4vw, 36px);
+  line-height: 1.2;
+  color: var(--gy-ink);
+}
+
+.btn--dark { background: #000; color: #fff; height: 46px; padding: 0 26px; }
+.btn--dark:hover { background: #262626; }
+.btn--light {
+  background: #fff; color: #111;
+  height: 46px; padding: 0 26px;
+  font-size: 14px; font-weight: 600;
+}
+.btn--light:hover { background: #f0eee8; }
+.hero__actions .btn { height: 48px; padding: 0 28px; font-size: 14.5px; }
+
+.to-top { display: flex; }
+
+/* =========================================================
+   SOUTH AMERICA'S HIDDEN TREASURE
+   ========================================================= */
+.gy-treasure {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 92px 0 90px;
+}
+.gy-treasure__copy {
+  width: min(100%, 700px);
+  margin-inline: auto;
+  text-align: center;
+}
+.gy-treasure__lede {
+  margin: 22px 0 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--gy-body);
+}
+.gy-treasure__grid,
+.gy-journeys__grid {
+  margin: 46px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.gy-treasure__grid li,
+.gy-journeys__grid li { overflow: hidden; }
+.gy-treasure__grid img,
+.gy-journeys__grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 216 / 148;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+.gy-treasure__grid li:hover img,
+.gy-journeys__grid li:hover img { transform: scale(1.05); }
+
+/* =========================================================
+   THE MIKE CHARLES INVITATIONAL
+   ========================================================= */
+.gy-invitational {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 12px 0 80px;
+}
+.gy-invitational__head {
+  width: min(100%, 720px);
+  margin-inline: auto;
+  text-align: center;
+}
+.gy-invitational__role {
+  margin: 18px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gy-ink);
+}
+.gy-invitational__role em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.06em;
+}
+.gy-invitational__lede {
+  margin: 14px 0 0;
+  font-size: 14px;
+  line-height: 1.66;
+  color: var(--gy-body);
+}
+.gy-invitational__media { margin: 34px 0 0; overflow: hidden; }
+.gy-invitational__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1136 / 448;
+  object-fit: cover;
+}
+
+/* =========================================================
+   HONORING THE LEGACY
+   Centred copy over the Guyana silhouette, four photos pinned out.
+   ========================================================= */
+.gy-legacy {
+  position: relative;
+  padding: 40px 0 178px;
+  overflow: hidden;
+}
+.gy-legacy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("images/gy-map-wash.png?v=1") no-repeat center 46% / auto 82%;
+  pointer-events: none;
+}
+.gy-legacy__photo {
+  position: absolute;
+  z-index: 1;
+  width: 244px;
+  aspect-ratio: 178 / 126;
+  object-fit: cover;
+}
+/* two down each side; the lower pair clears the upper pair rather than
+   colliding with it, which a bottom-anchored offset did at this height */
+.gy-legacy__photo--tl { left: 44px;  top: 24px; }
+.gy-legacy__photo--tr { right: 44px; top: 62px; }
+.gy-legacy__photo--bl { left: 76px;  bottom: 118px; }
+.gy-legacy__photo--br { right: 76px; bottom: 42px; }
+
+.gy-legacy__copy {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 2 * var(--pad), 720px);
+  margin-inline: auto;
+  text-align: center;
+  padding-top: 132px;
+}
+.gy-legacy__copy p {
+  margin: 22px 0 0;
+  font-size: 14px;
+  line-height: 1.72;
+  color: var(--gy-body);
+}
+
+/* =========================================================
+   THE ART OF EXPLORATION — four-column mosaic
+   ========================================================= */
+.gy-art {
+  padding: 78px 0 92px;
+  background: #f7f8fc;
+}
+.gy-art__head {
+  width: min(100% - 2 * var(--pad), 760px);
+  margin-inline: auto;
+  text-align: center;
+}
+.gy-art__lede {
+  margin: 14px 0 0;
+  font-size: 14px;
+  line-height: 1.66;
+  color: var(--gy-body);
+}
+.gy-art__mosaic {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin: 40px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: stretch;        /* every column ends on the same baseline */
+}
+/* A fixed column height split between the two frames, so the mosaic is flush
+   along the bottom as well as the top. The split is a flex ratio rather than
+   fixed aspect-ratios, which is also what makes the hover animatable. */
+.gy-art__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 604px;
+}
+.gy-art__col figure {
+  margin: 0;
+  overflow: hidden;
+  flex-basis: 0;
+  min-height: 0;
+  transition: flex-grow .55s cubic-bezier(.4, 0, .2, 1);
+}
+.gy-art__col img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* resting split — columns alternate short-over-tall and tall-over-short */
+.gy-art__col:nth-child(odd)  figure:first-child { flex-grow: .78; }
+.gy-art__col:nth-child(odd)  figure:last-child  { flex-grow: 1.22; }
+.gy-art__col:nth-child(even) figure:first-child { flex-grow: 1.22; }
+.gy-art__col:nth-child(even) figure:last-child  { flex-grow: .78; }
+
+/* Hovering a frame slides it open and squeezes its neighbour. Both rules are
+   scoped through :hover on the column so they match the specificity of the
+   :nth-child resting rules above (0,3,1) and win on source order — without
+   that they are out-specified and the hover does nothing at all. */
+.gy-art__col:hover figure:not(:hover) { flex-grow: .68; }
+.gy-art__col:hover figure:hover       { flex-grow: 1.32; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gy-art__col figure { transition: none; }
+}
+
+/* =========================================================
+   INSPIRED BY REAL JOURNEYS
+   ========================================================= */
+.gy-journeys {
+  width: min(100% - 2 * var(--pad), var(--max));
+  margin-inline: auto;
+  padding: 90px 0 40px;
+}
+.gy-journeys__head {
+  width: min(100%, 640px);
+  margin-inline: auto;
+  text-align: center;
+}
+.gy-journeys__lede {
+  margin: 18px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gy-body);
+}
+
+/* =========================================================
+   GUIDED BY VISIONARIES — over the Caribbean archipelago
+   ========================================================= */
+.gy-visionaries {
+  position: relative;
+  padding: 96px var(--pad) 110px;
+  text-align: center;
+  overflow: hidden;
+}
+.gy-visionaries::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("images/gy-carib-wash.png?v=1") no-repeat center / 118% auto;
+  pointer-events: none;
+}
+.gy-visionaries > * { position: relative; z-index: 1; }
+.gy-visionaries__quote {
+  margin: 34px auto 0;
+  max-width: 620px;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--gy-body);
+}
+.gy-person { margin: 34px auto 0; width: min(100%, 262px); }
+.gy-person__media { margin: 0; overflow: hidden; }
+.gy-person__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 224 / 262;
+  object-fit: cover;
+}
+.gy-person__name {
+  margin: 18px 0 0;
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--gy-ink);
+}
+.gy-person__role {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: var(--gy-body);
+}
+.gy-person__bio {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.62;
+  color: var(--gy-body);
+}
+
+/* =========================================================
+   SPLIT CTA — shared frames with the sibling destination pages
+   ========================================================= */
+.gy-cta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.gy-cta__panel {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #6f6a68;
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+}
+.gy-cta__panel--partner { background-image: url("images/ng-cta-partner.jpg?v=1"); }
+.gy-cta__panel--creator { background-image: url("images/ng-cta-creator.jpg?v=1"); }
+.gy-cta__panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transition: background .3s ease;
+}
+.gy-cta__panel--partner::after { background: rgba(40, 36, 34, .46); }
+.gy-cta__panel--creator::after { background: rgba(40, 36, 34, .26); }
+.gy-cta__panel--partner:hover::after { background: rgba(40, 36, 34, .34); }
+.gy-cta__panel--creator:hover::after { background: rgba(40, 36, 34, .14); }
+
+.gy-cta__title {
+  font-size: clamp(26px, 2.6vw, 38px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.gy-cta__arrow {
+  width: 62px;
+  height: 62px;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s ease;
+}
+.gy-cta__arrow svg { width: 24px; height: 24px; color: #fff; }
+.gy-cta__panel:hover .gy-cta__arrow { transform: translateX(6px); }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (min-width: 1400px) {
+  .gy-legacy__photo--tl { left:  calc(50% - 676px); }
+  .gy-legacy__photo--tr { right: calc(50% - 676px); }
+  .gy-legacy__photo--bl { left:  calc(50% - 644px); }
+  .gy-legacy__photo--br { right: calc(50% - 644px); }
+}
+@media (min-width: 1600px) {
+  .gy-cta__panel { min-height: 30vw; max-height: 620px; }
+}
+
+@media (max-width: 1024px) {
+  .gy-treasure__grid,
+  .gy-journeys__grid { gap: 12px; }
+  .gy-art__mosaic { gap: 10px; }
+  .gy-art__col { gap: 10px; height: 520px; }
+  /* At this width the 720px copy column ran under all four photographs.
+     Both pairs are anchored from the top so the vertical gaps are equal
+     rather than falling out of a bottom offset, and the copy is narrowed
+     to sit clear between the two columns. */
+  .gy-legacy { padding: 34px 0 112px; }
+  .gy-legacy__photo { width: 186px; }
+  .gy-legacy__photo--tl { left: 22px;  top: 20px;  bottom: auto; }
+  .gy-legacy__photo--tr { right: 22px; top: 78px;  bottom: auto; }
+  .gy-legacy__photo--bl { left: 22px;  top: 208px; bottom: auto; }
+  .gy-legacy__photo--br { right: 22px; top: 266px; bottom: auto; }
+  .gy-legacy__copy {
+    width: min(100% - 2 * var(--pad), 540px);
+    padding-top: 96px;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero { height: auto; min-height: 560px; }
+
+  .gy-treasure { padding: 68px 0 66px; }
+  .gy-treasure__grid,
+  .gy-journeys__grid {
+    margin-top: 34px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .gy-invitational { padding-bottom: 60px; }
+  .gy-invitational__media img { aspect-ratio: 16 / 10; }
+
+  /* the four legacy photos leave the corners and stack above the copy */
+  .gy-legacy { padding: 20px 0 64px; }
+  .gy-legacy__photo {
+    position: relative;      /* not static — static would drop z-index and let
+                                the map wash paint over the photographs */
+    z-index: 1;
+    inset: auto;
+    width: min(100% - 2 * var(--pad), 420px);
+    aspect-ratio: 16 / 10;
+    margin: 0 auto 16px;
+    display: block;
+  }
+  .gy-legacy__copy { padding-top: 28px; }
+
+  .gy-art { padding: 64px 0 72px; }
+  .gy-art__mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gy-art__col { height: 470px; }
+
+  .gy-journeys { padding: 68px 0 24px; }
+  .gy-visionaries { padding: 72px var(--pad) 84px; }
+  .gy-visionaries::before { background-size: 190% auto; }
+
+  .gy-cta { grid-template-columns: minmax(0, 1fr); }
+  .gy-cta__panel { min-height: 300px; gap: 22px; }
+  .gy-cta__arrow { width: 54px; height: 54px; }
+}
+
+@media (max-width: 560px) {
+  .gy-treasure__lede,
+  .gy-journeys__lede,
+  .gy-art__lede,
+  .gy-legacy__copy p { font-size: 13.5px; }
+
+  .gy-treasure__grid,
+  .gy-journeys__grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .gy-treasure__grid img,
+  .gy-journeys__grid img { aspect-ratio: 16 / 10; }
+
+  /* one column on a phone: drop the fixed height so the frames simply flow */
+  .gy-art__mosaic { grid-template-columns: minmax(0, 1fr); }
+  .gy-art__col { height: auto; display: grid; }
+  .gy-art__col figure { flex: none; aspect-ratio: 16 / 11; }
+
+  .gy-legacy::before { background-size: auto 62%; opacity: .85; }
+  .gy-visionaries::before { background-size: 260% auto; opacity: .85; }
+
+  .gy-cta__panel { min-height: 250px; }
+}

@@ -14,6 +14,7 @@ photojomo/
 ├── photojomo-wb/                # Official contest website — Angular
 ├── photojomo-first-wave-wb/     # Capture Caribbean: First Wave Challenge — Angular 20
 ├── caribbean-photo-contest-wb/  # Photo Contest website — Angular
+├── capture-contests-wb/         # Capture Contests website — Angular 20
 ├── capture-caribbean-sweepstakes-wb/ # Sweepstakes website — Angular
 ├── screenshots/
 └── scripts/
@@ -64,6 +65,19 @@ photojomo/
 ### `caribbean-photo-contest-wb` — Photo Contest Website
 - **Purpose**: The Capture Caribbean photo contest website
 - **Framework**: Angular (standalone components)
+
+---
+
+### `capture-contests-wb` — Capture Contests Website
+- **Purpose**: Home, regional (Barbados, Ghana, Guyana, Jamaica, Nigeria, Saint Lucia, Africa, Caribbean), and partner pages for Capture Contests
+- **Framework**: Angular 20 (standalone components)
+- **Dev server**: `npx ng serve` (from `capture-contests-wb/`)
+- **Build**: `make build NPX=npx NODE=node`
+- **Cloudflare project**: `capture-contests-dev`
+- **Deploy dev**: GitHub Actions workflow **"Capture Contests Dev"** (`.github/workflows/contests-deploy-dev.yml`) — `workflow_dispatch` only, runs `make deploy-dev` against whatever ref it's dispatched on and pushes to the `dev-contests` Cloudflare Pages branch.
+- **Deploy prod**: workflow **"Capture Contests Prod"** (`.github/workflows/contests-deploy-prod.yml`)
+
+**Important for contributors**: the dev/prod deploy workflows are manually triggered (`workflow_dispatch`) — pushing a branch or opening a PR does **not** automatically deploy it. To see your changes live on the dev site, your commits must be merged into `main` and someone must run the "Capture Contests Dev" workflow (`gh workflow run "Capture Contests Dev" --ref main`, or via the Actions tab). Work sitting on a feature branch, or lost in a bad merge resolution into `main`, will not show up on the deployed site even though it's "in the repo" — verify with `git log --oneline -- capture-contests-wb/` and a local `ng build` before assuming a change shipped.
 
 ---
 

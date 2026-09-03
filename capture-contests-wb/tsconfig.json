@@ -16,10 +16,6 @@
     "module": "preserve"
   },
   "angularCompilerOptions": {
-    // These templates came from hand-authored HTML where the space between
-    // inline elements is meaningful. Angular strips whitespace-only text nodes
-    // by default, which ran the words of the Thank You headline together.
-    "preserveWhitespaces": true,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

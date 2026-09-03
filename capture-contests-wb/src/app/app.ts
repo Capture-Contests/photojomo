@@ -4,6 +4,6 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
-  template: '<h1>Capture Contests</h1><router-outlet />',
+  template: '<router-outlet />',
 })
 export class App {}

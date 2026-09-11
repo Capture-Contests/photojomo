@@ -852,7 +852,7 @@ img { display: block; max-width: 100%; }
 
 
 /* =========================================================
-   BACK TO TOP  (mobile only)
+   BACK TO TOP
    ========================================================= */
 
 .to-top {
@@ -860,7 +860,7 @@ img { display: block; max-width: 100%; }
   right: 18px;
   bottom: 18px;
   z-index: 70;
-  display: none;
+  display: flex;             /* shown at every width, not mobile-only */
   align-items: center;
   justify-content: center;
   width: 44px;

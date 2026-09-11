@@ -580,6 +580,61 @@ figure { margin: 0; }
 .vision__shot--d { bottom: 108px; right: 7.6%; width: 258px; aspect-ratio: 258 / 187; }
 
 
+/* ---------- hover: lift and tilt, away from the centre ----------
+   .vision__shots is pointer-events:none so the scattered photographs never
+   block the copy underneath; each shot takes its own pointer back so it can
+   be hovered. Guarded on (hover:hover) and (pointer:fine) — on a touch screen
+   :hover latches after a tap and the tilt would stick. */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .vision__shot {
+    pointer-events: auto;
+    transition: transform .55s cubic-bezier(.22, .61, .36, 1),
+                box-shadow .55s cubic-bezier(.22, .61, .36, 1);
+  }
+
+  .vision__shot:hover {
+    z-index: 3;                       /* over its siblings, still under the copy */
+    box-shadow: 0 22px 48px rgba(15, 23, 42, .22);
+  }
+
+  /* left-hand pair tilts left, right-hand pair tilts right */
+  .vision__shot--a:hover,
+  .vision__shot--c:hover { transform: scale(1.1) rotate(-10deg); }
+
+  .vision__shot--b:hover,
+  .vision__shot--d:hover { transform: scale(1.1) rotate(10deg); }
+
+}
+
+
+/* ---------- idle wiggle ----------
+   site-chrome.ts nudges one shot at a time on a random 3-4s beat. The tilt
+   leans the same way the hover tilt does, so a shot never contradicts itself:
+   --wiggle-dir is -1 on the left pair and 1 on the right. The script skips a
+   shot while it is hovered, so the two never fight over `transform`. */
+
+.vision__shot--a, .vision__shot--c { --wiggle-dir: -1; }
+.vision__shot--b, .vision__shot--d { --wiggle-dir:  1; }
+
+@keyframes vision-wiggle {
+  0%   { transform: none; }
+  30%  { transform: scale(1.025) rotate(calc(var(--wiggle-dir) * 2.2deg)); }
+  60%  { transform: scale(1.015) rotate(calc(var(--wiggle-dir) * -1deg)); }
+  100% { transform: none; }
+}
+
+.vision__shot.is-wiggling { animation: vision-wiggle 1.15s cubic-bezier(.36, .07, .19, .97); }
+
+
+@media (prefers-reduced-motion: reduce) {
+  .vision__shot { transition: none; }
+  .vision__shot:hover { transform: none; }
+  .vision__shot.is-wiggling { animation: none; }
+}
+
+
 /* =========================================================
    PLATFORM — three destination cards
    ========================================================= */

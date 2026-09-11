@@ -45,6 +45,7 @@ export abstract class SiteChrome implements AfterViewInit, OnDestroy {
     this.navChrome(root);
     this.partnerShots(root);
     this.carousel(root);
+    this.visionWiggle(root);
   }
 
   ngOnDestroy(): void {
@@ -137,6 +138,49 @@ export abstract class SiteChrome implements AfterViewInit, OnDestroy {
     });
     this.on(document, 'click', closeDrops);
   }
+
+  /* ---------- vision photographs: one nudges itself every 3-4s ---------- */
+  private visionWiggle(root: HTMLElement): void {
+    const shots = Array.from(root.querySelectorAll<HTMLElement>('.vision__shot'));
+    if (!shots.length) return;
+
+    // Honour the OS setting; the stylesheet also nulls the animation, this
+    // stops the timer from running at all.
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    let timer: ReturnType<typeof setTimeout>;
+    let last = -1;
+
+    const tick = () => {
+      if (!calm.matches) {
+        // Pick at random rather than cycling, so there is no visible order.
+        // Re-draw once if we land on the previous shot, which stops the same
+        // photograph nudging twice in a row without making it a rotation.
+        let i = Math.floor(Math.random() * shots.length);
+        if (i === last && shots.length > 1) i = (i + 1 + Math.floor(Math.random() * (shots.length - 1))) % shots.length;
+        last = i;
+
+        const el = shots[i];
+        // Never wiggle the shot the pointer is on — the hover transform and the
+        // animation would both be driving `transform`, and the animation wins.
+        if (!el.matches(':hover')) {
+          el.classList.add('is-wiggling');
+          const done = () => el.classList.remove('is-wiggling');
+          el.addEventListener('animationend', done, { once: true });
+        }
+      }
+      timer = setTimeout(tick, 3000 + Math.random() * 1000);
+    };
+
+    timer = setTimeout(tick, 3000 + Math.random() * 1000);
+    this.teardown.push(() => clearTimeout(timer));
+
+    // A hover mid-wiggle should hand control straight back to the hover rule.
+    shots.forEach((el) =>
+      this.on(el, 'pointerenter', () => el.classList.remove('is-wiggling')),
+    );
+  }
+
 
   /* ---------- partner photographs: on mobile, tapping one lifts it in front ---------- */
   private partnerShots(root: HTMLElement): void {

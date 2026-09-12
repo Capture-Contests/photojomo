@@ -2,6 +2,13 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SiteChrome } from '../../site-chrome';
 
+/**
+ * The form is served from Cloudflare Pages, which cannot run PHP, so the
+ * enquiry is posted cross-origin to the mailer on capturecaribbean.com.
+ * That endpoint's CORS allow-list has to contain this site's origin.
+ */
+const INQUIRY_ENDPOINT = 'https://www.capturecaribbean.com/cc-inquiry-send.php';
+
 @Component({
   selector: 'page-partner-inquiry',
   imports: [RouterLink],
@@ -16,6 +23,8 @@ export class PartnerInquiryPage extends SiteChrome {
   private steps: HTMLElement[] = [];
   private motionStarted = false;
   private timers: Array<ReturnType<typeof setTimeout>> = [];
+  /** When the form was rendered — the endpoint rejects sub-3s completions. */
+  private formOpened = 0;
 
   override ngAfterViewInit(): void {
     super.ngAfterViewInit();
@@ -121,6 +130,8 @@ export class PartnerInquiryPage extends SiteChrome {
         (c.textContent || '').trim(),
       );
 
+    this.formOpened = Date.now();
+
     this.on(form, 'submit', (e) => {
       e.preventDefault();
       if (!validate(this.steps[0])) {
@@ -128,14 +139,48 @@ export class PartnerInquiryPage extends SiteChrome {
         return;
       }
 
-      /* No endpoint is wired yet — collect the answers in one shape so
-         whatever backend comes next has them. */
       const data: Record<string, unknown> = {};
       new FormData(form).forEach((v, k) => (data[k] = v));
       data['interests'] = pressed(this.steps[1]);
       data['goals'] = pressed(this.steps[3]);
+      data['form'] = 'partner-inquiry';
+      // Stamped when the page loaded; the endpoint rejects sub-3s completions.
+      data['ccStart'] = this.formOpened;
       form.dataset['payload'] = JSON.stringify(data);
 
+      const err = this.root.querySelector<HTMLElement>('#inq-error');
+      const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      if (err) err.hidden = true;
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      // The thank-you panel is shown only once the endpoint has accepted the
+      // enquiry. Showing it on click would tell people their enquiry landed
+      // when it may not have.
+      void fetch(INQUIRY_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+        .then((j: { ok?: boolean }) => {
+          if (!j || j.ok !== true) throw new Error('rejected');
+          this.showDone(form, done);
+        })
+        .catch(() => {
+          if (btn) { btn.disabled = false; btn.textContent = 'Start the Conversation'; }
+          if (err) {
+            err.textContent =
+              'Sorry — that did not send. Please try again, or email contact@capturecaribbean.com.';
+            err.hidden = false;
+          }
+        });
+    });
+
+    show(0, false);
+  }
+
+  /** Swap the form for the thank-you panel and move focus to it. */
+  private showDone(form: HTMLFormElement, done: HTMLElement | null): void {
       form.hidden = true;
       if (done) {
         done.hidden = false;
@@ -150,9 +195,6 @@ export class PartnerInquiryPage extends SiteChrome {
         }
         this.startDoneMotion(done);
       }
-    });
-
-    show(0, false);
   }
 
   /* =========================================================

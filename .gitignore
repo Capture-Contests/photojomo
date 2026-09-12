@@ -47,3 +47,15 @@ target/
 **/serve-*.log
 **/serve-*.out.log
 **/serve-*.err.log
+
+# Local pre-merge snapshots (see capture-contests-wb_copySep3, made 2026-09-03)
+*_copySep3/
+
+# Capture Caribbean mailer — live credentials and stored enquiries never go in git
+capture-contests-wb/server-php/cc-config.php
+cc-enquiries/
+
+# Video master: 75 MB, and only the encoded web renditions are ever served.
+# Keeping it out of git also keeps it out of the Cloudflare build, which
+# publishes everything under public/.
+capture-contests-wb/public/video/FINAL - LOGO FIXED.mp4

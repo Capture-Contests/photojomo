@@ -166,3 +166,20 @@ html[data-page='capture-saint-lucia'] body {
   overflow-x: clip;
   background: #ffffff;
 }
+
+/* =========================================================
+   VIDEO SLOTS
+   The player is created by site-chrome.ts on click, so it has no
+   component scoping attribute — this rule has to be global.
+   contain, not cover: the slots are wider than 16/9 and cropping
+   would cut the film's logo card.
+   ========================================================= */
+
+.slot-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #000;
+}
+
+[data-video] { cursor: pointer; background: #000; }

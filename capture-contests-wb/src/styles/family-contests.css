@@ -2016,3 +2016,17 @@ figure { margin: 0; }
 
 }
 
+
+/* Once the film is playing the slot stops being a poster window: the fixed
+   aspect-ratio goes, so the container takes the video's own shape and no black
+   bars are left at the sides. The 4px of white background inside the 1px grey
+   stroke is the separator. */
+
+.lens__media.is-playing {
+  aspect-ratio: auto;
+  height: auto;
+  overflow: visible;
+  padding: 4px;
+  background: #ffffff;
+  border: 2px solid #c4c4c4;
+}

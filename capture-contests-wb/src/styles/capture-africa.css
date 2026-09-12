@@ -155,13 +155,16 @@
 
 .afr-why__item { text-align: left; }
 
-.afr-why__media { margin: 0; }
+.afr-why__media { margin: 0; overflow: hidden; }
 
 .afr-why__media img {
   width: 100%;
   height: 240px;
   object-fit: cover;
+  transition: transform .6s ease;
 }
+
+.afr-why__item:hover .afr-why__media img { transform: scale(1.04); }
 
 .afr-why__item h3 {
   margin: 20px 0 0;

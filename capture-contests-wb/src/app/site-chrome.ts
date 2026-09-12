@@ -46,6 +46,7 @@ export abstract class SiteChrome implements AfterViewInit, OnDestroy {
     this.partnerShots(root);
     this.carousel(root);
     this.visionWiggle(root);
+    this.videoSlots(root);
   }
 
   ngOnDestroy(): void {
@@ -138,6 +139,59 @@ export abstract class SiteChrome implements AfterViewInit, OnDestroy {
     });
     this.on(document, 'click', closeDrops);
   }
+
+  /* ---------- video slots: poster stays until the viewer asks for the film ----------
+     Nothing of the video is fetched on load — the poster image the design
+     already carries is the whole cost until someone clicks. The rendition is
+     picked at that moment: the 720p file is about a third of the 1080p one, so
+     a phone (or anyone on Data Saver) never pays for the large master. */
+  private videoSlots(root: HTMLElement): void {
+    const slots = Array.from(root.querySelectorAll<HTMLElement>('[data-video]'));
+    if (!slots.length) return;
+
+    const light = () =>
+      window.matchMedia('(max-width: 860px)').matches ||
+      (navigator as unknown as { connection?: { saveData?: boolean } }).connection?.saveData === true;
+
+    slots.forEach((slot) => {
+      const start = () => {
+        if (slot.dataset['loaded']) return;
+        const src = light() ? slot.dataset['srcMobile'] : slot.dataset['srcDesktop'];
+        if (!src) return;
+        slot.dataset['loaded'] = '1';
+
+        const poster = slot.querySelector('img')?.getAttribute('src') ?? '';
+        const v = document.createElement('video');
+        v.className = 'slot-video';
+        v.src = src;
+        if (poster) v.poster = poster;
+        v.controls = true;
+        v.playsInline = true;
+        v.preload = 'auto';
+
+        // The facade (poster + play badge) is replaced by the real player.
+        // .is-playing drops the slot's poster aspect-ratio so the container
+        // ends up exactly the shape of the film, with no bars at the sides.
+        slot.replaceChildren(v);
+        slot.classList.add('is-playing');
+        slot.removeAttribute('role');
+        slot.removeAttribute('tabindex');
+        // A click is a user gesture, so sound is allowed; if a browser still
+        // refuses, the controls are there and nothing is broken.
+        void v.play().catch(() => {});
+      };
+
+      this.on(slot, 'click', start);
+      this.on(slot, 'keydown', (e) => {
+        const k = (e as KeyboardEvent).key;
+        if (k === 'Enter' || k === ' ') {
+          e.preventDefault();
+          start();
+        }
+      });
+    });
+  }
+
 
   /* ---------- vision photographs: one nudges itself every 3-4s ---------- */
   private visionWiggle(root: HTMLElement): void {

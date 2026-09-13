@@ -788,7 +788,11 @@
   .sl-tour__lede,
   .sl-residency__copy > p { font-size: 14px; }
 
-.sl-bridge { padding-top: 52px; }
+.sl-bridge {
+    padding-top: 52px;
+    /* 106px base less 80px: lifts everything below the logo up by 80px */
+    padding-bottom: 26px;
+  }
 
 .sl-bridge__logo img { width: 264px; }
 

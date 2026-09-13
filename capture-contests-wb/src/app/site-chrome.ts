@@ -33,7 +33,8 @@ export abstract class SiteChrome implements AfterViewInit, OnDestroy {
   protected get root(): HTMLElement {
     return this.hostRef.nativeElement as HTMLElement;
   }
-  private teardown: Array<() => void> = [];
+  /** protected so a page can register its own cleanup (e.g. a subscription). */
+  protected teardown: Array<() => void> = [];
 
   ngAfterViewInit(): void {
     // Page stylesheets carry :root / body overrides that scoped component

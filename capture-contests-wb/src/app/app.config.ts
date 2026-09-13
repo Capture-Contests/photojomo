@@ -4,12 +4,16 @@ import {
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
+    // withFetch keeps the underlying transport the same as before this was
+    // routed through HttpClient.
+    provideHttpClient(withFetch()),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,

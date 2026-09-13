@@ -1,13 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SiteChrome } from '../../site-chrome';
-
-/**
- * The form is served from Cloudflare Pages, which cannot run PHP, so the
- * enquiry is posted cross-origin to the mailer on capturecaribbean.com.
- * That endpoint's CORS allow-list has to contain this site's origin.
- */
-const INQUIRY_ENDPOINT = 'https://www.capturecaribbean.com/cc-inquiry-send.php';
+import { InquiryService, InquiryPayload } from '../../services/inquiry.service';
 
 @Component({
   selector: 'page-partner-inquiry',
@@ -18,6 +12,8 @@ const INQUIRY_ENDPOINT = 'https://www.capturecaribbean.com/cc-inquiry-send.php';
 export class PartnerInquiryPage extends SiteChrome {
   protected readonly family = 'contests';
   protected readonly slug = 'partner-inquiry';
+
+  private readonly inquiries = inject(InquiryService);
 
   private index = 0;
   private steps: HTMLElement[] = [];
@@ -156,24 +152,20 @@ export class PartnerInquiryPage extends SiteChrome {
       // The thank-you panel is shown only once the endpoint has accepted the
       // enquiry. Showing it on click would tell people their enquiry landed
       // when it may not have.
-      void fetch(INQUIRY_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      })
-        .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-        .then((j: { ok?: boolean }) => {
-          if (!j || j.ok !== true) throw new Error('rejected');
+      const sub = this.inquiries.send(data as unknown as InquiryPayload).subscribe((res) => {
+        if (res.ok) {
           this.showDone(form, done);
-        })
-        .catch(() => {
-          if (btn) { btn.disabled = false; btn.textContent = 'Start the Conversation'; }
-          if (err) {
-            err.textContent =
-              'Sorry — that did not send. Please try again, or email contact@capturecaribbean.com.';
-            err.hidden = false;
-          }
-        });
+          return;
+        }
+        if (btn) { btn.disabled = false; btn.textContent = 'Start the Conversation'; }
+        if (err) {
+          err.textContent =
+            'Sorry — that did not send. Please try again, or email contact@capturecaribbean.com.';
+          err.hidden = false;
+        }
+      });
+      // Leaving the page mid-request must not leave the subscription alive.
+      this.teardown.push(() => sub.unsubscribe());
     });
 
     show(0, false);

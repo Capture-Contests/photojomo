@@ -1,0 +1,409 @@
+/* =========================================================
+   CREATOR GUIDELINES
+   Figma: "Creators guideline v1" — 1920 x 7047.
+
+   The nav, footer, hero shell, .wrap and .btn all come from
+   family-contests.css. Only three things are page-specific:
+   the hero variant, the numbered guideline list, and the
+   closing photo band (lifted from partner-with-us.css, which
+   is where that pattern lives).
+   ========================================================= */
+
+/* ---------- current page marker in the nav ---------- */
+.nav__links .nav__item.is-current { color: var(--gold); }
+.nav__mobile a.is-current { color: var(--gold); }
+.footer__links .fcol__title.is-current { color: var(--gold); }
+
+/* =========================================================
+   HERO
+   Figma: 1920 x 653 sunset photograph, centred lockup. The
+   frame is squatter than the family default (800px) because
+   this is a reference page, not a landing page.
+   ========================================================= */
+.hero--guide { height: 653px; }
+.hero--guide .hero__bg img { object-position: center 58%; }
+
+/* The sky is bright enough at the top that the nav needs more
+   than the family's 210px scrim, so a whole-frame wash goes
+   underneath it — same device as .hero--exp. */
+.hero--guide .hero__bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .26);
+  pointer-events: none;
+}
+
+.hero--guide .hero__body { width: min(100% - (var(--pad) * 2), 1114px); }
+
+/* Lifted clear of the jump strip, which now occupies the foot of the hero. */
+.hero--guide .hero__scroll { bottom: 96px; }
+
+/* Figma says 75px. The site's own big titles top out at 72-74px
+   via clamp, so this follows that idiom rather than the literal
+   value — it keeps the page in scale with its siblings. */
+.hero--guide .hero__title { font-size: clamp(32px, 5.2vw, 68px); }
+
+.hero--guide .hero__lede {
+  margin: 24px auto 0;
+  max-width: 746px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .93);
+}
+
+/* =========================================================
+   JUMP LINKS
+   A shortcut to each of the twelve sections, on one line that
+   scrolls sideways. The negative margin is half a button's
+   height, so the row sits centred on the hero's lower edge —
+   each button half on the photograph, half on the cream.
+   ========================================================= */
+.jump {
+  position: relative;
+  z-index: 5;          /* above .hero__bg::after, below the nav's 60 */
+  /* Lifts the strip so the BUTTON is centred on the hero's edge; the
+     numerals sit above it, on the photograph. 14 numeral + 3 gap + half
+     of the 30px button. */
+  margin-top: -32px;
+}
+
+/* flex-end, not center: the items are now a numeral stacked over a button,
+   so centring would float the arrows up beside the numerals. Aligning to
+   the bottom keeps them level with the buttons. */
+.jump__inner {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+/* Arrow controls.
+   A hidden scrollbar leaves a mouse with no way to move this: a plain wheel
+   scrolls the page, and only shift+wheel or a trackpad swipe goes sideways.
+   These are that missing affordance. */
+.jump__arrow {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1.5px solid #cfc9bc;
+  border-radius: 3px;
+  background: var(--white-warm);
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, opacity .25s ease;
+}
+
+.jump__arrow svg { width: 9px; height: 14px; display: block; }
+
+.jump__arrow:hover:not(:disabled),
+.jump__arrow:focus-visible {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000000;
+}
+
+/* Kept in the layout rather than hidden, so the strip doesn't jump sideways
+   when you reach either end. */
+.jump__arrow:disabled {
+  opacity: .32;
+  cursor: default;
+}
+
+.jump__row {
+  flex: 1 1 auto;
+  min-width: 0;        /* lets the flex item shrink so the row can scroll */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  /* The twelve buttons are wider than the container at every width, so this
+     is a scroller everywhere, not only on phones. justify-content is left
+     alone: `center` would make the overflow unreachable at the start edge
+     in some engines. */
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  /* Fades the buttons out at both ends — the affordance that replaces the
+     hidden scrollbar. */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 22px, #000 calc(100% - 22px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 22px, #000 calc(100% - 22px), transparent);
+}
+
+.jump__row::-webkit-scrollbar { display: none; }
+
+/* Keyboard focus on the scroller itself; the buttons keep their own ring. */
+.jump__row:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+/* The separator is a ::before on the list item, so the item has to be a
+   flex row itself — left as a block, the hairline stacks above the button
+   instead of sitting beside it. flex-shrink is off or the labels would be
+   squeezed instead of the row scrolling. */
+.jump__row li {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+/* The numeral sits above its button, centred on it. */
+.jump__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+/* order:-1 rather than putting the numeral first in the markup — that keeps
+   the anchor as the numeral's previous sibling, so the hover below works on
+   a plain sibling combinator instead of needing :has(). */
+.jump__num {
+  order: -1;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  line-height: 1;
+  color: var(--gold);
+  transition: color .25s ease;
+}
+
+.jump__btn:hover + .jump__num,
+.jump__btn:focus-visible + .jump__num { color: #ffffff; }
+
+/* The hairline between two cells. Tall enough to span numeral and button
+   together, so it reads as a divider between columns. */
+.jump__row li + li::before {
+  content: "";
+  display: block;
+  align-self: stretch;
+  width: 1px;
+  margin: 3px 9px 0;
+  background: #cfcabf;
+}
+
+/* Keeps the first and last buttons clear of the mask's fade. */
+.jump__row li:first-child { padding-left: 22px; }
+.jump__row li:last-child { padding-right: 22px; }
+
+.jump__btn {
+  display: block;
+  padding: 6px 13px;
+  border: 1.5px solid #cfc9bc;
+  border-radius: 3px;
+  background: var(--white-warm);
+  color: var(--charcoal);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: .005em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
+.jump__btn:hover,
+.jump__btn:focus-visible {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000000;
+}
+
+/* =========================================================
+   THE GUIDELINES
+   Figma: 1470-wide rows — [66px numeral] 36 [1px rule] 36 [copy],
+   92px apart, in a 116/100 padded band. The top padding is
+   measured from the jump strip rather than the hero edge.
+   ========================================================= */
+.guide {
+  background: var(--cream);
+  padding: 96px 0 100px;
+}
+
+/* margin-inline, not margin: .wrap supplies `margin-inline: auto` and this
+   file loads after family-contests.css, so a `margin: 0` here would win the
+   cascade at equal specificity and jam the list against the viewport edge. */
+.guide__list {
+  margin-block: 0;
+  margin-inline: auto;
+  padding: 0;
+  list-style: none;   /* the numerals are drawn, not generated */
+  display: grid;
+  row-gap: 92px;
+}
+
+.guide__item {
+  display: grid;
+  grid-template-columns: 66px minmax(0, 1fr);
+  column-gap: 36px;
+  align-items: start;
+}
+
+.guide__num {
+  font-family: var(--font-serif);
+  font-size: 58px;
+  line-height: .9;
+  font-weight: 400;
+  color: var(--gold);
+  /* optical: the serif numerals sit high against the headline's
+     cap height, so nudge them down to align at the top */
+  margin-top: -2px;
+}
+
+/* The 1px rule from the Figma, as a border rather than a third
+   grid column — one less thing to keep in sync when it collapses. */
+.guide__body {
+  border-left: 1px solid var(--border);
+  padding-left: 36px;
+}
+
+.guide__title {
+  margin: 0 0 32px;
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.guide__body p {
+  margin: 0 0 24px;
+  max-width: 1100px;
+  font-size: 16px;
+  line-height: 1.72;
+  font-weight: 300;
+  color: var(--body);
+}
+
+.guide__body p:last-child { margin-bottom: 0; }
+
+/* =========================================================
+   CLOSING PHOTO BAND
+   Figma: full-bleed 1920 x 1000 photograph, centred lockup.
+   Same pattern as partner-with-us; kept local because .close
+   lives in that page's stylesheet, not the family one.
+   ========================================================= */
+.close {
+  position: relative;
+  min-height: 620px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #ffffff;
+  text-align: center;
+}
+
+.close__bg { position: absolute; inset: 0; }
+.close__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 50%; }
+
+.close::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .34);
+}
+
+.close__body { position: relative; z-index: 2; }
+
+.close__title {
+  margin: 0;
+  font-size: 46px;
+  line-height: 1.22;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+
+.close__title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.08em;
+  letter-spacing: 0;   /* cancels the title's negative tracking */
+}
+
+.close__body .btn { margin-top: 34px; }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .hero--guide { height: 600px; }
+  .hero--guide .hero__lede { font-size: 16px; }
+
+  .jump { margin-top: -33px; }
+  .jump__btn { font-size: 12px; padding: 7px 12px; }
+  .jump__row li + li::before { margin: 0 7px; }
+
+  .guide { padding: 78px 0 84px; }
+  .guide__list { row-gap: 72px; }
+  .guide__num { font-size: 50px; }
+  .guide__title { font-size: 29px; margin-bottom: 26px; }
+
+  .close__title { font-size: 39px; }
+}
+
+/* The numeral column and its rule stop earning their width here.
+   Following .journey and .hstop, the scaffolding is removed rather
+   than scaled: the numeral becomes a label above the headline. */
+@media (max-width: 860px) {
+  .hero--guide { height: 540px; }
+  .hero--guide .hero__lede { font-size: 15px; max-width: none; }
+
+  /* A single scrolling row needs no reflow — it only gets smaller. The
+     fade and the end padding tighten so they don't eat the narrow
+     container. */
+  .jump__inner { gap: 6px; }
+  .jump__row {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 14px, #000 calc(100% - 14px), transparent);
+  }
+  .jump__row li:first-child { padding-left: 14px; }
+  .jump__row li:last-child { padding-right: 14px; }
+  .jump__row li + li::before { margin: 0 6px; }
+
+  .guide { padding: 70px 0 70px; }
+  .guide__list { row-gap: 58px; }
+
+  .guide__item {
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0;
+    row-gap: 12px;
+  }
+
+  .guide__num {
+    font-size: 34px;
+    line-height: 1;
+    margin-top: 0;
+  }
+
+  .guide__body {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .guide__title { font-size: 25px; margin-bottom: 20px; }
+  .guide__body p { font-size: 15.5px; margin-bottom: 20px; }
+
+  .close { min-height: 470px; }
+  .close__title { font-size: 31px; }
+}
+
+@media (max-width: 560px) {
+  .jump { margin-top: -30px; }
+  .jump__inner { gap: 5px; }
+  .jump__num { font-size: 13px; }
+  .jump__arrow { width: 26px; height: 26px; }
+  .jump__arrow svg { width: 8px; height: 12px; }
+  .jump__btn { font-size: 11.5px; padding: 6px 10px; }
+
+  .guide { padding: 44px 0 60px; }
+  .guide__list { row-gap: 50px; }
+  .guide__num { font-size: 30px; }
+  .guide__title { font-size: 22px; margin-bottom: 16px; }
+  .guide__body p { font-size: 15px; line-height: 1.68; }
+
+  .close__title { font-size: 25px; }
+}

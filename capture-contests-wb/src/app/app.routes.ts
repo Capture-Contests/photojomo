@@ -4,6 +4,7 @@ import { HomePage } from './pages/home/home';
 import { TheExperiencePage } from './pages/the-experience/the-experience';
 import { PartnerWithUsPage } from './pages/partner-with-us/partner-with-us';
 import { PartnerInquiryPage } from './pages/partner-inquiry/partner-inquiry';
+import { CreatorGuidelinesPage } from './pages/creator-guidelines/creator-guidelines';
 import { CaptureCaribbeanPage } from './pages/capture-caribbean/capture-caribbean';
 import { CaptureAfricaPage } from './pages/capture-africa/capture-africa';
 import { CaptureBarbadosPage } from './pages/capture-barbados/capture-barbados';
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'the-experience', component: TheExperiencePage },
   { path: 'partner-with-us', component: PartnerWithUsPage },
   { path: 'partner-inquiry', component: PartnerInquiryPage },
+  { path: 'creator-guidelines', component: CreatorGuidelinesPage },
   { path: 'capture-caribbean', component: CaptureCaribbeanPage },
   { path: 'capture-africa', component: CaptureAfricaPage },
   { path: 'capture-barbados', component: CaptureBarbadosPage },

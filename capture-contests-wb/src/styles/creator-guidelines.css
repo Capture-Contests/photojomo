@@ -305,6 +305,111 @@
   background: rgba(0, 0, 0, .34);
 }
 
+/* ---------- carousel seated in the lens ----------
+   The wrapper reproduces the photograph's own object-fit: cover box — same
+   aspect ratio, centred, never smaller than the band. That is what keeps the
+   disc locked to the glass as the crop changes with the viewport, instead of
+   drifting off it at narrow widths.
+   z-index 1 puts it over the ::after scrim but under the copy. */
+.close__lens {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  aspect-ratio: 1536 / 1024;   /* cg-cta.jpg's own ratio */
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* The front element's true outline, fitted rather than estimated: 360 rays
+   cast from the centre, each stopped at the dark rim between the coating and
+   the barrel, then a least-squares conic through those points.
+
+     centre      72.49% / 58.92%   (+2px right applied: 72.63%)
+     major axis  29.28% of the image width
+     minor/major 1 : 1.135
+     tilt        -69.88 degrees
+
+   The ellipse is only slightly out of round, but its long axis is steeply
+   tilted, so the rotation matters far more to the CONTENT than to the shape —
+   hence the counter-rotation on the photographs below. */
+.close__lens-disc {
+  position: absolute;
+  left: 72.63%;
+  top: 58.92%;
+  width: 29.28%;
+  aspect-ratio: 1.135;
+  transform: translate(-50%, -50%) rotate(-69.88deg);
+  border-radius: 50%;
+  overflow: hidden;
+  isolation: isolate;
+  /* Every shadow here is symmetric on purpose. The element is rotated ~70
+     degrees, and an offset shadow would rotate with it — a "0 14px" drop
+     would end up cast to the left. A disc sunk into a lens wants a contact
+     halo anyway, not a drop shadow. */
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, .08),
+    0 0 10px 1px rgba(0, 0, 0, .70),
+    0 0 30px 10px rgba(0, 0, 0, .45);
+}
+
+/* Inner shade: falls off toward the rim so the disc reads as curved glass
+   rather than a flat sticker. Symmetric for the same reason as above. */
+.close__lens-disc::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 14px rgba(0, 0, 0, .55),
+    inset 0 0 46px rgba(0, 0, 0, .30);
+}
+
+/* Counter-rotated so the photographs stay upright while the aperture matches
+   the lens. Oversized to 145% because a rotated rectangle has to be bigger
+   than the ellipse it fills, or the corners would clip in. */
+.close__lens-disc img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 145%;
+  height: 145%;
+  object-fit: cover;
+  transform: translate(-50%, -50%) rotate(69.88deg);
+  opacity: 0;
+  animation: cg-lens-cycle 24s infinite;
+}
+
+/* Four images, 24s round trip: six seconds each, of which about one is the
+   crossfade. Staggering by delay rather than by keyframe means adding or
+   removing an image is a change to one number. */
+.close__lens-disc img:nth-child(1) { animation-delay:   0s; }
+.close__lens-disc img:nth-child(2) { animation-delay:  -6s; }
+.close__lens-disc img:nth-child(3) { animation-delay: -12s; }
+.close__lens-disc img:nth-child(4) { animation-delay: -18s; }
+
+@keyframes cg-lens-cycle {
+  0%    { opacity: 0; }
+  2%    { opacity: 1; }
+  25%   { opacity: 1; }
+  27%   { opacity: 0; }
+  100%  { opacity: 0; }
+}
+
+/* Still photograph rather than an empty lens for anyone who has asked for
+   less movement: the first image simply stays put. */
+@media (prefers-reduced-motion: reduce) {
+  .close__lens-disc img { animation: none; opacity: 0; }
+  .close__lens-disc img:nth-child(1) { opacity: 1; }
+}
+
 .close__body { position: relative; z-index: 2; }
 
 .close__title {

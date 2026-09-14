@@ -1,0 +1,316 @@
+<!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" routerLink="/" aria-label="Capture Contests home">
+        <span class="nav__logo-mark" aria-hidden="true"></span>
+        <span class="nav__logo-sub" aria-hidden="true">Contests<i>&trade;</i></span>
+        <span class="u-sr">Capture Contests</span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a class="nav__item" routerLink="/">Capture Contests</a>
+
+        <div class="nav__item nav__item--drop">
+          <button type="button" class="nav__trigger" aria-expanded="false">
+            All Regions
+            <svg class="nav__caret" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+          <div class="nav__menu">
+            <a class="is-live" routerLink="/capture-caribbean">Capture Caribbean</a>
+            <a class="is-live" routerLink="/capture-africa">Capture Africa</a>
+            <a routerLink="/" fragment="regions">Capture Asia</a>
+            <a routerLink="/" fragment="regions">Capture Europe</a>
+            <a routerLink="/" fragment="regions">Capture Mediterranean</a>
+            <a routerLink="/" fragment="regions">Capture Central America</a>
+            <a routerLink="/" fragment="regions">Capture Oceania</a>
+          </div>
+        </div>
+
+        <a class="nav__item" routerLink="/" fragment="vision">The Vision</a>
+        <a class="nav__item" routerLink="/the-experience">The Experience</a>
+        <a class="nav__item" routerLink="/partner-with-us" fragment="who">Collaborate</a>
+      </nav>
+
+      <a class="btn btn--white nav__cta" routerLink="/partner-inquiry">Partner With Us</a>
+
+      <button class="nav__burger" type="button" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="nav__mobile">
+      <a routerLink="/">Capture Contests</a>
+      <div class="nav__mobile-group">
+        <button type="button" class="nav__mobile-toggle" aria-expanded="false">
+          All Regions
+          <svg class="nav__caret" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+        </button>
+        <div class="nav__mobile-sub">
+          <a class="is-live" routerLink="/capture-caribbean">Capture Caribbean</a>
+          <a class="is-live" routerLink="/capture-africa">Capture Africa</a>
+          <a routerLink="/" fragment="regions">Capture Asia</a>
+          <a routerLink="/" fragment="regions">Capture Europe</a>
+          <a routerLink="/" fragment="regions">Capture Mediterranean</a>
+          <a routerLink="/" fragment="regions">Capture Central America</a>
+          <a routerLink="/" fragment="regions">Capture Oceania</a>
+        </div>
+      </div>
+      <a routerLink="/" fragment="vision">The Vision</a>
+      <a routerLink="/the-experience">The Experience</a>
+      <a routerLink="/partner-with-us" fragment="who">Collaborate</a>
+      <a class="btn btn--gold nav__mobile-cta" routerLink="/partner-inquiry">Partner With Us</a>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero hero--guide">
+    <div class="hero__bg">
+      <img src="/images/cg-hero.jpg?v=1" alt="A signpost silhouetted against a pink and gold sunset sky" fetchpriority="high" />
+    </div>
+    <div class="hero__body">
+      <p class="hero__eyebrow">Global Creator Standards</p>
+      <h1 class="hero__title">Creator <em>Guidelines</em></h1>
+      <p class="hero__lede">
+        These are the global standards we hold for every creator participating across the
+        Capture Contests platform.
+      </p>
+    </div>
+    <div class="hero__scroll" aria-hidden="true"><span class="hero__scroll-line"></span>Scroll</div>
+  </section>
+
+  <!-- ===================== JUMP LINKS =====================
+       One row, straddling the hero's lower edge, scrolling sideways when it
+       runs past the container. tabindex makes the scroller reachable by
+       keyboard on its own; the buttons inside are focusable regardless and
+       scroll themselves into view.
+       Labels are shortened forms of the section headings.
+       ======================================================= -->
+  <nav class="jump" aria-label="Jump to a guideline">
+    <div class="jump__inner wrap">
+      <button class="jump__arrow" type="button" data-jump="-1" aria-label="Scroll guidelines left">
+        <svg viewBox="0 0 10 16" aria-hidden="true"><path d="M8 1L2 8l6 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <ul class="jump__row" tabindex="0">
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g01">Create Authentically</a><span class="jump__num" aria-hidden="true">01</span></span></li>
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g02">Human Creativity</a><span class="jump__num" aria-hidden="true">02</span></span></li>
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g03">Original Work</a><span class="jump__num" aria-hidden="true">03</span></span></li>
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g04">Ethical Storytelling</a><span class="jump__num" aria-hidden="true">04</span></span></li>
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g05">People &amp; Privacy</a><span class="jump__num" aria-hidden="true">05</span></span></li>
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g06">Places &amp; Communities</a><span class="jump__num" aria-hidden="true">06</span></span></li>
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g07">Creator Ownership</a><span class="jump__num" aria-hidden="true">07</span></span></li>
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g08">Editing &amp; Integrity</a><span class="jump__num" aria-hidden="true">08</span></span></li>
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g09">Verification</a><span class="jump__num" aria-hidden="true">09</span></span></li>
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g10">Technical Requirements</a><span class="jump__num" aria-hidden="true">10</span></span></li>
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g11">Creator Conduct</a><span class="jump__num" aria-hidden="true">11</span></span></li>
+        <li><span class="jump__cell"><a class="jump__btn" routerLink="/creator-guidelines" fragment="g12">Global Community</a><span class="jump__num" aria-hidden="true">12</span></span></li>
+      </ul>
+
+      <button class="jump__arrow" type="button" data-jump="1" aria-label="Scroll guidelines right">
+        <svg viewBox="0 0 10 16" aria-hidden="true"><path d="M2 1l6 7-6 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== GUIDELINES =====================
+       An ordered list so the numbering is real: the visible numeral is
+       decoration and is hidden from assistive tech, which reads the <ol>.
+       ======================================================= -->
+  <section class="guide" id="guidelines">
+    <ol class="guide__list wrap">
+
+      <li class="guide__item" id="g01">
+        <span class="guide__num" aria-hidden="true">01</span>
+        <div class="guide__body">
+          <h2 class="guide__title">Create Authentically. Tell Stories Responsibly.</h2>
+          <p>Capture Contests celebrates human creativity and the power of authentic visual storytelling.</p>
+          <p>Our global platform brings together photographers, digital video creators, filmmakers, visual storytellers, and emerging creative voices from around the world. These guidelines establish the core standards we expect from creators participating across the Capture Contests ecosystem.</p>
+          <p>Specific eligibility, entry, technical, and submission requirements may vary by contest, destination, or experience. Always review the applicable Official Rules before participating.</p>
+        </div>
+      </li>
+
+      <li class="guide__item" id="g02">
+        <span class="guide__num" aria-hidden="true">02</span>
+        <div class="guide__body">
+          <h2 class="guide__title">Authentic Human Creativity</h2>
+          <p>Capture Contests exists to discover, celebrate, and elevate authentic human-created visual work.</p>
+          <p>Submitted photography, digital video, film, and other eligible visual content should reflect the creator&rsquo;s own creative vision and authorship.</p>
+          <p>Content that is fully generated by artificial intelligence and presented as original creator-captured work is not permitted in Capture Contests competitions unless expressly stated otherwise for a particular experience.</p>
+          <p>Digital tools may be used for normal creative development and post-production where permitted, but creators should not use technology in ways that materially misrepresent the authorship or authenticity of submitted work.</p>
+        </div>
+      </li>
+
+      <li class="guide__item" id="g03">
+        <span class="guide__num" aria-hidden="true">03</span>
+        <div class="guide__body">
+          <h2 class="guide__title">Original Work</h2>
+          <p>Creators should submit work they have created and have the right to enter.</p>
+          <p>You are responsible for ensuring that your submission does not knowingly infringe another person&rsquo;s copyright, trademark, privacy, publicity, or other intellectual property rights.</p>
+          <p>Where another person&rsquo;s protected material is substantially incorporated into your work, you are responsible for obtaining any permissions required for its use.</p>
+        </div>
+      </li>
+
+      <li class="guide__item" id="g04">
+        <span class="guide__num" aria-hidden="true">04</span>
+        <div class="guide__body">
+          <h2 class="guide__title">Ethical Storytelling</h2>
+          <p>Great visual storytelling carries responsibility.</p>
+          <p>We encourage creators to approach people, communities, cultures, traditions, environments, and destinations with respect, curiosity, and integrity.</p>
+          <p>Creators should avoid intentionally deceptive representation, exploitation, or harmful stereotyping and should respect culturally sensitive subjects, locations, traditions, and circumstances.</p>
+          <p>Authenticity should never come at the expense of human dignity.</p>
+        </div>
+      </li>
+
+      <li class="guide__item" id="g05">
+        <span class="guide__num" aria-hidden="true">05</span>
+        <div class="guide__body">
+          <h2 class="guide__title">People, Privacy &amp; Permission</h2>
+          <p>When photographing or recording people, creators are responsible for understanding and complying with applicable laws and obtaining permissions or releases when required.</p>
+          <p>Additional releases or documentation may be requested from selected creators, finalists, or winners when necessary for publication, exhibition, licensing, promotion, or other authorized uses.</p>
+          <p>Creators should exercise particular care when creating work involving minors, vulnerable individuals, private settings, or culturally sensitive circumstances.</p>
+        </div>
+      </li>
+
+      <li class="guide__item" id="g06">
+        <span class="guide__num" aria-hidden="true">06</span>
+        <div class="guide__body">
+          <h2 class="guide__title">Respect for Places &amp; Communities</h2>
+          <p>Capture experiences are intended to encourage discovery&mdash;not disruption.</p>
+          <p>Creators should respect local laws, community standards, private property, protected environments, cultural sites, wildlife, and restrictions governing photography, filming, drones, or access to particular locations.</p>
+          <p>Do not endanger yourself, another person, wildlife, property, or the environment for the purpose of creating an entry.</p>
+        </div>
+      </li>
+
+      <li class="guide__item" id="g07">
+        <span class="guide__num" aria-hidden="true">07</span>
+        <div class="guide__body">
+          <h2 class="guide__title">Creator Ownership</h2>
+          <p>Your work remains your work.</p>
+          <p>Participation in Capture Contests does not automatically transfer ownership of your original photography, digital video, film, or other eligible creative work to Capture Contests.</p>
+          <p>Individual contests and experiences may require creators to grant specific licenses or permissions necessary for judging, promotion, publication, exhibition, archival presentation, media distribution, or other stated uses.</p>
+          <p>Those rights will be defined in the applicable Official Rules, participation terms, or separate agreements.</p>
+        </div>
+      </li>
+
+      <li class="guide__item" id="g08">
+        <span class="guide__num" aria-hidden="true">08</span>
+        <div class="guide__body">
+          <h2 class="guide__title">Editing &amp; Creative Integrity</h2>
+          <p>We recognize that editing and post-production are part of contemporary visual storytelling.</p>
+          <p>Reasonable adjustments and creative treatments may be permitted depending on the contest or category. However, editing should comply with the requirements of the applicable competition and should not be used to circumvent authenticity requirements.</p>
+          <p>Where required, creators may be asked to disclose significant manipulation, compositing, generative alteration, or other material changes to submitted work.</p>
+        </div>
+      </li>
+
+      <li class="guide__item" id="g09">
+        <span class="guide__num" aria-hidden="true">09</span>
+        <div class="guide__body">
+          <h2 class="guide__title">Verification</h2>
+          <p>Capture Contests may request additional information or original source material to verify the authenticity, authorship, eligibility, or technical integrity of a submission.</p>
+          <p>Depending on the competition, this may include original image or video files, RAW files, metadata, higher-resolution files, releases, identification, eligibility documentation, or other supporting information.</p>
+          <p>Failure to provide requested verification may affect eligibility.</p>
+        </div>
+      </li>
+
+      <li class="guide__item" id="g10">
+        <span class="guide__num" aria-hidden="true">10</span>
+        <div class="guide__body">
+          <h2 class="guide__title">Technical &amp; Submission Requirements</h2>
+          <p>File formats, resolution, dimensions, file sizes, duration, entry limits, categories, deadlines, and other technical requirements are established for each individual contest or experience.</p>
+          <p>Please refer to the applicable contest page and Official Rules for current requirements.</p>
+        </div>
+      </li>
+
+      <li class="guide__item" id="g11">
+        <span class="guide__num" aria-hidden="true">11</span>
+        <div class="guide__body">
+          <h2 class="guide__title">Creator Conduct</h2>
+          <p>Creators participating in Capture Contests experiences are expected to interact respectfully with fellow creators, communities, partners, judges, staff, and members of the public.</p>
+          <p>Fraud, plagiarism, deliberate misrepresentation, manipulation of eligibility or voting systems, harassment, or attempts to circumvent competition safeguards may result in disqualification or other action under the applicable Official Rules.</p>
+        </div>
+      </li>
+
+      <li class="guide__item" id="g12">
+        <span class="guide__num" aria-hidden="true">12</span>
+        <div class="guide__body">
+          <h2 class="guide__title">A Global Community of Visual Storytellers</h2>
+          <p>Capture Contests is building more than a place to enter competitions.</p>
+          <p>We are creating opportunities for creators to discover places, document cultures, share perspectives, develop their craft, connect with communities, and contribute to a growing global body of authentic visual storytelling.</p>
+          <p>Every creator brings a different perspective.</p>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ===================== CLOSING PHOTO BAND ===================== -->
+  <section class="close">
+    <div class="close__bg"><img src="/images/cg-cta.jpg?v=1" alt="A hand holding a vintage Canon film camera" loading="lazy" /></div>
+    <div class="wrap close__body">
+      <h2 class="close__title">We want to see<br />the world <em>through yours.</em></h2>
+      <!-- TODO: confirm destination — /the-experience is the nearest match for
+           "Creator Experiences", but this was not specified in the design. -->
+      <a class="btn btn--orange" routerLink="/the-experience">Explore Creator Experiences</a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer footer--para">
+    <div class="footer__inner">
+      <a class="footer__logo" routerLink="/" aria-label="Capture Contests home">
+        <span class="footer__logo-mark" aria-hidden="true"></span>
+        <span class="footer__logo-sub" aria-hidden="true">Contests<i>&trade;</i></span>
+      </a>
+      <p class="footer__tagline">Explore the world. Tell authentic stories. Connect across cultures.</p>
+
+      <nav class="footer__links" aria-label="Footer">
+        <div class="fcol">
+          <a class="fcol__title" routerLink="/" fragment="vision">About</a>
+          <p class="fcol__copy">Discover the vision behind Capture Contests and how our global platform connects creators, communities, cultures, and destinations through authentic visual storytelling, travel, competition, and cultural discovery.</p>
+        </div>
+        <div class="fcol">
+          <a class="fcol__title" routerLink="/partner-with-us" fragment="who">Partnerships</a>
+          <p class="fcol__copy">Explore opportunities to collaborate with Capture Contests as a sponsor, destination partner, tourism organization, hospitality brand, cultural institution, media partner, or strategic collaborator.</p>
+        </div>
+        <div class="fcol">
+          <a class="fcol__title is-current" routerLink="/creator-guidelines" aria-current="page">Creator Guidelines</a>
+          <p class="fcol__copy">Learn about participation requirements, submission standards, ethical storytelling practices, content ownership, image and video specifications, and creator expectations across Capture Contests experiences.</p>
+        </div>
+        <div class="fcol">
+          <a class="fcol__title" routerLink="/" fragment="partner">Privacy Policy</a>
+          <p class="fcol__copy">Learn how Capture Contests collects, uses, protects, and manages personal information across the global platform and its affiliated regional and destination experiences.</p>
+        </div>
+        <div class="fcol">
+          <a class="fcol__title" routerLink="/" fragment="partner">Terms of Use</a>
+          <p class="fcol__copy">Read the terms governing access to and use of the Capture Contests platform, including user responsibilities, intellectual property, submitted content, third-party services, and other legal conditions.</p>
+        </div>
+        <div class="fcol">
+          <a class="fcol__title" routerLink="/partner-inquiry">Contact</a>
+          <p class="fcol__copy">Connect with the Capture Contests team for creator support, contest inquiries, destination collaborations, sponsorship and partnership opportunities, media requests, or general information.</p>
+        </div>
+      </nav>
+
+      <div class="footer__social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4A5.8 5.8 0 0 1 16.2 22H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 1.8A4 4 0 0 0 3.8 7.8v8.4a4 4 0 0 0 4 4h8.4a4 4 0 0 0 4-4V7.8a4 4 0 0 0-4-4H7.8Zm4.2 3.3a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8Zm0 1.8a3.1 3.1 0 1 0 0 6.2 3.1 3.1 0 0 0 0-6.2Zm5.1-2.9a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.25 5 12 5 12 5s-6.25 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.75 19 12 19 12 19s6.25 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15.2V8.8l5.2 3.2-5.2 3.2Z"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.6 21v-8.2h2.76l.41-3.2H13.6V7.55c0-.93.26-1.56 1.59-1.56h1.7V3.13A22.7 22.7 0 0 0 14.41 3c-2.46 0-4.14 1.5-4.14 4.26V9.6H7.5v3.2h2.77V21h3.33Z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 21h4V9.5H3V21Zm7 0h4v-6.2c0-1.63.31-3.2 2.33-3.2 1.99 0 2.02 1.86 2.02 3.3V21h4v-7.1c0-3.47-.75-6.14-4.8-6.14-1.95 0-3.26 1.07-3.79 2.08h-.06V9.5H10V21Z"/></svg></a>
+      </div>
+
+      <div class="footer__bar">
+        <p>Capture Contests: Authentic Stories. Global Perspectives.</p>
+        <p>&copy; 2026 Capture Contests. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <g class="to-top__globe" fill="none" stroke="currentColor" stroke-width="1.1">
+        <circle cx="12" cy="12" r="8.6" /><path d="M3.4 12h17.2" />
+        <path d="M12 3.4c2.5 2.9 2.5 14.3 0 17.2" /><path d="M12 3.4c-2.5 2.9-2.5 14.3 0 17.2" />
+      </g>
+      <path d="M12 16.6V8.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+      <path d="M8.7 11.7 12 8.4l3.3 3.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </button>

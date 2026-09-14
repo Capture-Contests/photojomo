@@ -55,7 +55,8 @@ target/
 capture-contests-wb/server-php/cc-config.php
 cc-enquiries/
 
-# Video master: 75 MB, and only the encoded web renditions are ever served.
-# Keeping it out of git also keeps it out of the Cloudflare build, which
-# publishes everything under public/.
+# Video masters: 75 MB each, and only the encoded web renditions are ever
+# served. Keeping them out of git also keeps them out of the Cloudflare build,
+# which publishes everything under public/.
 capture-contests-wb/public/video/FINAL - LOGO FIXED.mp4
+capture-contests-wb/public/video/CONTESTS-4k.mp4

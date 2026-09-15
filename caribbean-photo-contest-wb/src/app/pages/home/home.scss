@@ -247,8 +247,23 @@ $soft: #f6f8fa;
     }
   }
 
-  // Mobile (≤768px) — stacked layout, all content fits viewport
-  @media (max-width: 768px) {
+  // Narrow desktop / tablet landscape (769–1280px). The hero is sized purely by
+  // aspect-ratio, so at 800px wide it is only ~465px tall — far too short for the
+  // ~257px partnership block that sits absolutely at its bottom. That pushed the
+  // block's transparent→white gradient up through the title: at 800px the title
+  // wraps to two lines and the second one disappeared into the white entirely.
+  // A height floor keeps the title clear of the partnership across the band
+  // (worst case is ~800px wide, where the two-line title needs ~700px of hero).
+  @media (min-width: 769px) and (max-width: 1280px) {
+    min-height: 700px;
+  }
+
+  // Mobile (≤768px) — stacked layout, all content fits viewport.
+  // A rotated phone is wider than 768px but only ~320–450px tall, so it needs the
+  // same stacked treatment: on the desktop layout the absolutely-positioned
+  // partnership block laid its white gradient over the white title. The short-
+  // landscape sizes are then tightened in the dedicated block further down.
+  @media (max-width: 768px), (orientation: landscape) and (max-height: 500px) {
     aspect-ratio: auto;
     min-height: auto;
     height: 100svh;        // small viewport height — accounts for browser chrome
@@ -381,6 +396,93 @@ $soft: #f6f8fa;
     height: auto;
     display: block;
     margin: 0 auto;
+  }
+}
+
+// ─── HERO + PARTNERSHIP: rotated phone (short landscape viewport) ─────────────
+// A phone in landscape is ~650–950px wide, so it cleared the 768px mobile
+// breakpoint and got the desktop hero: a 1920/1116 aspect box taller than the
+// viewport, with the partnership absolutely positioned inside it. Three things
+// broke as a result — the partnership's transparent→white gradient washed out the
+// bottom half of the white title (white on white), "Shape the legacy" sat on bare
+// sky with no scrim under it, and the Bay Gardens logo ran off the bottom edge.
+//
+// Height-based, not width-based: real landscape phones are 320–450px tall, while
+// every desktop and tablet-landscape viewport is well over 500px, so this cannot
+// catch them. The stacked layout itself comes from the shared breakpoint on
+// .cc-hero above; this block only tightens sizes and contrast for the short box,
+// and moves the partnership back into normal flow underneath the hero.
+@media (orientation: landscape) and (max-height: 500px) {
+  .cc-hero {
+    height: auto;
+    min-height: 100svh;
+    max-height: none;
+    padding: 20px 24px 28px;
+
+    // Content sits in the middle of a short box, so the white fade has to stay
+    // below the title — it bottoms out at ~66% of the hero here. Starting the
+    // fade at 76% keeps it clear of the text while still easing the image into
+    // the white partnership block below, rather than cutting it off.
+    // The image has to be fully gone before the hero ends, or its bottom edge
+    // shows as a hard line against the white section below — so the mask reaches
+    // zero at 94%, leaving the last 6% as pure white.
+    &__bg {
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0,0,0,0) 94%);
+              mask-image: linear-gradient(to bottom, #000 0%, #000 70%, rgba(0,0,0,0) 94%);
+    }
+
+    // Light hand on the darkening: enough to hold white text against bright sky
+    // and sunlit foliage, but the photo still reads as the photo. The eyebrow and
+    // title carry text-shadows below, which do most of the contrast work.
+    &__scrim {
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.26) 0%, rgba(0,0,0,0.34) 45%, rgba(0,0,0,0.28) 70%, rgba(0,0,0,0) 90%),
+        linear-gradient(to bottom, rgba(255,255,255,0) 70%, rgba(255,255,255,0.70) 88%, #fff 94%);
+    }
+
+    // Vertical budget at 320px tall: badge 64 + 8 + eyebrow 12 + 8 + title 2×26
+    // ≈ 145px inside 272px of content box, so nothing is ever clipped.
+    &__badge {
+      width: clamp(56px, 17vh, 88px);
+      margin: 0 auto 8px;
+    }
+
+    &__eyebrow {
+      font-size: clamp(11px, 3.2vh, 14px);
+      letter-spacing: 1px;
+      margin: 0 0 8px;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+    }
+
+    &__title {
+      max-width: 640px;
+      font-size: clamp(20px, 6.4vh, 30px);
+      line-height: 1.15;
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+    }
+  }
+
+  // Put the partnership back in normal flow below the hero (the mobile copy), so
+  // its white gradient can no longer sit on top of the title and the logo can no
+  // longer be clipped by the bottom of the viewport.
+  .cc-partnership {
+    margin-top: 0;
+    padding: 1.5rem 2rem 2rem;
+
+    &--inside { display: none; }
+    &--outside { display: block; }
+
+    &__eyebrow {
+      font-size: 18px;
+      line-height: 1.3;
+      margin: 0 0 0.75rem;
+    }
+
+    &__image {
+      min-width: 0;
+      width: 260px;
+      max-width: 60vw;
+    }
   }
 }
 

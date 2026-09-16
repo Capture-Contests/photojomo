@@ -984,3 +984,24 @@ img { height: auto; }
     padding: 6px 12px;
   }
 }
+
+/* =========================================================
+   HERO PHOTO CREDIT — phone held sideways
+   A rotated phone is short (<=560px tall) but can be wider than the
+   860px mobile breakpoint, so it is matched on orientation and height
+   rather than width: that catches the 896x414-class handsets the
+   max-width rules miss, and excludes landscape tablets, which are
+   taller than this. Keeps the centred mobile treatment, 30px higher,
+   because there is far less room under the type when rotated.
+   ========================================================= */
+@media (orientation: landscape) and (max-height: 560px) {
+  .hero__credit {
+    top: auto;
+    bottom: 180px;        /* the 150px mobile anchor, lifted 30px */
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

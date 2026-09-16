@@ -1,3 +1,11 @@
+/* The <img> tags now carry their intrinsic width/height so the browser can
+   reserve the box before the bytes land (kills lazy-load layout shift).
+   family-region.css caps them at max-width:100% without a matching
+   height:auto, which would squash them once the cap bites - so restore it
+   here. It is the CSS default, so nothing renders differently today, and any
+   rule that sets a real height still wins on specificity. */
+img { height: auto; }
+
 /* ---------- page identity ----------
    Same two-part mark as Ghana and Nigeria: the shared "Capture"
    wordmark over a wide-tracked place name, painted solid white. */
@@ -74,8 +82,14 @@
 }
 
 .hero__bg {
-  background: #000 url("/images/sl-hero.jpg?v=1") no-repeat center / cover;
+  /* webp at 1800w: the 2600w jpg was 1118KB for a frame nothing renders at
+     full size. Phones get a 900w cut (100KB) via the mobile override below. */
+  background: #000 url("/images/sl-hero.webp?v=3") no-repeat center / cover;
   background-position: center calc(50% - 40px);
+}
+
+@media (max-width: 860px) {
+  .hero__bg { background-image: url("/images/sl-hero-mobile.webp?v=3"); }
 }
 /* The hero type is centred, so the left-to-right wash styles.css uses for
    the Caribbean hero is replaced with a soft pool under the middle. */
@@ -217,7 +231,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/images/sl-map-wash.png?v=1") no-repeat center 42% / auto 96%;
+  background: url("/images/sl-map-wash.webp?v=3") no-repeat center 42% / auto 96%;
   pointer-events: none;
 }
 
@@ -512,7 +526,7 @@
   min-height: 900px;
   display: grid;
   align-items: start;
-  background: #7fb4d8 url("/images/sl-legacy.jpg?v=1") no-repeat center / cover;
+  background: #7fb4d8 url("/images/sl-legacy.webp?v=3") no-repeat center / cover;
   background-position: center calc(50% - 40px);
   isolation: isolate;
 }
@@ -650,9 +664,9 @@
   isolation: isolate;
 }
 
-.sl-cta__panel--partner { background-image: url("/images/ng-cta-partner.jpg?v=1"); }
+.sl-cta__panel--partner { background-image: url("/images/ng-cta-partner.webp?v=3"); }
 
-.sl-cta__panel--creator { background-image: url("/images/ng-cta-creator.jpg?v=1"); }
+.sl-cta__panel--creator { background-image: url("/images/ng-cta-creator.webp?v=3"); }
 
 .sl-cta__panel::after {
   content: "";
@@ -893,4 +907,80 @@
   padding: 4px;
   background: #ffffff;
   border: 2px solid #c4c4c4;
+}
+
+/* =========================================================
+   HERO + PRESENTED IN PARTNERSHIP — desktop nudge
+   Hero photo up 20px, title up 90px total, logo up 120px total, both
+   with a soft white outer glow so they read off the photograph.
+   Bottom padding then gives 190px back, closing the gap under the lockup.
+   ========================================================= */
+@media (min-width: 861px) {
+  .hero__bg { background-position: center calc(50% - 60px); }  /* base -40px, image lifted 20px */
+
+  .sl-bridge {
+    margin-top: -262px;        /* base -172px, lifted 90px */
+    /* 226px would hold everything below exactly where it started; 190px less
+       closes the gap that opened under the lockup as it climbed. */
+    padding-bottom: 36px;
+  }
+
+  .sl-bridge__logo { margin-top: -44px; }  /* base -14px: 30px of its own, on top of the block's 90px */
+
+  /* Soft white halo: a tight core plus a wide, faint bloom, so the lockup
+     lifts off the photograph without reading as a hard outline. */
+  .sl-bridge__title {
+    /* Each shadow is painted once, so the near stops are repeated to build
+       real opacity around the glyphs before the wide bloom carries it out. */
+    text-shadow:
+      0 0 6px rgba(255, 255, 255, 1),
+      0 0 6px rgba(255, 255, 255, 1),
+      0 0 14px rgba(255, 255, 255, 1),
+      0 0 14px rgba(255, 255, 255, 1),
+      0 0 28px rgba(255, 255, 255, 1),
+      0 0 28px rgba(255, 255, 255, 1),
+      0 0 55px rgba(255, 255, 255, 1),
+      0 0 55px rgba(255, 255, 255, 1),
+      0 0 95px rgba(255, 255, 255, .95),
+      0 0 95px rgba(255, 255, 255, .85),
+      0 0 150px rgba(255, 255, 255, .85),
+      0 0 150px rgba(255, 255, 255, .7),
+      0 0 220px rgba(255, 255, 255, .8),
+      0 0 220px rgba(255, 255, 255, .7),
+      0 0 320px rgba(255, 255, 255, .7),
+      0 0 320px rgba(255, 255, 255, .6),
+      0 0 440px rgba(255, 255, 255, .55),
+      0 0 560px rgba(255, 255, 255, .42),
+      0 0 680px rgba(255, 255, 255, .3);
+    /* The filter is applied to the already-shadowed text, so it blooms the
+       whole halo rather than adding another ring at the glyph edge - this is
+       what the text-shadow list alone cannot reach. */
+    filter:
+      drop-shadow(0 0 22px rgba(255, 255, 255, .95))
+      drop-shadow(0 0 70px rgba(255, 255, 255, .85))
+      drop-shadow(0 0 170px rgba(255, 255, 255, .7));
+  }
+
+  .sl-bridge__logo img {
+    filter:
+      drop-shadow(0 0 10px rgba(255, 255, 255, .95))
+      drop-shadow(0 0 24px rgba(255, 255, 255, .7))
+      drop-shadow(0 0 48px rgba(255, 255, 255, .45));
+  }
+}
+
+/* =========================================================
+   HERO PHOTO CREDIT — mobile
+   On the narrow hero the pill reads as a stray tag pinned to the right
+   edge, so it centres under the type instead, a size down.
+   Declared after the 700px block so it wins the right/left reset.
+   ========================================================= */
+@media (max-width: 860px) {
+  .hero__credit {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    padding: 6px 12px;
+  }
 }

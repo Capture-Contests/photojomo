@@ -58,5 +58,8 @@ cc-enquiries/
 # Video masters: 75 MB each, and only the encoded web renditions are ever
 # served. Keeping them out of git also keeps them out of the Cloudflare build,
 # which publishes everything under public/.
-capture-contests-wb/public/video/FINAL - LOGO FIXED.mp4
-capture-contests-wb/public/video/CONTESTS-4k.mp4
+capture-contests-wb/_media-masters/
+
+# Pre-webp originals, kept locally so the webp renditions can be regenerated
+# at a different size or quality without re-sourcing the photographs.
+capture-contests-wb/_image-originals/

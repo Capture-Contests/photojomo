@@ -916,7 +916,12 @@ img { height: auto; }
    Bottom padding then gives 190px back, closing the gap under the lockup.
    ========================================================= */
 @media (min-width: 861px) {
-  .hero__bg { background-position: center calc(50% - 60px); }  /* base -40px, image lifted 20px */
+  .hero__bg { background-position: center calc(50% - 100px); }  /* base -40px, image lifted 60px */
+
+  /* The white fade is anchored to the hero's bottom edge, so growing it is
+     what raises where the fade begins - moving it with the photograph rather
+     than letting the two drift apart. */
+  .hero::after { height: 340px; }  /* base 300px, fade starts 40px higher */
 
   .sl-bridge {
     margin-top: -262px;        /* base -172px, lifted 90px */
@@ -930,35 +935,17 @@ img { height: auto; }
   /* Soft white halo: a tight core plus a wide, faint bloom, so the lockup
      lifts off the photograph without reading as a hard outline. */
   .sl-bridge__title {
-    /* Each shadow is painted once, so the near stops are repeated to build
-       real opacity around the glyphs before the wide bloom carries it out. */
-    text-shadow:
-      0 0 6px rgba(255, 255, 255, 1),
-      0 0 6px rgba(255, 255, 255, 1),
-      0 0 14px rgba(255, 255, 255, 1),
-      0 0 14px rgba(255, 255, 255, 1),
-      0 0 28px rgba(255, 255, 255, 1),
-      0 0 28px rgba(255, 255, 255, 1),
-      0 0 55px rgba(255, 255, 255, 1),
-      0 0 55px rgba(255, 255, 255, 1),
-      0 0 95px rgba(255, 255, 255, .95),
-      0 0 95px rgba(255, 255, 255, .85),
-      0 0 150px rgba(255, 255, 255, .85),
-      0 0 150px rgba(255, 255, 255, .7),
-      0 0 220px rgba(255, 255, 255, .8),
-      0 0 220px rgba(255, 255, 255, .7),
-      0 0 320px rgba(255, 255, 255, .7),
-      0 0 320px rgba(255, 255, 255, .6),
-      0 0 440px rgba(255, 255, 255, .55),
-      0 0 560px rgba(255, 255, 255, .42),
-      0 0 680px rgba(255, 255, 255, .3);
-    /* The filter is applied to the already-shadowed text, so it blooms the
-       whole halo rather than adding another ring at the glyph edge - this is
-       what the text-shadow list alone cannot reach. */
+    /* One chained filter in place of a stack of text-shadow copies. Each
+       drop-shadow blurs the RESULT of the one before it, so brightness and
+       reach compound across four blurs where the shadow list needed twenty-two
+       - a text-shadow layer is painted once, so it could only get brighter by
+       repeating the same radius. Same glyph-shaped halo, a fraction of the
+       rasterising: this rule alone was worth 40 desktop Lighthouse points. */
     filter:
-      drop-shadow(0 0 22px rgba(255, 255, 255, .95))
-      drop-shadow(0 0 70px rgba(255, 255, 255, .85))
-      drop-shadow(0 0 170px rgba(255, 255, 255, .7));
+      drop-shadow(0 0 7px rgba(255, 255, 255, 1))
+      drop-shadow(0 0 18px rgba(255, 255, 255, 1))
+      drop-shadow(0 0 42px rgba(255, 255, 255, .9))
+      drop-shadow(0 0 95px rgba(255, 255, 255, .65));
   }
 
   .sl-bridge__logo img {

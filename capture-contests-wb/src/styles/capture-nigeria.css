@@ -79,7 +79,7 @@
 }
 
 .hero__bg {
-  background: #000 url("/images/ng-hero.jpg?v=2") no-repeat center center / cover;
+  background: #000 url("/images/ng-hero.webp?v=3") no-repeat center center / cover;
 }
 /* styles.css scrims the Caribbean hero from the left, because that hero's
    type is left-aligned. The Nigeria lockup is centred, so the left wash is

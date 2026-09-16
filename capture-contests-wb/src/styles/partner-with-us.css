@@ -189,7 +189,10 @@
    ========================================================= */
 .close {
   position: relative;
-  min-height: 567px;
+  /* 756px is the band height in the Figma frame (1920x756). At 567px the
+     cover crop showed only 44% of the photograph's height instead of 59%,
+     zooming in far enough to clip the photographer's cap at the top edge. */
+  min-height: 756px;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -197,7 +200,7 @@
   text-align: center;
 }
 .close__bg { position: absolute; inset: 0; }
-.close__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 46%; }
+.close__bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 47.8%;   /* matches Figma's crop: visible band 19.9%-78.3% */ }
 .close::after {
   content: "";
   position: absolute;

@@ -7,8 +7,8 @@
   width: 148px;
   aspect-ratio: 306 / 73;
   background-color: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-mark::after {
@@ -16,8 +16,8 @@
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-sub {
@@ -43,8 +43,8 @@
   width: 172px;
   aspect-ratio: 306 / 73;
   background-color: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-mark::after {
@@ -52,8 +52,8 @@
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-sub {
@@ -70,7 +70,7 @@
 .hero { height: 780px; }
 
 .hero__bg {
-  background: #000 url("/images/jm-hero.jpg?v=1") no-repeat center / cover;
+  background: #000 url("/images/jm-hero.webp?v=4") no-repeat center / cover;
 }
 
 .hero__bg::after {
@@ -197,7 +197,7 @@
   min-height: 676px;
   display: grid;
   align-items: center;
-  background: #17201a url("/images/jm-maroon.jpg?v=1") no-repeat center / cover;
+  background: #17201a url("/images/jm-maroon.webp?v=4") no-repeat center / cover;
   isolation: isolate;
 }
 
@@ -251,7 +251,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/images/jm-map-wash.png?v=1") no-repeat center 58% / 62% auto;
+  background: url("/images/jm-map-wash.webp?v=4") no-repeat center 58% / 62% auto;
   pointer-events: none;
 }
 
@@ -529,7 +529,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/images/jm-map-wash.png?v=1") no-repeat center / 44% auto;
+  background: url("/images/jm-map-wash.webp?v=4") no-repeat center / 44% auto;
   pointer-events: none;
 }
 
@@ -605,9 +605,9 @@
   isolation: isolate;
 }
 
-.jm-cta__panel--partner { background-image: url("/images/ng-cta-partner.jpg?v=1"); }
+.jm-cta__panel--partner { background-image: url("/images/ng-cta-partner.webp?v=4"); }
 
-.jm-cta__panel--creator { background-image: url("/images/ng-cta-creator.jpg?v=1"); }
+.jm-cta__panel--creator { background-image: url("/images/ng-cta-creator.webp?v=4"); }
 
 .jm-cta__panel::after {
   content: "";

@@ -7,8 +7,8 @@
   width: 148px;
   aspect-ratio: 306 / 73;
   background-color: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-mark::after {
@@ -16,8 +16,8 @@
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-sub {
@@ -43,8 +43,8 @@
   width: 172px;
   aspect-ratio: 306 / 73;
   background-color: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-mark::after {
@@ -52,8 +52,8 @@
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-sub {
@@ -70,7 +70,7 @@
 .hero { height: 750px; }
 
 .hero__bg {
-  background: #06304a url("/images/bb-hero.jpg?v=1") no-repeat center / cover;
+  background: #06304a url("/images/bb-hero.webp?v=4") no-repeat center / cover;
 }
 
 .hero__bg::after {
@@ -204,7 +204,7 @@
   min-height: 690px;
   display: grid;
   align-items: center;
-  background: #2b3d3a url("/images/bb-chattel.jpg?v=1") no-repeat center / cover;
+  background: #2b3d3a url("/images/bb-chattel.webp?v=4") no-repeat center / cover;
   isolation: isolate;
 }
 
@@ -261,7 +261,7 @@
   z-index: 0;
   /* exported as a vector from Figma (node 180:701), so it carries real
      alpha rather than being keyed out of a screenshot */
-  background: url("/images/bb-map-wash.png?v=1") no-repeat center 52% / auto 88%;
+  background: url("/images/bb-map-wash.webp?v=4") no-repeat center 52% / auto 88%;
   pointer-events: none;
 }
 
@@ -440,9 +440,9 @@
   isolation: isolate;
 }
 
-.bb-cta__panel--partner { background-image: url("/images/bb-cta-partner.jpg?v=1"); }
+.bb-cta__panel--partner { background-image: url("/images/bb-cta-partner.webp?v=4"); }
 
-.bb-cta__panel--creator { background-image: url("/images/bb-cta-creator.jpg?v=1"); }
+.bb-cta__panel--creator { background-image: url("/images/bb-cta-creator.webp?v=4"); }
 
 .bb-cta__panel::after {
   content: "";

@@ -10,8 +10,8 @@
   width: 148px;
   aspect-ratio: 306 / 73;
   background-color: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-mark::after {
@@ -19,8 +19,8 @@
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-sub {
@@ -52,8 +52,8 @@
   width: 172px;
   aspect-ratio: 306 / 73;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-mark::after {
@@ -61,8 +61,8 @@
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-sub {
@@ -79,7 +79,7 @@
 }
 
 .hero__bg {
-  background: #000 url("/images/gh-hero.jpg?v=3") no-repeat center / cover;
+  background: #000 url("/images/gh-hero.webp?v=4") no-repeat center / cover;
   /* the frame sits 70px lower than a centred cover crop, so more open water
      shows above the shoreline */
   background-position: center calc(50% + 70px);
@@ -195,7 +195,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/images/gh-map-wash.png?v=1") no-repeat center / auto 92%;
+  background: url("/images/gh-map-wash.webp?v=4") no-repeat center / auto 92%;
   pointer-events: none;
 }
 
@@ -499,9 +499,9 @@
   isolation: isolate;
 }
 
-.gh-cta__panel--partner { background-image: url("/images/gh-cta-partner.jpg?v=1"); }
+.gh-cta__panel--partner { background-image: url("/images/gh-cta-partner.webp?v=4"); }
 
-.gh-cta__panel--creator { background-image: url("/images/gh-cta-creator.jpg?v=1"); }
+.gh-cta__panel--creator { background-image: url("/images/gh-cta-creator.webp?v=4"); }
 
 .gh-cta__panel::after {
   content: "";

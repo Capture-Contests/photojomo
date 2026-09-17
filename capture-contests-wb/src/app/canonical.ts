@@ -13,8 +13,12 @@ import { DEFAULT_META, ROUTE_META } from './seo-routes';
  */
 export const SITE_ORIGIN = 'https://capturecontests.com';
 
-/** Social preview image, absolute — relative paths are ignored by crawlers. */
-const OG_IMAGE = `${SITE_ORIGIN}/images/gc-hero.jpg`;
+/**
+ * Social preview card, absolute - relative paths are ignored by crawlers.
+ * Deliberately a JPEG, not webp: LinkedIn and some other link unfurlers still
+ * fail to render webp og:image, and 1200x630 is the size they all expect.
+ */
+const OG_IMAGE = `${SITE_ORIGIN}/images/og-card.jpg`;
 
 /**
  * Keeps <title>, the description, the canonical link and the Open Graph tags

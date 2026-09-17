@@ -131,7 +131,7 @@
 .why__map {
   position: absolute;
   inset: 0;
-  background: url("/images/gc-world-map.png") no-repeat center / 92% auto;
+  background: url("/images/gc-world-map.webp?v=4") no-repeat center / 92% auto;
   opacity: .8;
   pointer-events: none;
 }

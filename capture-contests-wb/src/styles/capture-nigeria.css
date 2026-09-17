@@ -10,8 +10,8 @@
   width: 148px;
   aspect-ratio: 306 / 73;
   background-color: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-mark::after {
@@ -19,8 +19,8 @@
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-sub {
@@ -52,8 +52,8 @@
   width: 172px;
   aspect-ratio: 306 / 73;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-mark::after {
@@ -61,8 +61,8 @@
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-sub {
@@ -217,7 +217,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/images/ng-map-wash.png?v=1") no-repeat center / auto 62%;
+  background: url("/images/ng-map-wash.webp?v=4") no-repeat center / auto 62%;
   pointer-events: none;
 }
 /* Nigeria is a wide country, so the silhouette is sized off the section
@@ -344,7 +344,7 @@
 .ng-dcard--future { background: #fbf8ec; }
 
 .ng-dcard__media--map {
-  background: url("/images/ng-map-outline.png?v=1") no-repeat center / auto 78%;
+  background: url("/images/ng-map-outline.webp?v=4") no-repeat center / auto 78%;
 }
 
 .ng-dcard__body {
@@ -534,9 +534,9 @@
   isolation: isolate;
 }
 
-.ng-cta__panel--partner { background-image: url("/images/ng-cta-partner.jpg?v=1"); }
+.ng-cta__panel--partner { background-image: url("/images/ng-cta-partner.webp?v=4"); }
 
-.ng-cta__panel--creator { background-image: url("/images/ng-cta-creator.jpg?v=1"); }
+.ng-cta__panel--creator { background-image: url("/images/ng-cta-creator.webp?v=4"); }
 
 .ng-cta__panel::after {
   content: "";

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 
@@ -9,17 +9,62 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
   templateUrl: './caribbean-connections.component.html',
   styleUrls: ['./caribbean-connections.component.css'],
 })
-export class CaribbeanConnectionsComponent implements OnInit {
+export class CaribbeanConnectionsComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       window.scrollTo(0, 0);
+      this.preloadAvatars();
+    }
+  }
+
+  /** The "Voices of the Caribbean" YouTube embed. */
+  @ViewChild('videoFrame') videoFrame?: ElementRef<HTMLIFrameElement>;
+  private videoObserver?: IntersectionObserver;
+
+  ngAfterViewInit(): void {
+    const el = this.videoFrame?.nativeElement;
+    if (!el) return;
+    const src = el.dataset['src'];
+    if (!src) return;
+
+    // No observer (or no JS at all): attach it straight away rather than leave
+    // the visitor with a video that never loads.
+    if (typeof IntersectionObserver === 'undefined') {
+      el.src = src;
+      return;
+    }
+    this.videoObserver = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        el.src = src;
+        this.videoObserver?.disconnect();
+      },
+      { rootMargin: '400px 0px' }
+    );
+    this.videoObserver.observe(el);
+  }
+
+  ngOnDestroy(): void {
+    this.videoObserver?.disconnect();
+  }
+
+  /**
+   * The carousel swaps `current.avatar` on one <img>, so an avatar that is not
+   * in cache yet only paints once it has downloaded and decoded — which read as
+   * the portrait lagging behind the name and quote. Fetching and decoding all
+   * of them up front means every switch is already warm.
+   */
+  private preloadAvatars(): void {
+    for (const t of this.testimonials) {
+      const img = new Image();
+      img.src = t.avatar;
+      void img.decode?.().catch(() => undefined);
     }
   }
 
   readonly testimonials = [
     {
-      avatar:
-        'https://capturecaribbean.figma.site/_assets/v11/23b861c6b3079cef2ce4c4a94cf13f91475d17c2.png',
+      avatar: '/assets/images/cc/cc-avatar-nadine.webp',
       avatarScale: 1,
       quote:
         '\u201CFinally, a space that celebrates our unique Caribbean perspective and connects us across islands.\u201D',
@@ -27,8 +72,7 @@ export class CaribbeanConnectionsComponent implements OnInit {
       role: 'Visual Artist, Trinidad',
     },
     {
-      avatar:
-        'https://capturecaribbean.figma.site/_assets/v11/bdcefc9b9199e08c6bad895993cb33774c2c6934.png',
+      avatar: '/assets/images/cc/cc-avatar-richard.webp',
       avatarScale: 1,
       quote:
         '\u201CWow, this platform is exciting. A truly global platform.\u201D',

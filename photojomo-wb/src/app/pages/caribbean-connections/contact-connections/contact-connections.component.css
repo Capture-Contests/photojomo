@@ -1,683 +1,511 @@
-:host ::ng-deep .empty-white-section {
-  width: 100%;
-  min-height: 400px;
-  background: #ffffff;
+/* ══ Contact / Join Caribbean Connections ═════════════════════════════════
+   Built from Figma "Partnership Enquiry Page" (node 1301:3216), a 1920-wide
+   design. Figma values are the upper bound of a clamp() so the page scales
+   down cleanly.                                                           */
+
+:host {
+  display: block;
+  background: #fffdf9;
+  --ct-orange: #df5e26;
+  --ct-ink: #000;
+  --ct-body: #333;
+  --ct-placeholder: #898989;
+  --ct-gold: #d8a74d;   /* Capture Contests brand gold (--gold) */
+  --ct-sans: 'Sora', 'Inter', system-ui, sans-serif;
+  --ct-serif: 'CalvinoGrandeItalicVarTrial', 'Calvino Grande Trial', Georgia, serif;
+  --ct-pad: clamp(20px, 2.9vw, 56px);
 }
 
-:host ::ng-deep #container .cc-footer-logo {
-  width: 198px !important;
-  height: 58px !important;
-  flex: 0 0 auto !important;
-  overflow: visible !important;
-}
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+/* Light hero — no photograph in this design. */
+.ct-hero { background: #fffdf9; padding-bottom: clamp(28px, 2.9vw, 56px); }
 
-:host ::ng-deep #container .cc-footer-logo .cc-footer-logo-img {
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  object-fit: contain !important;
-}
-
-/* ─────────────────────────────────────────────────────────────────────
-   HERO SPACING — mirrors caribbean-connections.component.css
-   ───────────────────────────────────────────────────────────────────── */
-
-@media (min-width: 769px) {
-  :host ::ng-deep #container .css-rhxma0.css-4xz6kg.css-wh4ihv {
-    margin-top: 1.2em !important;
-  }
-}
-
-@media (max-width: 768px) {
-  :host ::ng-deep #container,
-  :host ::ng-deep #container .css-i9h3z,
-  :host ::ng-deep #container .css-50jkpj,
-  :host ::ng-deep #container .css-rn2hh9,
-  :host ::ng-deep #container .css-3tcx9o {
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    overflow: visible !important;
-    overflow-x: clip !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw {
-    height: auto !important;
-    min-height: 60vh !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    position: relative !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-r0azwh,
-  :host ::ng-deep #container .css-stwrzw .css-phc9f9 {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-frzniw {
-    width: 100% !important;
-    height: 100% !important;
-    top: 0 !important;
-    left: 0 !important;
-    object-fit: cover !important;
-    object-position: center !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-r3og54,
-  :host ::ng-deep #container .css-stwrzw .css-2dqx77,
-  :host ::ng-deep #container .css-stwrzw .css-ks1xrq,
-  :host ::ng-deep #container .css-stwrzw .css-uhys88,
-  :host ::ng-deep #container .css-stwrzw .css-c20z98,
-  :host ::ng-deep #container .css-stwrzw .css-aa2rly,
-  :host ::ng-deep #container .css-stwrzw .css-sz2f8,
-  :host ::ng-deep #container .css-stwrzw .css-zfhtxa,
-  :host ::ng-deep #container .css-stwrzw .css-ft4d0g,
-  :host ::ng-deep #container .css-stwrzw .css-liobgr {
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    text-align: left !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-zfhtxa p,
-  :host ::ng-deep #container .css-stwrzw .css-liobgr p {
-    text-align: left !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-z8tzya {
-    justify-content: flex-start !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-r3og54,
-  :host ::ng-deep #container .css-stwrzw .css-2dqx77,
-  :host ::ng-deep #container .css-stwrzw .css-ks1xrq,
-  :host ::ng-deep #container .css-stwrzw .css-uhys88,
-  :host ::ng-deep #container .css-stwrzw .css-c20z98,
-  :host ::ng-deep #container .css-stwrzw .css-aa2rly,
-  :host ::ng-deep #container .css-stwrzw .css-sz2f8,
-  :host ::ng-deep #container .css-stwrzw .css-zfhtxa,
-  :host ::ng-deep #container .css-stwrzw .css-ft4d0g,
-  :host ::ng-deep #container .css-stwrzw .css-liobgr,
-  :host ::ng-deep #container .css-stwrzw .css-z8tzya {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-    left: 0 !important;
-    right: auto !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-r3og54 {
-    padding-left: 17px !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-c20z98 {
-    margin-top: 180px !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-bqwcu6 {
-    font-family: "Calvino Grande Trial:Light Italic", serif !important;
-    font-style: italic !important;
-    font-weight: 300 !important;
-    font-size: 51px !important;
-    line-height: 0.95 !important;
-    letter-spacing: -0.01em !important;
-    text-transform: none !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    max-width: 11ch !important;
-    margin: 0 0 14px 0 !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-w9lend,
-  :host ::ng-deep #container .css-stwrzw .css-mly5wr,
-  :host ::ng-deep #container .css-stwrzw .css-ueucp2 {
-    font-size: 19px !important;
-    line-height: 1.4 !important;
-    font-weight: 500 !important;
-    letter-spacing: 0 !important;
-    margin: 0 0 18px 0 !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-rhxma0,
-  :host ::ng-deep #container .css-stwrzw .css-4xz6kg,
-  :host ::ng-deep #container .css-stwrzw .css-wh4ihv {
-    font-size: 12px !important;
-    line-height: 1.5 !important;
-    max-width: 65ch !important;
-    white-space: normal !important;
-  }
-}
-
-/* Hero image — prevent stretching on tablet (same fix as mobile). The
-   Figma-exported desktop sizing assumes a 1440px viewport, which forces the
-   image to an aspect ratio that stretches at 769–1100px widths. */
-@media (min-width: 769px) and (max-width: 1100px) {
-  :host ::ng-deep #container .css-stwrzw {
-    height: auto !important;
-    min-height: 70vh !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    position: relative !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-r0azwh,
-  :host ::ng-deep #container .css-stwrzw .css-phc9f9 {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-frzniw {
-    width: 100% !important;
-    height: 100% !important;
-    top: 0 !important;
-    left: 0 !important;
-    object-fit: cover !important;
-    object-position: center !important;
-  }
-}
-
-/* Hero button hover states — applied on all viewports so mobile taps
-   get the same sticky-hover behavior as desktop pointer hover. */
-:host ::ng-deep .css-z8tzya > .css-tyqn17,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-r0azwh,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-ggwoeh,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-v88b74,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-f7juvu,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-v88b74 p,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-f7juvu p {
-  cursor: pointer;
-  transition:
-    background-color 420ms ease,
-    border-color 420ms ease,
-    color 420ms ease,
-    -webkit-text-fill-color 420ms ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-:host ::ng-deep .css-z8tzya > .css-tyqn17 {
-  outline: none !important;
-}
-
-/* Button 1 (Join the Waitlist) — swap inner yellow bg to orange on hover */
-:host ::ng-deep .css-z8tzya > .css-tyqn17:nth-child(1):hover .css-r0azwh {
-  background-color: #e85e2c !important;
-}
-
-/* Button 2 (Explore Communities) — fill the transparent button with orange on hover */
-:host ::ng-deep .css-z8tzya > .css-tyqn17:nth-child(2):hover {
-  background-color: #e85e2c !important;
-  border-radius: 1.5px !important;
-}
-
-:host ::ng-deep .css-z8tzya > .css-tyqn17:nth-child(2):hover .css-ggwoeh {
-  border-color: #e85e2c !important;
-}
-
-/* Hover text → black on both buttons */
-:host ::ng-deep .css-z8tzya > .css-tyqn17:hover .css-v88b74,
-:host ::ng-deep .css-z8tzya > .css-tyqn17:hover .css-f7juvu,
-:host ::ng-deep .css-z8tzya > .css-tyqn17:hover .css-v88b74 p,
-:host ::ng-deep .css-z8tzya > .css-tyqn17:hover .css-f7juvu p {
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
-}
-
-/* Footer bottom row — copyright + Back to top — shrunken */
-:host ::ng-deep #container .css-b0jis2 p {
-  font-size: 10px !important;
-}
-:host ::ng-deep #container .css-b0jis2 .css-u7g7t {
-  transform: scale(0.8);
-  transform-origin: center;
-}
-
-/* Footer spacing tightening */
-:host ::ng-deep #container .css-z8tvcy {
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  gap: 36px !important;
-}
-:host ::ng-deep #container .css-zfhta1 {
-  gap: 14px !important;
-}
-:host ::ng-deep #container .css-cf1rk {
-  gap: 28px !important;
-}
-
-/* Footer "Back to Capture Caribbean" link */
-:host ::ng-deep #container .cc-footer-back-link {
-  flex-basis: 100% !important;
-  width: 100% !important;
-  margin-top: 2px !important;
-  text-align: center !important;
-}
-:host ::ng-deep #container .cc-footer-back-link p {
-  text-align: center !important;
-}
-:host ::ng-deep #container .cc-footer-back-link-text,
-:host ::ng-deep #container .cc-footer-back-link-text strong {
-  color: #b8b8b8 !important;
-  -webkit-text-fill-color: #b8b8b8 !important;
-  font-size: 11px !important;
-  line-height: 1.2 !important;
-}
-:host ::ng-deep #container .cc-footer-back-link-text strong {
-  font-weight: 700 !important;
-}
-
-/* ─── Coming Soon section with glitch-reveal logo ─────────────────────── */
-:host ::ng-deep .coming-soon-section {
-  display: flex !important;
-  flex-direction: column;
+.ct-nav {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 44px;
-  padding: 80px 24px;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 30px;
 }
-
-:host ::ng-deep .coming-soon-text {
-  margin: 0;
-  text-align: center;
-  font-family: "Calvino Grande Trial:Light Italic", "Instrument Serif", serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(28px, 4.2vw, 48px);
-  letter-spacing: -0.01em;
-  color: #0a0a0a;
-  opacity: 0;
-  transform: translateY(8px);
-  animation: coming-soon-text-in 900ms ease-out 120ms forwards;
+/* Capture Contests lockup, lifted from .nav__logo-mark / .nav__logo-sub on the
+   Capture Contests site: two stacked masks — the wordmark carries the gold
+   gradient, the globe inside the "C" is painted on top — with the tracked
+   "Contests™" sub-label beneath.
+   One adaptation: that site's nav sits on dark photography, so its gradient
+   ends at #ffffff and its globe is painted white. Here the nav is on cream,
+   so the ramp stops at the pale gold and the globe is painted dark, matching
+   the light-background lockup. */
+.ct-nav__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
 }
-
-:host ::ng-deep .cc-reveal {
+.ct-nav__burger,
+.ct-nav__panel { display: none; }
+.ct-nav__mark {
   position: relative;
-  width: min(420px, 70vw);
-  aspect-ratio: 179.039 / 41.4102;
+  display: block;
+  /* consolidated across the four pages: 148px on phones, 192px on desktop */
+  width: clamp(148px, 13.3vw, 192px);
+  aspect-ratio: 306 / 73;
+  background-image: linear-gradient(100deg,
+      #cf9a2e 0%, #ddb43a 26%, #ecd35c 54%, #f3e3a0 82%, #f8eec0 100%);
+  -webkit-mask: url('/assets/images/cc/gc-wordmark-nm.webp') no-repeat center / contain;
+          mask: url('/assets/images/cc/gc-wordmark-nm.webp') no-repeat center / contain;
 }
-
-:host ::ng-deep .cc-reveal-img {
+.ct-nav__mark::after {
+  content: '';
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  background: #101010;
+  -webkit-mask: url('/assets/images/cc/gc-globe.webp') no-repeat center / contain;
+          mask: url('/assets/images/cc/gc-globe.webp') no-repeat center / contain;
+}
+.ct-nav__sub {
   display: block;
-  object-fit: contain;
+  margin-top: 5px;
+  padding-left: 3px;
+  font-family: var(--ct-sans);
+  font-size: clamp(9px, 0.57vw, 11px);
+  font-weight: 500;
+  letter-spacing: 1.25em;
+  text-transform: uppercase;
+  color: #101010;
 }
-
-:host ::ng-deep .cc-reveal-main {
-  opacity: 0;
-  filter: brightness(0);
-  animation: cc-reveal-glitch 1600ms cubic-bezier(0.22, 1, 0.36, 1) 2400ms forwards;
+.ct-nav__sub i { font-style: normal; letter-spacing: 0; }
+.ct-nav__links { display: flex; align-items: center; gap: clamp(18px, 3.65vw, 70px); }
+.ct-nav__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--ct-sans);
+  font-size: clamp(12px, 0.78vw, 15px);
+  line-height: 1.67;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ct-ink);
 }
-
-:host ::ng-deep .cc-reveal-cyan {
-  opacity: 0;
-  filter: brightness(0) invert(58%) sepia(96%) saturate(1352%) hue-rotate(151deg) brightness(95%) contrast(101%);
-  mix-blend-mode: multiply;
-  animation: cc-reveal-chroma-cyan 1600ms cubic-bezier(0.22, 1, 0.36, 1) 2400ms forwards;
+.ct-nav__item svg { width: 11px; height: 6px; }
+.ct-nav__item:hover { opacity: 0.7; }
+.ct-nav__cta {
+  background: #000;
+  color: #fff;
+  font-family: var(--ct-sans);
+  font-size: clamp(12px, 0.83vw, 16px);
+  line-height: 1.5;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 29px;
+  border-radius: 4px;
+  white-space: nowrap;
 }
+.ct-nav__cta:hover { background: #222; }
 
-:host ::ng-deep .cc-reveal-red {
-  opacity: 0;
-  filter: brightness(0) invert(28%) sepia(89%) saturate(3612%) hue-rotate(353deg) brightness(97%) contrast(103%);
-  mix-blend-mode: multiply;
-  animation: cc-reveal-chroma-red 1600ms cubic-bezier(0.22, 1, 0.36, 1) 2400ms forwards;
-}
-
-@keyframes coming-soon-text-in {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes cc-reveal-glitch {
-  0% {
-    opacity: 0;
-    clip-path: inset(0 100% 0 0);
-    transform: translateX(-6px) skewX(-8deg);
-  }
-  18% {
-    opacity: 1;
-    clip-path: inset(40% 0 40% 0);
-    transform: translateX(4px) skewX(6deg);
-  }
-  32% {
-    clip-path: inset(0 0 70% 0);
-    transform: translateX(-3px) skewX(-3deg);
-  }
-  46% {
-    clip-path: inset(60% 0 0 0);
-    transform: translateX(2px) skewX(2deg);
-  }
-  62% {
-    clip-path: inset(15% 0 15% 0);
-    transform: translateX(-1px) skewX(0deg);
-  }
-  78% {
-    clip-path: inset(0 0 0 0);
-    transform: translateX(0) skewX(0deg);
-  }
-  100% {
-    opacity: 1;
-    clip-path: inset(0 0 0 0);
-    transform: translateX(0) skewX(0deg);
-  }
-}
-
-@keyframes cc-reveal-chroma-cyan {
-  0%   { opacity: 0; transform: translateX(-10px); }
-  18%  { opacity: 0.9; transform: translateX(-8px); }
-  62%  { opacity: 0.55; transform: translateX(-4px); }
-  100% { opacity: 0; transform: translateX(0); }
-}
-
-@keyframes cc-reveal-chroma-red {
-  0%   { opacity: 0; transform: translateX(10px); }
-  18%  { opacity: 0.9; transform: translateX(8px); }
-  62%  { opacity: 0.55; transform: translateX(4px); }
-  100% { opacity: 0; transform: translateX(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :host ::ng-deep .coming-soon-text,
-  :host ::ng-deep .cc-reveal-main {
-    animation: none;
-    opacity: 1;
-    transform: none;
-    clip-path: none;
-  }
-  :host ::ng-deep .cc-reveal-cyan,
-  :host ::ng-deep .cc-reveal-red {
-    display: none;
-  }
-}
-
-/* ─── Polaroid carousel ─────────────────────────────────────────────── */
-:host ::ng-deep .polaroid-carousel {
-  width: 100%;
-  max-width: 100vw;
-  overflow: hidden;
-  padding: 40px 0 60px;
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-}
-
-:host ::ng-deep .polaroid-track {
+.ct-hero__content {
+  width: min(1293px, 100%);
+  margin: 0 auto;
+  padding: clamp(24px, 2.34vw, 45px) var(--ct-pad) 0;
   display: flex;
-  gap: 0;
-  width: max-content;
-  animation: polaroid-scroll 60s linear infinite;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.ct-hero__eyebrow {
+  font-family: var(--ct-serif);
+  font-style: italic;
+  font-weight: 350;
+  font-size: clamp(20px, 1.67vw, 32px);
+  line-height: 1.38;
+  color: var(--ct-ink);
+  margin: 0 0 5px;
+}
+.ct-hero__heading {
+  font-family: var(--ct-sans);
+  font-weight: 400;
+  font-size: clamp(32px, 3.59vw, 69px);
+  line-height: 1.39;
+  color: var(--ct-ink);
+  margin: 0;
+}
+.ct-hero__lede {
+  font-family: var(--ct-sans);
+  font-weight: 300;
+  font-size: clamp(15px, 1.04vw, 20px);
+  line-height: 1.5;
+  color: var(--ct-ink);
+  margin: 16px 0 0;
+  max-width: 986px;
 }
 
-:host ::ng-deep .polaroid {
-  flex: 0 0 auto;
-  margin: 0 36px 0 0;
-  width: 200px;
-  background: #ffffff;
-  padding: 12px 12px 38px;
-  box-shadow:
-    0 14px 28px rgba(15, 23, 42, 0.18),
-    0 4px 10px rgba(15, 23, 42, 0.1);
-  border-radius: 2px;
-  transition: transform 600ms ease;
+/* ── Form band ─────────────────────────────────────────────────────────── */
+/* The design floats the form on a pale world-map wash. */
+.ct-form-band {
+  background: #fffdf9 url('/assets/images/cc/cc-world-map.webp') center 42% / 88% auto no-repeat;
+  padding: clamp(30px, 2.08vw, 40px) var(--ct-pad) clamp(60px, 5.2vw, 100px);
+}
+.ct-form-band__lede {
+  width: min(874px, 100%);
+  margin: 0 auto clamp(40px, 5.47vw, 105px);
+  font-family: var(--ct-sans);
+  font-weight: 300;
+  font-size: clamp(15px, 1.04vw, 20px);
+  line-height: 1.5;
+  color: var(--ct-ink);
+  text-align: center;
 }
 
-:host ::ng-deep .polaroid img {
-  display: block;
+.ct-form {
+  width: min(872px, 100%);
+  margin: 0 auto;
+  /* slightly translucent so the map wash reads through the panel */
+  background: rgba(255, 253, 249, 0.72);
+  backdrop-filter: blur(2px);
+  border-radius: 5px;
+  padding: clamp(20px, 1.04vw, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(48px, 4.06vw, 78px);
+}
+
+.ct-step { border: 0; margin: 0; padding: 0; min-width: 0; }
+.ct-step__legend { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.ct-step__count {
+  font-family: var(--ct-sans);
+  font-size: clamp(15px, 0.94vw, 18px);
+  line-height: 1.5;
+  color: var(--ct-ink);
+}
+.ct-step__title {
+  font-family: var(--ct-sans);
+  font-weight: 400;
+  font-size: clamp(28px, 2.71vw, 52px);
+  line-height: 1.27;
+  color: var(--ct-ink);
+}
+.ct-step__title--sm { font-size: clamp(24px, 1.98vw, 38px); }
+.ct-step__hint {
+  font-family: var(--ct-sans);
+  font-weight: 300;
+  font-size: clamp(15px, 1.04vw, 20px);
+  line-height: 1.5;
+  color: var(--ct-body);
+}
+
+/* ── Fields ────────────────────────────────────────────────────────────── */
+.ct-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+.ct-field { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.ct-field label {
+  font-family: var(--ct-sans);
+  font-size: clamp(13px, 0.73vw, 14px);
+  line-height: 1.5;
+  color: var(--ct-ink);
+}
+.ct-field input,
+.ct-field select {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
-  background: #eee;
+  font-family: var(--ct-sans);
+  font-size: clamp(15px, 0.83vw, 16px);
+  line-height: 1.5;
+  color: var(--ct-ink);
+  background: #fffdf9;
+  border: 1px solid #e3ded3;
+  border-radius: 4px;
+  padding: 14px 16px 15px;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.ct-field input::placeholder { color: var(--ct-placeholder); }
+/* a select showing its placeholder option matches the inputs' grey */
+.ct-field select.is-placeholder { color: var(--ct-placeholder); }
+.ct-field input:focus-visible,
+.ct-field select:focus-visible {
+  outline: none;
+  border-color: var(--ct-orange);
+  box-shadow: 0 0 0 3px rgba(223, 94, 38, 0.16);
+}
+.ct-field input.is-invalid,
+.ct-field select.is-invalid { border-color: #c0392b; }
+.ct-error {
+  font-family: var(--ct-sans);
+  font-size: 13px;
+  line-height: 1.4;
+  color: #c0392b;
+  margin: 0;
 }
 
-/* Base pose per tilt variant — consumed via CSS vars by the shared wiggle keyframe. */
-:host ::ng-deep .polaroid-r1 { --polaroid-base-rot: -3deg;   --polaroid-base-y:  2px; }
-:host ::ng-deep .polaroid-r2 { --polaroid-base-rot:  2.2deg; --polaroid-base-y: -4px; }
-:host ::ng-deep .polaroid-r3 { --polaroid-base-rot: -1.4deg; --polaroid-base-y:  6px; }
-:host ::ng-deep .polaroid-r4 { --polaroid-base-rot:  3deg;   --polaroid-base-y: -2px; }
-:host ::ng-deep .polaroid-r5 { --polaroid-base-rot: -2.6deg; --polaroid-base-y:  4px; }
-:host ::ng-deep .polaroid-r6 { --polaroid-base-rot:  1.8deg; --polaroid-base-y: -5px; }
-
-@keyframes polaroid-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+/* ── Option chips ──────────────────────────────────────────────────────── */
+.ct-chips { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.ct-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: #fff;
+  border: 1px solid #ebe6dc;
+  border-radius: 7px;
+  padding: 14px 24px 15px;
+  cursor: pointer;
+  font-family: var(--ct-sans);
+  font-size: clamp(14px, 0.83vw, 16px);
+  line-height: 1.5;
+  color: var(--ct-ink);
+  text-align: left;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+/* The design's chip marker is a short grey rule; it fills in when chosen. */
+.ct-chip__mark {
+  width: 12px;
+  height: 3px;
+  border-radius: 2px;
+  background: #a5a5a5;
+  flex: none;
+  transition: background 0.18s ease;
+}
+.ct-chip:hover { border-color: #d8d0c2; transform: translateY(-1px); }
+.ct-chip.is-on {
+  border-color: var(--ct-orange);
+  background: #fff6f1;
+}
+.ct-chip.is-on .ct-chip__mark { background: var(--ct-orange); }
+.ct-chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(223, 94, 38, 0.16);
 }
 
+/* ── Consent + submit ──────────────────────────────────────────────────── */
+.ct-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 50px;
+  cursor: pointer;
+}
+.ct-consent input { position: absolute; opacity: 0; width: 0; height: 0; }
+.ct-consent__box {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  flex: none;
+  margin-top: 2px;
+  background: #fff;
+  border: 1px solid #d8d0c2;
+  border-radius: 3px;
+  color: transparent;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.ct-consent__box svg { width: 17px; height: 12px; }
+.ct-consent input:checked + .ct-consent__box {
+  background: var(--ct-orange);
+  border-color: var(--ct-orange);
+  color: #fff;
+}
+.ct-consent input:focus-visible + .ct-consent__box {
+  box-shadow: 0 0 0 3px rgba(223, 94, 38, 0.16);
+}
+.ct-consent__text {
+  font-family: var(--ct-sans);
+  font-weight: 300;
+  font-size: clamp(15px, 0.94vw, 18px);
+  line-height: 1.36;
+  color: var(--ct-body);
+}
+
+.ct-actions { display: flex; flex-direction: column; gap: 19px; margin-top: 28px; }
+.ct-btn {
+  align-self: flex-start;
+  background: var(--ct-orange);
+  color: #fff;
+  border: 0;
+  border-radius: 3px;
+  padding: 17px 30px;
+  cursor: pointer;
+  font-family: var(--ct-sans);
+  font-size: clamp(14px, 0.83vw, 16px);
+  font-weight: 600;
+  line-height: 1.5;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.ct-btn:hover:not(:disabled) { background: #c64f1d; transform: translateY(-1px); }
+.ct-btn:disabled { opacity: 0.65; cursor: default; }
+.ct-required,
+.ct-note {
+  font-family: var(--ct-sans);
+  font-size: clamp(13px, 0.73vw, 14px);
+  line-height: 1.5;
+  color: var(--ct-ink);
+  margin: 0;
+}
+.ct-note--ok { color: #1e7a4b; }
+.ct-note--bad { color: #c0392b; }
+
+/* ── Footer ────────────────────────────────────────────────────────────── */
+.ct-footer {
+  background: #040404;
+  color: #fff;
+  padding: 86px clamp(20px, 3.75vw, 72px) 40px;
+}
+.ct-footer__top { display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center; }
+.ct-footer__logo img { display: block; width: clamp(180px, 13.8vw, 265px); height: auto; }
+.ct-footer__tagline {
+  font-family: var(--ct-sans);
+  font-size: clamp(14px, 0.83vw, 16px);
+  line-height: 1.44;
+  margin: 0;
+}
+.ct-footer__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; }
+.ct-footer__links a,
+.ct-footer__legal a {
+  font-family: var(--ct-sans);
+  font-size: clamp(14px, 0.83vw, 16px);
+  color: #fff;
+  text-decoration: none;
+}
+.ct-footer__links a:hover,
+.ct-footer__legal a:hover { text-decoration: underline; }
+.ct-footer__social { display: flex; gap: 16px; }
+.ct-footer__social a {
+  display: grid;
+  place-items: center;
+  width: 57px;
+  height: 57px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+.ct-footer__social svg { width: 24px; height: 24px; }
+.ct-footer__social a:hover { background: rgba(255, 255, 255, 0.12); }
+.ct-footer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 35px;
+  margin-top: 72px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+.ct-footer__legal { display: flex; flex-wrap: wrap; gap: 16px; }
+.ct-footer__legalline,
+.ct-footer__copy {
+  font-family: var(--ct-sans);
+  font-size: clamp(14px, 0.83vw, 16px);
+  margin: 0;
+}
+.ct-footer__copy { margin-left: auto; }
+
+/* ── Tablet ────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  /* Same hamburger as the other three pages (36x36, three 22x2 bars folding
+     to an X). The bars are dark because this nav sits on cream. */
+  .ct-nav {
+    position: relative;
+    flex-wrap: wrap;
+    row-gap: 0;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 21px;
+  }
+  .ct-nav__links { display: none; }
+  /* Same offset hamburger graphic as the other pages, painted dark for the
+     cream background, in a thin rounded box. */
+  .ct-nav__burger {
+    display: grid;
+    place-items: center;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+    padding: 0;
+    background: none;
+    border: 1px solid rgba(10, 10, 10, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1001;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .ct-nav__burger:hover { background: rgba(10, 10, 10, 0.05); }
+  .ct-nav__burger-icon {
+    width: 22px;
+    height: 22px;
+    background-color: #0a0a0a;
+    -webkit-mask: url('/assets/images/hamburger-menu-offset.svg') no-repeat center / contain;
+            mask: url('/assets/images/hamburger-menu-offset.svg') no-repeat center / contain;
+  }
+  .ct-nav__burger.is-open .ct-nav__burger-icon { opacity: 0; }
+  .ct-nav__burger.is-open::before,
+  .ct-nav__burger.is-open::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    background: #0a0a0a;
+  }
+  .ct-nav__burger.is-open::before { transform: rotate(45deg); }
+  .ct-nav__burger.is-open::after { transform: rotate(-45deg); }
+
+  .ct-nav__panel[hidden] { display: none; }
+  .ct-nav__panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(10, 10, 10, 0.12);
+  }
+  .ct-nav__panel a,
+  .ct-nav__panel .ct-nav__panel-item {
+    font-family: var(--ct-sans);
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--ct-ink);
+    text-decoration: none;
+    padding: 12px 2px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: 0;
+    cursor: pointer;
+  }
+  /* element-qualified for the same reason as above */
+  .ct-nav__panel a.ct-nav__panel-cta {
+    margin-top: 10px;
+    background: #000;
+    color: #fff !important;
+    border-radius: 4px;
+    text-align: center !important;
+    padding: 13px 16px !important;
+  }
+
+  .ct-form-band { background-size: 130% auto; }
+}
+
+/* ── Mobile ────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .ct-grid { grid-template-columns: 1fr; }
+  .ct-chips { gap: 12px; }
+  .ct-chip { padding: 12px 18px; width: 100%; }
+  .ct-btn { align-self: stretch; }
+  .ct-footer { padding-top: 56px; }
+  .ct-footer__bar { justify-content: center; text-align: center; margin-top: 40px; }
+  .ct-footer__copy { margin-left: 0; width: 100%; }
+}
+
+/* ── Reduced motion ────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  :host ::ng-deep .polaroid-track,
-  :host ::ng-deep .polaroid {
-    animation: none;
-  }
-}
-
-/* Shared wiggle animation — every polaroid runs the same keyframe but each has a
-   unique animation-delay (see .polaroid-pN below), so no two wiggle at the same
-   moment and DOM-adjacent polaroids are always 15s apart in time. */
-:host ::ng-deep .polaroid.polaroid-r1,
-:host ::ng-deep .polaroid.polaroid-r2,
-:host ::ng-deep .polaroid.polaroid-r3,
-:host ::ng-deep .polaroid.polaroid-r4,
-:host ::ng-deep .polaroid.polaroid-r5,
-:host ::ng-deep .polaroid.polaroid-r6 {
-  transform: rotate(var(--polaroid-base-rot, 0deg)) translateY(var(--polaroid-base-y, 0px));
-  transform-origin: center center;
-  animation: polaroid-wiggle 42s linear infinite;
-  animation-delay: var(--polaroid-wiggle-delay, 0s);
-}
-
-/* Per-position delays on a 42s cycle. Sorted: 0, 3, 6, 9, 12, 15, 18, 21, 24,
-   27, 30, 33, 36, 39 — 14 unique values, 3s apart, so one polaroid wiggles
-   every 3s. Shuffled by a step of 9 (coprime with 14) so DOM-adjacent polaroids
-   are always 15s apart (no two neighbors ever wiggle close in time). */
-:host ::ng-deep .polaroid-p0  { --polaroid-wiggle-delay:  0s; }
-:host ::ng-deep .polaroid-p1  { --polaroid-wiggle-delay: 27s; }
-:host ::ng-deep .polaroid-p2  { --polaroid-wiggle-delay: 12s; }
-:host ::ng-deep .polaroid-p3  { --polaroid-wiggle-delay: 39s; }
-:host ::ng-deep .polaroid-p4  { --polaroid-wiggle-delay: 24s; }
-:host ::ng-deep .polaroid-p5  { --polaroid-wiggle-delay:  9s; }
-:host ::ng-deep .polaroid-p6  { --polaroid-wiggle-delay: 36s; }
-:host ::ng-deep .polaroid-p7  { --polaroid-wiggle-delay: 21s; }
-:host ::ng-deep .polaroid-p8  { --polaroid-wiggle-delay:  6s; }
-:host ::ng-deep .polaroid-p9  { --polaroid-wiggle-delay: 33s; }
-:host ::ng-deep .polaroid-p10 { --polaroid-wiggle-delay: 18s; }
-:host ::ng-deep .polaroid-p11 { --polaroid-wiggle-delay:  3s; }
-:host ::ng-deep .polaroid-p12 { --polaroid-wiggle-delay: 30s; }
-:host ::ng-deep .polaroid-p13 { --polaroid-wiggle-delay: 15s; }
-
-/* Wiggle burst ~0.6s at the start of each 42s cycle (≈1.43%); the rest of the
-   cycle the polaroid sits at its base pose. Base rotation/translate come from
-   the --polaroid-base-* variables, so each tilt variant keeps its own character. */
-@keyframes polaroid-wiggle {
-  0%, 1.43%, 100% {
-    transform: rotate(var(--polaroid-base-rot, 0deg)) translateY(var(--polaroid-base-y, 0px)) scale(1);
-  }
-  0.43% {
-    transform: rotate(calc(var(--polaroid-base-rot, 0deg) - 20deg)) translateY(calc(var(--polaroid-base-y, 0px) - 10px)) scale(1.08);
-  }
-  0.72% {
-    transform: rotate(calc(var(--polaroid-base-rot, 0deg) + 22deg)) translateY(calc(var(--polaroid-base-y, 0px) - 15px)) scale(1.10);
-  }
-  1.00% {
-    transform: rotate(calc(var(--polaroid-base-rot, 0deg) - 10deg)) translateY(calc(var(--polaroid-base-y, 0px) - 7px)) scale(1.05);
-  }
-}
-
-/* Footer bottom row (© 2026 + Back to top) — stack centered on mobile. */
-@media (max-width: 768px) {
-  :host ::ng-deep #container .css-b0jis2 {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 10px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    padding: 12px 16px !important;
-    box-sizing: border-box !important;
-    text-align: center !important;
-  }
-  :host ::ng-deep #container .css-b0jis2 > p,
-  :host ::ng-deep #container .css-b0jis2 > button {
-    margin: 0 !important;
-    text-align: center !important;
-    align-self: center !important;
-  }
-  :host ::ng-deep #container .css-b0jis2 > button {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-}
-
-/* Footer bottom row (© 2026 + Back to top) — stack centered on tablet too. */
-@media (min-width: 769px) and (max-width: 1100px) {
-  :host ::ng-deep #container .css-b0jis2 {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 10px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    padding: 12px 16px !important;
-    box-sizing: border-box !important;
-    text-align: center !important;
-  }
-  :host ::ng-deep #container .css-b0jis2 > p,
-  :host ::ng-deep #container .css-b0jis2 > button {
-    margin: 0 !important;
-    text-align: center !important;
-    align-self: center !important;
-  }
-  :host ::ng-deep #container .css-b0jis2 > button {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-}
-
-/* Ready to Join a Thriving Community? — prevent background image stretch on tablet */
-@media (min-width: 769px) and (max-width: 1100px) {
-  :host ::ng-deep #container .css-nllq1o {
-    position: relative !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    overflow: hidden !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .css-43d4nr {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-  }
-}
-
-/* Navbar header — match the Home tablet layout (copied from main CC page). */
-@media (min-width: 769px) and (max-width: 1100px) {
-  :host ::ng-deep #container .css-vhq6dg {
-    width: calc(100% - 64px) !important;
-    max-width: 960px !important;
-    left: 50% !important;
-    top: 28px !important;
-    height: auto !important;
-  }
-}
-
-/* Ready to Join a Thriving Community? — mobile fixups (copied from main CC). */
-@media (max-width: 768px) {
-  :host ::ng-deep #container .css-nllq1o {
-    position: relative !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    overflow: hidden !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o > .css-r0azwh,
-  :host ::ng-deep #container .css-nllq1o > .css-r0azwh .css-phc9f9 {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .css-43d4nr {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    display: block !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .css-gxdil1,
-  :host ::ng-deep #container .css-nllq1o .css-yiw6sn,
-  :host ::ng-deep #container .css-nllq1o .css-d455ri,
-  :host ::ng-deep #container .css-nllq1o .css-b84j9q,
-  :host ::ng-deep #container .css-nllq1o .css-sotq9e,
-  :host ::ng-deep #container .css-nllq1o .css-6bx0tj,
-  :host ::ng-deep #container .css-nllq1o .css-hdvvn5,
-  :host ::ng-deep #container .css-nllq1o .css-93wn39 {
-    width: 100% !important;
-    max-width: 100vw !important;
-    box-sizing: border-box !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    left: auto !important;
-    right: auto !important;
-    transform: none !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o * {
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    word-break: normal !important;
-    overflow-wrap: break-word !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o p {
-    white-space: normal !important;
-    max-width: 100% !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .css-93wn39 {
-    transform: translateY(-30px) !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .css-4wg6y,
-  :host ::ng-deep #container .css-nllq1o .css-h9j71c,
-  :host ::ng-deep #container .css-nllq1o .css-fhhq3m {
-    color: #000000 !important;
-    -webkit-text-fill-color: #000000 !important;
-    -webkit-text-stroke: 0 !important;
-    text-stroke: 0 !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .rtjtc-goals {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .tailwind button,
-  :host ::ng-deep #container .css-nllq1o .tailwind [class*="w-["] {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .tailwind [class*="text-nowrap"],
-  :host ::ng-deep #container .css-nllq1o .tailwind [class*="whitespace-pre"] {
-    white-space: normal !important;
-  }
+  .ct-chip,
+  .ct-btn,
+  .ct-field input,
+  .ct-field select,
+  .ct-consent__box { transition: none; }
 }

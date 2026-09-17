@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" height="100%" overflow="visible" preserveAspectRatio="none" style="display: block;" viewBox="0 0 42.6441 42.6441" width="100%">
+<g id="Linkedin">
+<rect height="41.8826" rx="20.9413" stroke="var(--stroke-0, white)" stroke-opacity="0.1" stroke-width="0.761502" width="41.8826" x="0.380751" y="0.380751"/>
+<g clip-path="url(#clip0_0_7705)" id="Frame 1116607392">
+<g clip-path="url(#clip1_0_7705)" id="linkedin">
+<g id="Mask group">
+<mask height="14" id="mask0_0_7705" maskUnits="userSpaceOnUse" style="mask-type:luminance" width="18" x="13" y="15">
+<g id="Group">
+<g id="Group_2">
+<path d="M21.9677 16.1825C29.3353 16.1825 29.3353 16.1825 29.3353 21.9128C29.3353 27.6431 29.3353 27.6431 21.9677 27.6431C14.6002 27.6431 14.6002 27.6431 14.6002 21.9128C14.6002 16.1825 14.6002 16.1825 21.9677 16.1825Z" fill="var(--fill-0, white)" id="Vector" stroke="var(--stroke-0, white)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.63723"/>
+<path d="M20.5807 19.4325L25.4924 22.2977L20.5807 25.1628V19.4325Z" fill="var(--fill-0, black)" id="Vector_2"/>
+</g>
+</g>
+</mask>
+<g mask="url(#mask0_0_7705)">
+<path d="M31.9967 12.4325H12.35V32.0793H31.9967V12.4325Z" fill="var(--fill-0, white)" id="Vector_3"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_7705">
+<rect fill="white" height="18.276" transform="translate(12.184 12.184)" width="18.276"/>
+</clipPath>
+<clipPath id="clip1_0_7705">
+<rect fill="white" height="16.3723" transform="translate(13.7059 14.0881)" width="16.3723"/>
+</clipPath>
+</defs>
+</svg>

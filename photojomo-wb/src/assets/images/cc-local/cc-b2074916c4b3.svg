@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" height="100%" overflow="visible" preserveAspectRatio="none" style="display: block;" viewBox="0 0 42.6441 42.6441" width="100%">
+<g id="Twitter">
+<rect height="41.8826" rx="20.9413" stroke="var(--stroke-0, white)" stroke-opacity="0.1" stroke-width="0.761502" width="41.8826" x="0.380751" y="0.380751"/>
+<g id="twitter">
+<path clip-rule="evenodd" d="M29.317 15.6109C29.317 14.3487 28.2947 13.3264 27.0325 13.3264H15.61C14.3478 13.3264 13.3255 14.3487 13.3255 15.6109V27.0334C13.3255 28.2956 14.3478 29.3179 15.61 29.3179H27.0325C28.2947 29.3179 29.317 28.2956 29.317 27.0334V15.6109Z" fill="var(--fill-0, white)" fill-rule="evenodd" id="Vector"/>
+<path d="M16.488 25.9737H17.6303L20.6801 22.5069L23.333 25.968H26.4342L22.3649 20.588L25.8088 16.6757H24.6666L21.8366 19.8912L19.4093 16.6786H16.2082L20.1461 21.8159L16.4852 25.9765L16.488 25.9737ZM17.9473 17.5324H18.9867L24.7151 25.1113H23.7585L17.9501 17.5324H17.9473Z" fill="var(--fill-0, #131313)" id="Vector_2"/>
+</g>
+</g>
+</svg>

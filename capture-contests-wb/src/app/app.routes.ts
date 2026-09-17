@@ -1,32 +1,27 @@
 import { Routes } from '@angular/router';
 
-import { HomePage } from './pages/home/home';
-import { TheExperiencePage } from './pages/the-experience/the-experience';
-import { PartnerWithUsPage } from './pages/partner-with-us/partner-with-us';
-import { PartnerInquiryPage } from './pages/partner-inquiry/partner-inquiry';
-import { CreatorGuidelinesPage } from './pages/creator-guidelines/creator-guidelines';
-import { CaptureCaribbeanPage } from './pages/capture-caribbean/capture-caribbean';
-import { CaptureAfricaPage } from './pages/capture-africa/capture-africa';
-import { CaptureBarbadosPage } from './pages/capture-barbados/capture-barbados';
-import { CaptureGhanaPage } from './pages/capture-ghana/capture-ghana';
-import { CaptureGuyanaPage } from './pages/capture-guyana/capture-guyana';
-import { CaptureJamaicaPage } from './pages/capture-jamaica/capture-jamaica';
-import { CaptureNigeriaPage } from './pages/capture-nigeria/capture-nigeria';
-import { CaptureSaintLuciaPage } from './pages/capture-saint-lucia/capture-saint-lucia';
-
+/**
+ * Every page is lazily loaded.
+*
+ * These were eager `component:` imports, which put all 13 page components
+ * into main.js - 1.18MB raw that every visitor had to download, parse and
+ * execute before the first route rendered, on a phone as much as a desktop.
+ * loadComponent splits each page into its own chunk, so a visitor pays for
+ * the page they asked for and nothing else.
+ */
 export const routes: Routes = [
-  { path: '', component: HomePage },
-  { path: 'the-experience', component: TheExperiencePage },
-  { path: 'partner-with-us', component: PartnerWithUsPage },
-  { path: 'partner-inquiry', component: PartnerInquiryPage },
-  { path: 'creator-guidelines', component: CreatorGuidelinesPage },
-  { path: 'capture-caribbean', component: CaptureCaribbeanPage },
-  { path: 'capture-africa', component: CaptureAfricaPage },
-  { path: 'capture-barbados', component: CaptureBarbadosPage },
-  { path: 'capture-ghana', component: CaptureGhanaPage },
-  { path: 'capture-guyana', component: CaptureGuyanaPage },
-  { path: 'capture-jamaica', component: CaptureJamaicaPage },
-  { path: 'capture-nigeria', component: CaptureNigeriaPage },
-  { path: 'capture-saint-lucia', component: CaptureSaintLuciaPage },
+  { path: '', loadComponent: () => import('./pages/home/home').then((m) => m.HomePage) },
+  { path: 'the-experience', loadComponent: () => import('./pages/the-experience/the-experience').then((m) => m.TheExperiencePage) },
+  { path: 'partner-with-us', loadComponent: () => import('./pages/partner-with-us/partner-with-us').then((m) => m.PartnerWithUsPage) },
+  { path: 'partner-inquiry', loadComponent: () => import('./pages/partner-inquiry/partner-inquiry').then((m) => m.PartnerInquiryPage) },
+  { path: 'creator-guidelines', loadComponent: () => import('./pages/creator-guidelines/creator-guidelines').then((m) => m.CreatorGuidelinesPage) },
+  { path: 'capture-caribbean', loadComponent: () => import('./pages/capture-caribbean/capture-caribbean').then((m) => m.CaptureCaribbeanPage) },
+  { path: 'capture-africa', loadComponent: () => import('./pages/capture-africa/capture-africa').then((m) => m.CaptureAfricaPage) },
+  { path: 'capture-barbados', loadComponent: () => import('./pages/capture-barbados/capture-barbados').then((m) => m.CaptureBarbadosPage) },
+  { path: 'capture-ghana', loadComponent: () => import('./pages/capture-ghana/capture-ghana').then((m) => m.CaptureGhanaPage) },
+  { path: 'capture-guyana', loadComponent: () => import('./pages/capture-guyana/capture-guyana').then((m) => m.CaptureGuyanaPage) },
+  { path: 'capture-jamaica', loadComponent: () => import('./pages/capture-jamaica/capture-jamaica').then((m) => m.CaptureJamaicaPage) },
+  { path: 'capture-nigeria', loadComponent: () => import('./pages/capture-nigeria/capture-nigeria').then((m) => m.CaptureNigeriaPage) },
+  { path: 'capture-saint-lucia', loadComponent: () => import('./pages/capture-saint-lucia/capture-saint-lucia').then((m) => m.CaptureSaintLuciaPage) },
   { path: '**', redirectTo: '' },
 ];

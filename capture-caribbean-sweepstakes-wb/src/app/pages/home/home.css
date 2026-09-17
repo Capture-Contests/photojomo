@@ -76,6 +76,17 @@
   font-style: italic;
 }
 
+/* Third heading line — the destination. Slightly larger and letter-spaced
+   so "Saint Lucia" reads as the payoff line under the two setup lines. */
+.sw-hero__heading em.sw-hero__heading-place,
+.sw-hero__heading-place {
+  font-family: 'Sora', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.18em;
+  letter-spacing: 0.06em;
+}
+
 .sw-hero__heading-num {
   font-family: 'Sora', sans-serif;
   font-style: normal;

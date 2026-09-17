@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 32 32" fill="currentColor">
+  <title>Offset hamburger menu</title>
+  <rect x="4" y="6" width="18" height="3" rx="1.5"/>
+  <rect x="4" y="14.5" width="24" height="3" rx="1.5"/>
+  <rect x="10" y="23" width="18" height="3" rx="1.5"/>
+</svg>

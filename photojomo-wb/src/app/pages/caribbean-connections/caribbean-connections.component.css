@@ -1595,7 +1595,11 @@
     display: none !important;
   }
 
-  /* Voices of the Caribbean video — fullscreen on mobile */
+  /* Voices of the Caribbean video — full-bleed across the viewport on mobile,
+     but only 16:9 tall rather than the 100vh takeover used on wider screens
+     (at phone heights that left the clip letterboxed in a tall black field).
+     The 100vw + negative-margin pair breaks it out of every parent gutter so
+     it still touches both edges. */
   :host ::ng-deep #container .css-atgcpy,
   :host ::ng-deep #container .css-atgcpy > .css-gxdil1,
   :host ::ng-deep #container .css-atgcpy .css-lkdw5v {
@@ -1610,10 +1614,12 @@
   :host ::ng-deep #container .css-atgcpy .css-ve8l3g {
     width: 100vw !important;
     max-width: 100vw !important;
-    height: 100vh !important;
-    min-height: 100vh !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 16 / 9 !important;
     min-width: 0 !important;
     position: relative !important;
+    overflow: hidden !important;
   }
 
   :host ::ng-deep #container .css-atgcpy .css-ve8l3g > div,
@@ -2170,4 +2176,75 @@
     max-width: 64px !important;
     max-height: 64px !important;
   }
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   A PLATFORM THAT SHOWCASES YOUR TALENT — folding panels (desktop)
+
+   The export already stacks these three panels in a column, gives them
+   `position: sticky` and an opaque white background, so the ingredients
+   for the fold were all present — but every panel pinned at `top: 0`,
+   which hid each pinned panel completely behind the next and let all
+   three release together. Staggering the offsets (and closing the gap so
+   they abut) is what makes the fold legible, the same way the mobile
+   rules above stagger 16/26/36px.
+   ───────────────────────────────────────────────────────────────────── */
+@media (min-width: 769px) {
+  :host ::ng-deep #container .css-unouix .css-ghzu67 {
+    gap: 0 !important;
+  }
+
+  :host ::ng-deep #container .css-unouix .css-khdjro {
+    top: 96px !important;
+    margin-bottom: 24px !important;
+    align-self: stretch !important;
+  }
+
+  /* each successive panel rests a little lower, so the one beneath stays
+     visible as a stacked edge instead of being covered outright */
+  :host ::ng-deep #container .css-unouix .css-ghzu67 > .css-khdjro:nth-child(2) {
+    top: 120px !important;
+  }
+  :host ::ng-deep #container .css-unouix .css-ghzu67 > .css-khdjro:nth-child(3) {
+    top: 144px !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   Hamburger — offset graphic in a thin rounded box, matching the
+   Experience and Contact pages. Scoped to this page rather than changed
+   in navbar.component.css, because that component is shared by all 14
+   pages in the app and the other ten were not part of this work.
+   The shared button is shown at <=1100px (two separate media blocks in
+   navbar.component.css), so the override covers the same range.
+   ───────────────────────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  :host ::ng-deep .nav-hamburger {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 8px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  :host ::ng-deep .nav-hamburger:hover { background: rgba(255, 255, 255, 0.12); }
+
+  /* the graphic sits on the button; the three bars stay in the DOM so the
+     shared component's fold-to-X on open still works */
+  :host ::ng-deep .nav-hamburger::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    -webkit-mask: url('/assets/images/hamburger-menu-offset.svg') no-repeat center / contain;
+            mask: url('/assets/images/hamburger-menu-offset.svg') no-repeat center / contain;
+  }
+  :host ::ng-deep .nav-hamburger span { visibility: hidden; }
+  :host ::ng-deep .nav-hamburger span.open { visibility: visible; }
+  :host ::ng-deep .nav-hamburger:has(span.open)::before { opacity: 0; }
 }

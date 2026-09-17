@@ -63,3 +63,4 @@ capture-contests-wb/_media-masters/
 # Pre-webp originals, kept locally so the webp renditions can be regenerated
 # at a different size or quality without re-sourcing the photographs.
 capture-contests-wb/_image-originals/
+photojomo-wb/_image-originals/

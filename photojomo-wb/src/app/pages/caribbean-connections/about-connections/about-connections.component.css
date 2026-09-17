@@ -1,683 +1,404 @@
-:host ::ng-deep .empty-white-section {
-  width: 100%;
-  min-height: 400px;
-  background: #ffffff;
+/* ══ About page ═══════════════════════════════════════════════════════════
+   Built from Figma "Capture Connections (About Page)" (node 1279:3863),
+   a 1920-wide design. Same approach as the Experience page: Figma values
+   are the upper bound of a clamp() so the page scales down cleanly.      */
+
+:host {
+  display: block;
+  background: #fffdf9;
+  --ab-orange: #df5e26;
+  --ab-ink: #000;
+  --ab-body: #333;
+  --ab-sans: 'Sora', 'Inter', system-ui, sans-serif;
+  --ab-serif: 'CalvinoGrandeItalicVarTrial', 'Calvino Grande Trial', Georgia, serif;
+  --ab-pad: clamp(20px, 2.9vw, 56px);
 }
 
-:host ::ng-deep #container .cc-footer-logo {
-  width: 198px !important;
-  height: 58px !important;
-  flex: 0 0 auto !important;
-  overflow: visible !important;
+/* The Calvino italic half of each heading, as in the design. */
+.ab-h2 em,
+.ab-hero__heading em {
+  font-family: var(--ab-serif);
+  font-style: italic;
+  font-weight: 350;
+  font-size: 1.08em;
 }
 
-:host ::ng-deep #container .cc-footer-logo .cc-footer-logo-img {
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  object-fit: contain !important;
+.ab-h2 {
+  font-family: var(--ab-sans);
+  font-weight: 400;
+  font-size: clamp(28px, 2.71vw, 52px);
+  line-height: 1.27;
+  color: var(--ab-ink);
+  text-align: center;
+  margin: 0;
 }
+.ab-h2--left { text-align: left; font-size: clamp(26px, 2.19vw, 42px); }
 
-/* ─────────────────────────────────────────────────────────────────────
-   HERO SPACING — mirrors caribbean-connections.component.css
-   ───────────────────────────────────────────────────────────────────── */
-
-@media (min-width: 769px) {
-  :host ::ng-deep #container .css-rhxma0.css-4xz6kg.css-wh4ihv {
-    margin-top: 1.2em !important;
-  }
+.ab-btn {
+  display: inline-block;
+  background: var(--ab-orange);
+  color: #fff;
+  font-family: var(--ab-sans);
+  font-size: clamp(15px, 0.94vw, 18px);
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+  padding: 17px 30px;
+  border-radius: 3px;
+  transition: background 0.18s ease, transform 0.18s ease;
 }
+.ab-btn:hover { background: #c64f1d; transform: translateY(-1px); }
 
-@media (max-width: 768px) {
-  :host ::ng-deep #container,
-  :host ::ng-deep #container .css-i9h3z,
-  :host ::ng-deep #container .css-50jkpj,
-  :host ::ng-deep #container .css-rn2hh9,
-  :host ::ng-deep #container .css-3tcx9o {
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-    overflow: visible !important;
-    overflow-x: clip !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw {
-    height: auto !important;
-    min-height: 60vh !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    position: relative !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-r0azwh,
-  :host ::ng-deep #container .css-stwrzw .css-phc9f9 {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-frzniw {
-    width: 100% !important;
-    height: 100% !important;
-    top: 0 !important;
-    left: 0 !important;
-    object-fit: cover !important;
-    object-position: center !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-r3og54,
-  :host ::ng-deep #container .css-stwrzw .css-2dqx77,
-  :host ::ng-deep #container .css-stwrzw .css-ks1xrq,
-  :host ::ng-deep #container .css-stwrzw .css-uhys88,
-  :host ::ng-deep #container .css-stwrzw .css-c20z98,
-  :host ::ng-deep #container .css-stwrzw .css-aa2rly,
-  :host ::ng-deep #container .css-stwrzw .css-sz2f8,
-  :host ::ng-deep #container .css-stwrzw .css-zfhtxa,
-  :host ::ng-deep #container .css-stwrzw .css-ft4d0g,
-  :host ::ng-deep #container .css-stwrzw .css-liobgr {
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
-    text-align: left !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-zfhtxa p,
-  :host ::ng-deep #container .css-stwrzw .css-liobgr p {
-    text-align: left !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-z8tzya {
-    justify-content: flex-start !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-r3og54,
-  :host ::ng-deep #container .css-stwrzw .css-2dqx77,
-  :host ::ng-deep #container .css-stwrzw .css-ks1xrq,
-  :host ::ng-deep #container .css-stwrzw .css-uhys88,
-  :host ::ng-deep #container .css-stwrzw .css-c20z98,
-  :host ::ng-deep #container .css-stwrzw .css-aa2rly,
-  :host ::ng-deep #container .css-stwrzw .css-sz2f8,
-  :host ::ng-deep #container .css-stwrzw .css-zfhtxa,
-  :host ::ng-deep #container .css-stwrzw .css-ft4d0g,
-  :host ::ng-deep #container .css-stwrzw .css-liobgr,
-  :host ::ng-deep #container .css-stwrzw .css-z8tzya {
-    padding-left: 0 !important;
-    margin-left: 0 !important;
-    left: 0 !important;
-    right: auto !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-r3og54 {
-    padding-left: 17px !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-c20z98 {
-    margin-top: 180px !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-bqwcu6 {
-    font-family: "Calvino Grande Trial:Light Italic", serif !important;
-    font-style: italic !important;
-    font-weight: 300 !important;
-    font-size: 51px !important;
-    line-height: 0.95 !important;
-    letter-spacing: -0.01em !important;
-    text-transform: none !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    max-width: 11ch !important;
-    margin: 0 0 14px 0 !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-w9lend,
-  :host ::ng-deep #container .css-stwrzw .css-mly5wr,
-  :host ::ng-deep #container .css-stwrzw .css-ueucp2 {
-    font-size: 19px !important;
-    line-height: 1.4 !important;
-    font-weight: 500 !important;
-    letter-spacing: 0 !important;
-    margin: 0 0 18px 0 !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-rhxma0,
-  :host ::ng-deep #container .css-stwrzw .css-4xz6kg,
-  :host ::ng-deep #container .css-stwrzw .css-wh4ihv {
-    font-size: 12px !important;
-    line-height: 1.5 !important;
-    max-width: 65ch !important;
-    white-space: normal !important;
-  }
-}
-
-/* Hero image — prevent stretching on tablet (same fix as mobile). The
-   Figma-exported desktop sizing assumes a 1440px viewport, which forces the
-   image to an aspect ratio that stretches at 769–1100px widths. */
-@media (min-width: 769px) and (max-width: 1100px) {
-  :host ::ng-deep #container .css-stwrzw {
-    height: auto !important;
-    min-height: 70vh !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    position: relative !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-r0azwh,
-  :host ::ng-deep #container .css-stwrzw .css-phc9f9 {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  :host ::ng-deep #container .css-stwrzw .css-frzniw {
-    width: 100% !important;
-    height: 100% !important;
-    top: 0 !important;
-    left: 0 !important;
-    object-fit: cover !important;
-    object-position: center !important;
-  }
-}
-
-/* Hero button hover states — applied on all viewports so mobile taps
-   get the same sticky-hover behavior as desktop pointer hover. */
-:host ::ng-deep .css-z8tzya > .css-tyqn17,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-r0azwh,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-ggwoeh,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-v88b74,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-f7juvu,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-v88b74 p,
-:host ::ng-deep .css-z8tzya > .css-tyqn17 .css-f7juvu p {
-  cursor: pointer;
-  transition:
-    background-color 420ms ease,
-    border-color 420ms ease,
-    color 420ms ease,
-    -webkit-text-fill-color 420ms ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-:host ::ng-deep .css-z8tzya > .css-tyqn17 {
-  outline: none !important;
-}
-
-/* Button 1 (Join the Waitlist) — swap inner yellow bg to orange on hover */
-:host ::ng-deep .css-z8tzya > .css-tyqn17:nth-child(1):hover .css-r0azwh {
-  background-color: #e85e2c !important;
-}
-
-/* Button 2 (Explore Communities) — fill the transparent button with orange on hover */
-:host ::ng-deep .css-z8tzya > .css-tyqn17:nth-child(2):hover {
-  background-color: #e85e2c !important;
-  border-radius: 1.5px !important;
-}
-
-:host ::ng-deep .css-z8tzya > .css-tyqn17:nth-child(2):hover .css-ggwoeh {
-  border-color: #e85e2c !important;
-}
-
-/* Hover text → black on both buttons */
-:host ::ng-deep .css-z8tzya > .css-tyqn17:hover .css-v88b74,
-:host ::ng-deep .css-z8tzya > .css-tyqn17:hover .css-f7juvu,
-:host ::ng-deep .css-z8tzya > .css-tyqn17:hover .css-v88b74 p,
-:host ::ng-deep .css-z8tzya > .css-tyqn17:hover .css-f7juvu p {
-  color: #000000 !important;
-  -webkit-text-fill-color: #000000 !important;
-}
-
-/* Footer bottom row — copyright + Back to top — shrunken */
-:host ::ng-deep #container .css-b0jis2 p {
-  font-size: 10px !important;
-}
-:host ::ng-deep #container .css-b0jis2 .css-u7g7t {
-  transform: scale(0.8);
-  transform-origin: center;
-}
-
-/* Footer spacing tightening */
-:host ::ng-deep #container .css-z8tvcy {
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  gap: 36px !important;
-}
-:host ::ng-deep #container .css-zfhta1 {
-  gap: 14px !important;
-}
-:host ::ng-deep #container .css-cf1rk {
-  gap: 28px !important;
-}
-
-/* Footer "Back to Capture Caribbean" link */
-:host ::ng-deep #container .cc-footer-back-link {
-  flex-basis: 100% !important;
-  width: 100% !important;
-  margin-top: 2px !important;
-  text-align: center !important;
-}
-:host ::ng-deep #container .cc-footer-back-link p {
-  text-align: center !important;
-}
-:host ::ng-deep #container .cc-footer-back-link-text,
-:host ::ng-deep #container .cc-footer-back-link-text strong {
-  color: #b8b8b8 !important;
-  -webkit-text-fill-color: #b8b8b8 !important;
-  font-size: 11px !important;
-  line-height: 1.2 !important;
-}
-:host ::ng-deep #container .cc-footer-back-link-text strong {
-  font-weight: 700 !important;
-}
-
-/* ─── Coming Soon section with glitch-reveal logo ─────────────────────── */
-:host ::ng-deep .coming-soon-section {
-  display: flex !important;
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+.ab-hero {
+  position: relative;
+  min-height: min(916px, 88vh);
+  background: #000;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 44px;
-  padding: 80px 24px;
+  overflow: hidden;
 }
-
-:host ::ng-deep .coming-soon-text {
-  margin: 0;
-  text-align: center;
-  font-family: "Calvino Grande Trial:Light Italic", "Instrument Serif", serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(28px, 4.2vw, 48px);
-  letter-spacing: -0.01em;
-  color: #0a0a0a;
-  opacity: 0;
-  transform: translateY(8px);
-  animation: coming-soon-text-in 900ms ease-out 120ms forwards;
-}
-
-:host ::ng-deep .cc-reveal {
-  position: relative;
-  width: min(420px, 70vw);
-  aspect-ratio: 179.039 / 41.4102;
-}
-
-:host ::ng-deep .cc-reveal-img {
+.ab-hero__bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  display: block;
-  object-fit: contain;
-}
-
-:host ::ng-deep .cc-reveal-main {
-  opacity: 0;
-  filter: brightness(0);
-  animation: cc-reveal-glitch 1600ms cubic-bezier(0.22, 1, 0.36, 1) 2400ms forwards;
-}
-
-:host ::ng-deep .cc-reveal-cyan {
-  opacity: 0;
-  filter: brightness(0) invert(58%) sepia(96%) saturate(1352%) hue-rotate(151deg) brightness(95%) contrast(101%);
-  mix-blend-mode: multiply;
-  animation: cc-reveal-chroma-cyan 1600ms cubic-bezier(0.22, 1, 0.36, 1) 2400ms forwards;
-}
-
-:host ::ng-deep .cc-reveal-red {
-  opacity: 0;
-  filter: brightness(0) invert(28%) sepia(89%) saturate(3612%) hue-rotate(353deg) brightness(97%) contrast(103%);
-  mix-blend-mode: multiply;
-  animation: cc-reveal-chroma-red 1600ms cubic-bezier(0.22, 1, 0.36, 1) 2400ms forwards;
-}
-
-@keyframes coming-soon-text-in {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes cc-reveal-glitch {
-  0% {
-    opacity: 0;
-    clip-path: inset(0 100% 0 0);
-    transform: translateX(-6px) skewX(-8deg);
-  }
-  18% {
-    opacity: 1;
-    clip-path: inset(40% 0 40% 0);
-    transform: translateX(4px) skewX(6deg);
-  }
-  32% {
-    clip-path: inset(0 0 70% 0);
-    transform: translateX(-3px) skewX(-3deg);
-  }
-  46% {
-    clip-path: inset(60% 0 0 0);
-    transform: translateX(2px) skewX(2deg);
-  }
-  62% {
-    clip-path: inset(15% 0 15% 0);
-    transform: translateX(-1px) skewX(0deg);
-  }
-  78% {
-    clip-path: inset(0 0 0 0);
-    transform: translateX(0) skewX(0deg);
-  }
-  100% {
-    opacity: 1;
-    clip-path: inset(0 0 0 0);
-    transform: translateX(0) skewX(0deg);
-  }
-}
-
-@keyframes cc-reveal-chroma-cyan {
-  0%   { opacity: 0; transform: translateX(-10px); }
-  18%  { opacity: 0.9; transform: translateX(-8px); }
-  62%  { opacity: 0.55; transform: translateX(-4px); }
-  100% { opacity: 0; transform: translateX(0); }
-}
-
-@keyframes cc-reveal-chroma-red {
-  0%   { opacity: 0; transform: translateX(10px); }
-  18%  { opacity: 0.9; transform: translateX(8px); }
-  62%  { opacity: 0.55; transform: translateX(4px); }
-  100% { opacity: 0; transform: translateX(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :host ::ng-deep .coming-soon-text,
-  :host ::ng-deep .cc-reveal-main {
-    animation: none;
-    opacity: 1;
-    transform: none;
-    clip-path: none;
-  }
-  :host ::ng-deep .cc-reveal-cyan,
-  :host ::ng-deep .cc-reveal-red {
-    display: none;
-  }
-}
-
-/* ─── Polaroid carousel ─────────────────────────────────────────────── */
-:host ::ng-deep .polaroid-carousel {
-  width: 100%;
-  max-width: 100vw;
-  overflow: hidden;
-  padding: 40px 0 60px;
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-}
-
-:host ::ng-deep .polaroid-track {
-  display: flex;
-  gap: 0;
-  width: max-content;
-  animation: polaroid-scroll 60s linear infinite;
-}
-
-:host ::ng-deep .polaroid {
-  flex: 0 0 auto;
-  margin: 0 36px 0 0;
-  width: 200px;
-  background: #ffffff;
-  padding: 12px 12px 38px;
-  box-shadow:
-    0 14px 28px rgba(15, 23, 42, 0.18),
-    0 4px 10px rgba(15, 23, 42, 0.1);
-  border-radius: 2px;
-  transition: transform 600ms ease;
-}
-
-:host ::ng-deep .polaroid img {
-  display: block;
-  width: 100%;
-  height: 200px;
   object-fit: cover;
-  background: #eee;
+}
+.ab-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 45%, rgba(0, 0, 0, 0.45) 100%);
+}
+/* The navbar's own rules position it absolutely within #container, so the
+   wrapper just needs to span the hero and sit above the scrim. */
+.ab-navwrap {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 3;
+  height: 145px;
 }
 
-/* Base pose per tilt variant — consumed via CSS vars by the shared wiggle keyframe. */
-:host ::ng-deep .polaroid-r1 { --polaroid-base-rot: -3deg;   --polaroid-base-y:  2px; }
-:host ::ng-deep .polaroid-r2 { --polaroid-base-rot:  2.2deg; --polaroid-base-y: -4px; }
-:host ::ng-deep .polaroid-r3 { --polaroid-base-rot: -1.4deg; --polaroid-base-y:  6px; }
-:host ::ng-deep .polaroid-r4 { --polaroid-base-rot:  3deg;   --polaroid-base-y: -2px; }
-:host ::ng-deep .polaroid-r5 { --polaroid-base-rot: -2.6deg; --polaroid-base-y:  4px; }
-:host ::ng-deep .polaroid-r6 { --polaroid-base-rot:  1.8deg; --polaroid-base-y: -5px; }
-
-@keyframes polaroid-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+.ab-hero__content {
+  position: relative;
+  z-index: 2;
+  width: min(1722px, 100%);
+  margin: auto;
+  padding: clamp(40px, 5vw, 96px) var(--ab-pad) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+.ab-hero__heading {
+  font-family: var(--ab-sans);
+  font-weight: 400;
+  font-size: clamp(32px, 3.91vw, 75px);
+  line-height: 1.19;
+  margin: 0;
+}
+.ab-hero__lede {
+  font-family: var(--ab-sans);
+  font-weight: 400;
+  font-size: clamp(16px, 1.25vw, 24px);
+  line-height: 1.5;
+  margin: 22px 0 0;
+  max-width: 974px;
 }
 
+.ab-hero__scroll {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 32px;
+  color: #fff;
+}
+.ab-hero__scroll-rule { width: 1px; height: 62px; background: rgba(255, 255, 255, 0.85); }
+/* Figma uses Jost 300 here; Sora 300 is the nearest weight this app ships. */
+.ab-hero__scroll-label { font-family: var(--ab-sans); font-weight: 300; font-size: 10px; letter-spacing: 0.18em; }
+
+/* ── Our Purpose ───────────────────────────────────────────────────────── */
+.ab-purpose {
+  display: grid;
+  grid-template-columns: minmax(0, 718fr) minmax(0, 842fr);
+  gap: clamp(32px, 4.48vw, 86px);
+  align-items: center;
+  background: #fcf9f3;
+  padding: clamp(60px, 7.19vw, 138px) clamp(20px, 6.25vw, 120px) clamp(50px, 5.57vw, 107px);
+}
+.ab-purpose__copy { display: flex; flex-direction: column; gap: 15px; }
+.ab-purpose__copy .ab-h2 { margin-bottom: 17px; }
+.ab-purpose__copy p {
+  font-family: var(--ab-sans);
+  font-weight: 300;
+  font-size: clamp(15px, 1.04vw, 20px);
+  line-height: 1.5;
+  color: var(--ab-body);
+  margin: 0;
+}
+.ab-purpose__img { width: 100%; aspect-ratio: 842 / 483; object-fit: cover; border-radius: 2px; }
+
+/* ── Why Connections ───────────────────────────────────────────────────── */
+/* Keeps the design's 1920x983 proportion so the four floating photos hold
+   their positions clear of the centred copy. */
+.ab-why {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1920 / 983;
+  min-height: 520px;
+  background: #fffdf9 url('/assets/images/cc/cc-world-map.webp') center / 105% auto no-repeat;
+  padding: clamp(40px, 4vw, 72px) var(--ab-pad);
+  overflow: hidden;
+}
+.ab-why__photos { position: absolute; inset: 0; pointer-events: none; }
+.ab-why__photo {
+  position: absolute;
+  width: 14.7%;
+  object-fit: cover;
+  border-radius: 2px;
+  pointer-events: auto;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+}
+/* Even clearance top and bottom so the hover shadow never meets the edge. */
+.ab-why__photo--1 { left: 6.4%;  top: 8.9%;    aspect-ratio: 283 / 311; --wiggle-dir: -1; }
+.ab-why__photo--2 { left: 9.1%;  bottom: 8.9%; aspect-ratio: 283 / 272; --wiggle-dir: -1; }
+.ab-why__photo--3 { right: 6.9%; top: 8.9%;    aspect-ratio: 283 / 288; --wiggle-dir: 1; }
+.ab-why__photo--4 { right: 8.4%; bottom: 8.9%; aspect-ratio: 283 / 284; --wiggle-dir: 1; }
+/* Photo hover carried over from Capture Contests (.afr-continent__photo). */
+@media (hover: hover) {
+  .ab-why__photo:hover {
+    transform: scale(1.1) rotate(calc(var(--wiggle-dir, 1) * 4deg));
+    box-shadow: 0 22px 48px rgba(15, 23, 42, 0.22);
+    z-index: 1;
+  }
+}
+
+/* Photos occupy the outer ~22% on each side, so the copy column stops
+   short of them rather than running underneath. */
+.ab-why__inner { position: relative; width: min(1656px, 54%); text-align: center; }
+.ab-why__text {
+  font-family: var(--ab-sans);
+  font-weight: 300;
+  font-size: clamp(15px, 1.04vw, 20px);
+  line-height: 1.5;
+  color: #393939;
+  margin: 24px auto 0;
+}
+.ab-why__inner .ab-h2 + .ab-why__text { margin-top: 26px; }
+.ab-why__text--narrow { max-width: 623px; }
+.ab-why__text--mid { max-width: 845px; }
+
+/* ── The Third Path ────────────────────────────────────────────────────── */
+.ab-path { padding: clamp(60px, 5.68vw, 109px) var(--ab-pad) clamp(50px, 4.38vw, 84px); }
+.ab-path__head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 54px; }
+.ab-path__lede {
+  width: min(866px, 100%);
+  margin: 0 auto;
+  font-family: var(--ab-sans);
+  font-weight: 300;
+  font-size: clamp(15px, 1.04vw, 20px);
+  line-height: 1.5;
+  color: var(--ab-body);
+  text-align: center;
+}
+.ab-path__row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 27px;
+  align-items: start;
+}
+.ab-step { display: flex; flex-direction: column; }
+/* Frame clips the image so the hover scale grows inside it — the same
+   subtle move as .afr-rrow__media on Capture Contests (scale 1.035). */
+.ab-step__media {
+  width: 100%;
+  aspect-ratio: 585 / 352;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.ab-step__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.ab-step:hover .ab-step__media img { transform: scale(1.035); }
+
+.ab-step__title {
+  font-family: var(--ab-sans);
+  font-weight: 400;
+  font-size: clamp(18px, 1.09vw, 21px);
+  line-height: 1.24;
+  color: var(--ab-ink);
+  margin: 22px 0 0;
+}
+.ab-step__text {
+  font-family: var(--ab-sans);
+  font-weight: 300;
+  font-size: clamp(15px, 0.94vw, 18px);
+  line-height: 1.5;
+  color: #2f2f2f;
+  margin: 10px 0 0;
+}
+
+/* ── Closing ───────────────────────────────────────────────────────────── */
+.ab-close {
+  position: relative;
+  background: #fffdf9;
+  padding: clamp(60px, 4.84vw, 93px) var(--ab-pad) clamp(50px, 4.58vw, 88px);
+}
+.ab-close__head { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.ab-close__text {
+  width: min(915px, 100%);
+  margin: 26px 0 0;
+  font-family: var(--ab-sans);
+  font-weight: 300;
+  font-size: clamp(15px, 1.04vw, 20px);
+  line-height: 1.5;
+  color: var(--ab-body);
+}
+.ab-close__head .ab-btn { margin-top: 26px; }
+/* Full-bleed by escaping the section gutter — never 100vw, which would
+   count the scrollbar and force a horizontal one. */
+.ab-close__media { margin: 54px calc(-1 * var(--ab-pad)) 0; }
+.ab-close__media img { display: block; width: 100%; max-height: 88vh; object-fit: cover; }
+
+/* ── Footer ────────────────────────────────────────────────────────────── */
+.ab-footer {
+  background: #040404;
+  color: #fff;
+  padding: 86px clamp(20px, 3.75vw, 72px) 40px;
+}
+.ab-footer__top { display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center; }
+.ab-footer__logo img { display: block; width: clamp(180px, 13.8vw, 265px); height: auto; }
+.ab-footer__tagline {
+  font-family: var(--ab-sans);
+  font-size: clamp(14px, 0.83vw, 16px);
+  line-height: 1.44;
+  margin: 0;
+}
+.ab-footer__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; }
+.ab-footer__links a,
+.ab-footer__legal a {
+  font-family: var(--ab-sans);
+  font-size: clamp(14px, 0.83vw, 16px);
+  color: #fff;
+  text-decoration: none;
+}
+.ab-footer__links a:hover,
+.ab-footer__legal a:hover { text-decoration: underline; }
+.ab-footer__social { display: flex; gap: 16px; }
+.ab-footer__social a {
+  display: grid;
+  place-items: center;
+  width: 57px;
+  height: 57px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+.ab-footer__social svg { width: 24px; height: 24px; }
+.ab-footer__social a:hover { background: rgba(255, 255, 255, 0.12); }
+.ab-footer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 35px;
+  margin-top: 72px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+.ab-footer__legal { display: flex; flex-wrap: wrap; gap: 16px; }
+.ab-footer__legalline,
+.ab-footer__copy {
+  font-family: var(--ab-sans);
+  font-size: clamp(14px, 0.83vw, 16px);
+  margin: 0;
+}
+.ab-footer__copy { margin-left: auto; }
+
+/* ── Tablet ────────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .ab-purpose { grid-template-columns: 1fr; gap: 32px; }
+  .ab-purpose__copy { order: 2; }
+  /* the floating photos have nowhere to sit without crossing the copy */
+  .ab-why { aspect-ratio: auto; padding-block: clamp(60px, 9vw, 110px); }
+  .ab-why__photo { display: none; }
+  .ab-why__inner { width: min(1656px, 100%); }
+  .ab-path__row { grid-template-columns: 1fr; gap: 44px; max-width: 585px; margin-inline: auto; }
+}
+
+/* ── Mobile ────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .ab-hero { min-height: 600px; }
+
+  /* Why Connections: the map is centred in the band, which on a phone put it
+     starting ~53px BELOW the heading. Pin it near the top instead so it
+     begins just above "Why Connections". */
+  /* The shared navbar sits flush at x=0 inside .ab-navwrap, so its logo
+     landed 6px from the screen edge — the other pages inset it ~21px, which
+     matches the bar's own 21px vertical padding. */
+  :host ::ng-deep .ab-navwrap .nav-logo-cc { margin-left: 15px !important; }
+
+  .ab-why { background-position: center 68px; }
+
+  /* Heading and copy read left-aligned on phones; the auto side margins on
+     the paragraphs have to go too, or they stay optically centred. */
+  .ab-why__inner { text-align: left; }
+  .ab-why__inner .ab-h2 { text-align: left; }
+  .ab-why__text { margin-left: 0; margin-right: 0; }
+  .ab-footer { padding-top: 56px; }
+  .ab-footer__bar { justify-content: center; text-align: center; margin-top: 40px; }
+  .ab-footer__copy { margin-left: 0; width: 100%; }
+}
+
+/* ── Reduced motion ────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  :host ::ng-deep .polaroid-track,
-  :host ::ng-deep .polaroid {
-    animation: none;
-  }
+  .ab-why__photo,
+  .ab-step__media img,
+  .ab-btn { transition: none; }
 }
 
-/* Shared wiggle animation — every polaroid runs the same keyframe but each has a
-   unique animation-delay (see .polaroid-pN below), so no two wiggle at the same
-   moment and DOM-adjacent polaroids are always 15s apart in time. */
-:host ::ng-deep .polaroid.polaroid-r1,
-:host ::ng-deep .polaroid.polaroid-r2,
-:host ::ng-deep .polaroid.polaroid-r3,
-:host ::ng-deep .polaroid.polaroid-r4,
-:host ::ng-deep .polaroid.polaroid-r5,
-:host ::ng-deep .polaroid.polaroid-r6 {
-  transform: rotate(var(--polaroid-base-rot, 0deg)) translateY(var(--polaroid-base-y, 0px));
-  transform-origin: center center;
-  animation: polaroid-wiggle 42s linear infinite;
-  animation-delay: var(--polaroid-wiggle-delay, 0s);
-}
+/* ─────────────────────────────────────────────────────────────────────
+   Hamburger — offset graphic in a thin rounded box, matching the
+   Experience and Contact pages. Scoped to this page rather than changed
+   in navbar.component.css, because that component is shared by all 14
+   pages in the app and the other ten were not part of this work.
+   The shared button is shown at <=1100px (two separate media blocks in
+   navbar.component.css), so the override covers the same range.
+   ───────────────────────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  :host ::ng-deep .nav-hamburger {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 8px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  :host ::ng-deep .nav-hamburger:hover { background: rgba(255, 255, 255, 0.12); }
 
-/* Per-position delays on a 42s cycle. Sorted: 0, 3, 6, 9, 12, 15, 18, 21, 24,
-   27, 30, 33, 36, 39 — 14 unique values, 3s apart, so one polaroid wiggles
-   every 3s. Shuffled by a step of 9 (coprime with 14) so DOM-adjacent polaroids
-   are always 15s apart (no two neighbors ever wiggle close in time). */
-:host ::ng-deep .polaroid-p0  { --polaroid-wiggle-delay:  0s; }
-:host ::ng-deep .polaroid-p1  { --polaroid-wiggle-delay: 27s; }
-:host ::ng-deep .polaroid-p2  { --polaroid-wiggle-delay: 12s; }
-:host ::ng-deep .polaroid-p3  { --polaroid-wiggle-delay: 39s; }
-:host ::ng-deep .polaroid-p4  { --polaroid-wiggle-delay: 24s; }
-:host ::ng-deep .polaroid-p5  { --polaroid-wiggle-delay:  9s; }
-:host ::ng-deep .polaroid-p6  { --polaroid-wiggle-delay: 36s; }
-:host ::ng-deep .polaroid-p7  { --polaroid-wiggle-delay: 21s; }
-:host ::ng-deep .polaroid-p8  { --polaroid-wiggle-delay:  6s; }
-:host ::ng-deep .polaroid-p9  { --polaroid-wiggle-delay: 33s; }
-:host ::ng-deep .polaroid-p10 { --polaroid-wiggle-delay: 18s; }
-:host ::ng-deep .polaroid-p11 { --polaroid-wiggle-delay:  3s; }
-:host ::ng-deep .polaroid-p12 { --polaroid-wiggle-delay: 30s; }
-:host ::ng-deep .polaroid-p13 { --polaroid-wiggle-delay: 15s; }
-
-/* Wiggle burst ~0.6s at the start of each 42s cycle (≈1.43%); the rest of the
-   cycle the polaroid sits at its base pose. Base rotation/translate come from
-   the --polaroid-base-* variables, so each tilt variant keeps its own character. */
-@keyframes polaroid-wiggle {
-  0%, 1.43%, 100% {
-    transform: rotate(var(--polaroid-base-rot, 0deg)) translateY(var(--polaroid-base-y, 0px)) scale(1);
+  /* the graphic sits on the button; the three bars stay in the DOM so the
+     shared component's fold-to-X on open still works */
+  :host ::ng-deep .nav-hamburger::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    -webkit-mask: url('/assets/images/hamburger-menu-offset.svg') no-repeat center / contain;
+            mask: url('/assets/images/hamburger-menu-offset.svg') no-repeat center / contain;
   }
-  0.43% {
-    transform: rotate(calc(var(--polaroid-base-rot, 0deg) - 20deg)) translateY(calc(var(--polaroid-base-y, 0px) - 10px)) scale(1.08);
-  }
-  0.72% {
-    transform: rotate(calc(var(--polaroid-base-rot, 0deg) + 22deg)) translateY(calc(var(--polaroid-base-y, 0px) - 15px)) scale(1.10);
-  }
-  1.00% {
-    transform: rotate(calc(var(--polaroid-base-rot, 0deg) - 10deg)) translateY(calc(var(--polaroid-base-y, 0px) - 7px)) scale(1.05);
-  }
-}
-
-/* Footer bottom row (© 2026 + Back to top) — stack centered on mobile. */
-@media (max-width: 768px) {
-  :host ::ng-deep #container .css-b0jis2 {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 10px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    padding: 12px 16px !important;
-    box-sizing: border-box !important;
-    text-align: center !important;
-  }
-  :host ::ng-deep #container .css-b0jis2 > p,
-  :host ::ng-deep #container .css-b0jis2 > button {
-    margin: 0 !important;
-    text-align: center !important;
-    align-self: center !important;
-  }
-  :host ::ng-deep #container .css-b0jis2 > button {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-}
-
-/* Footer bottom row (© 2026 + Back to top) — stack centered on tablet too. */
-@media (min-width: 769px) and (max-width: 1100px) {
-  :host ::ng-deep #container .css-b0jis2 {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 10px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    padding: 12px 16px !important;
-    box-sizing: border-box !important;
-    text-align: center !important;
-  }
-  :host ::ng-deep #container .css-b0jis2 > p,
-  :host ::ng-deep #container .css-b0jis2 > button {
-    margin: 0 !important;
-    text-align: center !important;
-    align-self: center !important;
-  }
-  :host ::ng-deep #container .css-b0jis2 > button {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;
-  }
-}
-
-/* Ready to Join a Thriving Community? — prevent background image stretch on tablet */
-@media (min-width: 769px) and (max-width: 1100px) {
-  :host ::ng-deep #container .css-nllq1o {
-    position: relative !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    overflow: hidden !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .css-43d4nr {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-  }
-}
-
-/* Navbar header — match the Home tablet layout (copied from main CC page). */
-@media (min-width: 769px) and (max-width: 1100px) {
-  :host ::ng-deep #container .css-vhq6dg {
-    width: calc(100% - 64px) !important;
-    max-width: 960px !important;
-    left: 50% !important;
-    top: 28px !important;
-    height: auto !important;
-  }
-}
-
-/* Ready to Join a Thriving Community? — mobile fixups (copied from main CC). */
-@media (max-width: 768px) {
-  :host ::ng-deep #container .css-nllq1o {
-    position: relative !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    overflow: hidden !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o > .css-r0azwh,
-  :host ::ng-deep #container .css-nllq1o > .css-r0azwh .css-phc9f9 {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .css-43d4nr {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    display: block !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .css-gxdil1,
-  :host ::ng-deep #container .css-nllq1o .css-yiw6sn,
-  :host ::ng-deep #container .css-nllq1o .css-d455ri,
-  :host ::ng-deep #container .css-nllq1o .css-b84j9q,
-  :host ::ng-deep #container .css-nllq1o .css-sotq9e,
-  :host ::ng-deep #container .css-nllq1o .css-6bx0tj,
-  :host ::ng-deep #container .css-nllq1o .css-hdvvn5,
-  :host ::ng-deep #container .css-nllq1o .css-93wn39 {
-    width: 100% !important;
-    max-width: 100vw !important;
-    box-sizing: border-box !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    left: auto !important;
-    right: auto !important;
-    transform: none !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o * {
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    word-break: normal !important;
-    overflow-wrap: break-word !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o p {
-    white-space: normal !important;
-    max-width: 100% !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .css-93wn39 {
-    transform: translateY(-30px) !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .css-4wg6y,
-  :host ::ng-deep #container .css-nllq1o .css-h9j71c,
-  :host ::ng-deep #container .css-nllq1o .css-fhhq3m {
-    color: #000000 !important;
-    -webkit-text-fill-color: #000000 !important;
-    -webkit-text-stroke: 0 !important;
-    text-stroke: 0 !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .rtjtc-goals {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .tailwind button,
-  :host ::ng-deep #container .css-nllq1o .tailwind [class*="w-["] {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-  }
-
-  :host ::ng-deep #container .css-nllq1o .tailwind [class*="text-nowrap"],
-  :host ::ng-deep #container .css-nllq1o .tailwind [class*="whitespace-pre"] {
-    white-space: normal !important;
-  }
+  :host ::ng-deep .nav-hamburger span { visibility: hidden; }
+  :host ::ng-deep .nav-hamburger span.open { visibility: visible; }
+  :host ::ng-deep .nav-hamburger:has(span.open)::before { opacity: 0; }
 }

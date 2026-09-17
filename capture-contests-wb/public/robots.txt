@@ -1,0 +1,7 @@
+# Capture Contests - https://capturecontests.com
+# Everything is public; nothing here is gated or staging.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://capturecontests.com/sitemap.xml

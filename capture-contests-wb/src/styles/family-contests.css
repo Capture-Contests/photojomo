@@ -2041,4 +2041,8 @@ figure { margin: 0; }
    ========================================================= */
 @media (max-width: 860px) {
   .vision__map { background-image: url("/images/gc-world-map-m.webp"); }
+  /* .partner__map uses the same artwork further down the page and was
+     missed by the first pass, so phones were fetching the 146KB full map
+     on top of the 52KB mobile one. */
+  .partner__map { background-image: url("/images/gc-world-map-m.webp"); }
 }

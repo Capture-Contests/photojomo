@@ -194,9 +194,19 @@ export abstract class SiteChrome implements AfterViewInit, OnDestroy {
   }
 
 
-  /* ---------- vision photographs: one nudges itself every 3-4s ---------- */
+  /* ---------- scattered photographs: one nudges itself every 3-4s ----------
+     The home and experience pages call these .vision__shot; each region page
+     names its own block (story, afr-continent, gh-journey, ...). Same section
+     shape, same treatment, so they are driven from one selector list. Only
+     one such section exists per page, so picking at random across the match
+     never crosses between sections. */
   private visionWiggle(root: HTMLElement): void {
-    const shots = Array.from(root.querySelectorAll<HTMLElement>('.vision__shot'));
+    const shots = Array.from(
+      root.querySelectorAll<HTMLElement>(
+        '.vision__shot, .story__photo, .afr-continent__photo, .gh-journey__photo,' +
+          ' .gy-legacy__photo, .jm-heritage__photo, .ng-journey__photo',
+      ),
+    );
     if (!shots.length) return;
 
     // Honour the OS setting; the stylesheet also nulls the animation, this

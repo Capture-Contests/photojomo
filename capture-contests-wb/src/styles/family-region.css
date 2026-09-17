@@ -769,12 +769,25 @@ img { display: block; max-width: 100%; }
 
 
 .partners__media {
-  margin: 57px auto 0;
-  width: min(100% - 2 * var(--pad), 1215px);
+  /* Full-bleed: the design runs this frame edge to edge rather than holding it
+     to the 1215px content column. margin-inline stays 0 so it escapes the
+     section's padding; every other .partners child keeps the column. */
+  margin: 57px 0 0;
+  width: 100%;
 }
 
 
-.partners__media img { width: 100%; height: auto; }
+.partners__media img {
+  display: block;
+  width: 100%;
+  /* The source is 4:3 but the design runs this as a wide band, so it is
+     cropped to 2:1 rather than scaled - at full-bleed the uncropped frame
+     would stand 1080px tall on a 1440px screen and push the footer off. */
+  aspect-ratio: 2 / 1;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
 
 
 /* =========================================================
@@ -1367,4 +1380,102 @@ img { display: block; max-width: 100%; }
    ========================================================= */
 @media (max-width: 860px) {
   .hero__bg { background-image: url("/images/hero-globe-m.webp"); }
+}
+
+/* =========================================================
+   SCATTERED PHOTOGRAPHS — hover lift and idle wiggle
+   The same treatment the home page gives .vision__shot, applied to the
+   equivalent section on every region page. All six use the same shape:
+   four absolutely-positioned photographs around centred copy over a map
+   wash, named <block>__photo--tl / --tr / --bl / --br.
+
+   z-index is deliberately NOT raised on hover. These photographs sit at
+   z-index 1 and the copy at z-index 2; unlike the home page, where the
+   shots live inside their own z-index:1 wrapper and so can never escape it,
+   these are direct children of the section. Lifting one here would put it
+   in front of the heading.
+   ========================================================= */
+
+.story__photo,
+.afr-continent__photo,
+.gh-journey__photo,
+.gy-legacy__photo,
+.jm-heritage__photo,
+.ng-journey__photo {
+  box-shadow: 0 14px 34px rgba(15, 23, 42, .13);
+}
+
+/* Which way a photograph leans: away from the centre, so the left-hand pair
+   tilts left and the right-hand pair right. Shared by hover and wiggle, so a
+   photograph never contradicts itself mid-gesture. */
+[class*="__photo--tl"],
+[class*="__photo--bl"] { --wiggle-dir: -1; }
+
+[class*="__photo--tr"],
+[class*="__photo--br"] { --wiggle-dir:  1; }
+
+/* Guarded on (hover:hover) and (pointer:fine): on a touch screen :hover
+   latches after a tap and the tilt would stick. */
+@media (hover: hover) and (pointer: fine) {
+  .story__photo,
+  .afr-continent__photo,
+  .gh-journey__photo,
+  .gy-legacy__photo,
+  .jm-heritage__photo,
+  .ng-journey__photo {
+    transition: transform .55s cubic-bezier(.22, .61, .36, 1),
+                box-shadow .55s cubic-bezier(.22, .61, .36, 1);
+  }
+
+  .story__photo:hover,
+  .afr-continent__photo:hover,
+  .gh-journey__photo:hover,
+  .gy-legacy__photo:hover,
+  .jm-heritage__photo:hover,
+  .ng-journey__photo:hover {
+    transform: scale(1.1) rotate(calc(var(--wiggle-dir, 1) * 10deg));
+    box-shadow: 0 22px 48px rgba(15, 23, 42, .22);
+  }
+}
+
+/* Idle nudge. site-chrome.ts adds .is-wiggling to one photograph at a time on
+   a random 3-4s beat and skips any that is hovered, so the animation and the
+   hover rule never fight over `transform`. */
+@keyframes region-photo-wiggle {
+  0%   { transform: none; }
+  30%  { transform: scale(1.025) rotate(calc(var(--wiggle-dir, 1) * 2.2deg)); }
+  60%  { transform: scale(1.015) rotate(calc(var(--wiggle-dir, 1) * -1deg)); }
+  100% { transform: none; }
+}
+
+.story__photo.is-wiggling,
+.afr-continent__photo.is-wiggling,
+.gh-journey__photo.is-wiggling,
+.gy-legacy__photo.is-wiggling,
+.jm-heritage__photo.is-wiggling,
+.ng-journey__photo.is-wiggling {
+  animation: region-photo-wiggle 1.15s cubic-bezier(.36, .07, .19, .97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story__photo,
+  .afr-continent__photo,
+  .gh-journey__photo,
+  .gy-legacy__photo,
+  .jm-heritage__photo,
+  .ng-journey__photo { transition: none; }
+
+  .story__photo:hover,
+  .afr-continent__photo:hover,
+  .gh-journey__photo:hover,
+  .gy-legacy__photo:hover,
+  .jm-heritage__photo:hover,
+  .ng-journey__photo:hover { transform: none; }
+
+  .story__photo.is-wiggling,
+  .afr-continent__photo.is-wiggling,
+  .gh-journey__photo.is-wiggling,
+  .gy-legacy__photo.is-wiggling,
+  .jm-heritage__photo.is-wiggling,
+  .ng-journey__photo.is-wiggling { animation: none; }
 }

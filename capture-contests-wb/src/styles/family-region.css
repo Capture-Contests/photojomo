@@ -769,12 +769,25 @@ img { display: block; max-width: 100%; }
 
 
 .partners__media {
-  margin: 57px auto 0;
-  width: min(100% - 2 * var(--pad), 1215px);
+  /* Full-bleed: the design runs this frame edge to edge rather than holding it
+     to the 1215px content column. margin-inline stays 0 so it escapes the
+     section's padding; every other .partners child keeps the column. */
+  margin: 57px 0 0;
+  width: 100%;
 }
 
 
-.partners__media img { width: 100%; height: auto; }
+.partners__media img {
+  display: block;
+  width: 100%;
+  /* The source is 4:3 but the design runs this as a wide band, so it is
+     cropped to 2:1 rather than scaled - at full-bleed the uncropped frame
+     would stand 1080px tall on a 1440px screen and push the footer off. */
+  aspect-ratio: 2 / 1;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+}
 
 
 /* =========================================================

@@ -1356,3 +1356,15 @@ img { display: block; max-width: 100%; }
 
 }
 
+
+
+/* =========================================================
+   MOBILE IMAGE VARIANTS
+   These are CSS backgrounds, so srcset cannot reach them. Phones get
+   a variant sized to ~2x its rendered width; desktop keeps the full
+   file. background-image only - position, size and overlays are
+   inherited from the base rule and deliberately untouched.
+   ========================================================= */
+@media (max-width: 860px) {
+  .hero__bg { background-image: url("/images/hero-globe-m.webp"); }
+}

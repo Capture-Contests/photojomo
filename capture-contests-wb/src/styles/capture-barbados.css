@@ -620,3 +620,18 @@
 }
 
 
+
+
+/* =========================================================
+   MOBILE IMAGE VARIANTS
+   These are CSS backgrounds, so srcset cannot reach them. Phones get
+   a variant sized to ~2x its rendered width; desktop keeps the full
+   file. background-image only - position, size and overlays are
+   inherited from the base rule and deliberately untouched.
+   ========================================================= */
+@media (max-width: 860px) {
+  /* ========================================================= THE CHATTEL HOUSE INITIATIVE Full-bleed band, 1920x920 -> 690px at 1440, copy at left. Same treatment as the Maroon Trail band on Jamaica. ========================================================= */ .bb-chattel { background-image: url("/images/bb-chattel-m.webp"); }
+  .bb-cta__panel--creator { background-image: url("/images/bb-cta-creator-m.webp"); }
+  .bb-cta__panel--partner { background-image: url("/images/bb-cta-partner-m.webp"); }
+  .hero__bg { background-image: url("/images/bb-hero-m.webp"); }
+}

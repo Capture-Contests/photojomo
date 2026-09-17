@@ -713,3 +713,17 @@
 
 }
 
+
+
+/* =========================================================
+   MOBILE IMAGE VARIANTS
+   These are CSS backgrounds, so srcset cannot reach them. Phones get
+   a variant sized to ~2x its rendered width; desktop keeps the full
+   file. background-image only - position, size and overlays are
+   inherited from the base rule and deliberately untouched.
+   ========================================================= */
+@media (max-width: 860px) {
+  .gh-cta__panel--creator { background-image: url("/images/gh-cta-creator-m.webp"); }
+  .gh-cta__panel--partner { background-image: url("/images/gh-cta-partner-m.webp"); }
+  .hero__bg { background-image: url("/images/gh-hero-m.webp"); }
+}

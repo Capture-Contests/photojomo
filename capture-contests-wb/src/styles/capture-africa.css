@@ -620,3 +620,17 @@
 
 }
 
+
+
+/* =========================================================
+   MOBILE IMAGE VARIANTS
+   These are CSS backgrounds, so srcset cannot reach them. Phones get
+   a variant sized to ~2x its rendered width; desktop keeps the full
+   file. background-image only - position, size and overlays are
+   inherited from the base rule and deliberately untouched.
+   ========================================================= */
+@media (max-width: 860px) {
+  .afr-cta__panel--creator { background-image: url("/images/afr-cta-creator-m.webp"); }
+  .afr-cta__panel--partner { background-image: url("/images/afr-cta-partner-m.webp"); }
+  .hero__bg { background-image: url("/images/afr-hero-globe-m.webp"); }
+}

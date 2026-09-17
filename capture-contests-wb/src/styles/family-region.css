@@ -176,8 +176,8 @@ img { display: block; max-width: 100%; }
   width: 172px;
   aspect-ratio: 306 / 91;
   background-color: #ffffff;
-  -webkit-mask: url("/images/capture-caribbean-logo.png?v=2") no-repeat center / contain;
-          mask: url("/images/capture-caribbean-logo.png?v=2") no-repeat center / contain;
+  -webkit-mask: url("/images/capture-caribbean-logo.webp?v=4") no-repeat center / contain;
+          mask: url("/images/capture-caribbean-logo.webp?v=4") no-repeat center / contain;
   transition: background-color .45s ease;
 }
 
@@ -312,7 +312,7 @@ img { display: block; max-width: 100%; }
 .hero__bg {
   position: absolute;
   inset: 0;
-  background: #000 url("/images/hero-globe.jpg?v=2") no-repeat center right / cover;
+  background: #000 url("/images/hero-globe.webp?v=4") no-repeat center right / cover;
 }
 
 
@@ -418,7 +418,7 @@ img { display: block; max-width: 100%; }
 .story__map {
   position: absolute;
   inset: 0;
-  background: url("/images/story-map-wash.png?v=2") no-repeat center top / 1440px 852px;
+  background: url("/images/story-map-wash.webp?v=4") no-repeat center top / 1440px 852px;
   pointer-events: none;
 }
 
@@ -1356,3 +1356,15 @@ img { display: block; max-width: 100%; }
 
 }
 
+
+
+/* =========================================================
+   MOBILE IMAGE VARIANTS
+   These are CSS backgrounds, so srcset cannot reach them. Phones get
+   a variant sized to ~2x its rendered width; desktop keeps the full
+   file. background-image only - position, size and overlays are
+   inherited from the base rule and deliberately untouched.
+   ========================================================= */
+@media (max-width: 860px) {
+  .hero__bg { background-image: url("/images/hero-globe-m.webp"); }
+}

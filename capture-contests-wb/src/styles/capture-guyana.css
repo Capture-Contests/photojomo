@@ -7,8 +7,8 @@
   width: 148px;
   aspect-ratio: 306 / 73;
   background-color: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-mark::after {
@@ -16,8 +16,8 @@
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-sub {
@@ -41,8 +41,8 @@
   width: 172px;
   aspect-ratio: 306 / 73;
   background-color: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-mark::after {
@@ -50,8 +50,8 @@
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-sub {
@@ -68,7 +68,7 @@
 .hero { height: 760px; }
 
 .hero__bg {
-  background: #000 url("/images/gy-hero.jpg?v=1") no-repeat center / cover;
+  background: #000 url("/images/gy-hero.webp?v=4") no-repeat center / cover;
 }
 /* centred type, so the Caribbean page's left-to-right wash is replaced
    with a soft pool under the middle of the frame */
@@ -251,7 +251,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/images/gy-map-wash.png?v=1") no-repeat center 46% / auto 82%;
+  background: url("/images/gy-map-wash.webp?v=4") no-repeat center 46% / auto 82%;
   pointer-events: none;
 }
 
@@ -463,9 +463,9 @@
   isolation: isolate;
 }
 
-.gy-cta__panel--partner { background-image: url("/images/ng-cta-partner.jpg?v=1"); }
+.gy-cta__panel--partner { background-image: url("/images/ng-cta-partner.webp?v=4"); }
 
-.gy-cta__panel--creator { background-image: url("/images/ng-cta-creator.jpg?v=1"); }
+.gy-cta__panel--creator { background-image: url("/images/ng-cta-creator.webp?v=4"); }
 
 .gy-cta__panel::after {
   content: "";
@@ -648,3 +648,17 @@
 }
 
 
+
+
+/* =========================================================
+   MOBILE IMAGE VARIANTS
+   These are CSS backgrounds, so srcset cannot reach them. Phones get
+   a variant sized to ~2x its rendered width; desktop keeps the full
+   file. background-image only - position, size and overlays are
+   inherited from the base rule and deliberately untouched.
+   ========================================================= */
+@media (max-width: 860px) {
+  .hero__bg { background-image: url("/images/gy-hero-m.webp"); }
+  .gy-cta__panel--creator { background-image: url("/images/ng-cta-creator-m.webp"); }
+  .gy-cta__panel--partner { background-image: url("/images/ng-cta-partner-m.webp"); }
+}

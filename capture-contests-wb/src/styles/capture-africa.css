@@ -4,12 +4,12 @@
 .nav__logo-mark {
   aspect-ratio: 503 / 200;
   width: 150px;
-  -webkit-mask: url("/images/capture-africa-logo.png?v=2") no-repeat center / contain;
-          mask: url("/images/capture-africa-logo.png?v=2") no-repeat center / contain;
+  -webkit-mask: url("/images/capture-africa-logo.webp?v=4") no-repeat center / contain;
+          mask: url("/images/capture-africa-logo.webp?v=4") no-repeat center / contain;
 }
 
 .hero__bg {
-  background: #000 url("/images/afr-hero-globe.jpg?v=1") no-repeat center right / cover;
+  background: #000 url("/images/afr-hero-globe.webp?v=4") no-repeat center right / cover;
 }
 /* ---------- hero: brand lockup on one line ---------- *//* Type matches the Capture Caribbean hero exactly: "Capture" in the sans
    (Open Sauce One 400) and the <em> in Instrument Serif italic at 1.08em.
@@ -100,7 +100,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/images/afr-map-wash.png?v=1") no-repeat center / auto 92%;
+  background: url("/images/afr-map-wash.webp?v=4") no-repeat center / auto 92%;
   pointer-events: none;
 }
 
@@ -406,9 +406,9 @@
   isolation: isolate;
 }
 
-.afr-cta__panel--partner { background-image: url("/images/afr-cta-partner.jpg?v=1"); }
+.afr-cta__panel--partner { background-image: url("/images/afr-cta-partner.webp?v=4"); }
 
-.afr-cta__panel--creator { background-image: url("/images/afr-cta-creator.jpg?v=1"); }
+.afr-cta__panel--creator { background-image: url("/images/afr-cta-creator.webp?v=4"); }
 
 .afr-cta__panel::after {
   content: "";
@@ -620,3 +620,17 @@
 
 }
 
+
+
+/* =========================================================
+   MOBILE IMAGE VARIANTS
+   These are CSS backgrounds, so srcset cannot reach them. Phones get
+   a variant sized to ~2x its rendered width; desktop keeps the full
+   file. background-image only - position, size and overlays are
+   inherited from the base rule and deliberately untouched.
+   ========================================================= */
+@media (max-width: 860px) {
+  .afr-cta__panel--creator { background-image: url("/images/afr-cta-creator-m.webp"); }
+  .afr-cta__panel--partner { background-image: url("/images/afr-cta-partner-m.webp"); }
+  .hero__bg { background-image: url("/images/afr-hero-globe-m.webp"); }
+}

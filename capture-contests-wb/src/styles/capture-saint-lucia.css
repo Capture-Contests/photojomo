@@ -17,8 +17,8 @@ img { height: auto; }
   width: 148px;
   aspect-ratio: 306 / 73;
   background-color: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-mark::after {
@@ -26,8 +26,8 @@ img { height: auto; }
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .nav__logo-sub {
@@ -57,8 +57,8 @@ img { height: auto; }
   width: 172px;
   aspect-ratio: 306 / 73;
   background-color: #ffffff;
-  -webkit-mask: url("/images/gc-wordmark.png") no-repeat center / contain;
-          mask: url("/images/gc-wordmark.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-wordmark.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-mark::after {
@@ -66,8 +66,8 @@ img { height: auto; }
   position: absolute;
   inset: 0;
   background: #ffffff;
-  -webkit-mask: url("/images/gc-globe.png") no-repeat center / contain;
-          mask: url("/images/gc-globe.png") no-repeat center / contain;
+  -webkit-mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
+          mask: url("/images/gc-globe.webp?v=4") no-repeat center / contain;
 }
 
 .footer__logo-sub {
@@ -991,4 +991,18 @@ img { height: auto; }
     font-size: 12px;
     padding: 6px 12px;
   }
+}
+
+
+/* =========================================================
+   MOBILE IMAGE VARIANTS
+   These are CSS backgrounds, so srcset cannot reach them. Phones get
+   a variant sized to ~2x its rendered width; desktop keeps the full
+   file. background-image only - position, size and overlays are
+   inherited from the base rule and deliberately untouched.
+   ========================================================= */
+@media (max-width: 860px) {
+  .sl-cta__panel--creator { background-image: url("/images/ng-cta-creator-m.webp"); }
+  .sl-cta__panel--partner { background-image: url("/images/ng-cta-partner-m.webp"); }
+  /* ========================================================= OUR LEGACY SPONSOR ========================================================= */ .sl-legacy { background-image: url("/images/sl-legacy-m.webp"); }
 }

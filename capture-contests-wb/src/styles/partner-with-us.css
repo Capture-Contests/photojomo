@@ -131,7 +131,7 @@
 .why__map {
   position: absolute;
   inset: 0;
-  background: url("/images/gc-world-map.png") no-repeat center / 92% auto;
+  background: url("/images/gc-world-map.webp?v=4") no-repeat center / 92% auto;
   opacity: .8;
   pointer-events: none;
 }
@@ -267,4 +267,16 @@
   .why__grid { grid-template-columns: minmax(0, 1fr); gap: 38px; }
   .close__title { font-size: 26px; }
   .close__lede { font-size: 14.5px; }
+}
+
+
+/* =========================================================
+   MOBILE IMAGE VARIANTS
+   These are CSS backgrounds, so srcset cannot reach them. Phones get
+   a variant sized to ~2x its rendered width; desktop keeps the full
+   file. background-image only - position, size and overlays are
+   inherited from the base rule and deliberately untouched.
+   ========================================================= */
+@media (max-width: 860px) {
+  .why__map { background-image: url("/images/gc-world-map-m.webp"); }
 }

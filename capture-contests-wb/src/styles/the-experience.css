@@ -96,7 +96,7 @@
 .heart__map {
   position: absolute;
   inset: 0;
-  background: url("/images/story-map-wash.png?v=2") no-repeat center top / 1560px auto;
+  background: url("/images/story-map-wash.webp?v=4") no-repeat center top / 1560px auto;
   opacity: .75;
   pointer-events: none;
 }

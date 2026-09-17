@@ -84,7 +84,7 @@
      with the silhouette rebuilt from a clean threshold. Drawn at 83% (a fifth
      smaller) so it also renders below its 1440px native width rather than
      being upscaled. */
-  background: url("/images/gc-world-map-clean.png") no-repeat center top 110px / 83% auto;
+  background: url("/images/gc-world-map-clean.webp?v=4") no-repeat center top 110px / 83% auto;
   opacity: .5;
   pointer-events: none;
 }

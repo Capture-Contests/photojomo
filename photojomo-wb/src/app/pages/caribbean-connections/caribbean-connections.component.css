@@ -2248,3 +2248,181 @@
   :host ::ng-deep .nav-hamburger span.open { visibility: visible; }
   :host ::ng-deep .nav-hamburger:has(span.open)::before { opacity: 0; }
 }
+
+/* ── Footer nav — one column per category. Live destinations are links;
+      not-yet-built destinations render as non-interactive spans. ────── */
+:host ::ng-deep #container .cc-fnav {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, auto)) !important;
+  justify-content: space-between !important;
+  align-items: start !important;
+  gap: 28px 40px !important;
+  width: 100% !important;
+}
+:host ::ng-deep #container .cc-fnav-col {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  min-width: 0 !important;
+}
+:host ::ng-deep #container .cc-fnav-label {
+  margin: 0 !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+:host ::ng-deep #container .cc-fnav-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 7px !important;
+}
+:host ::ng-deep #container .cc-fnav-list li { margin: 0 !important; }
+:host ::ng-deep #container .cc-fnav-item {
+  display: inline-block !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  color: #d8d8d8 !important;
+  -webkit-text-fill-color: #d8d8d8 !important;
+  text-decoration: none !important;
+  transition: color 0.18s ease !important;
+}
+:host ::ng-deep #container a.cc-fnav-item:hover,
+:host ::ng-deep #container a.cc-fnav-item:focus-visible {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-decoration: underline !important;
+}
+/* Not yet live: visibly de-emphasised, not focusable, not clickable. */
+:host ::ng-deep #container .cc-fnav-item.is-inactive {
+  color: #7a7a7a !important;
+  -webkit-text-fill-color: #7a7a7a !important;
+  cursor: default !important;
+  pointer-events: none !important;
+}
+:host ::ng-deep #container .cc-fnav-back {
+  grid-column: 1 / -1 !important;
+  margin-top: 4px !important;
+  text-align: left !important;
+  text-decoration: none !important;
+}
+/* Tablet: the footer's own container is a fixed 531px in the export CSS, which
+   is far narrower than the viewport and is what forced the columns to wrap —
+   not the column count. Widening it lets all five categories stay on one row;
+   equal-width columns mean a long label wraps inside its own column rather
+   than pushing the row onto a second line. */
+@media (min-width: 768px) and (max-width: 1100px) {
+  :host ::ng-deep #container .css-zfhta1 {
+    width: min(1240px, calc(100vw - 60px)) !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  :host ::ng-deep #container .cc-fnav {
+    grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    justify-content: start !important;
+    gap: 22px 18px !important;
+  }
+  :host ::ng-deep #container .cc-fnav-label,
+  :host ::ng-deep #container .cc-fnav-item {
+    font-size: 12px !important;
+  }
+}
+@media (max-width: 767px) {
+  :host ::ng-deep #container .cc-fnav {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 20px !important;
+  }
+  :host ::ng-deep #container .cc-fnav-label,
+  :host ::ng-deep #container .cc-fnav-item {
+    font-size: 12px !important;
+  }
+}
+
+/* ── Footer legal / copyright block (language from CaribbeanConnections.World) ── */
+:host ::ng-deep #container .cc-legal {
+  /* The parent (.css-5icr55) is a fixed 1240px in the export CSS, so below
+     that width it overhangs the viewport on both sides — harmless for its
+     centred children, but left-aligned text would run off-screen. It is
+     centred on the viewport, so auto margins plus a viewport-capped width
+     keep this block inside the visible band at every size. */
+  width: min(100%, calc(100vw - 32px)) !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+  padding: 16px 0 4px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  margin-top: 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+:host ::ng-deep #container .cc-legal .cc-legal__p {
+  margin: 0 !important;
+  color: #9a9a9a !important;
+  -webkit-text-fill-color: #9a9a9a !important;
+  font-size: 11px !important;
+  line-height: 1.6 !important;
+  text-align: center !important;
+}
+:host ::ng-deep #container .cc-legal .cc-legal__p strong {
+  color: #c8c8c8 !important;
+  -webkit-text-fill-color: #c8c8c8 !important;
+  font-weight: 700 !important;
+}
+@media (max-width: 768px) {
+  :host ::ng-deep #container .cc-legal {
+    padding: 14px 0 2px !important;
+  }
+  :host ::ng-deep #container .cc-legal .cc-legal__p {
+    font-size: 10.5px !important;
+  }
+}
+
+/* ── Hero navbar band ──────────────────────────────────────────────────────
+   The exported bar is a fixed 1320px centred on its parent, so below ~1440px
+   it overhung the viewport and dragged the logo toward (and past) the left
+   edge — it reached left:-50px at 1280px. .nav-bar-inner also adds 8px of its
+   own padding below 1101px, which shifted the logo again at those widths.
+   Clamping the band and dropping that padding puts the logo at
+   max(30px, (100vw - 1320px) / 2 - 30px), the same formula the Experience and
+   Contact heroes use, so all four pages agree at every width. Below 769px the
+   bar switches to its mobile layout, which already lands at 23px. */
+@media (min-width: 769px) {
+  :host ::ng-deep #container .css-vhq6dg {
+    width: min(1320px, calc(100vw - 120px)) !important;
+    /* the 769-1100px tablet block caps this at 960px, which would pull the
+       logo back in to 40px while the other three sit at 30px */
+    max-width: none !important;
+  }
+  :host ::ng-deep #container .nav-bar-inner {
+    padding-left: 0 !important;
+  }
+}
+
+/* In the 769-1100px tablet range the exported band sits 8.5px lower than the
+   Experience and Contact heroes put their logo. Pull it up so the mark's top
+   edge is 21px on all four pages. */
+@media (min-width: 769px) and (max-width: 1100px) {
+  /* navbar.component.css pins this with
+     `#container app-navbar > div.css-vhq6dg.css-8hhw9a.css-trglf0 { top: 28px !important }`,
+     so the override has to carry the same selector to outrank it. */
+  :host ::ng-deep #container app-navbar > div.css-vhq6dg.css-8hhw9a.css-trglf0 {
+    top: 19.5px !important;
+  }
+}
+
+/* On phones the Trademarks sentence breaks onto its own paragraph, with a gap
+   above it; on wider screens it stays inline, running on from the copyright
+   sentence as one block of text. */
+@media (max-width: 768px) {
+  :host ::ng-deep #container .cc-legal .cc-legal__tm {
+    display: block !important;
+    margin-top: 12px !important;
+  }
+}

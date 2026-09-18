@@ -6,13 +6,11 @@
 <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
 <section class="ct-hero">
   <header class="ct-nav">
-    <!-- The gold Capture Contests lockup, built the way that site builds it:
-         the wordmark and globe as CSS masks filled with the brand gold, over
-         a tracked region sub-label. See .nav__logo-mark in family-*.css. -->
-    <a class="ct-nav__logo" href="https://www.capturecontests.com/" target="_blank" rel="noopener"
-       aria-label="Capture Contests home">
-      <span class="ct-nav__mark" aria-hidden="true"></span>
-      <span class="ct-nav__sub" aria-hidden="true">Contests<i>&trade;</i></span>
+    <!-- This nav sits on the cream background rather than over photography,
+         so it takes the black Caribbean Connections mark. -->
+    <a class="ct-nav__logo" routerLink="/caribbean-connections"
+       aria-label="Caribbean Connections home">
+      <img class="ct-nav__logo-img" src="/assets/images/caribbean-connections-logo-black.png" alt="Caribbean Connections" />
     </a>
     <!-- Same hamburger as the other three pages; bars are dark here because
          this nav sits on the cream background rather than over photography. -->
@@ -175,8 +173,8 @@
 <!-- ── Footer ────────────────────────────────────────────────────────────── -->
 <footer class="ct-footer">
   <div class="ct-footer__top">
-    <a class="ct-footer__logo" routerLink="/" aria-label="Capture Caribbean home">
-      <img src="/assets/images/cc/cc-logo.webp" alt="Capture Caribbean" loading="lazy" />
+    <a class="ct-footer__logo" routerLink="/caribbean-connections" aria-label="Caribbean Connections home">
+      <img src="/assets/images/caribbean-connections-footer-logo.png" alt="Caribbean Connections" loading="lazy" />
     </a>
     <p class="ct-footer__tagline">
       Step into the thrill of a lifetime where sun, sea, and sweeping prizes await — it&rsquo;s time to Capture.

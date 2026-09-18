@@ -278,7 +278,13 @@
   padding: 86px clamp(20px, 3.75vw, 72px) 40px;
 }
 .ab-footer__top { display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center; }
-.ab-footer__logo img { display: block; width: clamp(180px, 13.8vw, 265px); height: auto; }
+.ab-footer__logo img {
+  display: block;
+  width: 198px;
+  height: 58px;
+  max-width: none;
+  object-fit: contain;
+}
 .ab-footer__tagline {
   font-family: var(--ab-sans);
   font-size: clamp(14px, 0.83vw, 16px);
@@ -343,10 +349,6 @@
   /* Why Connections: the map is centred in the band, which on a phone put it
      starting ~53px BELOW the heading. Pin it near the top instead so it
      begins just above "Why Connections". */
-  /* The shared navbar sits flush at x=0 inside .ab-navwrap, so its logo
-     landed 6px from the screen edge — the other pages inset it ~21px, which
-     matches the bar's own 21px vertical padding. */
-  :host ::ng-deep .ab-navwrap .nav-logo-cc { margin-left: 15px !important; }
 
   .ab-why { background-position: center 68px; }
 
@@ -403,4 +405,42 @@
   :host ::ng-deep .nav-hamburger span { visibility: hidden; }
   :host ::ng-deep .nav-hamburger span.open { visibility: visible; }
   :host ::ng-deep .nav-hamburger:has(span.open)::before { opacity: 0; }
+}
+
+/* ── Hero navbar band ──────────────────────────────────────────────────────
+   The exported bar is a fixed 1320px centred on its parent, so below ~1440px
+   it overhung the viewport and dragged the logo toward (and past) the left
+   edge — it reached left:-50px at 1280px. .nav-bar-inner also adds 8px of its
+   own padding below 1101px, which shifted the logo again at those widths.
+   Clamping the band and dropping that padding puts the logo at
+   max(30px, (100vw - 1320px) / 2 - 30px), the same formula the Experience and
+   Contact heroes use, so all four pages agree at every width. Below 769px the
+   bar switches to its mobile layout, which already lands at 23px. */
+@media (min-width: 769px) {
+  :host ::ng-deep #container .css-vhq6dg {
+    width: min(1320px, calc(100vw - 120px)) !important;
+  }
+  :host ::ng-deep #container .nav-bar-inner {
+    padding-left: 0 !important;
+  }
+}
+
+/* The shared navbar sits flush at x=0 inside .ab-navwrap, so its logo lands
+   6px from the screen edge once the bar goes mobile. 17px brings it to 23px,
+   matching the other three pages. This needs the full mobile range — it used
+   to sit in the 640px block, which left 641-768px at 6px. */
+@media (max-width: 768px) {
+  :host ::ng-deep .ab-navwrap .nav-logo-cc { margin-left: 17px !important; }
+}
+
+/* In the 769-1100px tablet range the exported band sits 8.5px lower than the
+   Experience and Contact heroes put their logo. Pull it up so the mark's top
+   edge is 21px on all four pages. */
+@media (min-width: 769px) and (max-width: 1100px) {
+  /* navbar.component.css pins this with
+     `#container app-navbar > div.css-vhq6dg.css-8hhw9a.css-trglf0 { top: 28px !important }`,
+     so the override has to carry the same selector to outrank it. */
+  :host ::ng-deep #container app-navbar > div.css-vhq6dg.css-8hhw9a.css-trglf0 {
+    top: 19.5px !important;
+  }
 }

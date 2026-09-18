@@ -89,10 +89,21 @@
 }
 /* consolidated: 148px wide on phones, 192px on desktop (the logo files
    are now alpha-trimmed, so the box equals the visible wordmark) */
-.xp-nav__logo img { display: block; width: clamp(148px, 13.3vw, 192px); height: auto; }
-/* `.xp-nav__logo img` (0,1,1) outranks a bare class (0,1,0), so the
-   variant toggles have to be element-qualified too or both logos show. */
-.xp-nav__logo img.xp-nav__logo-dark { display: none; }
+/* Logo sizing is kept identical across all four Caribbean Connections pages:
+   height 43px up to 1100px and 56px above it, on the 494/144 aspect of the
+   shared navbar (see .nav-logo-cc in navbar.component.css). Width follows
+   from the aspect, so the mark is never a different size page to page. */
+.xp-nav__logo img {
+  display: block;
+  width: auto;
+  height: 43px;
+  aspect-ratio: 494 / 144;
+  max-width: none;
+  object-fit: contain;
+}
+@media (min-width: 1101px) {
+  .xp-nav__logo img { height: 56px; }
+}
 .xp-nav__burger,
 .xp-nav__panel { display: none; }
 .xp-nav__links { display: flex; align-items: center; gap: clamp(18px, 3.1vw, 60px); }
@@ -502,7 +513,13 @@
   padding: 86px clamp(20px, 3.75vw, 72px) 40px;
 }
 .xp-footer__top { display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center; }
-.xp-footer__logo img { display: block; width: clamp(180px, 13.8vw, 265px); height: auto; }
+.xp-footer__logo img {
+  display: block;
+  width: 198px;
+  height: 58px;
+  max-width: none;
+  object-fit: contain;
+}
 .xp-footer__tagline {
   font-family: var(--xp-sans);
   font-size: clamp(14px, 0.83vw, 16px);
@@ -563,11 +580,12 @@
     flex-wrap: wrap;
     row-gap: 0;
     align-items: center;
-    padding: 21px;
+    /* 23px, not 21px, so the logo's left edge lands exactly where the
+       shared navbar puts it on the home and about pages. */
+    padding: 21px 21px 21px 16px;
   }
   .xp-nav__links { display: none; }
-  .xp-nav__logo img.xp-nav__logo-dark { display: none; }
-  .xp-nav__logo img.xp-nav__logo-light { display: block; width: 148px; }
+  .xp-nav__logo img.xp-nav__logo-light { display: block; }
 
   /* Offset hamburger graphic (assets/images/hamburger-menu-offset.svg) used
      as a mask so each page can paint it its own colour, inside a thin
@@ -692,4 +710,20 @@
   .xp-footer { padding-top: 56px; }
   .xp-footer__bar { justify-content: center; text-align: center; margin-top: 40px; }
   .xp-footer__copy { margin-left: 0; width: 100%; }
+}
+
+/* Logo inset matches the Connections home and about heroes, which sit on a
+   1320px centred band: max(30px, (100vw - 1320px) / 2 - 30px). Below 769px
+   the mobile rule below takes over at 23px. */
+@media (min-width: 769px) {
+  .xp-nav {
+    /* 7px further left than the home/about band formula, as specified */
+    padding-left: max(23px, calc((100vw - 1320px) / 2 - 37px)) !important;
+  }
+}
+
+/* 1025-1100px is the one slice where this hero's padding puts the logo 1.5px
+   lower than the other three. */
+@media (min-width: 1025px) and (max-width: 1100px) {
+  .xp-nav { padding-top: 18.5px !important; }
 }

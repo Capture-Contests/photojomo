@@ -1,0 +1,184 @@
+/* Mirrors the Connections home page footer. Breakpoints match it exactly:
+   five columns down to 768px, two below that. */
+
+.ccf {
+  background: #040404;
+  color: #fff;
+  padding: 86px clamp(20px, 3.75vw, 72px) 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ccf__logo { display: block; }
+.ccf__logo img {
+  display: block;
+  width: 198px;
+  height: 58px;
+  max-width: none;
+  object-fit: contain;
+}
+
+/* ── Link columns ───────────────────────────────────────────────────────── */
+/* The home page's column block is shrink-to-fit and centred on the page —
+   not stretched across the footer's full width — so the columns sit close
+   together in the middle. Matching that: tracks size to their content and
+   the block centres itself. */
+.ccf-nav {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, max-content));
+  justify-content: center;
+  align-items: start;
+  gap: 28px 40px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 46px auto 0;
+}
+.ccf-nav__col { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.ccf-nav__label {
+  margin: 0;
+  font-weight: 700;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.35;
+}
+.ccf-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.ccf-nav__list li { margin: 0; }
+.ccf-nav__item {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1.35;
+  color: #d8d8d8;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+a.ccf-nav__item:hover,
+a.ccf-nav__item:focus-visible { color: #fff; text-decoration: underline; }
+/* Not yet live: visibly de-emphasised, not focusable, not clickable. */
+.ccf-nav__item.is-inactive {
+  color: #7a7a7a;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Spans the columns so it lines up with the block's left edge, as on home. */
+.ccf__back {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 4px;
+  color: #b8b8b8;
+  font-size: 11px;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.ccf__back strong { font-weight: 700; color: #b8b8b8; }
+
+/* ── Socials ────────────────────────────────────────────────────────────── */
+.ccf__social { display: flex; gap: 16px; margin-top: 34px; }
+.ccf__social a {
+  display: grid;
+  place-items: center;
+  width: 57px;
+  height: 57px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  transition: background 0.18s ease;
+}
+.ccf__social svg { width: 24px; height: 24px; }
+.ccf__social a:hover { background: rgba(255, 255, 255, 0.12); }
+
+/* ── Copyright row ──────────────────────────────────────────────────────── */
+.ccf__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(1240px, 100%);
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.ccf__copy { margin: 0; font-size: 11px; font-weight: 700; color: #fff; }
+.ccf__top {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: #fff;
+  font: inherit;
+  font-size: 11px;
+}
+.ccf__top-mark {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 12px;
+}
+
+/* ── Legal notice ───────────────────────────────────────────────────────── */
+.ccf__legal {
+  width: min(1240px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  margin-top: 14px;
+  padding: 16px 0 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.ccf__legal-p {
+  margin: 0;
+  color: #9a9a9a;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
+}
+.ccf__legal-p strong { color: #c8c8c8; font-weight: 700; }
+
+/* ── Tablet: keep all five categories on one row ────────────────────────── */
+@media (max-width: 1100px) {
+  .ccf { padding-left: 16px; padding-right: 16px; }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  .ccf-nav {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    justify-content: center;
+    gap: 22px 18px;
+    /* home's footer container caps at this width through the tablet range */
+    max-width: calc(100vw - 60px);
+  }
+  .ccf-nav__label,
+  .ccf-nav__item { font-size: 12px; }
+}
+
+/* ── Phone ──────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .ccf { padding-top: 56px; }
+  .ccf-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: center;
+    gap: 22px 20px;
+  }
+  .ccf-nav__label,
+  .ccf-nav__item { font-size: 12px; }
+  .ccf__bar { justify-content: center; text-align: center; }
+  .ccf__legal-p { font-size: 10.5px; }
+  /* Trademarks breaks onto its own paragraph on phones; inline above. */
+  .ccf__legal-tm { display: block; margin-top: 12px; }
+}

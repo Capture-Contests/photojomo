@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../../../components/navbar/navbar.component';
+import { CcFooterComponent } from '../../../components/cc-footer/cc-footer.component';
 
 @Component({
   selector: 'app-cc-about',
   standalone: true,
-  imports: [RouterLink, NavbarComponent],
+  imports: [RouterLink, NavbarComponent, CcFooterComponent],
   templateUrl: './about-connections.component.html',
   styleUrls: ['./about-connections.component.css'],
 })

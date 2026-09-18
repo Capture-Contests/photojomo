@@ -2253,11 +2253,19 @@
       not-yet-built destinations render as non-interactive spans. ────── */
 :host ::ng-deep #container .cc-fnav {
   display: grid !important;
-  grid-template-columns: repeat(5, minmax(0, auto)) !important;
-  justify-content: space-between !important;
+  /* max-content, not auto: the exported parent is a flex row, and above
+     ~1891px its leftover free space was stretching `auto` tracks, widening
+     the block from 757px to 887px at that one end of the range. Sizing to
+     content keeps it the same at every width — and the same as the shared
+     footer the other three pages use. */
+  grid-template-columns: repeat(5, minmax(0, max-content)) !important;
+  justify-content: center !important;
   align-items: start !important;
   gap: 28px 40px !important;
-  width: 100% !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 :host ::ng-deep #container .cc-fnav-col {
   display: flex !important;
@@ -2375,7 +2383,7 @@
   -webkit-text-fill-color: #c8c8c8 !important;
   font-weight: 700 !important;
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   :host ::ng-deep #container .cc-legal {
     padding: 14px 0 2px !important;
   }
@@ -2420,7 +2428,7 @@
 /* On phones the Trademarks sentence breaks onto its own paragraph, with a gap
    above it; on wider screens it stays inline, running on from the copyright
    sentence as one block of text. */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   :host ::ng-deep #container .cc-legal .cc-legal__tm {
     display: block !important;
     margin-top: 12px !important;

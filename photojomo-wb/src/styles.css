@@ -37413,9 +37413,9 @@
      used across the Figma-exported markup; titles/headings/buttons untouched.
      :not(.css-p70z91 *) excludes the footer; :not(.hero-section *) excludes
      the hero block — both should stay exactly as designed. */
-  #container p:not(.css-p70z91 *):not(.hero-section *),
+  #container p:not(.css-p70z91 *):not(.hero-section *):not(.cc-fnav *):not(.cc-legal *),
   #container li:not(.css-p70z91 *):not(.hero-section *),
-  #container .textContents:not(.css-p70z91 *):not(.hero-section *) {
+  #container .textContents:not(.css-p70z91 *):not(.hero-section *):not(.cc-fnav *):not(.cc-legal *) {
     font-size: calc(1em + 5px) !important;
   }
 }

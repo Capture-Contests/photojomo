@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CcFooterComponent } from '../../../components/cc-footer/cc-footer.component';
 
 @Component({
   selector: 'app-cc-contact',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReactiveFormsModule],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, CcFooterComponent],
   templateUrl: './contact-connections.component.html',
   styleUrls: ['./contact-connections.component.css'],
 })

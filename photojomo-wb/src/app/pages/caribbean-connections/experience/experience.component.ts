@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CcFooterComponent } from '../../../components/cc-footer/cc-footer.component';
 
 @Component({
   selector: 'app-cc-experience',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CcFooterComponent],
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.css'],
 })

@@ -10,11 +10,10 @@
   <div class="xp-hero__scrim" aria-hidden="true"></div>
 
   <header class="xp-nav" [class.is-open]="menuOpen">
-    <a class="xp-nav__logo" routerLink="/" aria-label="Capture Caribbean home" (click)="closeMenu()">
-      <!-- the mobile bar is pale blue per the Figma 402 frame, so the logo
-           switches to its dark variant there -->
-      <img class="xp-nav__logo-light" src="/assets/images/cc/cc-logo.webp" alt="Capture Caribbean" />
-      <img class="xp-nav__logo-dark" src="/assets/images/cc/cc-logo-dark.webp" alt="" aria-hidden="true" />
+    <a class="xp-nav__logo" routerLink="/caribbean-connections" aria-label="Caribbean Connections home" (click)="closeMenu()">
+      <!-- This nav sits over dark photography at every width, so the reversed
+           (white) Caribbean Connections mark is the only variant needed. -->
+      <img class="xp-nav__logo-light" src="/assets/images/caribbean-connections-footer-logo.png" alt="Caribbean Connections" />
     </a>
 
     <!-- Mobile: single hamburger button, as in the Figma "Hamburger Menu"
@@ -199,8 +198,8 @@
 <!-- ── Footer ────────────────────────────────────────────────────────────── -->
 <footer class="xp-footer">
   <div class="xp-footer__top">
-    <a class="xp-footer__logo" routerLink="/" aria-label="Capture Caribbean home">
-      <img src="/assets/images/cc/cc-logo.webp" alt="Capture Caribbean" loading="lazy" />
+    <a class="xp-footer__logo" routerLink="/caribbean-connections" aria-label="Caribbean Connections home">
+      <img src="/assets/images/caribbean-connections-footer-logo.png" alt="Caribbean Connections" loading="lazy" />
     </a>
     <p class="xp-footer__tagline">
       Step into the thrill of a lifetime where sun, sea, and sweeping prizes await — it&rsquo;s time to Capture.

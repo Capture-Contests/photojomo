@@ -36,14 +36,17 @@ export class ContestTiers implements OnInit {
     return labels[this.division] ?? 'Contest';
   }
 
+  // Tier names arrive as 'Tier 1 – Explorer' — the dash may be a hyphen, en dash or em dash.
+  private tierNameParts(tier: Tier): string[] {
+    return tier.name.split(/\s*[-–—]\s*/);
+  }
+
   tierLabel(tier: Tier): string {
-    const parts = tier.name.split(' - ');
-    return parts[0] ?? tier.name;
+    return this.tierNameParts(tier)[0] ?? tier.name;
   }
 
   tierVariant(tier: Tier): string {
-    const parts = tier.name.split(' - ');
-    return parts[1] ?? '';
+    return this.tierNameParts(tier)[1] ?? '';
   }
 
   formatPrice(price: number): string {

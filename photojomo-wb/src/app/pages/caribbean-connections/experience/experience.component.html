@@ -38,18 +38,18 @@
         Creative Destinations
         <svg viewBox="0 0 11 6" aria-hidden="true"><path d="M1 1l4.5 4L10 1" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
       </button>
-      <a class="xp-nav__item" [href]="contestUrl" target="_blank" rel="noopener">Capture Contests</a>
+      <a class="xp-nav__item" href="https://www.capturecontests.com/" target="_blank" rel="noopener">Capture Contests</a>
       <a class="xp-nav__item xp-nav__item--current" routerLink="/caribbean-connections/experience" aria-current="page">The Experience</a>
-      <a class="xp-nav__cta" [href]="firstWaveUrl" target="_blank" rel="noopener">Enter First Wave</a>
+      <a class="xp-nav__cta" href="https://firstwave.capturecaribbean.com/" target="_blank" rel="noopener">Enter First Wave</a>
     </nav>
 
     <!-- Same items as the desktop bar above, in the same order. -->
     <div class="xp-nav__panel" id="xp-mobile-nav" [hidden]="!menuOpen">
       <button type="button" class="xp-nav__panel-item">Creative Regions</button>
       <button type="button" class="xp-nav__panel-item">Creative Destinations</button>
-      <a [href]="contestUrl" target="_blank" rel="noopener" (click)="closeMenu()">Capture Contests</a>
+      <a href="https://www.capturecontests.com/" target="_blank" rel="noopener" (click)="closeMenu()">Capture Contests</a>
       <a routerLink="/caribbean-connections/experience" aria-current="page" (click)="closeMenu()">The Experience</a>
-      <a class="xp-nav__panel-cta" [href]="firstWaveUrl" target="_blank" rel="noopener" (click)="closeMenu()">Enter First Wave</a>
+      <a class="xp-nav__panel-cta" href="https://firstwave.capturecaribbean.com/" target="_blank" rel="noopener" (click)="closeMenu()">Enter First Wave</a>
     </div>
   </header>
 

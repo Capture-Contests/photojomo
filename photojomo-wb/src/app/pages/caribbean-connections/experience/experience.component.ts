@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-cc-experience',
@@ -10,9 +9,6 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['./experience.component.css'],
 })
 export class ExperienceComponent implements AfterViewInit, OnDestroy {
-  contestUrl = environment.contestUrl;
-  firstWaveUrl = environment.firstWaveUrl;
-
   /** Mobile nav (the Figma 402 frame collapses the links to a hamburger). */
   menuOpen = false;
 

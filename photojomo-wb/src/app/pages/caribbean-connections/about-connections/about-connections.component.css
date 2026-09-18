@@ -152,7 +152,9 @@
   place-items: center;
   aspect-ratio: 1920 / 983;
   min-height: 520px;
-  background: #fffdf9 url('/assets/images/cc/cc-world-map.webp') center / 105% auto no-repeat;
+  /* new About map artwork (map-about__caribbean-connections.png), kept at the
+     same 105%-of-width scale and centring as the map it replaces */
+  background: #fffdf9 url('/assets/images/cc/cc-about-map.webp') center / 105% auto no-repeat;
   padding: clamp(40px, 4vw, 72px) var(--ab-pad);
   overflow: hidden;
 }

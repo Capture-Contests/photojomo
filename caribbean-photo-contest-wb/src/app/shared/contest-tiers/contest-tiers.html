@@ -17,7 +17,7 @@
             <div class="tier-card__badge">Most Popular</div>
           }
           <div class="tier-card__header">
-            <h3 class="tier-card__name">{{ tierLabel(tier) }} - <span class="tier-card__name-variant">{{ tierVariant(tier) }}</span></h3>
+            <h3 class="tier-card__name">{{ tierLabel(tier) }}@if (tierVariant(tier)) { - <span class="tier-card__name-variant">{{ tierVariant(tier) }}</span>}</h3>
             <div class="tier-card__price">{{ formatPrice(tier.price) }}</div>
             <div class="tier-card__images">{{ formatImages(tier.maxImages) }}</div>
           </div>

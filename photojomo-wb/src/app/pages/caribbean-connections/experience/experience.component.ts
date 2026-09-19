@@ -1,26 +1,16 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CcFooterComponent } from '../../../components/cc-footer/cc-footer.component';
+import { NavbarComponent } from '../../../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-cc-experience',
   standalone: true,
-  imports: [RouterLink, CcFooterComponent],
+  imports: [RouterLink, CcFooterComponent, NavbarComponent],
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.css'],
 })
 export class ExperienceComponent implements AfterViewInit, OnDestroy {
-  /** Mobile nav (the Figma 402 frame collapses the links to a hamburger). */
-  menuOpen = false;
-
-  toggleMenu(): void {
-    this.menuOpen = !this.menuOpen;
-  }
-
-  closeMenu(): void {
-    this.menuOpen = false;
-  }
-
   /** The milestones strip. Its effects hold until it is scrolled into view. */
   @ViewChild('milestones') milestones?: ElementRef<HTMLElement>;
   private observer?: IntersectionObserver;

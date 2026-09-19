@@ -32,7 +32,7 @@
   </section>
 
   <!-- 3. CHOOSE YOUR CATEGORY (first) -->
-  <section class="cc-categories">
+  <section class="cc-categories" id="contests">
     <h2 class="cc-categories__title">Choose your category. Define your perspective.<br />Compete for distinction.</h2>
     <p class="cc-categories__desc">
       Immerse yourself in the tranquility of the islands. From crystal-clear waters to golden shores, your exclusive
@@ -313,12 +313,27 @@
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.6A3 3 0 0 0 1 7.2C.4 9 .4 12 .4 12s0 3 .6 4.8A3 3 0 0 0 3.1 19c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.2c.6-1.8.6-4.8.6-4.8s0-3-.6-4.8ZM9.8 15.5v-7l6 3.5-6 3.5Z"/></svg>
       </a>
     </div>
+    <!-- Footer link row. Areas that have no page yet render as inert spans,
+         matching the Caribbean Connections footer pattern. -->
     <p class="cc-footer__links">
-      <a routerLink="/info/terms-of-use" [state]="legalModalState()" [replaceUrl]="true">Terms of Use</a> |
+      <a routerLink="/" fragment="contests">Official Contests</a> |
+      <span class="is-inactive" aria-disabled="true">How It Works</span> |
+      <span class="is-inactive" aria-disabled="true">Creator Guidelines</span> |
+      <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true">Official Rules</a> |
+      <span class="is-inactive" aria-disabled="true">FAQs</span> |
+      <span class="is-inactive" aria-disabled="true">About</span> |
       <a routerLink="/info/privacy-policy" [state]="legalModalState()" [replaceUrl]="true">Privacy Policy</a> |
-      <a routerLink="/info/rules" [state]="legalModalState()" [replaceUrl]="true">Rules</a>
+      <a routerLink="/info/terms-of-use" [state]="legalModalState()" [replaceUrl]="true">Terms &amp; Conditions</a> |
+      <span class="is-inactive" aria-disabled="true">Accessibility</span> |
+      <span class="is-inactive" aria-disabled="true">Contact</span>
     </p>
-    <p class="cc-footer__copy">© 2026 Capture Photo Contest</p>
+    <p class="cc-footer__copy">&copy; 2026 Caribbean Connections, LLC. All Rights Reserved.</p>
+    <p class="cc-footer__legal">
+      <strong>Caribbean Photo Contest&reg;</strong> is a registered trademark.
+      <strong>Capture Caribbean&trade;</strong> and associated names, logos, marks, branding, website content,
+      design elements, and original materials are owned by or used under authorization of Caribbean Connections, LLC.
+      Unauthorized use, reproduction, distribution, or modification is prohibited except as expressly permitted.
+    </p>
   </footer>
 
   </div>

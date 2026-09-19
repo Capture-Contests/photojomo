@@ -712,18 +712,44 @@
   .xp-footer__copy { margin-left: 0; width: 100%; }
 }
 
-/* Logo inset matches the Connections home and about heroes, which sit on a
-   1320px centred band: max(30px, (100vw - 1320px) / 2 - 30px). Below 769px
-   the mobile rule below takes over at 23px. */
+
+
+/* ── Hero navbar ───────────────────────────────────────────────────────────
+   This page now carries the shared Caribbean Connections navbar, as the home
+   and about heroes do. The wrapper gives it the absolute-positioned band the
+   export CSS expects; the rules below are the same ones those two pages use. */
+.xp-navwrap {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 3;
+  height: 145px;
+}
+
 @media (min-width: 769px) {
-  .xp-nav {
-    /* 7px further left than the home/about band formula, as specified */
-    padding-left: max(23px, calc((100vw - 1320px) / 2 - 37px)) !important;
+  :host ::ng-deep #container .css-vhq6dg {
+    width: min(1320px, calc(100vw - 120px)) !important;
+    max-width: none !important;
+  }
+  :host ::ng-deep #container .nav-bar-inner {
+    padding-left: 0 !important;
   }
 }
 
-/* 1025-1100px is the one slice where this hero's padding puts the logo 1.5px
-   lower than the other three. */
-@media (min-width: 1025px) and (max-width: 1100px) {
-  .xp-nav { padding-top: 18.5px !important; }
+@media (min-width: 769px) and (max-width: 1100px) {
+  /* navbar.component.css pins this with
+     `#container app-navbar > div.css-vhq6dg.css-8hhw9a.css-trglf0 { top: 28px !important }`,
+     so the override has to carry the same selector to outrank it. */
+  :host ::ng-deep #container app-navbar > div.css-vhq6dg.css-8hhw9a.css-trglf0 {
+    top: 19.5px !important;
+  }
+}
+
+/* The logo sits where home and about put it — the shared navbar's own
+   translate(-30px, -10px) — so no desktop override is needed here.
+   On mobile a bare navwrap starts the logo at 6px, as on about, so it takes
+   the same 17px margin to reach 23px. */
+@media (max-width: 768px) {
+  :host ::ng-deep #container .nav-bar-inner .nav-logo-cc {
+    margin-left: 17px !important;
+  }
 }
